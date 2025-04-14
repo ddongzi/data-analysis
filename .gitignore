@@ -1,0 +1,59 @@
+# Jupyter Notebook 检查点
+.ipynb_checkpoints/
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 数据目录（你可以根据自己项目目录结构改）
+../data/
+../datasets/
+*.csv
+*.tsv
+*.h5
+*.hdf5
+*.sqlite3
+*.txt
+*.db
+*.json
+
+# 日志
+*.log
+
+# Jupyter 输出文件
+*.out
+
+# VS Code 配置
+.vscode/
+
+# Mac 系统文件
+.DS_Store
+
+# 临时文件
+*.bak
+*.swp
+*.swo
+
+# 结果图片
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# 压缩包
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 音频
+*.mp4
+*.wav
