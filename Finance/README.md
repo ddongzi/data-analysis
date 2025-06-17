@@ -25,3 +25,7 @@ powerbi和python结合的不好。
 `plotly.express`: 交互图表
 
 `akshare`: 经济数据
+
+其余数据报告链接：
+[Trading Economics](https://zh.tradingeconomics.com/china/money-supply-m2)
+[East money](https://data.eastmoney.com/cjsj/hbgyl.html)

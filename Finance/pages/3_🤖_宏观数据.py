@@ -9,6 +9,9 @@ import streamlit as st
 import akshare as ak
 import plotly.express as px
 
+### 数据 ？？？ 怎么把akshare的数据 都返回为缓存数据
+
+
 
 ######### 
 st.write('## 杠杆率')
@@ -185,6 +188,16 @@ st.markdown('''
 ######################### 
 st.write('## 金融指标')
 macro_china_fx_reserves_yearly_df = ak.macro_china_fx_reserves_yearly()
+macro_china_fx_reserves_yearly_df['日期'] = pd.to_datetime(macro_china_fx_reserves_yearly_df['日期'])
+macro_china_fx_reserves_yearly_df['year'] =  macro_china_fx_reserves_yearly_df['日期'].dt.year
+macro_china_fx_reserves_yearly_df['month'] =  macro_china_fx_reserves_yearly_df['日期'].dt.month
+plotdf = macro_china_fx_reserves_yearly_df.groupby(['year','month'])['今值'].sum()
+plotdf = plotdf.reset_index()
+plotdf['日期'] = pd.to_datetime({
+    'year':plotdf['year'],
+    'month':plotdf['month'],
+    'day':1, # 第一天默认
+    })
 fig = px.line(data_frame=macro_china_fx_reserves_yearly_df,
               x='日期',
               y= '今值',
@@ -198,11 +211,23 @@ fig = px.line(data_frame=macro_china_fx_reserves_yearly_df,
 st.plotly_chart(fig) 
 st.markdown('''
         ### 📌
+        - 最新外汇储备 32850 亿美元
 
  ''')       
  
 macro_china_m2_yearly_df = ak.macro_china_m2_yearly()
-fig = px.line(data_frame=macro_china_m2_yearly_df,
+macro_china_m2_yearly_df['日期'] = pd.to_datetime(macro_china_m2_yearly_df['日期'])
+macro_china_m2_yearly_df['year'] =  macro_china_m2_yearly_df['日期'].dt.year
+macro_china_m2_yearly_df['month'] =  macro_china_m2_yearly_df['日期'].dt.month
+plotdf = macro_china_m2_yearly_df.groupby(['year','month'])['今值'].sum()
+plotdf = plotdf.reset_index()
+plotdf['日期'] = pd.to_datetime({
+    'year':plotdf['year'],
+    'month':plotdf['month'],
+    'day':1, # 第一天默认
+    })
+
+fig = px.line(data_frame=plotdf,
               x='日期',
               y= '今值',
               title='中国M2货币供应',
@@ -213,7 +238,30 @@ fig = px.line(data_frame=macro_china_m2_yearly_df,
               )
 st.plotly_chart(fig) 
 st.markdown('''
-        ### 📌
-
+        ### 📌 
+        - 5月的M2货币同比增长7.9%
+        ### ✅ 带加入后面的货币供应量数据一起
  ''')       
- 
+
+# 城市
+cities = ['上海', '北京', '成都']
+house_type = st.selectbox('选择房屋类型', ['新建商品住宅', '二手住宅'])
+city1 = st.selectbox('城市1',  cities)
+city2 = st.selectbox('城市2',  cities)
+method = st.selectbox('方式', ['环比', '同比', '定基'])
+compos_colname = f'{house_type}价格指数-{method}'
+macro_china_new_house_price_df = ak.macro_china_new_house_price(city_first=city1, 
+                                                                city_second=city2)
+fig = px.line(data_frame=macro_china_new_house_price_df,
+              x='日期',
+              y= compos_colname,
+              color='城市',
+              title=f'{city1} vs {city2} 新房价价格指数',
+              labels={
+                  '今值':f'{method}增长率%',
+                  'variable':'项目',
+                  }
+              )
+
+st.plotly_chart(fig) 
+

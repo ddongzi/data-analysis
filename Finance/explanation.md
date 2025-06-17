@@ -69,6 +69,8 @@ ABS（资产支持证券）：未来资产(房贷、车贷、租金等)打包进
 
 ABS发现消费贷款！？[上交所ABS债券查询](https://bond.sse.com.cn/disclosure/info/index.shtml?BONDCODE=265022)
 
+
+
 <img src="https://raw.githubusercontent.com/ddongzi/ddongzi.github.io/master/assets/images/image-20250606172634099.png" alt="image-20250606172634099" style="zoom:50%;" />
 
 
@@ -131,4 +133,4 @@ M2：广义货币供应量。 = M1（流通现金+活期存款）+ 定期存款�
 
 M2年率：同比增长
 
-[M2券商研究报告](https://www.sxzq.com/yj/20240528//1716894002876.pdf)
+[M2券商研究报告](https://www.sxzq.com/yj/20240528//1716894002876.pdf))
