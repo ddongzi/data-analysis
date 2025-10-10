@@ -58,3 +58,5 @@ __pycache__/
 # 音频
 *.mp4
 *.wav
+
+*.bin
