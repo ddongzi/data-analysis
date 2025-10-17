@@ -10,4 +10,4 @@
 - 🚧mlcook: matplotlit、numpy、pandas、scipy知识记录；
 - ❌mlpratice: 《机器学习实战》书；
 - 🚧scikit-learn: sklearn文档和练习；
-sound: 有趣的声音信号
+- 💤sound: 有趣的声音信号
