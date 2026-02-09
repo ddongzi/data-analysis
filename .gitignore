@@ -24,6 +24,7 @@ __pycache__/
 *.txt
 *.db
 *.json
+*.feather
 
 # 日志
 *.log
