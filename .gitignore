@@ -1,3 +1,7 @@
+# 忽略 Sphinx 生成的本地构建目录
+_build/
+build/
+
 # Jupyter Notebook 检查点
 .ipynb_checkpoints/
 
