@@ -17,7 +17,6 @@ html_favicon = "_static/favicon.ico"
 
 extensions = [
     "myst_nb",       # 这是解析 Jupyter Notebook 的核心插件
-    "sphinx_togglebutton",
 ]
 
 source_suffix = {
@@ -52,4 +51,3 @@ html_css_files = [
 html_js_files = [
     'js/custom.js',
 ]
-togglebutton_selector = ".hide_input"
