@@ -28,5 +28,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        with:
+        with: # 默认推送到gh-pages
           folder: _build/html # 部署 build 出来的 HTML 文件夹
