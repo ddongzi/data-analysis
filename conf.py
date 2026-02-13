@@ -6,14 +6,25 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'DA大杂烩'
+project = 'DA'
 copyright = '2026, 蓝色夕阳'
 author = '蓝色夕阳'
+
+html_favicon = "_static/favicon.ico"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+    "myst_nb",       # 这是解析 Jupyter Notebook 的核心插件
+    # ... 其他插件
+]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.ipynb': 'myst-nb',
+    '.md': 'myst-nb',
+}
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -28,4 +39,8 @@ html_static_path = ['_static']
 
 html_theme_options = {
     "github_url": "https://github.com/ddongzi/data-analysis",
+
+    "show_nav_level": 0, # 顶部导肮只显示caption
+    "show_toc_level": 2, # 每页侧边栏显示2级
+    "collapse_navigation": False # 全展开
 }
