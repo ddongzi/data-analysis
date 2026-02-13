@@ -19,9 +19,8 @@ documentation for details.
 .. toctree::
    :maxdepth: 2
    :caption: kaggle
-   kaggle/SpaceShip_TiTantic/main
-   kaggle/Home Credit Default Risk/main
-   kaggle/Home Credit Default Risk/menu_feature_enginer
+   泰坦尼克号:飞船版 kaggle/SpaceShip_TiTantic/main
+   信贷违约风险项目 <kaggle/Home_Credit_Default_Risk/index>
 
 .. toctree::
    :maxdepth: 2
