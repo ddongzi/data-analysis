@@ -10,24 +10,15 @@ Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 documentation for details.
 
-
 .. toctree::
    :maxdepth: 2
-   :caption: 天体
+   :caption: 🏆 kaggle实战
 
-
-.. toctree::
-   :maxdepth: 2
-   :caption: kaggle
-   泰坦尼克号:飞船版 kaggle/SpaceShip_TiTantic/main
    信贷违约风险项目 <kaggle/Home_Credit_Default_Risk/index>
 
 .. toctree::
    :maxdepth: 2
-   :caption: 基础
-   基础/基础
-
-.. toctree::
-   :maxdepth: 2
-   :caption: sklearn
+   :caption: 🛠️ 基础知识
    
+   基础学习笔记 <basics/basics>
+   hello <basics/hello>
