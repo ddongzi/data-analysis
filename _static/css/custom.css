@@ -4,7 +4,7 @@
 }
 
 /* 避免输出区域过长，设置最大高度并显示滚动条 */
-div.nboutput.container div.output_area {
+.cell_output {
     max-height: 24.75em;
     overflow-y: auto;
 }
