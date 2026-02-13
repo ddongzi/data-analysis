@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install sphinx pydata-sphinx-theme myst-nb sphinx-copybutton
+          pip install sphinx pydata-sphinx-theme myst-nb sphinx-copybutton sphinx-togglebutton
 
       - name: Build HTML
         run: |
