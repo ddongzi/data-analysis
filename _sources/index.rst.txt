@@ -13,5 +13,22 @@ documentation for details.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: 天体
 
+
+.. toctree::
+   :maxdepth: 2
+   :caption: kaggle
+   kaggle/SpaceShip_TiTantic/main
+   kaggle/Home Credit Default Risk/main
+   kaggle/Home Credit Default Risk/menu_feature_enginer
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 基础
+   基础/基础
+
+.. toctree::
+   :maxdepth: 2
+   :caption: sklearn
+   
