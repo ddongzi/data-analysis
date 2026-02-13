@@ -44,3 +44,8 @@ html_theme_options = {
     "show_toc_level": 2, # 每页侧边栏显示2级
     "collapse_navigation": False # 全展开
 }
+
+# 补充自定义css
+html_css_files = [
+    'css/custom.css',
+]
