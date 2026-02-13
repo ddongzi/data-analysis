@@ -1,0 +1,1543 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>宏观经济 &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'economy/economy';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">宏观经济</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>宏观经济<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>plotly带来交互，但是导致文件过大，不能上传github，得不偿失</p>
+<ul>
+<li><p>TODO: 替换为seaborn</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">akshare</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ak</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fonts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimSun&#39;</span><span class="p">,</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fonts</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> 
+    <span class="n">context</span><span class="o">=</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> 
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span>
+    <span class="n">font</span><span class="o">=</span><span class="n">fonts</span><span class="p">,</span>
+    <span class="n">rc</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;axes.unicode_minus&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>   <span class="c1"># 解决负号乱码</span>
+        <span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">2.5</span>         <span class="c1"># 线条加粗，更有质感</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">akshare</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ak</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h2>杠杆率<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_cnbs_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_cnbs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_cnbs_df</span> <span class="o">=</span> <span class="n">macro_cnbs_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;年份&#39;</span><span class="p">)</span>
+<span class="n">macro_cnbs_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>居民部门</th>
+      <th>非金融企业部门</th>
+      <th>政府部门</th>
+      <th>中央政府</th>
+      <th>地方政府</th>
+      <th>实体经济部门</th>
+      <th>金融部门资产方</th>
+      <th>金融部门负债方</th>
+    </tr>
+    <tr>
+      <th>年份</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2005-03</th>
+      <td>17.6</td>
+      <td>104.6</td>
+      <td>26.4</td>
+      <td>18.0</td>
+      <td>8.4</td>
+      <td>148.6</td>
+      <td>20.9</td>
+      <td>21.1</td>
+    </tr>
+    <tr>
+      <th>2005-06</th>
+      <td>17.6</td>
+      <td>101.1</td>
+      <td>26.6</td>
+      <td>18.0</td>
+      <td>8.6</td>
+      <td>145.3</td>
+      <td>23.0</td>
+      <td>22.4</td>
+    </tr>
+    <tr>
+      <th>2005-09</th>
+      <td>17.3</td>
+      <td>100.1</td>
+      <td>26.7</td>
+      <td>17.9</td>
+      <td>8.8</td>
+      <td>144.1</td>
+      <td>23.9</td>
+      <td>23.6</td>
+    </tr>
+    <tr>
+      <th>2005-12</th>
+      <td>16.6</td>
+      <td>98.4</td>
+      <td>26.2</td>
+      <td>17.2</td>
+      <td>9.0</td>
+      <td>141.2</td>
+      <td>24.1</td>
+      <td>23.9</td>
+    </tr>
+    <tr>
+      <th>2006-03</th>
+      <td>17.2</td>
+      <td>100.5</td>
+      <td>25.5</td>
+      <td>16.2</td>
+      <td>9.3</td>
+      <td>143.2</td>
+      <td>24.9</td>
+      <td>24.6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-12</th>
+      <td>61.9</td>
+      <td>163.9</td>
+      <td>54.7</td>
+      <td>23.2</td>
+      <td>31.5</td>
+      <td>280.5</td>
+      <td>51.1</td>
+      <td>65.5</td>
+    </tr>
+    <tr>
+      <th>2024-03</th>
+      <td>62.3</td>
+      <td>169.5</td>
+      <td>55.3</td>
+      <td>23.4</td>
+      <td>31.9</td>
+      <td>287.1</td>
+      <td>52.2</td>
+      <td>67.0</td>
+    </tr>
+    <tr>
+      <th>2024-06</th>
+      <td>61.8</td>
+      <td>169.7</td>
+      <td>56.3</td>
+      <td>24.0</td>
+      <td>32.3</td>
+      <td>287.8</td>
+      <td>50.5</td>
+      <td>68.6</td>
+    </tr>
+    <tr>
+      <th>2024-09</th>
+      <td>61.6</td>
+      <td>169.9</td>
+      <td>58.7</td>
+      <td>25.1</td>
+      <td>33.6</td>
+      <td>290.2</td>
+      <td>50.9</td>
+      <td>70.8</td>
+    </tr>
+    <tr>
+      <th>2024-12</th>
+      <td>61.4</td>
+      <td>168.4</td>
+      <td>60.8</td>
+      <td>25.6</td>
+      <td>35.2</td>
+      <td>290.6</td>
+      <td>51.2</td>
+      <td>70.2</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">macro_cnbs_df</span><span class="p">)</span> <span class="c1"># Seaborn 会自动将列名作为线段标签</span>
+<span class="c1"># plt.xticks(rotation=75, ha=&#39;right&#39;)  # 太密了</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;宏观杠杆率变化&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;杠杆率&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;杠杆率&#39;)
+</pre></div>
+</div>
+<img alt="../_images/732a9b5d4f94ef1b7e3863f2c8c6965f950b898df33649f9aed8cd66616b602d.png" src="../_images/732a9b5d4f94ef1b7e3863f2c8c6965f950b898df33649f9aed8cd66616b602d.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>整体杠杆率呈持续上升趋势，反映出宏观债务水平的持续扩大。</p></li>
+<li><p>自 2020 年第三季度起，居民部门杠杆率趋于稳定，维持在 60% 至 62% 区间。</p></li>
+<li><p>2020 年第三季度后，政府与非金融企业部门杠杆率同步上行，是推动总体杠杆率上升的主要因素。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>国民经济运行情况<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>企业商品价格指数<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_qyspjg_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_qyspjg</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_qyspjg_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>月份</th>
+      <th>总指数-指数值</th>
+      <th>总指数-同比增长</th>
+      <th>总指数-环比增长</th>
+      <th>农产品-指数值</th>
+      <th>农产品-同比增长</th>
+      <th>农产品-环比增长</th>
+      <th>矿产品-指数值</th>
+      <th>矿产品-同比增长</th>
+      <th>矿产品-环比增长</th>
+      <th>煤油电-指数值</th>
+      <th>煤油电-同比增长</th>
+      <th>煤油电-环比增长</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025年12月份</td>
+      <td>98.8</td>
+      <td>0.508647</td>
+      <td>0.713558</td>
+      <td>100.4</td>
+      <td>1.006036</td>
+      <td>2.974359</td>
+      <td>112.4</td>
+      <td>10.738916</td>
+      <td>1.444043</td>
+      <td>94.7</td>
+      <td>-0.941423</td>
+      <td>-0.210748</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025年11月份</td>
+      <td>98.1</td>
+      <td>-0.507099</td>
+      <td>0.822199</td>
+      <td>97.5</td>
+      <td>-5.247813</td>
+      <td>6.209150</td>
+      <td>110.8</td>
+      <td>8.203125</td>
+      <td>1.002735</td>
+      <td>94.9</td>
+      <td>0.317125</td>
+      <td>-0.105263</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025年10月份</td>
+      <td>97.3</td>
+      <td>-1.717172</td>
+      <td>-0.409417</td>
+      <td>91.8</td>
+      <td>-13.314448</td>
+      <td>1.101322</td>
+      <td>109.7</td>
+      <td>4.675573</td>
+      <td>-0.091075</td>
+      <td>95.0</td>
+      <td>1.387407</td>
+      <td>-1.144641</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025年09月份</td>
+      <td>97.7</td>
+      <td>-0.610376</td>
+      <td>0.411100</td>
+      <td>90.8</td>
+      <td>-15.219421</td>
+      <td>-0.873362</td>
+      <td>109.8</td>
+      <td>6.189555</td>
+      <td>3.487276</td>
+      <td>96.1</td>
+      <td>3.444564</td>
+      <td>2.234043</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025年08月份</td>
+      <td>97.3</td>
+      <td>-1.816347</td>
+      <td>0.205973</td>
+      <td>91.6</td>
+      <td>-13.175355</td>
+      <td>-5.274043</td>
+      <td>106.1</td>
+      <td>0.473485</td>
+      <td>3.310613</td>
+      <td>94.0</td>
+      <td>-2.892562</td>
+      <td>1.184069</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id5">
+<h3>城镇调查失业率<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_urban_unemployment_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_urban_unemployment</span><span class="p">()</span>
+<span class="n">macro_china_urban_unemployment_df_wide</span> <span class="o">=</span> <span class="n">macro_china_urban_unemployment_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">macro_china_urban_unemployment_df_wide</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_urban_unemployment_df_wide</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">macro_china_urban_unemployment_df_wide</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;失业率统计（按月份）&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;失业率&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;项目&#39;</span><span class="p">)</span> <span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/265d4296dbcbb2d51db349f102c07a55252ca993f16b4527888bc202ecc5426d.png" src="../_images/265d4296dbcbb2d51db349f102c07a55252ca993f16b4527888bc202ecc5426d.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>国家统计局的统计数据不知是否可靠。且部分数据缺失。</p></li>
+<li><p>城镇失业率大概在5%-6%之间。</p></li>
+</ul>
+</section>
+<section id="lpr">
+<h3>LPR品种数据<a class="headerlink" href="#lpr" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_lpr_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_lpr</span><span class="p">()</span>
+<span class="n">macro_china_lpr_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;TRADE_DATE&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "df9596cdd97f434488f803668b6182ea", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">macro_china_lpr_df</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;中国LPR利率变化趋势&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;日期&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;LPR (%)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;项目&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2ab0d6bfc50&gt;
+</pre></div>
+</div>
+<img alt="../_images/9ecd7c9fc0a42d5c7011d27ee97730c5a0be803e83b7529b88c7df7699f74ce8.png" src="../_images/9ecd7c9fc0a42d5c7011d27ee97730c5a0be803e83b7529b88c7df7699f74ce8.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>LPR 于 2019 年 8 月正式推出，因此早期数据中 LPR 列为空（NaN）属正常情况。</p></li>
+<li><p>当前（最新）<strong>1年期 LPR 为 3.5, 5年期LPR为3.0</strong>，处于历史最低位。</p></li>
+<li><p>自推出以来，<strong>LPR 呈下降趋势</strong>：三年内下调约 <strong>0.8 个百分点</strong>，五年内累计下调约 <strong>1.0 个百分点</strong>。表明贷款难度下降，但消费力长期不足。</p></li>
+<li><p><strong>1年期与5年期 LPR 的利差逐步收窄</strong>，从最初的 0.65 降至当前的 0.4，表明长期贷款成本相对下降，<strong>货币政策更偏向刺激中长期信贷</strong>，也可能反映房地产、基建等长期资金需求较为疲软。</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>社融增量统计<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_shrzgm_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_shrzgm</span><span class="p">()</span>
+<span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span>
+<span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;月份&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span> <span class="n">col</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;其中-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="ne">SSLError</span>: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">MaxRetryError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\adapters.py:644,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">644</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">645</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">646</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">649</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">650</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">651</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">652</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\urllib3\connectionpool.py:841,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="n">new_e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">new_e</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">841</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">842</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">new_e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\urllib3\util\retry.py:535,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span>     <span class="n">reason</span> <span class="o">=</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">ResponseError</span><span class="p">(</span><span class="n">cause</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">535</span>     <span class="k">raise</span> <span class="n">MaxRetryError</span><span class="p">(</span><span class="n">_pool</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">reason</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">    </span><span class="mi">537</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Incremented Retry for (url=&#39;</span><span class="si">%s</span><span class="s2">&#39;): </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">new_retry</span><span class="p">)</span>
+
+<span class="ne">MaxRetryError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)&#39;)))
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">macro_china_shrzgm_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_shrzgm</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;月份&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\akshare\economic\macro_china.py:267,</span> in <span class="ni">macro_china_shrzgm</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="n">TLSAdapter</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://data.mofcom.gov.cn/datamofcom/front/gnmy/shrzgmQuery&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">267</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="n">data_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:637,</span> in <span class="ni">Session.post</span><span class="nt">(self, url, data, json, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a POST request. Returns :class:`Response` object.</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)    634     :rtype: requests.Response</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">637</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:589,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:703,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\adapters.py:675,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="k">raise</span> <span class="n">ProxyError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
+<span class="ne">--&gt; </span><span class="mi">675</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="ne">SSLError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)&#39;)))
+</pre></div>
+</div>
+</div>
+</div>
+<p>📌 反映每个月中国实体经济从各渠道获得的新增资金总量以及结构</p>
+<ul class="simple">
+<li><p>社融增量主要来自人名币贷款。</p></li>
+<li><p>每年的趋势大致相同，一月份是社融增量高峰。这体现了政策、银行、企业贷款需求的周期性。</p></li>
+</ul>
+</section>
+<section id="gdp">
+<h3>GDP年率<a class="headerlink" href="#gdp" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_gdp_yearly_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_gdp_yearly</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">macro_china_gdp_yearly_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;今值&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GDP年率报告(季度)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;季度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;GDP年同比增长率(%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;GDP年同比增长率(%)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/a8715230cff87046c0b3358c9a047917d0c220784f9fb0d1811862c03a1675c2.png" src="../_images/a8715230cff87046c0b3358c9a047917d0c220784f9fb0d1811862c03a1675c2.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>自 2011 年以来，中国 GDP 年增速呈持续放缓趋势，从 9.5% 降至约 5%，反映出经济由高速增长阶段逐步迈向高质量、稳态发展阶段。</p></li>
+<li><p>2020 年一季度，受新冠疫情严重冲击，GDP 增速首次转负，达到 -6.5%。此后虽逐步恢复，到 2023 年三季度，增速才趋于稳定。</p></li>
+<li><p>然而，增速“稳定”并不意味着 GDP 总量已完全恢复至疫情前的自然增长轨迹。🔍增速仅反映相对变化率，要评估真实经济恢复情况，应结合GDP总量综合判断。</p></li>
+</ul>
+</section>
+<section id="cpi">
+<h3>CPI<a class="headerlink" href="#cpi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_cpi_monthly_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_cpi_monthly</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_melted</span> <span class="o">=</span> <span class="n">macro_china_cpi_monthly_df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">],</span> 
+    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;今值&#39;</span><span class="p">,</span> <span class="s1">&#39;预测值&#39;</span><span class="p">],</span> 
+    <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;项目&#39;</span><span class="p">,</span> 
+    <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;CPI月环比增长率(%)&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;CPI月环比增长率(%)&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;项目&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国CPI月率&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;月度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;CPI月环比增长率(%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;CPI月环比增长率(%)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/64a5f9d054bcf729782d7a7b1b50d2dbd11da22931b1d11007b5af0468dd84c4.png" src="../_images/64a5f9d054bcf729782d7a7b1b50d2dbd11da22931b1d11007b5af0468dd84c4.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>长期来看，CPI波动幅度逐渐减小，消费物价趋于稳定，因此CPI更适合反映短期几个月内的价格变动。</p></li>
+<li><p>2025年3、4、6月CPI同比连续为负，尽管5月小幅回升至0.1%，但反弹力度有限，显示整体消费需求偏弱。</p></li>
+<li><p>若CPI持续负增长，将可能引发通缩风险，其传导机制包括：</p>
+<ol class="arabic simple">
+<li><p>供大于求 → 商品价格下行 → 企业销售困难、盈利下降 → 减少投资、裁员减产；</p></li>
+<li><p>企业经营压力传导至居民 → 收入下降 → 消费进一步收缩，形成恶性循环；</p></li>
+<li><p>通缩期间货币购买力上升 → 债务实际负担加重 → 企业、个人违约风险上升，可能引发信用危机与破产潮。</p></li>
+</ol>
+</li>
+<li><p>当前LPR（贷款市场报价利率）呈下降趋势，反映出政府正在通过信贷宽松和低利率政策提振消费和投资，缓解通缩压力。</p></li>
+</ul>
+</section>
+<section id="ppi">
+<h3>PPI<a class="headerlink" href="#ppi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_ppi_yearly_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_ppi_yearly</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">macro_china_cpi_monthly_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;今值&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国PPI年率&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;月度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;PPI月环比增长率(%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;PPI月环比增长率(%)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/85752e5bd09c45e525ab528a0ad5cb567c776827de20895ddd3b97656d793c9f.png" src="../_images/85752e5bd09c45e525ab528a0ad5cb567c776827de20895ddd3b97656d793c9f.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>长期来看，PPI波动幅度逐渐减小，生产端趋于稳定，因此CPI更适合反映短期几个月内的价格变动。</p></li>
+<li><p>2025以来，和CPI同步。</p></li>
+</ul>
+</section>
+</section>
+<section id="id7">
+<h2>金融指标<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>外汇储备<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_fx_reserves_yearly_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_fx_reserves_yearly</span><span class="p">()</span>
+<span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">])</span>
+<span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">macro_china_fx_reserves_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotdf</span> <span class="o">=</span> <span class="n">macro_china_fx_reserves_yearly_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;今值&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">plotdf</span> <span class="o">=</span> <span class="n">plotdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;month&#39;</span><span class="p">:</span><span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;day&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># 第一天默认</span>
+    <span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;今值&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国外汇储备&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;月度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;外汇储备(单位：亿美元)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/afa5f5caf2631f58ec9bb53e3f29e00f319671a83e0963347f940505a6c300b4.png" src="../_images/afa5f5caf2631f58ec9bb53e3f29e00f319671a83e0963347f940505a6c300b4.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>最新外汇储备 <strong>32850</strong> 亿美元</p></li>
+</ul>
+</section>
+<section id="m2">
+<h3>M2货币供应量<a class="headerlink" href="#m2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_m2_yearly_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_m2_yearly</span><span class="p">()</span>
+<span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">])</span>
+<span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">macro_china_m2_yearly_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">plotdf</span> <span class="o">=</span> <span class="n">macro_china_m2_yearly_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">])[</span><span class="s1">&#39;今值&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotdf</span> <span class="o">=</span> <span class="n">plotdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;month&#39;</span><span class="p">:</span><span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;day&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># 第一天默认</span>
+    <span class="p">})</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;今值&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国M2货币供应&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;同比增长率%&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9dc8641023ce2649c2112eae45fe45cdb493aa5c3981c35dd3d957b3d53a3b6f.png" src="../_images/9dc8641023ce2649c2112eae45fe45cdb493aa5c3981c35dd3d957b3d53a3b6f.png" />
+</div>
+</div>
+<p>📌</p>
+<ul class="simple">
+<li><p>5月的M2货币同比增长7.9%</p></li>
+<li><p>✅ 带加入后面的货币供应量数据一起</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>新房价价格指数<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city1</span> <span class="o">=</span> <span class="s1">&#39;上海&#39;</span>
+<span class="n">city2</span> <span class="o">=</span> <span class="s1">&#39;成都&#39;</span>
+<span class="n">macro_china_new_house_price_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_new_house_price</span><span class="p">(</span><span class="n">city_first</span><span class="o">=</span><span class="n">city1</span><span class="p">,</span> 
+                                                                <span class="n">city_second</span><span class="o">=</span><span class="n">city2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 把指标扁平化作为 合并一列，</span>
+<span class="n">plotdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">macro_china_new_house_price_df</span><span class="p">,</span>
+    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="s1">&#39;城市&#39;</span><span class="p">],</span>
+    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;新建商品住宅价格指数-同比&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;新建商品住宅价格指数-环比&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;新建商品住宅价格指数-定基&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;二手住宅价格指数-同比&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;二手住宅价格指数-环比&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;二手住宅价格指数-定基&#39;</span>
+    <span class="p">],</span>
+    <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;项目&#39;</span><span class="p">,</span>
+    <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;增长率%&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;增长率%&#39;</span><span class="p">,</span> 
+    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;项目&#39;</span><span class="p">,</span>    <span class="c1"># 区分价格指数类型</span>
+    <span class="n">style</span><span class="o">=</span><span class="s1">&#39;城市&#39;</span><span class="p">,</span>  <span class="c1"># 区分城市（实线/虚线）</span>
+    <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 加上数据点标记，方便辨认</span>
+    <span class="n">dashes</span><span class="o">=</span><span class="kc">True</span>    <span class="c1"># 启用虚线效果</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">city1</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">city2</span><span class="si">}</span><span class="s1"> 房价指数对比&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;增长率 %&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;图例&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3b35cf2844810406bbff179df8f5618f314117fff7c6828161b8f378111b0eb7.png" src="../_images/3b35cf2844810406bbff179df8f5618f314117fff7c6828161b8f378111b0eb7.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>企业景气及企业家信心指数<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_enterprise_boom_index_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_enterprise_boom_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">jidu_to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span>  <span class="c1"># 表示时间缺失值</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">s</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">quarter</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="nb">str</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">quarter</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s1">-01&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_enterprise_boom_index_df</span><span class="p">[</span><span class="s1">&#39;quarter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_enterprise_boom_index_df</span><span class="p">[</span><span class="s1">&#39;季度&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">jidu_to_datetime</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">value_vars</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;企业景气指数-指数&#39;</span><span class="p">,</span> <span class="s1">&#39;企业景气指数-同比&#39;</span><span class="p">,</span> <span class="s1">&#39;企业景气指数-环比&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;企业家信心指数-指数&#39;</span><span class="p">,</span> <span class="s1">&#39;企业家信心指数-同比&#39;</span><span class="p">,</span> <span class="s1">&#39;企业家信心指数-环比&#39;</span>
+<span class="p">]</span>
+
+<span class="n">plot_df_melted</span> <span class="o">=</span> <span class="n">macro_china_enterprise_boom_index_df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;quarter&#39;</span><span class="p">],</span> 
+    <span class="n">value_vars</span><span class="o">=</span><span class="n">value_vars</span><span class="p">,</span>
+    <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;指数类型&#39;</span><span class="p">,</span> 
+    <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;数值&#39;</span>
+<span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">plot_df_melted</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;quarter&#39;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;数值&#39;</span><span class="p">,</span> 
+    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;指数类型&#39;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>  <span class="c1"># 增加点标记，方便区分 6 条线</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国企业景气指数和企业家信心指数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;增长率% / 指数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;指数类型&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.02</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f335339a15172328527a824236c387692636112f660ca9cd90aa75934bf54af3.png" src="../_images/f335339a15172328527a824236c387692636112f660ca9cd90aa75934bf54af3.png" />
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>税收收入<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_national_tax_receipts_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_national_tax_receipts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy保证新的副本</span>
+<span class="n">plot_year_df</span> <span class="o">=</span> <span class="n">macro_china_national_tax_receipts_df</span><span class="p">[</span><span class="n">macro_china_national_tax_receipts_df</span><span class="p">[</span><span class="s1">&#39;季度&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;1-4季度&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_year_df</span><span class="p">[</span><span class="s1">&#39;年份&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_year_df</span><span class="p">[</span><span class="s1">&#39;季度&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">plot_year_df</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;年份&#39;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;税收收入合计&#39;</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;税收收入&#39;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;中国税收入年度报告&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;税收收入，单位：亿美元&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span> <span class="c1"># 让 Y 轴刻度颜色与线条一致</span>
+
+<span class="c1"># 4. 创建次轴 (ax2)，共用 X 轴</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+
+<span class="c1"># --- 绘制右轴数据 (年增长率) ---</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">plot_year_df</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;年份&#39;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;较上年同期&#39;</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;年增长率&#39;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span> <span class="c1"># 使用不同的标记形状</span>
+<span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;较去年同比增长率：%&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
+
+<span class="c1"># 5. 合并图例</span>
+<span class="c1"># 因为 ax1 和 ax2 是独立的，直接 show 会出现两个图例框</span>
+<span class="n">lines1</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">lines2</span><span class="p">,</span> <span class="n">labels2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines1</span> <span class="o">+</span> <span class="n">lines2</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">+</span> <span class="n">labels2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span> <span class="c1"># 移除多余的图例</span>
+
+<span class="c1"># 6. 辅助线（可选：在增长率 0 位画一条基准线）</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6584ce12cb954b5c77fbdd570a521102eec552390aae8efcf757e39219e4f12e.png" src="../_images/6584ce12cb954b5c77fbdd570a521102eec552390aae8efcf757e39219e4f12e.png" />
+</div>
+</div>
+</section>
+<section id="id12">
+<h3>银行理财产品发行数量<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_bank_financing_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_bank_financing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 配合%显示tickformat</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近3月涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近3月涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近6月涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近6月涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近1年涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近1年涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近2年涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近2年涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近3年涨跌幅&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;近3年涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2015 年之后比较稳定</span>
+<span class="n">macro_china_bank_financing_df</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="n">macro_china_bank_financing_df</span><span class="p">[</span><span class="s1">&#39;日期&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2015</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotdf</span> <span class="o">=</span> <span class="n">macro_china_bank_financing_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. 创建子图布局：2行1列，共享X轴，设置高度比例</span>
+<span class="c1"># gridspec_kw 可以调整子图的高度比例，比如让上图大一点</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                               <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+<span class="c1"># --- 上子图 (Row 1): 发行数量 ---</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;最新值&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;银行理财产品发行数量&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;银行发行理财产品数量报告&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;理财产品发行数量&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="c1"># --- 下子图 (Row 2): 多维度涨跌幅 ---</span>
+<span class="c1"># 依次绘制多条线，手动指定 ax=ax2</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;涨跌幅&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;月涨跌幅&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;近6月涨跌幅&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;近6月涨跌幅&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;近1年涨跌幅&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;近1年涨跌幅&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotdf</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;近3年涨跌幅&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;近3年涨跌幅&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># 设置下子图属性</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;增长率%&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># 格式化 Y 轴为百分比（如果数据已经是 0.05 这种格式，使用 PercentFormatter）</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">PercentFormatter</span>
+<span class="c1"># 如果数据是 5(表示5%), 用下行；如果是 0.05(表示5%), 用 PercentFormatter(1.0)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">1</span> <span class="k">if</span> <span class="n">plotdf</span><span class="p">[</span><span class="s1">&#39;涨跌幅&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># 4. 全局优化</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># 调整子图间距 (对应 vertical_spacing)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span> 
+
+<span class="c1"># 合并或美化图例</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 4条线，两列显示更整齐</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4df348f692ced2fd14342c4fefa057dea7c3c7bb07f80ac10137a508c1f71177.png" src="../_images/4df348f692ced2fd14342c4fefa057dea7c3c7bb07f80ac10137a508c1f71177.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">杠杆率</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">国民经济运行情况</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">企业商品价格指数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">城镇调查失业率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lpr">LPR品种数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">社融增量统计</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp">GDP年率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpi">CPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ppi">PPI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">金融指标</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">外汇储备</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m2">M2货币供应量</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">新房价价格指数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">企业景气及企业家信心指数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">税收收入</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">银行理财产品发行数量</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/economy/economy.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

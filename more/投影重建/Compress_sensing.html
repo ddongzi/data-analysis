@@ -1,0 +1,1179 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Compressive sensing: tomography reconstruction with L1 prior (Lasso) &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'more/投影重建/Compress_sensing';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="compressive-sensing-tomography-reconstruction-with-l1-prior-lasso">
+<h1>Compressive sensing: tomography reconstruction with L1 prior (Lasso)<a class="headerlink" href="#compressive-sensing-tomography-reconstruction-with-l1-prior-lasso" title="Link to this heading">#</a></h1>
+<p>(压缩感知：使用 L1 先验 (Lasso) 进行CT重建)<br />
+<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/applications/plot_tomography_l1_reconstruction.html#sphx-glr-auto-examples-applications-plot-tomography-l1-reconstruction-py">原文连接</a></p>
+<section id="ct">
+<h2>CT扫描、投影<a class="headerlink" href="#ct" title="Link to this heading">#</a></h2>
+<p>参考：
+<a class="reference external" href="https://www.youtube.com/watch?v=65LMqRUaGo0">Youtube- CT Reconstruction: (Radon transform, Fourier Slice Theorem, &amp; Convolution Backprojection) </a><br />
+<a class="reference external" href="https://youtu.be/f0sxjhGHRPo?si=ygAn-mykpmx48y9W">Looking through Objects - How Tomography Works! </a></p>
+<p>投影的理解，图像大小为$4*4$。<br />
+一个角度的投影就是 旋转点再原坐标轴（离散）的权重分配。<br />
+因为点旋转后落不到离散x上，所以通过插值分配。<br />
+点积分到旋转轴上， 和旋转点积分到原坐标轴上， 是等价的。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;inline&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/IPython/core/interactiveshell.py:2482,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2480</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2481</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2482</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2484</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2485</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2486</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2487</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/IPython/core/magics/pylab.py:103,</span> in <span class="ni">PylabMagics.matplotlib</span><span class="nt">(self, line)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="nb">print</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="s2">&quot;Available matplotlib backends: </span><span class="si">%s</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="o">%</span> <span class="n">_list_matplotlib_backends_and_gui_loops</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>     <span class="n">gui</span><span class="p">,</span> <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">enable_matplotlib</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_show_matplotlib_backend</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gui</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/IPython/core/interactiveshell.py:3667,</span> in <span class="ni">InteractiveShell.enable_matplotlib</span><span class="nt">(self, gui)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3664</span>     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib_inline.backend_inline</span>
+<span class="g g-Whitespace">   </span><span class="mi">3666</span> <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">pylabtools</span> <span class="k">as</span> <span class="n">pt</span>
+<span class="ne">-&gt; </span><span class="mi">3667</span> <span class="n">gui</span><span class="p">,</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">find_gui_and_backend</span><span class="p">(</span><span class="n">gui</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pylab_gui_select</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3669</span> <span class="k">if</span> <span class="n">gui</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3670</span>     <span class="c1"># If we have our first gui selection, store it</span>
+<span class="g g-Whitespace">   </span><span class="mi">3671</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pylab_gui_select</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/IPython/core/pylabtools.py:338,</span> in <span class="ni">find_gui_and_backend</span><span class="nt">(gui, gui_select)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="k">def</span><span class="w"> </span><span class="nf">find_gui_and_backend</span><span class="p">(</span><span class="n">gui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gui_select</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Given a gui string return the gui and mpl backend.</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="sd">     &#39;WXAgg&#39;,&#39;Qt4Agg&#39;,&#39;module://matplotlib_inline.backend_inline&#39;,&#39;agg&#39;).</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">338</span>     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span>     <span class="k">if</span> <span class="n">_matplotlib_manages_backends</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>         <span class="n">backend_registry</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">backend_registry</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>1. 生成2值图像<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_synthetic_data</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 生成一个2值图像: 包含很多圆圈圈</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">n_points</span> <span class="o">=</span> <span class="mi">36</span> <span class="c1"># 着36个1点</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">size</span><span class="p">]</span> <span class="c1"># 网格行列索引，</span>
+    <span class="n">mask_outer</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># 圆布尔数组，半径为size/2 </span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span> <span class="c1"># 空白画布</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">size</span><span class="o">*</span><span class="n">rs</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span> <span class="c1"># 生成2行36列， 每列为一个点， 值在[0,size)</span>
+    <span class="n">mask</span><span class="p">[(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># 标记这些点</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span> <span class="n">size</span><span class="o">/</span><span class="n">n_points</span><span class="p">)</span> <span class="c1"># 把这些点晕开，1晕开成周围的0.xx值</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span><span class="o">&gt;</span><span class="n">mask</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">mask_outer</span><span class="p">)</span> <span class="c1"># 取模糊后大于图像均值的点，且在园内的。 为布尔数组</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">res</span><span class="p">))</span> <span class="c1"># 只留下轮廓边界， 为布尔数组，布尔也可以直接和0，1表示，</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_synthetic_shape_data</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 生成一个二值图像：支持圆形、矩形、三角形</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        size (int): 图像大小 (size x size)</span>
+<span class="sd">        shape (str): 形状类型 [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;]</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: 二值图像</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> 
+
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;circle&quot;</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[:</span><span class="n">size</span><span class="p">,</span> <span class="p">:</span><span class="n">size</span><span class="p">]</span>  <span class="c1"># 生成网格</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">3</span>  <span class="c1"># 半径</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">center</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">center</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">img</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;square&quot;</span><span class="p">:</span>
+        <span class="n">margin</span> <span class="o">=</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">4</span>
+        <span class="n">img</span><span class="p">[</span><span class="n">margin</span><span class="p">:</span><span class="o">-</span><span class="n">margin</span><span class="p">,</span> <span class="n">margin</span><span class="p">:</span><span class="o">-</span><span class="n">margin</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 中心填充</span>
+
+    <span class="k">elif</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;triangle&quot;</span><span class="p">:</span>
+        <span class="c1"># 定义三角形顶点</span>
+        <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">4</span><span class="p">],</span>  <span class="c1"># 顶点</span>
+            <span class="p">[</span><span class="n">size</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">4</span><span class="p">],</span>  <span class="c1"># 左下角</span>
+            <span class="p">[</span><span class="mi">3</span> <span class="o">*</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">4</span><span class="p">]</span>  <span class="c1"># 右下角</span>
+        <span class="p">])</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 用 Path 判断点是否在三角形内</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">contains_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="n">img</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">img</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_smiley</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 生成灰度笑脸图像 &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="mi">255</span><span class="p">)</span>  <span class="c1"># 创建白色背景灰度图像</span>
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    
+    <span class="c1"># 画圆形脸（中等灰度）</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+    <span class="c1"># 画眼睛（深色）</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">size</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.4</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">size</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.4</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># 画嘴巴（较深色）</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">((</span><span class="n">size</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="mf">0.8</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 画图</span>
+<span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="s2">&quot;triangle&quot;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">shape</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">shapes</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">generate_synthetic_shape_data</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0f9f2fede4d5e2b6e2f5a9056eb0cfd7efa2b0b803b191f7623e7f8774a82aa1.png" src="../../_images/0f9f2fede4d5e2b6e2f5a9056eb0cfd7efa2b0b803b191f7623e7f8774a82aa1.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>2. 投影算子生成<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ndimage</span><span class="p">,</span> <span class="n">sparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_generate_center_coordinates</span><span class="p">(</span><span class="n">l_x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 生成中心网络</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">l_x</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">l_x</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">l_x</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">X</span><span class="o">+=</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">center</span>
+    <span class="n">Y</span><span class="o">+=</span> <span class="mf">0.5</span><span class="o">-</span> <span class="n">center</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">indices</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span> <span class="n">orig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    x:原始点</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PRINT INSERT size:</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">, orig:</span><span class="si">{</span><span class="n">orig</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 打印插值结果</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x</span><span class="p">,</span>
+            <span class="s1">&#39;left_X&#39;</span><span class="p">:</span><span class="n">indices</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span>
+            <span class="s1">&#39;right_X&#39;</span><span class="p">:</span><span class="n">indices</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">):],</span>
+            <span class="s1">&#39;left_weight&#39;</span><span class="p">:</span><span class="n">weights</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span>
+            <span class="s1">&#39;right_weight&#39;</span><span class="p">:</span><span class="n">weights</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">):]</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;verify&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;left_X&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">orig</span><span class="p">)</span> <span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;left_weight&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;right_X&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">orig</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;right_weight&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_weights</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orig</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 将X坐标数组映射到离散刻度上。 计算线性插值的索引和权重</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ---</span>
+<span class="sd">    orig:坐标起始点, 对X偏移， orig=1:表示网格偏移，1.5表示网格左偏移1.5 。</span>
+<span class="sd">    dx:网格间距</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    ----</span>
+<span class="sd">    [left_idx.., right_idx]</span>
+<span class="sd">    原X坐标对应相邻索引点, 对相邻索引点的权重贡献。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># 输入展平为1维数组</span>
+    <span class="n">floor_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">orig</span><span class="p">)</span> <span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">orig</span> <span class="o">-</span> <span class="n">floor_x</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span> <span class="o">/</span><span class="n">dx</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">floor_x</span><span class="p">,</span> <span class="n">floor_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">n_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 构建投影算子（矩阵），用于将原始图像转换为投影数据</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----</span>
+<span class="sd">    size : int</span>
+<span class="sd">        原始图像大小。size * size</span>
+<span class="sd">    n_dir : int</span>
+<span class="sd">        使用的投影角度数</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -----</span>
+<span class="sd">    p : 稀疏矩阵. n_dir *size(投影x索引) ,size**2 </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">_generate_center_coordinates</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_dir</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 生成投影角度.  </span>
+
+    <span class="n">data_inds</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">camera_inds</span> <span class="o">=</span><span class="p">[],[],[]</span>
+
+    <span class="n">data_unravel_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 将网格索引展开</span>
+    <span class="n">data_unravel_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">data_unravel_indices</span><span class="p">,</span> <span class="n">data_unravel_indices</span><span class="p">))</span> <span class="c1"># size**2 * 2</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">angle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">angles</span><span class="p">):</span> <span class="c1"># 每个角度</span>
+        <span class="n">Xrot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span>  <span class="c1"># 逆时针旋转坐标系angle度</span>
+        <span class="n">inds</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">_weights</span><span class="p">(</span><span class="n">Xrot</span><span class="p">,</span><span class="n">dx</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orig</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="c1"># 投影后的网格索引，和权重 ❓为啥要对xrot便宜后再</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">inds</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inds</span><span class="o">&lt;</span><span class="n">size</span><span class="p">)</span> <span class="c1"># 裁剪旋转后超出边界的，即 不会对超出边界点索引进行累积。</span>
+
+        <span class="c1">#print_insert(Xrot.ravel(),inds,w,X.min())</span>
+        <span class="n">weights</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span> <span class="c1"># 旋转点权重，weight_left,..wight_right;</span>
+        <span class="n">camera_inds</span><span class="o">+=</span><span class="nb">list</span><span class="p">(</span><span class="n">inds</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># 旋转点插值left_x,..right_x。 通过+size区分不同角度</span>
+        <span class="n">data_inds</span><span class="o">+=</span><span class="nb">list</span><span class="p">(</span><span class="n">data_unravel_indices</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span> <span class="c1"># 原始点索引平铺，0-size*2 </span>
+        <span class="c1">#print(f&quot;angle :{angle:.2f},weight:{w[mask]}, inds:{inds[mask]}, camera_inds :{inds[mask] + i*size}, data_inds:{data_unravel_indices[mask]}&quot;)</span>
+    <span class="c1">#print(camera_inds)</span>
+    <span class="c1"># (camera_inds,data_inds)，如参数4，3. (0,1) 表示第一个角度下，第2个网格点投影到x=0的权重。 (6,1) 表示第2个角度，第2个网格点投影到x=2的权重 </span>
+    <span class="n">project_operator</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">weights</span><span class="p">,(</span><span class="n">camera_inds</span><span class="p">,</span> <span class="n">data_inds</span><span class="p">)))</span> <span class="c1"># 稀疏矩阵存储这个： 行：投影插值x，列：原始点索引，值：权重</span>
+    <span class="k">return</span> <span class="n">project_operator</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试：投影算子返回</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># n_dir *size(投影x索引) ,size**2(网格索引) </span>
+<span class="n">g</span><span class="o">=</span><span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">n_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;camera(Grid) X&#39;</span><span class="p">:</span><span class="n">g</span><span class="o">.</span><span class="n">row</span><span class="p">,</span>
+        <span class="s1">&#39;original X&#39;</span><span class="p">:</span><span class="n">g</span><span class="o">.</span><span class="n">col</span><span class="p">,</span>
+        <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="n">g</span><span class="o">.</span><span class="n">data</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;angle_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;camera(Grid) X&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="n">size</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;angle_idx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>camera(Grid) X</th>
+      <th>original X</th>
+      <th>weight</th>
+    </tr>
+    <tr>
+      <th>angle_idx</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>4</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8</td>
+      <td>11</td>
+      <td>0.950962</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>12</td>
+      <td>0.049038</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>13</td>
+      <td>0.183013</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>14</td>
+      <td>0.316987</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8</td>
+      <td>15</td>
+      <td>0.450962</td>
+    </tr>
+  </tbody>
+</table>
+<p>84 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试：绘制中心网格</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">FancyArrowPatch</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">_generate_center_coordinates</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="c1"># 扭转坐标系: angle</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span><span class="mi">6</span>
+<span class="n">X_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span> <span class="o">-</span> <span class="n">Y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+<span class="n">Y_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="o">+</span><span class="n">Y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_rot</span><span class="p">,</span><span class="n">Y_rot</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/63d7621b897a1fcdf97e04818ba0cf966f155646eb8a6d4b7b61534f1cb9a910.png" src="../../_images/63d7621b897a1fcdf97e04818ba0cf966f155646eb8a6d4b7b61534f1cb9a910.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">visualize_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">indices</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">orig</span><span class="p">):</span>
+
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;original xpoint&#39;</span><span class="p">)</span> <span class="c1"># </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;GRID xpoint&#39;</span><span class="p">)</span> <span class="c1"># 偏移可视化方便</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">orig</span><span class="p">,</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">orig</span><span class="p">,</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)]],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear Insert point,orig=</span><span class="si">{</span><span class="n">orig</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">_weights</span><span class="p">(</span><span class="n">X_rot</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+<span class="n">visualize_insert</span><span class="p">(</span><span class="n">X_rot</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">indices</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">indices</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">_weights</span><span class="p">(</span><span class="n">X_rot</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">visualize_insert</span><span class="p">(</span><span class="n">X_rot</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">indices</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+<span class="ne">NameError</span>: name &#39;X_rot&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试：权重生成</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">rng</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10个随机点</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 网格间距</span>
+<span class="n">orig</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 坐标起始点</span>
+<span class="c1"># **计算插值索引和权重**</span>
+<span class="n">indices</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">_weights</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">orig</span><span class="p">)</span>
+
+<span class="n">visualize_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">indices</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">orig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d2eade4f77a39f2a5e52937d21ff7e2dc81a301ea53e591379361cc51a2ab0f9.png" src="../../_images/d2eade4f77a39f2a5e52937d21ff7e2dc81a301ea53e591379361cc51a2ab0f9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">):</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sinogram</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;original img&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sinogram</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Full Sinogram&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;camera indx&quot;</span><span class="p">)</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">directions</span><span class="p">)</span>  <span class="c1"># 0 到 π 之间的方向</span>
+    <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">di</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">directions</span><span class="p">))</span><span class="si">}</span><span class="s2">°&quot;</span> <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">]</span>  <span class="c1"># 转换为角度</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">,</span><span class="n">yticklabels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;every direaction&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Projection Value&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 随机刻画一个角度下的投影</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">rand_dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sinogram</span><span class="p">[</span><span class="n">rand_dx</span><span class="p">,:])),</span> <span class="n">sinogram</span><span class="p">[</span><span class="n">rand_dx</span><span class="p">,:])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;camera indx&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;project value&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random Angle </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">rand_dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">directions</span><span class="p">))</span><span class="si">}</span><span class="s2">° project &quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>3. 投影案例<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>1. 简单图形<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">original_img</span> <span class="o">=</span> <span class="n">generate_synthetic_shape_data</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">original_img_flat</span> <span class="o">=</span> <span class="n">original_img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1"># ( n_dir *size(投影x索引) ,size**2(网格索引) ) * (size**2) 即对网格点进行加权累积到投影x上</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">n_dir</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_img_flat</span><span class="p">)</span>
+<span class="c1"># 每一行表示一个角度 下的投影</span>
+<span class="n">sinogram</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_dir</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="c1">#print(sinogram) # 就是把这些sinogram值通过colorbar绘制到像素图上</span>
+<span class="n">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ece7def098974bbd7606692d2dc3642a0ebddacd1e48b9213b4a630bb464fe79.png" src="../../_images/ece7def098974bbd7606692d2dc3642a0ebddacd1e48b9213b4a630bb464fe79.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">original_img</span> <span class="o">=</span> <span class="n">generate_synthetic_shape_data</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">original_img_flat</span> <span class="o">=</span> <span class="n">original_img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1"># ( n_dir *size(投影x索引) ,size**2(网格索引) ) * (size**2) 即对网格点进行加权累积到投影x上</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">n_dir</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_img_flat</span><span class="p">)</span>
+<span class="c1"># 每一行表示一个角度 下的投影</span>
+<span class="n">sinogram</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_dir</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="c1">#print(sinogram) # 就是把这些sinogram值通过colorbar绘制到像素图上</span>
+<span class="n">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/692293a6578b91fefe4cb0261be22632a4b0703565985d030fef77fd77ff7363.png" src="../../_images/692293a6578b91fefe4cb0261be22632a4b0703565985d030fef77fd77ff7363.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">original_img</span> <span class="o">=</span> <span class="n">generate_synthetic_shape_data</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;triangle&#39;</span><span class="p">)</span>
+<span class="n">original_img_flat</span> <span class="o">=</span> <span class="n">original_img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1"># ( n_dir *size(投影x索引) ,size**2(网格索引) ) * (size**2) 即对网格点进行加权累积到投影x上</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">n_dir</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_img_flat</span><span class="p">)</span>
+<span class="c1"># 每一行表示一个角度 下的投影</span>
+<span class="n">sinogram</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_dir</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="c1">#print(sinogram) # 就是把这些sinogram值通过colorbar绘制到像素图上</span>
+<span class="n">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2cd4105800dbb39fb274a44fde89c5b2f2f891a80033c6aef2313d0a00e53aee.png" src="../../_images/2cd4105800dbb39fb274a44fde89c5b2f2f891a80033c6aef2313d0a00e53aee.png" />
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>2. 其他图形<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">original_img</span> <span class="o">=</span> <span class="n">generate_smiley</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">original_img_flat</span> <span class="o">=</span> <span class="n">original_img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1"># ( n_dir *size(投影x索引) ,size**2(网格索引) ) * (size**2) 即对网格点进行加权累积到投影x上</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">n_dir</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_img_flat</span><span class="p">)</span>
+<span class="c1"># 每一行表示一个角度 下的投影</span>
+<span class="n">sinogram</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_dir</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="c1">#print(sinogram) # 就是把这些sinogram值通过colorbar绘制到像素图上</span>
+<span class="n">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1402bbf68ed4003c100914b02504ef6ea77f02159b90328910c8b4a0258cfd4e.png" src="../../_images/1402bbf68ed4003c100914b02504ef6ea77f02159b90328910c8b4a0258cfd4e.png" />
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>3. 边缘<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+<section id="id7">
+<h1>4. 重建<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<p><strong>CT:</strong><br />
+$$
+g = A x
+$$</p>
+<ul class="simple">
+<li><p>$ x $ orignal img，</p></li>
+<li><p>$ A $ project operator，</p></li>
+<li><p>$  g $ sinogram。</p></li>
+</ul>
+<p><strong>CT restruction</strong>:  $g,A -&gt; x (1D-&gt;2D) $But, A is uninversible.</p>
+<p><strong>Lasso</strong></p>
+<p>$$
+\hat{x} = \arg\min_x | A x - g |_2^2 + \lambda | x |_1
+$$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">n_dir</span> <span class="o">=</span> <span class="n">size</span><span class="o">//</span><span class="mi">7</span>
+<span class="n">original_img</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">original_img_flat</span> <span class="o">=</span> <span class="n">original_img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">operator</span> <span class="o">=</span> <span class="n">build_project_operator</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">n_dir</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_img_flat</span><span class="p">)</span>
+<span class="n">sinogram</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_dir</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">visualize_project</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span> <span class="n">sinogram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/80924d35bfb9e0a71663023af05492d02de67ac4b2f7e72dd4388991112b627c.png" src="../../_images/80924d35bfb9e0a71663023af05492d02de67ac4b2f7e72dd4388991112b627c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># noise</span>
+<span class="n">sinogram</span> <span class="o">+=</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">sinogram</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sinogram</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2304, 16384) (2304,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoCV</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># 从 10^-3 到 10^3 取 50 个值</span>
+<span class="n">regressor_lasso</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">alphas</span><span class="p">)</span>
+<span class="n">regressor_lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">sinogram</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<span class="n">regressor_lasso_img</span> <span class="o">=</span> <span class="n">regressor_lasso</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RidgeCV</span>
+<span class="n">regressor_ridge</span> <span class="o">=</span> <span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">alphas</span><span class="p">)</span>
+<span class="n">regressor_ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">sinogram</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<span class="n">regressor_ridge_img</span> <span class="o">=</span> <span class="n">regressor_ridge</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regressor_lasso</span><span class="o">.</span><span class="n">alpha_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.001)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">regressor_lasso_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lasso L1 </span><span class="se">\\</span><span class="s2">alpha </span><span class="si">{</span><span class="n">regressor_lasso</span><span class="o">.</span><span class="n">alpha_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">original_img</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Origial &#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">regressor_ridge_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ridge L2 </span><span class="se">\\</span><span class="s2">alpha </span><span class="si">{</span><span class="n">regressor_ridge</span><span class="o">.</span><span class="n">alpha_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Ridge L2 \\alpha 0.21209508879201905&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/c129dfcdbd105a20a8598cbf8a222c5e88cb98e9060ad6de984e862d385da08a.png" src="../../_images/c129dfcdbd105a20a8598cbf8a222c5e88cb98e9060ad6de984e862d385da08a.png" />
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ct">CT扫描、投影</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 生成2值图像</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 投影算子生成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 投影案例</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. 简单图形</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 其他图形</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 边缘</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4. 重建</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/more/投影重建/Compress_sensing.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

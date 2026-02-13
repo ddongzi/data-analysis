@@ -1,0 +1,1653 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "904715b2",
+   "metadata": {},
+   "source": [
+    "# python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f97a2561",
+   "metadata": {},
+   "source": [
+    "## 未分类"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "56b49579",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'reduce' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mNameError\u001b[39m                                 Traceback (most recent call last)",
+      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[1]\u001b[39m\u001b[32m, line 1\u001b[39m\n\u001b[32m----> \u001b[39m\u001b[32m1\u001b[39m \u001b[43mreduce\u001b[49m, \u001b[38;5;28many\u001b[39m\n",
+      "\u001b[31mNameError\u001b[39m: name 'reduce' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "reduce, any"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a9c72dd2",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eb9db877",
+   "metadata": {},
+   "source": [
+    "对原列表切割后，生成的是一份全新的列表"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "31235e50",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = [1, 2, 3]\n",
+    "b = a[:2]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "68525f64",
+   "metadata": {},
+   "source": [
+    "b[0] = -1\n",
+    "print(a, b)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "33dbb2ab",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5cebfe8b",
+   "metadata": {},
+   "source": [
+    "1.1 序列（可迭代对象）解压同时赋值"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2f95e1e5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "p = (1, 2)\n",
+    "x, y = p\n",
+    "print(x, y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9a4d5e4d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data = ['ACME', 50, 91.1, (2012, 12, 21)]\n",
+    "name, shares, price, date = data\n",
+    "print(name, shares, price, date)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bd5ef9ae",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "name, shares, price, (year, mon, day) = data\n",
+    "print(name, shares, price, year, mon, day)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4d2aafce",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a,b,c,d = \"help\"\n",
+    "print(a,b,c,d)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a955ef32",
+   "metadata": {},
+   "source": [
+    "变量个数与序列元素个数不匹配，产生异常"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bfb35e49",
+   "metadata": {},
+   "source": [
+    "x,y = (1,2,3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "93719b81",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a,b = \"help\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d318278c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "_, shares, price, _ = ['ACME', 50, 91.1, (2012, 12, 21)]\n",
+    "print(shares, price)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3f9747d2",
+   "metadata": {},
+   "source": [
+    "### 1.2 星号解压方法\n",
+    "为了records = [\n",
+    "    ('foo', 1, 2),\n",
+    "    ('bar', 'hello'),\n",
+    "    ('foo', 3, 4),\n",
+    "]\n",
+    "for tag, *args in records:\n",
+    "    if tag == 'foo':\n",
+    "        print('foo', sum(args))\n",
+    "    elif tag == 'bar':\n",
+    "        print('bar', ''.join(args))不确定的元素数量; 过滤"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6d921280",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "*trailing, current = [1,2,3,4,5]\n",
+    "print(trailing, current)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "05af1513",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 用于字符串分割\n",
+    "line = 'nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false'\n",
+    "uname, *fields, homedir, sh = line.split(':')\n",
+    "print(uname, homedir, sh)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a2e6d941",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "record = ('ACE', 50, 91.1, (2012, 12, 21))\n",
+    "name, *_, (year, *_) = record\n",
+    "print(name, year)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "96c471af",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "name = \"Alice\"\n",
+    "age = 25\n",
+    "print(f\"My name is {name} and I am {age:.2f} years old.\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6cc44235",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(r\"C:\\Users\\Alice\\Documents\\new_file.txt\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4626956c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "byte_data = b\"hello\"\n",
+    "print(byte_data)  \n",
+    "# 输出: b'hello'\n",
+    "\n",
+    "print(byte_data[0])  \n",
+    "# 输出: 104 （'h' 的 ASCII 值）\n",
+    "\n",
+    "# 转换回普通字符串\n",
+    "print(byte_data.decode(\"utf-8\"))  \n",
+    "# 输出: hello\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d70cbe0b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "print(sys.maxsize) # 整数最大值：2^63-1\n",
+    "print(-sys.maxsize-1) # 整数最小值\n",
+    "print(sys.float_info.max) # 浮点最大值\n",
+    "print(sys.float_info.min) # 浮点最小值\n",
+    "# 特殊值\n",
+    "print(float('inf'))  # 无穷大\n",
+    "print(float('-inf')) # 负无穷大\n",
+    "print(float('nan'))  # 非数字"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e4e22c35",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lines = [\"banana\", \"apple\", \"cherry\"]\n",
+    "lines = sorted(lines)  # 返回排序后的新列表，不修改原列表\n",
+    "# lines.sort()  # 原地排序，修改原列表\n",
+    "print(\"Sorted lines:\", lines)\n",
+    "\n",
+    "words = ['hello', 'world', 'big']\n",
+    "words.reverse()  # 原地翻转，修改 words 本身\n",
+    "print(\"Reversed words:\", words)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d8bbee2b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ls = []  \n",
+    "path = [\"folder\", \"subfolder\", \"file.txt\"]\n",
+    "ls.append(path[:])  # 追加 path 的拷贝，后续修改 path 不影响 ls\n",
+    "path[2] = 'file1.txt'\n",
+    "print(ls)\n",
+    "\n",
+    "ls1 = []\n",
+    "path = [\"folder\", \"subfolder\", \"file.txt\"]\n",
+    "ls1.append(path)  # 直接追加 path，后续修改 path 会影响 ls 中的值\n",
+    "path[2] = 'file2.txt'\n",
+    "print(ls1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "12007c79",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lst = []\n",
+    "path = [\"folder\", \"subfolder\", \"file.txt\"]\n",
+    "lst.extend(path) # 追加的是拷贝，不影响后续修改。 等同于append(path[:])\n",
+    "path[2] = 'file3.txt'\n",
+    "print(lst)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "32726cba",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = [1, 2, 3]\n",
+    "b = a\n",
+    "del a\n",
+    "print(b)\n",
+    "\n",
+    "a = [0, 2, 2, 3]\n",
+    "a.remove(2)\t# remove只是列表的一个方法\n",
+    "print(a)  # 输出 [0, 2, 3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fdc4b7cd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s = \" hello world. \"\n",
+    "s.strip() # 去除字符串首尾的空白字符\n",
+    "t = ['hello', 'world']\n",
+    "s=' '.join(t)\n",
+    "s.replace('  ',' ')\t\t\n",
+    "ls=s.split()\t# 将字符串分割为单词列表"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "50639c8d",
+   "metadata": {},
+   "source": [
+    "## 真假"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7b6c5f54",
+   "metadata": {},
+   "source": [
+    "False、None、空字符串\"\"、数字0、空列表[\\]、空字典{}或空元组()  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "08982ef3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "stack = None\n",
+    "if not stack: #当stack为NOne  \n",
+    "    print('假')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5a9c83ae",
+   "metadata": {},
+   "source": [
+    "is和== 的区别\n",
+    "is判断两个对象的内存地址是否相同, == 判断两个对象的值是否相同"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b40c0050",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a1 = 'a'\n",
+    "a2 = 'a'\n",
+    "a1 is a2\n",
+    "a1 == a2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4b269a9e",
+   "metadata": {},
+   "source": [
+    "字典：\n",
+    "\n",
+    "字典的*键必须是不可变*的类型。不可以使用列表作为键。字典键的常见类型包括整数、浮点数、字符串、元组等不可变类型。  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8773de30",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "my_dict = {1: 'one', 2: 'two', 3: 'three'} # 键为整数\n",
+    "another_dict = {'apple': 3, 'banana': 5, 'orange': 2} # 键为字符串\n",
+    "yet_another_dict = {(1, 2): 'tuple_key', (3, 4): 'another_tuple_key'} # 键为元组\n",
+    "my_dict = {('John', 25): 'value1', ('Alice', 30): 'value2'} # 键位元组"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b0b68fd6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "my_dict = {'apple': 10, 'orange': 5, 'banana': 20, 'grape': 7}\n",
+    "print(my_dict.items()) # 元组列表\n",
+    "\n",
+    "s = sorted(my_dict.items(), key = lambda x: x[0]) # 排序元组列表\n",
+    "print(s)\n",
+    "\n",
+    "sorted_dict = dict(s) # 元组列表转为字典\n",
+    "print(sorted_dict)\n",
+    "\n",
+    "# key函数\n",
+    "def get_key(item):\n",
+    "    return item[0]\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a5904c2f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "names = ['Bob','Tom','alice','Jerry','Wendy','Smith']\n",
+    "\n",
+    "# 列表推导式\n",
+    "new=[ name.upper() for name in names]\n",
+    "multiples = [i for i in range(30) if i % 3== 0] # 3 的倍数\n",
+    "print(multiples)\n",
+    "#字典推导式\n",
+    "dic={name:len(name) for name in names}\n",
+    "print(dic)\n",
+    "# 集合推导式\n",
+    "sett={name.upper() for name in names}\n",
+    "print(sett)\n",
+    "# 元组推导式\n",
+    "tt = tuple(name.lower() for name in names)\n",
+    "print(tt)  # ('alice', 'bob', 'charlie')\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3977a7cc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "tt = (name.lower() for name in names)\n",
+    "print(tt)  # ('alice', 'bob', 'charlie')\n",
+    "print(list(tt))\n",
+    "\n",
+    "print(set(tt))\n",
+    "print(tuple(tt))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "840b58f8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "for i in range(6):\n",
+    "    print(i)\n",
+    "    i += 1# 这一行对循环没有影响"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "00c56e55",
+   "metadata": {},
+   "source": [
+    "迭代器\n",
+    "\n",
+    "迭代器是一个可以记住遍历位置的对象。  \n",
+    "通过迭代器返回当前元素。  \n",
+    "迭代器有两个基本的方法：iter() 和 next()。  \n",
+    "许多内置对象都是可迭代的，例如列表、元组、字符串等。  \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "55f62b5d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class MyIterator:\n",
+    "    def __init__(self,data):\n",
+    "        self.data=data\n",
+    "        self.index=0\n",
+    "    # 返回迭代器自身\n",
+    "    def __iter__(self):\n",
+    "        return self\n",
+    "    # 返回下一个元素\n",
+    "    def __next__(self):\n",
+    "        if self.index<len(self.data):\n",
+    "            result = self.data[self.index]\n",
+    "            self.index += 1\n",
+    "            return result\n",
+    "        else:\n",
+    "            raise StopIteration\n",
+    "my_list=[1,2,3,4]\n",
+    "my_custom_iterator = MyIterator(my_list)\n",
+    "for element in my_custom_iterator:\n",
+    "    print(element)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8605d9b1",
+   "metadata": {},
+   "source": [
+    "14. map(),filter(),reduce()\n",
+    "对可迭代对象进行 转换、筛选、聚合\n",
+    "- `map()` & `filter()` **返回可迭代对象**（需 `list()` 解析）。  \n",
+    "- `reduce()` **返回单个值**，需手动 `import`。  \n",
+    "- **偏函数式编程**，适合数据处理（但 `map/filter` 可用列表推导式代替）"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0ceefff0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 数据转换\n",
+    "names = ['Alibba', 'Baudu', 'Conr']\n",
+    "print(map(lambda x:len(x),names))\n",
+    "lens=list(map(lambda x:len(x),names))\n",
+    "print(lens)\n",
+    "\n",
+    "# 筛选\n",
+    "print(filter(lambda x:len(x)<5, names))\n",
+    "smalls = list(filter(lambda x:len(x)<5, names))\n",
+    "print(smalls)\n",
+    "\n",
+    "# reduce()\n",
+    "from functools import reduce\n",
+    "numbers = [1, 2, 3, 4]\n",
+    "product = reduce(lambda x, y: x * y, numbers)\n",
+    "print(product)  # 24（1*2*3*4）"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7f2dba1b",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8663189f",
+   "metadata": {},
+   "source": [
+    "字典遍历\n",
+    "\n",
+    "字典中遍历时，关键字和对应的值可以使用 items() 方法同时解读出来："
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0077caf8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "for k in {'a':1,'b':2} :\n",
+    "    print(k)\n",
+    "knights = {'gallahad': 'the pure', 'robin': 'the brave'}\n",
+    "for k,v in knights.items():\n",
+    "    print(k,v)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6800af28",
+   "metadata": {},
+   "source": [
+    "序列遍历\n",
+    "- 序列中遍历时，索引位置和对应值可以使用 enumerate() 函数同时得到.  \n",
+    "- 同时遍历两个或更多的序列，可以使用 zip() 组合:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2bcbf06c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "names = ['apple', 'con', 'ele']\n",
+    "for i, name in enumerate(names):\n",
+    "    print(i, name)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "df224e1a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "for f in sorted(set(names)): # 有序遍历\n",
+    "    print(f)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "459a155f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "questions = ['name', 'quest', 'favorite color']\n",
+    "answers = ['lancelot', 'the holy grail', 'blue']\n",
+    "for q, a in zip(questions, answers):\n",
+    "    print(q, a)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "faa8cc78",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a9158e2e",
+   "metadata": {},
+   "source": [
+    "20. 生成器\n",
+    "生成器（Generator）是一种**特殊的迭代器**，它允许按需生成值，  \n",
+    "生成器使用 yield 关键字来**实现暂停和恢复执行**，允许函数在每次产生值后暂停并在下一次调用时继续执行。  \n",
+    "定义生成器：  \n",
+    "- 生成器函数:使用 yield 关键字的函数。\n",
+    "- **生成器表达式** : 类似于列表推导式，但使用圆括号。  \n",
+    "\n",
+    "yield和return：  \n",
+    "- 相同点：都是返回程序的执行结果；\n",
+    "- 区别：yield返回结果但程序还没有结束，return返回结果表示程序已经结束执行"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "16bdc095",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 方法1：生成器函数\n",
+    "def my_generator():\n",
+    "    yield 1\n",
+    "    yield 2\n",
+    "    yield 3\n",
+    "gen = my_generator()\n",
+    "print(next(gen))  # 输出: 1\n",
+    "print(next(gen))  # 输出: 2\n",
+    "print(next(gen))  # 输出: 3\n",
+    "\n",
+    "# 方法2：生成器表达式\n",
+    "gen = (x for x in range(1, 4))\n",
+    "print(next(gen))  # 输出: 1\n",
+    "print(next(gen))  # 输出: 2\n",
+    "print(next(gen))  # 输出: 3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2ff02d1a",
+   "metadata": {},
+   "source": [
+    "不定⻓参数\n",
+    "\n",
+    "在不确定需要传多少参数时使用，args表示位置参数，元组形式保存，kwargs表示关键字参数"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0602d4ca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def cache(func):\n",
+    "    # 缓存计算结果的字典\n",
+    "    cached_results = {}\n",
+    "    \n",
+    "    # 装饰器的包装函数\n",
+    "    def wrapper(*args, **kwargs):\n",
+    "        # 使用输入参数构建唯一的键\n",
+    "        key = (args, tuple(kwargs.items()))\n",
+    "        \n",
+    "        # 如果缓存中不存在对应键的结果\n",
+    "        if key not in cached_results:\n",
+    "            print('不在缓存中')\n",
+    "            # 调用被装饰的函数，并将结果缓存起来\n",
+    "            cached_results[key] = func(*args, **kwargs)\n",
+    "        \n",
+    "        # 返回缓存中的结果\n",
+    "        return cached_results[key]\n",
+    "    \n",
+    "    # 返回装饰后的函数\n",
+    "    return wrapper\n",
+    "@cache\n",
+    "def add(x, y):\n",
+    "    print(\"Calculating result...\")\n",
+    "    return x + y\n",
+    "\n",
+    "result1 = add(2, 3)  # 计算并缓存结果\n",
+    "result2 = add(2, 3)  # 直接从缓存中获取结果，不再计算\n",
+    "result3 = add(4, 5)  # 计算并缓存新的结果\n",
+    "\n",
+    "print(result1)  # 输出: 5\n",
+    "print(result2)  # 输出: 5\n",
+    "print(result3)  # 输出: 9"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e2a39ecb",
+   "metadata": {},
+   "source": [
+    "with\n",
+    "- with 语句用于对文件、网络连接、线程锁等资源进行管理.  \n",
+    "- with原理：跟着上下文。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1ab94b6d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class MyContext:\n",
+    "    def __enter__(self):\n",
+    "        print(\"进入上下文\")\n",
+    "        return self\n",
+    "\n",
+    "    def __exit__(self, exc_type, exc_val, exc_tb):\n",
+    "        print(\"退出上下文\")\n",
+    "\n",
+    "with MyContext():\n",
+    "    print(\"执行代码块\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "64c3f588",
+   "metadata": {},
+   "source": [
+    "异常"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0a9c3fce",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "try:\n",
+    "    x = 1 / 0 # 触发 ZeroDivisionError\n",
+    "except ZeroDivisionError:\n",
+    "    print(\"除数不能为 0\")  # 处理异常\n",
+    "else:\n",
+    "    print(\"计算成功:\", result)  # 只有 try 代码成功执行，才会进入 else\n",
+    "finally: # 资源释放\n",
+    "    print(\"无论是否异常，都会执行\")  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "02512a8c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "try:\n",
+    "    num = int(\"abc\")  # ValueError\n",
+    "except (ZeroDivisionError, ValueError) as e:\n",
+    "    print(f\"发生错误: {e}\")  # 统一处理\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0ae6d4ee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class MyError(Exception):\n",
+    "    pass\n",
+    "try:\n",
+    "    raise MyError('自定义错误')\n",
+    "except MyError as e:\n",
+    "    print(f\"捕获异常: {e}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "29adf62f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4d2cab35",
+   "metadata": {},
+   "source": [
+    "数字\n",
+    "\n",
+    "1. python数值中的下划线只是增强可读性\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "35fb1e00",
+   "metadata": {},
+   "source": [
+    "a = 100_000  # 等价于 100000\n",
+    "b = 1_234_567  # 等价于 1234567\n",
+    "c = 0b1010_0101  # 二进制 10100101，等价于 165\n",
+    "d=5e-3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "34d3e783",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c7187576",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 查看对象的属性和方法\n",
+    "# 查看模块的函数常用\n",
+    "dir()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0334fd1c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "# 列出文件\n",
+    "os.listdir('.')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3694fc6c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "os.makedirs(\"test_dir\", exist_ok=True)  # 创建目录, \n",
+    "#os.remove(\"test.log\")  # 删除文件\n",
+    "os.rmdir(\"test_dir\")  # 删除空目录\n",
+    "print(os.getcwd())  # 获取当前工作目录\n",
+    "os.path.join(\"dir\", \"file.txt\")  # 拼接路径，跨平台适配"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "02ecd5ef",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 递归遍历\n",
+    "for root,dirs,files in os.walk(os.getcwd()):\n",
+    "    print(root, dirs, files,'\\n') # 当前root有哪些目录，文件\n",
+    "    for f in files:\n",
+    "        full_path = os.path.join(root, f)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b53aed6b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(os.getenv(\"PATH\"))  # 获取环境变量\n",
+    "os.environ[\"MY_VAR\"] = \"value\"  # 设置环境变量\n",
+    "os.environ.pop(\"MY_VAR\", None) # 删除环境变量"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2b2fa14e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "os.system(\"ls\")  # 运行 shell 命令（不推荐，安全性低）"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d68abb6f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "93ffefb8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "print(sys.argv)  # 当前程序命令行参数"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "365272ca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sys.exit(0)  # 0 表示正常退出，非 0 表示异常"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2516fd6e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sys.stdout.write(\"Hello\\n\")  # 标准输出\n",
+    "sys.stderr.write(\"Error message\\n\")  # 标准错误"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3d027cb6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(sys.version)  # Python 版本\n",
+    "print(sys.platform)  # 当前操作系统"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "89fef891",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5d331fa3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import re\n",
+    "pattern = r\"\\d+\"\n",
+    "match = re.match(pattern, \"123abc\") # 从头匹配\n",
+    "print(match.group())\n",
+    "\n",
+    "text = \"Hello 123, world 456\"\n",
+    "match = re.search(r\"\\d+\", text) # 任意开始匹配 一个\n",
+    "print(match.group())  # 123\n",
+    "\n",
+    "text = \"The price is 100 dollars and 200 yen.\"\n",
+    "matches = re.findall(r\"\\d+\", text) # 任意开始匹配 多个\n",
+    "print(matches)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8973f668",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "text = \"I have 100 apples. 200 bars.\"\n",
+    "result = re.sub(r\"\\d+\", \"many\", text) # 替换匹配（findall)\n",
+    "print(result)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "370617d0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "text = \"apple,orange;banana grape\"\n",
+    "result = re.split(r\"[,; ]\", text)  # 按逗号、分号和空格分割\n",
+    "print(result)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7d3f2014",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8ecfeaf7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "import math\n",
+    "print(math.sqrt(16))   # 4.0，平方根\n",
+    "print(math.ceil(4.2))  # 5，向上取整\n",
+    "print(math.floor(4.8)) # 4，向下取整\n",
+    "print(math.fabs(-5))   # 5.0，绝对值\n",
+    "print(math.factorial(5)) # 120，阶乘\n",
+    "\n",
+    "print(math.pow(2, 3))    # 8.0，2^3\n",
+    "print(math.exp(1))       # e^1\n",
+    "print(math.log(8, 2))    # 3.0，以 2 为底的对数\n",
+    "print(math.log10(100))   # 2.0，以 10 为底的对数\n",
+    "\n",
+    "print(math.sin(math.radians(30)))  # 0.5\n",
+    "print(math.cos(math.radians(60)))  # 0.5\n",
+    "print(math.tan(math.radians(45)))  # 1.0\n",
+    "\n",
+    "print(math.pi)   # 3.141592653589793\n",
+    "print(math.e)    # 2.718281828459045\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1d737ec2",
+   "metadata": {},
+   "source": [
+    "随机数"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "59834892",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "53fa3866",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import random\n",
+    "random.seed(42)  # 设置种子，确保随机数可复现\n",
+    "print(random.random())  # 生成 0~1 之间的随机浮点数\n",
+    "print(random.randint(1, 10))  # 生成 1~10 之间的随机整数（包含 10）\n",
+    "print(random.uniform(1, 5))  # 生成 1~5 之间的随机浮点数"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8ada8689",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "items = ['apple', 'banana', 'cherry']\n",
+    "print(random.choice(items))\n",
+    "print(random.choices(items, k=2)) # 随机选择 2 个元素（可重复）\n",
+    "print(random.sample(items, 2))  # 随机选择 2 个不同元素"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ba0f710b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "numbers = [1, 2, 3, 4, 5]\n",
+    "random.shuffle(numbers)  # 原地打乱顺序\n",
+    "print(numbers)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "23dd946f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9b737036",
+   "metadata": {},
+   "source": [
+    "datetime, time\n",
+    "- `datetime`：处理日期和时间，如 **获取当前时间、格式化、计算时间差**。  \n",
+    "- `time`：处理 **时间戳、延时、CPU 计时**，更底层。 "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "673e899f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from datetime import datetime\n",
+    "now = datetime.now()\n",
+    "print(now)\n",
+    "\n",
+    "dt = datetime(2025, 3, 6, 14, 39)\n",
+    "print(dt)\n",
+    "dt = date(year = 2025, month=1,day=1) # 日期\n",
+    "\n",
+    "print(now.strftime(\"%Y-%m-%d %H:%M:%S\"))  # 2025-03-06 12:34:56\n",
+    "\n",
+    "dt = datetime.strptime(\"2025-03-06 14:30\", \"%Y-%m-%d %H:%M\") # 日期对象\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ff673aa5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from datetime import timedelta\n",
+    "tomorrow = now + timedelta(days=1)\n",
+    "tomorrow"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "459a711e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import time\n",
+    "print(time.time())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fb4e2d97",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "time.sleep(2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e55a3f69",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(time.strftime(\"%Y-%m-%d %H:%M:%S\"))  # 自定义格式化\n",
+    "time.ctime(time.time()) # 正常格式化"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "97c17242",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a08ad43f",
+   "metadata": {},
+   "source": [
+    "json"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "13b248c1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import json\n",
+    "data = {\"name\": \"Alice\", \"age\": 25, \"city\": \"New York\"}\n",
+    "json_str = json.dumps(data)  # 转换为 JSON 字符串\n",
+    "print(json_str)  # '{\"name\": \"Alice\", \"age\": 25, \"city\": \"New York\"}'\n",
+    "print(json.dumps(data, indent=4))  # 生成格式化 JSON， 缩进换行\n",
+    "\n",
+    "data = json.loads(json_str)  # 解析 JSON 字符串\n",
+    "print(data[\"name\"])  # Alice"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b5bfea28",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9e9db37c",
+   "metadata": {},
+   "source": [
+    "## 函数参数"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9c7e8703",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):\n",
+    "    pass"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f2989fea",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def f(pos_arg, *v_turple_args,  default_arg = 'Hello', **v_dict_args,):\n",
+    "    \"\"\" 参数的三种调用情况：位置参数、关键字参数、使用默认参数\n",
+    "    \n",
+    "    \"\"\"\n",
+    "    print(pos_arg, default_arg, v_turple_args, v_dict_args)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fcad7699",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "f(1,  (1,2), {'name': 'dong'},default_arg= 'go')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5e57452d",
+   "metadata": {},
+   "source": [
+    "默认值参数只计算一次，但是对于可变对象就不一样了。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7df0d3af",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "i = 5\n",
+    "def f(i = 5):\n",
+    "    return i\n",
+    "i = 6\n",
+    "print(f())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e57c7159",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def f(e, l = []):\n",
+    "    l.append(e)\n",
+    "    return l\n",
+    "print(f(1))\n",
+    "print(f(2))\n",
+    "print(f(3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c478d0ba",
+   "metadata": {},
+   "source": [
+    "/ 和 * 参数限制"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2b9dca0b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def standard_arg(arg):\n",
+    "    print(arg)\n",
+    "def pos_only_arg(arg, /):\n",
+    "    print(arg)\n",
+    "def kwd_only_arg(*, arg):\n",
+    "    print(arg)\n",
+    "def combine_arg(pos_only, /, pos_or_kwd, *, kwd_only):\n",
+    "    print(pos_only, pos_or_kwd, kwd_only)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f37a9c97",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "standard_arg(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6602238f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "standard_arg(arg = 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "83b9333d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pos_only_arg(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3749d3d5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pos_only_arg(arg = 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "658dfd45",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "kwd_only_arg(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "335c1330",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "kwd_only_arg(arg=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ca8acd82",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "combine_arg(1, 2, kwd_only=3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3781be57",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "combine_arg(1, pos_or_kwd=2, kwd_only= 3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "659b1176",
+   "metadata": {},
+   "source": [
+    "形参标注"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6f749524",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def f(i : int, s : str = 'eggs') -> str:\n",
+    "    print(i, s)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b3296c65",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b092b7e7",
+   "metadata": {},
+   "source": [
+    "### 1.1 typing 类型提示\n",
+    "- 编辑器会提示类型错误。\n",
+    "- 编辑器会代码提示\n",
+    "- 运行不通过\n",
+    "- 随着版本前进，慢慢不需要导入typing也可以"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3bdda02d",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f7c1ce1d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def user(name:str, age:int):\n",
+    "    print(name, age)\n",
+    "user(\"h\", 1)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "628fd6ce",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "user(1, 2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e1fe8c3d",
+   "metadata": {},
+   "source": [
+    "1.1.1 各种类型\n",
+    "- 简单类型，直接使用：`str`, `int`, `float`,`bytes`\n",
+    "- 泛型类型(容纳多种类型), : `list`, `dict`, `set`, `tuple`\n",
+    "  - 通过 后面`[]`指定类型参数\n",
+    "- 联合类型，类型的一种：`|` 表示\n",
+    "  - 可选None类型：` | None`\n",
+    "- 自定义class类型"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "61403314",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def get_items(items: list[str]):\n",
+    "    for item in items:\n",
+    "        print(item)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "27d58bb1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Item:\n",
+    "    pass\n",
+    "def get_items(items: list[str], \n",
+    "              items_tup: tuple[int,int,str],\n",
+    "              items_dict: dict[str,float],\n",
+    "              items_union: int | str,\n",
+    "              items_union_none: int | None,\n",
+    "              items_union_default: int | None = None,\n",
+    "              item_class: Item):\n",
+    "    for item in items:\n",
+    "        print(item)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9d3aca40",
+   "metadata": {},
+   "source": [
+    "- `items_tup: tuple[int,int,str]` 表明长度3，前两个`int`,第三个`str`\n",
+    "- `items_dict: dict[str,float]` 指定字典 键值类型"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fa35685b",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "db7f845d",
+   "metadata": {},
+   "source": [
+    "1.1.2 对类型添加元数据注释\n",
+    "- 使用`Annotated`为类型添加\n",
+    "- 第一个参数是实际类型，其余都是元数据注释"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "80df1c97",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from typing import Annotated\n",
+    "def hello(name: Annotated[str, \"this is just metadata\"]) -> str:\n",
+    "    return f\"hello {name}\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7c860115",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "23c93562",
+   "metadata": {},
+   "source": [
+    "### 8.9 gc\n",
+    "python会自动回收不再使用的对象，但是不够及时。我们可能需要手动删除\n",
+    "```python\n",
+    "import gc\n",
+    "del big_df # 解除引用\n",
+    "gc.collect() # 强制立即回收内存\n",
+    "```"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "data-analysis",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

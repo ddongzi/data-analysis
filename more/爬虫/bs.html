@@ -1,0 +1,1044 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>数据爬取 &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'more/爬虫/bs';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">数据爬取</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>数据分析岗位各地查询</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h1>数据爬取<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>检测到： {‘code’: 37, ‘message’: ‘您的访问行为异常.’, ‘zpData’: {‘name’: ‘823dca69’, ‘seed’: ‘Qt0I/5byzEFz1Ignq67HMhnxEbz1W0Hm00KAO1E6YkM=’, ‘ts’: 1745986904233}</p>
+<section id="id2">
+<h2>热门城市代码<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>全国默认是本地位置</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ab_guid&#39;</span><span class="p">:</span> <span class="s1">&#39;7787d41d-10fa-475b-8c64-5884f0b64fd9&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__g&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Hm_lvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HMACCOUNT&#39;</span><span class="p">:</span> <span class="s1">&#39;B2926F6A1FF51613&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__l&#39;</span><span class="p">:</span> <span class="s1">&#39;l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">web</span><span class="si">%2F</span><span class="s1">geek</span><span class="si">%2F</span><span class="s1">jobs</span><span class="si">%3F</span><span class="s1">city%3D100010000%26query%3D</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%2595%</span><span class="s1">25B0</span><span class="si">%25E</span><span class="s1">6%258D%25AE</span><span class="si">%25E</span><span class="s1">5</span><span class="si">%2588%</span><span class="s1">2586</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%259E</span><span class="s1">%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__zp_stoken__&#39;</span><span class="p">:</span> <span class="s1">&#39;5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ</span><span class="si">%2F</span><span class="s1">Pjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK</span><span class="si">%2F</span><span class="s1">LMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz</span><span class="si">%2F</span><span class="s1">CnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wt2&#39;</span><span class="p">:</span> <span class="s1">&#39;DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wbg&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zp_at&#39;</span><span class="p">:</span> <span class="s1">&#39;7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bst&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__c&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__a&#39;</span><span class="p">:</span> <span class="s1">&#39;35794977.1745977504..1745977504.7.1.7.7&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json, text/plain, */*&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;accept-language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="s1">&#39;u=1, i&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;referer&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.zhipin.com/web/geek/jobs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Google Chrome&quot;;v=&quot;135&quot;, &quot;Not-A.Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;135&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua-mobile&#39;</span><span class="p">:</span> <span class="s1">&#39;?0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua-platform&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Windows&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-dest&#39;</span><span class="p">:</span> <span class="s1">&#39;empty&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;cors&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-site&#39;</span><span class="p">:</span> <span class="s1">&#39;same-origin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;7POhjANg9h7YXynU&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;traceid&#39;</span><span class="p">:</span> <span class="s1">&#39;F-6730a6Snt7Ox4pR8&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-requested-with&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zp_token&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~&#39;</span><span class="p">,</span>
+    <span class="c1"># &#39;cookie&#39;: &#39;ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fweb%2Fgeek%2Fjobs%3Fcity%3D100010000%26query%3D%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; __zp_stoken__=5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ%2FPjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK%2FLMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz%2FCnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; bst=V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~; __c=1745977504; __a=35794977.1745977504..1745977504.7.1.7.7&#39;,</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="s1">&#39;1745978077350&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;https://www.zhipin.com/wapi/zpCommon/data/cityGroup.json&#39;</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+    <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;zpData&#39;</span><span class="p">][</span><span class="s1">&#39;hotCityList&#39;</span><span class="p">]:</span>
+    <span class="n">cities</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;cityCode&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;cityCode&#39;</span><span class="p">],</span> <span class="s1">&#39;code&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]})</span>
+<span class="n">df_city</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cities</span><span class="p">)</span>
+<span class="n">df_city</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cities.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;cities.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>name</th>
+      <th>cityCode</th>
+      <th>code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>全国</td>
+      <td>NaN</td>
+      <td>100010000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>北京</td>
+      <td>10.0</td>
+      <td>101010100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>上海</td>
+      <td>21.0</td>
+      <td>101020100</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>广州</td>
+      <td>20.0</td>
+      <td>101280100</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>深圳</td>
+      <td>755.0</td>
+      <td>101280600</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>杭州</td>
+      <td>571.0</td>
+      <td>101210100</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>天津</td>
+      <td>22.0</td>
+      <td>101030100</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>西安</td>
+      <td>29.0</td>
+      <td>101110100</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>苏州</td>
+      <td>512.0</td>
+      <td>101190400</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>武汉</td>
+      <td>27.0</td>
+      <td>101200100</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>厦门</td>
+      <td>592.0</td>
+      <td>101230200</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>长沙</td>
+      <td>731.0</td>
+      <td>101250100</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>成都</td>
+      <td>28.0</td>
+      <td>101270100</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>郑州</td>
+      <td>371.0</td>
+      <td>101180100</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>重庆</td>
+      <td>23.0</td>
+      <td>101040100</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="joblist">
+<h2>jobList<a class="headerlink" href="#joblist" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list返回的信息</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;areaDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;bossCert&#39;</span><span class="p">,</span> <span class="s1">&#39;bossName&#39;</span><span class="p">,</span> <span class="s1">&#39;bossTitle&#39;</span><span class="p">,</span> <span class="s1">&#39;brandIndustry&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brandName&#39;</span><span class="p">,</span> <span class="s1">&#39;brandScaleName&#39;</span><span class="p">,</span> <span class="s1">&#39;brandStageName&#39;</span><span class="p">,</span> <span class="s1">&#39;businessDistrict&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;cityName&#39;</span><span class="p">,</span> <span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;encryptBossId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;encryptBrandId&#39;</span><span class="p">,</span> <span class="s1">&#39;encryptJobId&#39;</span><span class="p">,</span> <span class="s1">&#39;expectId&#39;</span><span class="p">,</span> <span class="s1">&#39;goldHunter&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jobDegree&#39;</span><span class="p">,</span> <span class="s1">&#39;jobExperience&#39;</span><span class="p">,</span> <span class="s1">&#39;jobLabels&#39;</span><span class="p">,</span> <span class="s1">&#39;jobName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="s1">&#39;salaryDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="s1">&#39;welfareList&#39;</span>
+<span class="p">]</span>
+
+<span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_joblist</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>jobdetail</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 现在没有用</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;boss_brandName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boss_certificated&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boss_name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boss_title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_customerBrandName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_customerBrandStageName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_encryptBrandId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_industry&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_industryName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_introduce&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_labels&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_scale&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_scaleName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_stage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;brand_stageName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_address&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_degreeName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_encryptAddressId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_encryptId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_encryptUserId&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_experienceName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_invalidStatus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_status&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_type&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_latitude&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_longitude&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_location&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_locationName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_position&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_positionName&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_postDescription&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_proxyJob&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_proxyType&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_salaryDesc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;job_showSkills&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;securityId&#39;</span>
+<span class="p">]</span>
+
+<span class="n">df_jobdetail</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_jobdetail</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下面都是joblist</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ab_guid&#39;</span><span class="p">:</span> <span class="s1">&#39;7787d41d-10fa-475b-8c64-5884f0b64fd9&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wt2&#39;</span><span class="p">:</span> <span class="s1">&#39;DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wbg&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zp_at&#39;</span><span class="p">:</span> <span class="s1">&#39;7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lastCity&#39;</span><span class="p">:</span> <span class="s1">&#39;101270100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__g&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Hm_lvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504,1746523892&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HMACCOUNT&#39;</span><span class="p">:</span> <span class="s1">&#39;B2926F6A1FF51613&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__l&#39;</span><span class="p">:</span> <span class="s1">&#39;l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">chengdu</span><span class="si">%2F%3F</span><span class="s1">seoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523904&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__zp_stoken__&#39;</span><span class="p">:</span> <span class="s1">&#39;7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0</span><span class="si">%2F</span><span class="s1">CssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bst&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__c&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523892&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__a&#39;</span><span class="p">:</span> <span class="s1">&#39;35794977.1745977504.1745977504.1746523892.13.2.5.13&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json, text/plain, */*&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;accept-language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="s1">&#39;u=1, i&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;referer&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.zhipin.com/web/geek/jobs?city=101010100&amp;query=</span><span class="si">%E</span><span class="s1">6</span><span class="si">%95%</span><span class="s1">B0</span><span class="si">%E</span><span class="s1">6%8D%AE</span><span class="si">%E</span><span class="s1">5</span><span class="si">%88%</span><span class="s1">86</span><span class="si">%E</span><span class="s1">6</span><span class="si">%9E%90%</span><span class="s1">E5%B8%88&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Google Chrome&quot;;v=&quot;135&quot;, &quot;Not-A.Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;135&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua-mobile&#39;</span><span class="p">:</span> <span class="s1">&#39;?0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-ch-ua-platform&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Windows&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-dest&#39;</span><span class="p">:</span> <span class="s1">&#39;empty&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;cors&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sec-fetch-site&#39;</span><span class="p">:</span> <span class="s1">&#39;same-origin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;7POhjANg9h7YXynU&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;traceid&#39;</span><span class="p">:</span> <span class="s1">&#39;F-f044555ieyRiXm27&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-requested-with&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zp_token&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~&#39;</span><span class="p">,</span>
+    <span class="c1"># &#39;cookie&#39;: &#39;ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; lastCity=101270100; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504,1746523892; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fchengdu%2F%3FseoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1746523904; __zp_stoken__=7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0%2FCssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI; bst=V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~; __c=1746523892; __a=35794977.1745977504.1745977504.1746523892.13.2.5.13&#39;,</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pageSize&#39;</span><span class="p">:</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;101010100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s1">&#39;数据分析师&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;expectInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;multiSubway&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;multiBusinessDistrict&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jobType&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;experience&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;degree&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;industry&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stage&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scene&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523931733&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试：一次</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.zhipin.com/wapi/zpgeek/search/joblist.json&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 解析一行 list返回的消息</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_joblist</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;areaDistrict&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;areaDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;bossCert&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossCert&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;bossName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;bossTitle&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossTitle&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;brandIndustry&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandIndustry&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;brandName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;brandScaleName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandScaleName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;brandStageName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandStageName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;businessDistrict&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;businessDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;cityName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cityName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;contact&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;encryptBossId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptBossId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;encryptBrandId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptBrandId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;encryptJobId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptJobId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;expectId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;expectId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;goldHunter&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;goldHunter&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;jobDegree&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobDegree&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;jobExperience&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobExperience&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;jobName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;securityId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;salaryDesc&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;salaryDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;jobLabels&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,[]),</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;skills&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;welfareList&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">row</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">crawel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">outs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">pagei</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">):</span> <span class="c1"># 页数不固定</span>
+        <span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">jobs</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pagei</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.zhipin.com/wapi/zpgeek/search/joblist.json&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="n">resultlist</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zpData&#39;</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobList&#39;</span><span class="p">,[])</span>
+            <span class="n">hasmore</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zpData&#39;</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hasMore&#39;</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">resultlist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resultlist</span><span class="p">:</span>
+                    <span class="n">outs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_joblist</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+                    <span class="n">jobs</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">if</span> <span class="n">hasmore</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> is max page. done! </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> failed. </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">delay</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># 平均4秒，偏态指数分布</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># 设置上限为10秒</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s2"> done.Get </span><span class="si">{</span><span class="n">jobs</span><span class="si">}</span><span class="s2"> job. Counsume </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试一个城市</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;101010100&#39;</span>
+<span class="n">crawel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">joblist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>#1 done.Get 15 job. Counsume 10.50s
+#2 done.Get 15 job. Counsume 9.08s
+#3 done.Get 15 job. Counsume 2.26s
+#4 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;823dca69&#39;, &#39;seed&#39;: &#39;Qt0I/5byzEFz1Ignq67HMhnxEbz1W0Hm00KAO1E6YkM=&#39;, &#39;ts&#39;: 1745986904233}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;北京&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 入口</span>
+<span class="n">joblist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cities</span><span class="p">)):</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;</span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">&gt;&gt;&#39;</span><span class="p">)</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">])</span>
+    <span class="n">crawel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">joblist</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 平均10秒，偏态指数分布</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>  <span class="c1"># 设置上限为30秒</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&lt;北京, 101010100&gt;&gt;
+#1 done.Get 15 job. Counsume 1.28s
+#2 done.Get 15 job. Counsume 1.04s
+#3 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRYrUoSjxYlQ2QI9vDzZYkE0=&#39;, &#39;ts&#39;: 1746524740626}}
+&lt;&lt;上海, 101020100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=&#39;, &#39;ts&#39;: 1746524743437}}
+&lt;&lt;广州, 101280100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=&#39;, &#39;ts&#39;: 1746524743768}}
+&lt;&lt;深圳, 101280600&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRd8MkZF0LtjO0f9eDhk2T1s=&#39;, &#39;ts&#39;: 1746524748679}}
+&lt;&lt;杭州, 101210100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=&#39;, &#39;ts&#39;: 1746524765548}}
+&lt;&lt;天津, 101030100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=&#39;, &#39;ts&#39;: 1746524765876}}
+&lt;&lt;西安, 101110100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRaAwNajYs7EE5gtkwhFzvOs=&#39;, &#39;ts&#39;: 1746524770497}}
+&lt;&lt;苏州, 101190400&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQk0+OiXTYOLHhUjHZvdczg=&#39;, &#39;ts&#39;: 1746524773198}}
+&lt;&lt;武汉, 101200100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRaA7ZGdFeuWXRdHRzSw4YnM=&#39;, &#39;ts&#39;: 1746524782692}}
+&lt;&lt;厦门, 101230200&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRSMmIbMbhg1h8Ii7hKeqbhw=&#39;, &#39;ts&#39;: 1746524794809}}
+&lt;&lt;长沙, 101250100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=&#39;, &#39;ts&#39;: 1746524804180}}
+&lt;&lt;成都, 101270100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=&#39;, &#39;ts&#39;: 1746524804624}}
+&lt;&lt;郑州, 101180100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRVN28GjZMNTH9qJ6nHSAGgk=&#39;, &#39;ts&#39;: 1746524806500}}
+&lt;&lt;重庆, 101040100&gt;&gt;
+#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRU1cCNNvq0vgDX7V01GQUvU=&#39;, &#39;ts&#39;: 1746524815992}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">joblist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>435
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">joblist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df_joblist</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;bs_joblist</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.xlsx&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 保留索引列</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h1>数据分析<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;bs_joblist20250430.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span><span class="p">[</span><span class="s1">&#39;cityName&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     435
+unique      1
+top        成都
+freq      435
+Name: cityName, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">数据爬取</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">热门城市代码</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joblist">jobList</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">数据分析</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/more/爬虫/bs.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

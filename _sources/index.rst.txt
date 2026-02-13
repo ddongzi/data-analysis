@@ -3,22 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-DA大杂烩 documentation
+欢迎来到DA大杂烩
 ======================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+集合了数据分析相关的项目: kaggle, 天体。探索~
+
+.. note::
+
+   This project is under active development.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: 🏆 kaggle实战
+   :caption: 内容目录
+   :titlesonly:
 
-   信贷违约风险项目 <kaggle/Home_Credit_Default_Risk/index>
-
-.. toctree::
-   :maxdepth: 2
-   :caption: 🛠️ 基础知识
-   
-   基础学习笔记 <basics/basics>
-   hello <basics/hello>
+   kaggle/index
+   MLcook/index
+   astroy/index
+   economy/index
+   more 

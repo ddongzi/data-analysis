@@ -1,0 +1,2087 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7.3 preprocessing data &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MLcook/Scikit-Learn/7. dataset transform/7.3 preprocess data';</script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">7.3 preprocessing data</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="preprocessing-data">
+<h1>7.3 preprocessing data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code> change <strong>raw feature vectors</strong> into more suitable representation for the estimators.</p>
+<p>In general, many learing alg such as linear models benefit from standardization. ❓</p>
+<blockquote>
+<div><p>数据变换</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Normalization (归一化)： min-max,max 。 数值小 方便优化计算</p></li>
+<li><p>Standardization(): z-score 标准化。数据（近正态分布）转换为标准正态</p></li>
+<li><p>Log(对数变化)：减少异常值影响。 使其更接近正态？</p></li>
+<li><p>非线性变换：使数据更容易被线性模型拟合。Box-cox</p></li>
+<li><p>二值化：0，1</p></li>
+<li><p>正交化：PCA降维</p></li>
+</ul>
+<section id="standardization-or-mean-removal-and-variance-scaling">
+<h2>7.3.1. Standardization, or mean removal and variance scaling<a class="headerlink" href="#standardization-or-mean-removal-and-variance-scaling" title="Link to this heading">#</a></h2>
+<p>Standardization of datasets is a <strong>common requirement</strong> for many machine learning estimators implemented in scikit-learn; they might <strong>behave badly</strong> if the individual features do not more or less look like standard normally distributed data: Gaussian with zero mean and unit variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                     <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span> <span class="c1"># mean by column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.        , 0.        , 0.33333333])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span> <span class="c1"># var by column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.81649658, 0.81649658, 1.24721913])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_scaled</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.        , -1.22474487,  1.33630621],
+       [ 1.22474487,  0.        , -0.26726124],
+       [-1.22474487,  1.22474487, -1.06904497]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Scaled data has mean 0, var 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># mean by column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_scaled</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># mean by column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>StandardScaler can <strong>re-apply</strong> the same transformation on the testing test. The test set will use the <strong>same mean,std</strong> to transfom data, otherwise recompute them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="c1"># re-applying scaling on test data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.96
+</pre></div>
+</div>
+</div>
+</div>
+<section id="scaling-features-to-a-range">
+<h3>7.3.1.1. Scaling features to a range<a class="headerlink" href="#scaling-features-to-a-range" title="Link to this heading">#</a></h3>
+<p>MinMaxScaler or MaxAbsScaler， range alwats is [0,1]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">min_max_scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_train_minmax</span> <span class="o">=</span> <span class="n">min_max_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train_minmax</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.5       , 0.        , 1.        ],
+       [1.        , 0.5       , 0.33333333],
+       [0.        , 1.        , 0.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">min_max_scaler</span><span class="o">.</span><span class="n">data_min_</span><span class="p">,</span> <span class="n">min_max_scaler</span><span class="o">.</span><span class="n">data_max_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0. -1. -1.] [2. 1. 2.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The scaler can applied to test data.(Use the <strong>same min/max</strong>) But this outs the range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">X_test_minmax</span><span class="o">=</span><span class="n">min_max_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">X_test_minmax</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.5       ,  0.        ,  1.66666667]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">MaxAbsScaler</span></code> :x/max. $[-1,1]$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">max_abs_scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MaxAbsScaler</span><span class="p">()</span>
+<span class="n">X_train_maxabs</span> <span class="o">=</span> <span class="n">max_abs_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train_maxabs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.5, -1. ,  1. ],
+       [ 1. ,  0. ,  0. ],
+       [ 0. ,  1. , -0.5]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_abs_scaler</span><span class="o">.</span><span class="n">max_abs_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 1., 2.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">X_test_maxabs</span> <span class="o">=</span> <span class="n">max_abs_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">X_test_maxabs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_test_maxabs</span> <span class="o">=</span> <span class="n">max_abs_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X_test_maxabs</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">你问得很好</span><span class="err">！`</span><span class="n">QuantileTransformer</span><span class="err">`</span><span class="n">中</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`</span><span class="n">确实会让输出符合正态分布</span><span class="err">，</span><span class="n">而不是所有分位数变换都只是均匀分布</span><span class="err">（</span><span class="n">uniform</span><span class="err">）。</span><span class="n">让我详细解释一下它是怎么做到的</span><span class="err">，</span><span class="n">以及为什么它不是简单地停留在均匀分布</span><span class="err">。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 分位数变换的基本原理</span>
+<span class="n">分位数变换的核心思想是基于数据的</span><span class="o">**</span><span class="n">分位数</span><span class="err">（</span><span class="n">quantiles</span><span class="err">）</span><span class="o">**</span><span class="err">，</span><span class="n">通过单调变换将原始数据映射到一个目标分布</span><span class="err">。</span><span class="n">过程可以分为两步</span><span class="err">：</span>
+<span class="mf">1.</span> <span class="o">**</span><span class="n">映射到均匀分布</span><span class="err">（</span><span class="n">Uniform</span> <span class="n">Distribution</span><span class="err">）</span><span class="o">**</span>  
+   <span class="o">-</span> <span class="n">先计算每个数据点的分位数</span><span class="err">（</span><span class="n">排名</span><span class="err">），</span><span class="n">将其映射到0到1之间的均匀分布</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">比如</span><span class="err">，</span><span class="n">数据</span><span class="err">`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`</span><span class="n">会被映射到</span><span class="err">`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`。</span>
+   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="err">`，</span><span class="n">这里就结束了</span><span class="err">，</span><span class="n">结果就是均匀分布</span><span class="err">。</span>
+
+<span class="mf">2.</span> <span class="o">**</span><span class="n">从均匀分布映射到目标分布</span><span class="o">**</span>  
+   <span class="o">-</span> <span class="n">如果指定了</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`，</span><span class="n">会多一步</span><span class="err">：</span><span class="n">将均匀分布的值通过正态分布的反累积分布函数</span><span class="err">（</span><span class="n">Inverse</span> <span class="n">CDF</span><span class="err">，</span><span class="n">也叫分位函数或PPF</span><span class="err">，</span><span class="n">Percent</span> <span class="n">Point</span> <span class="n">Function</span><span class="err">）</span><span class="n">转换为正态分布</span><span class="err">。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 具体怎么做到正态分布？</span>
+<span class="n">为了让输出变成标准正态分布</span><span class="err">（</span><span class="n">均值0</span><span class="err">，</span><span class="n">标准差1</span><span class="err">），`</span><span class="n">QuantileTransformer</span><span class="err">`</span><span class="n">是这样操作的</span><span class="err">：</span>
+
+<span class="c1">#### 步骤分解：</span>
+<span class="mf">1.</span> <span class="o">**</span><span class="n">计算原始数据的分位数</span><span class="err">（</span><span class="n">均匀分布</span><span class="err">）</span><span class="o">**</span>  
+   <span class="o">-</span> <span class="n">对输入数据排序</span><span class="err">，</span><span class="n">计算每个值对应的分位数</span><span class="err">（</span><span class="mi">0</span><span class="n">到1之间的值</span><span class="err">）。</span>
+   <span class="o">-</span> <span class="n">比如</span><span class="err">，`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`</span><span class="n">变成</span><span class="err">`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`。</span>
+
+<span class="mf">2.</span> <span class="o">**</span><span class="n">应用标准正态分布的反CDF</span><span class="o">**</span>  
+   <span class="o">-</span> <span class="n">标准正态分布的反CDF</span><span class="err">（</span><span class="n">Inverse</span> <span class="n">CDF</span><span class="err">）</span><span class="n">是一个数学函数</span><span class="err">，</span><span class="n">它接受一个0到1之间的概率值</span><span class="err">（</span><span class="n">均匀分布</span><span class="err">），</span><span class="n">输出对应的正态分布值</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">比如</span><span class="err">：</span>
+     <span class="o">-</span> <span class="n">均匀分布0</span><span class="mf">.5</span> <span class="err">→</span> <span class="n">正态分布0</span><span class="err">（</span><span class="n">正态分布的中位数</span><span class="err">）。</span>
+     <span class="o">-</span> <span class="n">均匀分布0</span><span class="mf">.975</span> <span class="err">→</span> <span class="n">正态分布约1</span><span class="mf">.96</span><span class="err">（</span><span class="n">正态分布的97</span><span class="mf">.5</span><span class="o">%</span><span class="k">分位点</span>）。
+     <span class="o">-</span> <span class="n">均匀分布0</span><span class="mf">.025</span> <span class="err">→</span> <span class="n">正态分布约</span><span class="o">-</span><span class="mf">1.96</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">对于</span><span class="err">`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`：</span>
+     <span class="o">-</span> <span class="mf">0.0</span><span class="err">（</span><span class="n">接近最小值</span><span class="err">）→</span> <span class="n">负无穷</span><span class="err">（</span><span class="n">实际用有限值近似</span><span class="err">，</span><span class="n">如</span><span class="o">-</span><span class="mf">2.33</span><span class="err">）。</span>
+     <span class="o">-</span> <span class="mf">0.25</span> <span class="err">→</span> <span class="n">约</span><span class="o">-</span><span class="mf">0.67</span><span class="err">（</span><span class="n">正态分布的25</span><span class="o">%</span><span class="k">分位点</span>）。
+     <span class="o">-</span> <span class="mf">0.5</span> <span class="err">→</span> <span class="mf">0.0</span><span class="err">（</span><span class="n">正态分布的50</span><span class="o">%</span><span class="k">分位点</span>）。
+     <span class="o">-</span> <span class="mf">0.75</span> <span class="err">→</span> <span class="n">约0</span><span class="mf">.67</span><span class="err">（</span><span class="n">正态分布的75</span><span class="o">%</span><span class="k">分位点</span>）。
+     <span class="o">-</span> <span class="mf">1.0</span><span class="err">（</span><span class="n">接近最大值</span><span class="err">）→</span> <span class="n">正无穷</span><span class="err">（</span><span class="n">实际用有限值近似</span><span class="err">，</span><span class="n">如2</span><span class="mf">.33</span><span class="err">）。</span>
+
+<span class="mf">3.</span> <span class="o">**</span><span class="n">结果</span><span class="o">**</span>  
+   <span class="o">-</span> <span class="n">变换后可能是</span><span class="err">`</span><span class="p">[</span><span class="o">-</span><span class="mf">2.33</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">,</span> <span class="mf">2.33</span><span class="p">]</span><span class="err">`（</span><span class="n">具体值取决于分位数数量和插值方式</span><span class="err">）。</span>
+   <span class="o">-</span> <span class="n">这些值符合标准正态分布的特性</span><span class="err">：</span><span class="n">均值</span><span class="err">≈</span><span class="mi">0</span><span class="err">，</span><span class="n">标准差</span><span class="err">≈</span><span class="mi">1</span><span class="err">。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 数学依据</span>
+<span class="o">-</span> <span class="o">**</span><span class="n">均匀分布到正态分布的转换</span><span class="o">**</span>  
+  <span class="o">-</span> <span class="n">如果</span> \<span class="p">(</span> <span class="n">U</span> \<span class="p">)</span> <span class="n">是均匀分布在</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="n">上的随机变量</span><span class="err">，</span><span class="n">那么</span> \<span class="p">(</span> <span class="n">Z</span> <span class="o">=</span> \<span class="n">Phi</span><span class="o">^</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">}(</span><span class="n">U</span><span class="p">)</span> \<span class="p">)</span> <span class="n">是一个标准正态分布的随机变量</span><span class="err">，</span><span class="n">其中</span> \<span class="p">(</span> \<span class="n">Phi</span><span class="o">^</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> \<span class="p">)</span> <span class="n">是标准正态分布的反CDF</span><span class="err">。</span>
+  <span class="o">-</span> <span class="err">`</span><span class="n">QuantileTransformer</span><span class="err">`</span><span class="n">利用这个原理</span><span class="err">，</span><span class="n">先把数据变成均匀分布</span> \<span class="p">(</span> <span class="n">U</span> \<span class="p">)</span><span class="err">，</span><span class="n">再通过</span> \<span class="p">(</span> \<span class="n">Phi</span><span class="o">^</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> \<span class="p">)</span> <span class="n">转为正态分布</span><span class="err">。</span>
+
+<span class="o">-</span> <span class="o">**</span><span class="n">单调性保持</span><span class="o">**</span>  
+  <span class="o">-</span> <span class="n">因为反CDF是单调递增的</span><span class="err">，</span><span class="n">整个变换过程不会改变数据的相对顺序</span><span class="err">（</span><span class="n">排名</span><span class="err">）。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 为什么不一直是均匀分布？</span>
+<span class="o">-</span> <span class="n">当时</span><span class="err">，</span><span class="n">变换停在第一步</span><span class="err">，</span><span class="n">输出就是均匀分布</span><span class="err">（</span><span class="mi">0</span><span class="n">到1</span><span class="err">）。</span>
+<span class="o">-</span> <span class="n">当</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`</span><span class="n">时</span><span class="err">，</span><span class="n">多加了第二步</span><span class="err">，</span><span class="n">使用正态分布的反CDF</span><span class="err">，</span><span class="n">把均匀分布</span><span class="err">“</span><span class="n">拉伸</span><span class="err">”</span><span class="n">成正态分布的形状</span><span class="err">。</span>
+<span class="o">-</span> <span class="o">**</span><span class="n">区别</span><span class="o">**</span><span class="err">：</span>
+  <span class="o">-</span> <span class="n">均匀分布</span><span class="err">：</span><span class="n">值均匀分布在固定区间</span><span class="err">（</span><span class="mi">0</span><span class="n">到1</span><span class="err">），</span><span class="n">没有</span><span class="err">“</span><span class="n">钟形曲线</span><span class="err">”。</span>
+  <span class="o">-</span> <span class="n">正态分布</span><span class="err">：</span><span class="n">值集中在均值附近</span><span class="err">（</span><span class="mi">0</span><span class="err">），</span><span class="n">两端逐渐减少</span><span class="err">，</span><span class="n">形成典型的正态</span><span class="err">“</span><span class="n">钟形</span><span class="err">”。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 举个例子</span>
+<span class="n">原始数据</span><span class="err">：`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`</span>
+<span class="mf">1.</span> <span class="o">**</span><span class="n">均匀分布</span><span class="err">（</span><span class="n">第一步</span><span class="err">）</span><span class="o">**</span><span class="err">：`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`</span>  
+   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="err">`，</span><span class="n">结果就是这个</span><span class="err">。</span>
+<span class="mf">2.</span> <span class="o">**</span><span class="n">正态分布</span><span class="err">（</span><span class="n">第二步</span><span class="err">）</span><span class="o">**</span><span class="err">：</span>  
+   <span class="o">-</span> <span class="mf">0.0</span> <span class="err">→</span> <span class="n">约</span><span class="o">-</span><span class="mf">1.28</span><span class="err">（</span><span class="n">正态分布的0</span><span class="o">%</span><span class="k">分位点</span>，用有限值近似）。
+   <span class="o">-</span> <span class="mf">0.25</span> <span class="err">→</span> <span class="n">约</span><span class="o">-</span><span class="mf">0.67</span><span class="err">。</span>
+   <span class="o">-</span> <span class="mf">0.5</span> <span class="err">→</span> <span class="mf">0.0</span><span class="err">。</span>
+   <span class="o">-</span> <span class="mf">0.75</span> <span class="err">→</span> <span class="n">约0</span><span class="mf">.67</span><span class="err">。</span>
+   <span class="o">-</span> <span class="mf">1.0</span> <span class="err">→</span> <span class="n">约1</span><span class="mf">.28</span><span class="err">（</span><span class="n">正态分布的100</span><span class="o">%</span><span class="k">分位点</span>，用有限值近似）。
+   <span class="o">-</span> <span class="n">结果</span><span class="err">：`</span><span class="p">[</span><span class="o">-</span><span class="mf">1.28</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">]</span><span class="err">`。</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 代码验证</span>
+<span class="err">```</span><span class="n">python</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantileTransformer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># uniform分布</span>
+<span class="n">qt_uniform</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+<span class="n">uniform_data</span> <span class="o">=</span> <span class="n">qt_uniform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uniform:&quot;</span><span class="p">,</span> <span class="n">uniform_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+
+<span class="c1"># normal分布</span>
+<span class="n">qt_normal</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">qt_normal</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normal:&quot;</span><span class="p">,</span> <span class="n">normal_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="err">```</span>
+
+<span class="o">**</span><span class="n">输出</span><span class="o">**</span><span class="p">:</span>
+<span class="err">```</span>
+<span class="n">Uniform</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span>   <span class="mf">0.25</span> <span class="mf">0.5</span>  <span class="mf">0.75</span> <span class="mf">1.</span>  <span class="p">]</span>
+<span class="n">Normal</span><span class="p">:</span>  <span class="p">[</span><span class="o">-</span><span class="mf">1.28155157</span> <span class="o">-</span><span class="mf">0.67448975</span>  <span class="mf">0.</span>          <span class="mf">0.67448975</span>  <span class="mf">1.28155157</span><span class="p">]</span>
+<span class="err">```</span>
+
+<span class="o">---</span>
+
+<span class="c1">### 适合正态性场景</span>
+<span class="o">-</span> <span class="n">很多机器学习模型</span><span class="err">（</span><span class="n">比如线性回归</span><span class="err">、</span><span class="n">逻辑回归</span><span class="err">）</span><span class="n">假设输入特征接近正态分布</span><span class="err">。</span>
+<span class="o">-</span> <span class="n">通过上述步骤</span><span class="err">，</span><span class="n">把偏态数据</span><span class="err">（</span><span class="n">比如右偏的</span><span class="err">`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`）</span><span class="n">调整为正态分布</span><span class="err">，</span><span class="n">提升模型性能</span><span class="err">。</span>
+
+<span class="n">希望这解释清楚了</span><span class="err">！</span><span class="n">如果还有疑问</span><span class="err">，</span><span class="n">比如想看反CDF的具体计算</span><span class="err">，</span><span class="n">可以再问我</span><span class="err">！</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="non-linear-transformation">
+<h2>7.3.2. Non-linear transformation<a class="headerlink" href="#non-linear-transformation" title="Link to this heading">#</a></h2>
+<p><strong>Quantile Transform</strong> based on the $G^{-1}(F(X))$.</p>
+<ul class="simple">
+<li><p>F is cumulative distribution function:
+$$F(X) = P(X&gt;=x)$$</p></li>
+<li><p>$G^{-1}$ is the <strong>quantile function</strong> of the <strong>desired output distribution</strong> G. If $G(x)=p$, then $G^{-1}(p)=x$</p></li>
+</ul>
+<p>This formula is using two following facts:</p>
+<ol class="arabic simple">
+<li><p>If $X$ is a random variable with CDF, $F(X)$ is uniformly distributed on $[0,1]$</p></li>
+<li><p>If $U$ is a random variable with uniform distribution on $[0,1]$, $G^{-1}(U)$ has distribution $G$</p></li>
+</ol>
+<p>For example:<br />
+$[10,20,30,100,1000]$, $CDF(X) = [0,0.25,0.5,0.75,1.0]$<br />
+if target $G$ is Guassian,OUT $[-1.28, -0.67, 0, 0.67, 1.28]$</p>
+<ul class="simple">
+<li><p>$G^{-1}(0.0) = -1.28$</p></li>
+<li><p>$G^{-1}(0.5) = 0$</p></li>
+</ul>
+<p><strong>Power Transform</strong>(<code class="docutils literal notranslate"><span class="pre">log</span></code> $x^k$)  makes distribution close to Gaussian distribution.For example, $ln(10)=2.3, ln(1000)=6.91$, compress range.</p>
+<section id="mapping-to-a-uniform-distribution">
+<h3>6.3.2.1. Mapping to a Uniform distribution<a class="headerlink" href="#mapping-to-a-uniform-distribution" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">quantile_transformer</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train_trans</span> <span class="o">=</span> <span class="n">quantile_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_trans</span> <span class="o">=</span> <span class="n">quantile_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d:\miniconda3\Lib\site-packages\sklearn\preprocessing\_data.py:2829: UserWarning: n_quantiles (1000) is greater than the total number of samples (112). n_quantiles is set to n_samples.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_trans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.54954955, 0.43693694, 0.48198198, 0.59009009],
+       [0.50900901, 0.16216216, 0.42342342, 0.41441441],
+       [0.85135135, 0.43693694, 0.80630631, 0.85135135],
+       [0.06756757, 0.66666667, 0.04504505, 0.13513514],
+       [0.87837838, 0.57657658, 0.71621622, 0.93243243],
+       [0.17567568, 0.86936937, 0.27927928, 0.32432432],
+       [0.31981982, 0.91441441, 0.1981982 , 0.13513514],
+       [0.17567568, 0.        , 0.35135135, 0.35585586],
+       [0.74324324, 0.43693694, 0.80630631, 0.7027027 ],
+       [0.80630631, 0.74774775, 0.86486486, 1.        ],
+       [0.57657658, 0.01351351, 0.67117117, 0.59009009],
+       [0.80630631, 0.11261261, 0.89189189, 0.7027027 ],
+       [0.4009009 , 0.11261261, 0.4009009 , 0.38738739],
+       [0.97747748, 0.43693694, 0.94144144, 0.93243243],
+       [0.65315315, 0.74774775, 0.5990991 , 0.63063063],
+       [0.36036036, 0.06306306, 0.38738739, 0.38738739],
+       [0.65315315, 0.20720721, 0.63963964, 0.7027027 ],
+       [0.65315315, 0.26576577, 0.71621622, 0.59009009],
+       [0.12612613, 0.11261261, 0.55405405, 0.65315315],
+       [0.65315315, 0.11261261, 0.67117117, 0.75675676],
+       [0.9009009 , 0.66666667, 0.5990991 , 0.54504505],
+       [0.74324324, 0.43693694, 0.75225225, 0.8018018 ],
+       [0.57657658, 0.81081081, 0.55405405, 0.63063063],
+       [0.09009009, 0.57657658, 0.27927928, 0.13513514],
+       [0.50900901, 0.20720721, 0.71621622, 0.75675676],
+       [0.4009009 , 0.20720721, 0.48198198, 0.47747748],
+       [0.4009009 , 0.31531532, 0.36936937, 0.47747748],
+       [0.36036036, 0.11261261, 0.42342342, 0.47747748],
+       [0.59459459, 0.43693694, 0.58108108, 0.54504505],
+       [0.92792793, 0.66666667, 0.92792793, 0.7027027 ],
+       [0.2972973 , 0.91441441, 0.1981982 , 0.13513514],
+       [0.        , 0.43693694, 0.        , 0.        ],
+       [0.7027027 , 0.20720721, 0.77027027, 0.75675676],
+       [0.44594595, 0.43693694, 0.48198198, 0.41441441],
+       [0.31981982, 0.81081081, 0.31531532, 0.13513514],
+       [0.44594595, 1.        , 0.1981982 , 0.2972973 ],
+       [0.87837838, 0.57657658, 0.63963964, 0.59009009],
+       [0.04504505, 0.57657658, 0.1981982 , 0.13513514],
+       [0.54954955, 0.43693694, 0.71621622, 0.7027027 ],
+       [0.23873874, 0.11261261, 0.33333333, 0.38738739],
+       [0.04504505, 0.81081081, 0.10810811, 0.25675676],
+       [0.60810811, 0.01351351, 0.55405405, 0.59009009],
+       [0.92792793, 0.8963964 , 0.94144144, 1.        ],
+       [0.44594595, 0.31531532, 0.48198198, 0.47747748],
+       [0.09009009, 0.43693694, 0.10810811, 0.        ],
+       [0.90990991, 0.43693694, 0.91441441, 0.85135135],
+       [0.87837838, 0.66666667, 0.86486486, 0.93243243],
+       [0.74324324, 0.43693694, 0.89189189, 0.88738739],
+       [0.7027027 , 0.26576577, 0.83333333, 0.85135135],
+       [0.23873874, 0.95045045, 0.27927928, 0.13513514],
+       [0.09009009, 0.81081081, 0.27927928, 0.13513514],
+       [0.74324324, 0.66666667, 0.71621622, 0.8018018 ],
+       [0.80630631, 0.74774775, 0.86486486, 0.85135135],
+       [0.02702703, 0.03603604, 0.04504505, 0.25675676],
+       [0.60810811, 0.81081081, 0.78828829, 0.93243243],
+       [0.12612613, 0.43693694, 0.10810811, 0.13513514],
+       [0.44594595, 0.11261261, 0.67117117, 0.8018018 ],
+       [0.87837838, 0.57657658, 0.78828829, 0.85135135],
+       [0.01351351, 0.66666667, 0.04504505, 0.13513514],
+       [0.17567568, 0.8963964 , 0.10810811, 0.13513514],
+       [0.92792793, 0.43693694, 0.89189189, 0.63063063],
+       [0.23873874, 0.86936937, 0.10810811, 0.25675676],
+       [0.01351351, 0.43693694, 0.04504505, 0.13513514],
+       [0.31981982, 0.97297297, 0.31531532, 0.2972973 ],
+       [0.36036036, 0.03603604, 0.42342342, 0.47747748],
+       [0.85135135, 0.66666667, 0.91441441, 0.93243243],
+       [0.95495495, 0.43693694, 0.97297297, 0.85135135],
+       [0.23873874, 0.86936937, 0.10810811, 0.13513514],
+       [0.12612613, 0.57657658, 0.1981982 , 0.13513514],
+       [0.28378378, 0.81081081, 0.10810811, 0.13513514],
+       [0.44594595, 0.26576577, 0.55405405, 0.47747748],
+       [0.77027027, 0.43693694, 0.52252252, 0.54504505],
+       [0.17567568, 0.66666667, 0.01351351, 0.13513514],
+       [0.23873874, 0.74774775, 0.31531532, 0.31531532],
+       [0.7027027 , 0.31531532, 0.5045045 , 0.47747748],
+       [0.31981982, 0.81081081, 0.1981982 , 0.2972973 ],
+       [0.97747748, 0.16216216, 1.        , 0.93243243],
+       [0.12612613, 0.06306306, 0.34234234, 0.35585586],
+       [1.        , 0.95045045, 0.96396396, 0.8018018 ],
+       [0.80630631, 0.57657658, 0.52252252, 0.54504505],
+       [0.28378378, 0.99099099, 0.1981982 , 0.        ],
+       [0.57657658, 0.43693694, 0.61711712, 0.7027027 ],
+       [0.50900901, 0.98198198, 0.01351351, 0.13513514],
+       [0.97747748, 0.26576577, 0.98648649, 0.8018018 ],
+       [0.23873874, 0.95045045, 0.1981982 , 0.25675676],
+       [0.06756757, 0.66666667, 0.27927928, 0.13513514],
+       [0.94594595, 0.26576577, 0.94144144, 0.75675676],
+       [0.17567568, 0.74774775, 0.10810811, 0.13513514],
+       [0.65315315, 0.81081081, 0.83333333, 0.97747748],
+       [0.44594595, 0.26576577, 0.45045045, 0.47747748],
+       [0.50900901, 0.20720721, 0.4009009 , 0.41441441],
+       [0.44594595, 0.16216216, 0.35135135, 0.35585586],
+       [0.7027027 , 0.66666667, 0.77027027, 0.93243243],
+       [0.80630631, 0.43693694, 0.75225225, 0.93243243],
+       [0.65315315, 0.11261261, 0.63963964, 0.59009009],
+       [0.80630631, 0.43693694, 0.67117117, 0.65315315],
+       [0.17567568, 0.43693694, 0.27927928, 0.13513514],
+       [0.36036036, 0.06306306, 0.37837838, 0.35585586],
+       [0.80630631, 0.57657658, 0.83333333, 0.97747748],
+       [0.50900901, 0.20720721, 0.71621622, 0.75675676],
+       [0.23873874, 0.81081081, 0.1981982 , 0.13513514],
+       [0.77027027, 0.31531532, 0.58108108, 0.47747748],
+       [0.4009009 , 0.43693694, 0.45045045, 0.47747748],
+       [0.54954955, 0.66666667, 0.61711712, 0.7027027 ],
+       [0.65315315, 0.03603604, 0.52252252, 0.47747748],
+       [0.36036036, 0.86936937, 0.04504505, 0.13513514],
+       [0.23873874, 0.91441441, 0.1981982 , 0.2972973 ],
+       [0.12612613, 0.57657658, 0.1981982 , 0.        ],
+       [0.65315315, 0.31531532, 0.83333333, 0.7027027 ],
+       [0.50900901, 0.20720721, 0.45045045, 0.35585586],
+       [0.97747748, 0.95045045, 0.98648649, 0.88738739],
+       [0.04504505, 0.66666667, 0.10810811, 0.13513514]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">X_train_trans</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.        , 0.23873874, 0.50900901, 0.74324324, 1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.3, 5.1, 5.8, 6.5, 7.9])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mapping-to-a-gaussian-distribution">
+<h3>6.3.2.2. Mapping to a Gaussian distribution<a class="headerlink" href="#mapping-to-a-gaussian-distribution" title="Link to this heading">#</a></h3>
+<p>PowerTransformer:</p>
+<p>🔗Map data to a normal distribution</p>
+</section>
+</section>
+<section id="normalization">
+<h2>7.3.3 Normalization<a class="headerlink" href="#normalization" title="Link to this heading">#</a></h2>
+<p>Normalization is the process of scaling individual smaples to have <strong>unit norm</strong>(长度/范数).<br />
+Normalization simplify to <strong>compare the similarity</strong> within samples. Specially when we use dot / kernel to compute similarity</p>
+<p><code class="docutils literal notranslate"><span class="pre">normalize</span></code> function provides this operation with different <code class="docutils literal notranslate"><span class="pre">norm</span></code>.( L1, L2, max..).<br />
+normalize each row.!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+     <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+     <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]]</span>
+<span class="n">X_normalized</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">X_normalized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.40824829, -0.40824829,  0.81649658],
+       [ 1.        ,  0.        ,  0.        ],
+       [ 0.        ,  0.70710678, -0.70710678]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alaso there is a <code class="docutils literal notranslate"><span class="pre">Normalizer</span></code> class, It’s a <code class="docutils literal notranslate"><span class="pre">Transformer</span></code>. It can be used in pipeline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">Normalizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">normalizer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Normalizer()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Normalizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.Normalizer.html">?<span>Documentation for Normalizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Normalizer()</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.40824829, -0.40824829,  0.81649658],
+       [ 1.        ,  0.        ,  0.        ],
+       [ 0.        ,  0.70710678, -0.70710678]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encoding-categorical-features">
+<h2>7.3.4. Encoding categorical features<a class="headerlink" href="#encoding-categorical-features" title="Link to this heading">#</a></h2>
+<p>To convert categorical features to int codes, we can use <code class="docutils literal notranslate"><span class="pre">OrignalEncoder</span></code>.</p>
+<p>For example, there are some features: <code class="docutils literal notranslate"><span class="pre">[&quot;male&quot;,</span> <span class="pre">&quot;female&quot;],</span> <span class="pre">[&quot;from</span> <span class="pre">Europe&quot;,</span> <span class="pre">&quot;from</span> <span class="pre">US&quot;,</span> <span class="pre">&quot;from</span> <span class="pre">Asia&quot;],</span> <span class="pre">[&quot;uses</span> <span class="pre">Firefox&quot;,</span> <span class="pre">&quot;uses</span> <span class="pre">Chrome&quot;,</span> <span class="pre">&quot;uses</span> <span class="pre">Safari&quot;,</span> <span class="pre">&quot;uses</span> <span class="pre">Internet</span> <span class="pre">Explorer&quot;].</span></code>Now, <code class="docutils literal notranslate"><span class="pre">[&quot;male&quot;,</span> <span class="pre">&quot;from</span> <span class="pre">US&quot;,</span> <span class="pre">&quot;uses</span> <span class="pre">Internet</span> <span class="pre">Explorer&quot;]</span></code> could be expressed as <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]</span></code> while <code class="docutils literal notranslate"><span class="pre">[&quot;female&quot;,</span> <span class="pre">&quot;from</span> <span class="pre">Asia&quot;,</span> <span class="pre">&quot;uses</span> <span class="pre">Chrome&quot;]</span></code> would be <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">1].</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X</span><span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;from us&#39;</span><span class="p">,</span><span class="s1">&#39;uses safari&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span><span class="s1">&#39;from eu&#39;</span><span class="p">,</span><span class="s1">&#39;uses chrome&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-5 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-5 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-5 pre {
+  padding: 0;
+}
+
+#sk-container-id-5 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-5 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-5 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-5 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-5 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-5 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-5 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-5 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-5 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-5 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-5 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-5 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-5 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-5 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-5 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-5 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-5 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-5 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-5 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-5 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-5 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-5 div.sk-label label.sk-toggleable__label,
+#sk-container-id-5 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-5 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-5 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-5 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-5 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-5 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-5 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-5 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-5 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-5 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-5 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-5 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>OrdinalEncoder()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" checked><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OrdinalEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OrdinalEncoder.html">?<span>Documentation for OrdinalEncoder</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>OrdinalEncoder()</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span><span class="s1">&#39;from us&#39;</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+
+<span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\utils\_set_output.py:319,</span> in <span class="ni">_wrap_method_output.&lt;locals&gt;.wrapped</span><span class="nt">(self, X, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">319</span>     <span class="n">data_to_wrap</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_to_wrap</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="c1"># only wrap the first output for cross decomposition</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="n">return_tuple</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>             <span class="n">_wrap_data_with_container</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>             <span class="o">*</span><span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>         <span class="p">)</span>
+
+<span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\preprocessing\_encoders.py:1597,</span> in <span class="ni">OrdinalEncoder.transform</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1583</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1584</span><span class="sd"> Transform X to ordinal codes.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1585</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1594</span><span class="sd">     Transformed input.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1595</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1596</span> <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;categories_&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1597</span> <span class="n">X_int</span><span class="p">,</span> <span class="n">X_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1598</span>     <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1599</span>     <span class="n">handle_unknown</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_unknown</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="n">ensure_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="n">ignore_category_indices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_missing_indices</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1602</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1603</span> <span class="n">X_trans</span> <span class="o">=</span> <span class="n">X_int</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1605</span> <span class="k">for</span> <span class="n">cat_idx</span><span class="p">,</span> <span class="n">missing_idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_missing_indices</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+<span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\preprocessing\_encoders.py:218,</span> in <span class="ni">_BaseEncoder._transform</span><span class="nt">(self, X, handle_unknown, ensure_all_finite, warn_on_unknown, ignore_category_indices)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">if</span> <span class="n">handle_unknown</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="s2">&quot;Found unknown categories </span><span class="si">{0}</span><span class="s2"> in column </span><span class="si">{1}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="s2">&quot; during transform&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">if</span> <span class="n">warn_on_unknown</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: Found unknown categories [nan] in column 0 during transform
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">encoded_missing_value</span></code> to encode the missing values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">encoded_missing_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">]]</span>
+<span class="n">enc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.],
+       [ 0.],
+       [-1.],
+       [ 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="one-hot-encoder">
+<h3>one-hot encoder<a class="headerlink" href="#one-hot-encoder" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>唯一缺点就是特征数量激增</p></li>
+<li><p>一般的，先进行one-hot，然后通过PCA等进行降维。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OneHotEncoder</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;from US&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;from Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Firefox&#39;</span><span class="p">]]</span>
+<span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;from US&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">],</span>
+               <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;from Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 0., 0., 1., 0., 1.],
+       [0., 1., 1., 0., 0., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="generating-polynomial-features">
+<h2>7.3.7. Generating polynomial features<a class="headerlink" href="#generating-polynomial-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>增加非线性. 得到高阶和交互阶</p></li>
+<li><p>不能用nan等缺失值， 要先用Imputer填充</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
+       [2, 3],
+       [4, 5]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  0.,  1.,  0.,  0.,  1.],
+       [ 1.,  2.,  3.,  4.,  6.,  9.],
+       [ 1.,  4.,  5., 16., 20., 25.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;1&#39;, &#39;x0&#39;, &#39;x1&#39;, &#39;x0^2&#39;, &#39;x0 x1&#39;, &#39;x1^2&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization-or-mean-removal-and-variance-scaling">7.3.1. Standardization, or mean removal and variance scaling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-features-to-a-range">7.3.1.1. Scaling features to a range</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-linear-transformation">7.3.2. Non-linear transformation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-to-a-uniform-distribution">6.3.2.1. Mapping to a Uniform distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-to-a-gaussian-distribution">6.3.2.2. Mapping to a Gaussian distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">7.3.3 Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-categorical-features">7.3.4. Encoding categorical features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoder">one-hot encoder</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-polynomial-features">7.3.7. Generating polynomial features</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/MLcook/Scikit-Learn/7. dataset transform/7.3 preprocess data.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
