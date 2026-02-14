@@ -22,10 +22,13 @@ import seaborn as sns
 from astroquery.nist import Nist
 import astropy.units as u
 
-# --- 沿用你之前配置好的美化设置 ---
 fonts = ['Microsoft YaHei', 'SimHei', 'SimSun', 'sans-serif']
 plt.rcParams['font.sans-serif'] = fonts
 sns.set_theme(style="whitegrid", font=fonts)
+# 设置全局高清显示（放在代码最前面）
+plt.rcParams['figure.dpi'] = 150  # 屏幕显示清晰度
+plt.rcParams['savefig.dpi'] = 300 # 保存图片的清晰度
+
 ------------------
 
 

@@ -2611,27 +2611,40 @@ $$</p>
 <section id="animation">
 <h2>4.17 Animation动画<a class="headerlink" href="#animation" title="Link to this heading">#</a></h2>
 </section>
-<section id="id41">
-<h2>4.18 绘制线<a class="headerlink" href="#id41" title="Link to this heading">#</a></h2>
+<section id="hlinevline">
+<h2>绘制hline和vline<a class="headerlink" href="#hlinevline" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vline(x坐标,y起始,y终止)</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span>
-    <span class="n">alpha_aic</span><span class="p">,</span> <span class="c1"># 垂直线X坐标</span>
-    <span class="n">results</span><span class="p">[</span><span class="s2">&quot;AIC criterion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="c1"># y起始</span>
-    <span class="n">results</span><span class="p">[</span><span class="s2">&quot;AIC criterion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="c1"># y结束</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;alpha: AIC estimate&quot;</span><span class="p">,</span> <span class="c1"># 设置标签，自动图例</span>
-    <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:blue&quot;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="c1"># 时间点</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="c1"># 一个正弦波，随着时间指数衰减</span>
+<span class="n">nse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span> <span class="c1"># 引入噪声</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">vax</span><span class="p">,</span> <span class="n">hax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">vax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="o">+</span><span class="n">nse</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">)</span> <span class="c1"># </span>
+<span class="n">vax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="c1"># 没有噪声的线</span>
+<span class="n">vax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">vax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Vline&#39;</span><span class="p">)</span>
+
+<span class="n">hax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="n">nse</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="n">hax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">hax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">hax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Horizontal lines demo&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:blue&quot;</span><span class="p">,</span>
-                     <span class="o">^</span>
-<span class="ne">SyntaxError</span>: incomplete input
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Horizontal lines demo&#39;)
 </pre></div>
 </div>
+<img alt="../_images/2abcc5a3bec6f6f4a57d01e5a0643e996d1eef1b5d97dbc2fec27132e7401c67.png" src="../_images/2abcc5a3bec6f6f4a57d01e5a0643e996d1eef1b5d97dbc2fec27132e7401c67.png" />
 </div>
 </div>
 </section>
@@ -2686,8 +2699,8 @@ $$</p>
 </div>
 </div>
 </section>
-<section id="id42">
-<h3>示例1： 绘制二维高斯分布的等高线<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<section id="id41">
+<h3>示例1： 绘制二维高斯分布的等高线<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ellipse</span>
@@ -2724,8 +2737,8 @@ $$</p>
 </div>
 </section>
 </section>
-<section id="id43">
-<h2>4.21 颜色<a class="headerlink" href="#id43" title="Link to this heading">#</a></h2>
+<section id="id42">
+<h2>4.21 颜色<a class="headerlink" href="#id42" title="Link to this heading">#</a></h2>
 <p>https://matplotlib.org/stable/users/explain/colors/index.html</p>
 <ul class="simple">
 <li><p>基础颜色直接指定： ‘red’ , ‘r’, (0.1, 0.2, 0.3), ‘#1f77b4’</p></li>
@@ -2915,8 +2928,8 @@ $$</p>
 </div>
 </div>
 </div>
-<section id="id44">
-<h3>调色板分类：<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<section id="id43">
+<h3>调色板分类：<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>单色渐变: ‘viridis’; 密度，连续值</p></li>
 <li><p>正负变化：’coolwarm’; 残差</p></li>
@@ -3262,15 +3275,15 @@ $$</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basemap-cartopy">4.15　用Basemap可视化地理数据 （过时）现在：cartopy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#animation">4.17 Animation动画</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">4.18 绘制线</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hlinevline">绘制hline和vline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stem-plot">4.19 茎叶图（stem plot）</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patches">4.20 patches补丁图形</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ellipse">Ellipse 椭圆形</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">示例1： 绘制二维高斯分布的等高线</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">示例1： 绘制二维高斯分布的等高线</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">4.21 颜色</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">调色板分类：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">4.21 颜色</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">调色板分类：</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colors">colors接口</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cm">cm接口: 方便直接取色</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facecolor-edgecolor">facecolor 填充色, edgecolor</a></li>

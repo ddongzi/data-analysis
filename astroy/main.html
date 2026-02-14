@@ -372,10 +372,12 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.nist</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nist</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
 
-<span class="c1"># --- 沿用你之前配置好的美化设置 ---</span>
 <span class="n">fonts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimSun&#39;</span><span class="p">,</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fonts</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">fonts</span><span class="p">)</span>
+<span class="c1"># 设置全局高清显示（放在代码最前面）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>  <span class="c1"># 屏幕显示清晰度</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># 保存图片的清晰度</span>
 </pre></div>
 </div>
 </div>
@@ -394,9 +396,10 @@
 </div>
 <section id="id2">
 <h2>物质波长<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以氢原子为例， 我们可以看看在300到700nm波段中，他的一些波长</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">Nist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="mi">300</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="mi">700</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">linename</span><span class="o">=</span><span class="s2">&quot;H I&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">Nist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="mi">300</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="mi">1500</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">linename</span><span class="o">=</span><span class="s2">&quot;H I&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -404,112 +407,100 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">observed</span></code> 实验室实际测得波长</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Ritz</span></code> 理论波长</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Rel.</span></code> 相对光强。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rel.</span></code> 相对光强。波长概率</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">colnames</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astropy.table.table.Table
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Observed&#39;, &#39;Ritz&#39;, &#39;Transition&#39;, &#39;Rel.&#39;, &#39;Aki&#39;, &#39;fik&#39;, &#39;Acc.&#39;, &#39;Ei           Ek&#39;, &#39;Lower level&#39;, &#39;Upper level&#39;, &#39;gi   gk&#39;, &#39;Type&#39;, &#39;TP&#39;, &#39;Line&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_astropy_lines</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="s2">&quot;H I&quot;</span><span class="p">,</span> <span class="n">wav_min</span><span class="o">=</span><span class="mi">390</span><span class="p">,</span> <span class="n">wav_max</span><span class="o">=</span><span class="mi">660</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    通过 NIST 获取特定元素的谱线数据</span>
-<span class="sd">    element: &quot;H I&quot; (中性氢), &quot;Ca II&quot; (一价钙离子) 等</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># 查询 NIST 数据库</span>
-    <span class="n">table</span> <span class="o">=</span> <span class="n">Nist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">wav_min</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">wav_max</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">linename</span><span class="o">=</span><span class="n">element</span><span class="p">)</span>
-    
-    <span class="c1"># 转换为 Pandas DataFrame 方便处理</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_element_data</span><span class="p">(</span><span class="n">element_name</span><span class="o">=</span><span class="s2">&quot;H I&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 获取物质的波长和光强. 300-700nm &quot;&quot;&quot;</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Nist</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="mi">300</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="mi">700</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">linename</span><span class="o">=</span><span class="n">element_name</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-    <span class="c1"># 筛选相对强度比较高的线（便于在光谱中识别）</span>
-    <span class="c1"># NIST 的强度(Rel.)有时是字符串，需要清理</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># 只保留强线</span>
     
-    <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Observed&#39;</span><span class="p">,</span> <span class="s1">&#39;Rel.&#39;</span><span class="p">,</span> <span class="s1">&#39;Term&#39;</span><span class="p">]]</span>
+    <span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Ritz&#39;</span><span class="p">])</span>
 
-<span class="c1"># 获取氢 (H I) 和 钙 (Ca II) 的真实数据</span>
-<span class="n">h_lines</span> <span class="o">=</span> <span class="n">get_astropy_lines</span><span class="p">(</span><span class="s2">&quot;H I&quot;</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">660</span><span class="p">)</span>
-<span class="n">ca_lines</span> <span class="o">=</span> <span class="n">get_astropy_lines</span><span class="p">(</span><span class="s2">&quot;Ca II&quot;</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;从 NIST 抓取的氢线数据：&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">h_lines</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">31</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Observed&#39;</span><span class="p">,</span> <span class="s1">&#39;Rel.&#39;</span><span class="p">,</span> <span class="s1">&#39;Term&#39;</span><span class="p">]]</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="c1"># 获取氢 (H I) 和 钙 (Ca II) 的真实数据</span>
-<span class="ne">---&gt; </span><span class="mi">31</span> <span class="n">h_lines</span> <span class="o">=</span> <span class="n">get_astropy_lines</span><span class="p">(</span><span class="s2">&quot;H I&quot;</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">660</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">ca_lines</span> <span class="o">=</span> <span class="n">get_astropy_lines</span><span class="p">(</span><span class="s2">&quot;Ca II&quot;</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;从 NIST 抓取的氢线数据：&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[5], line 28,</span> in <span class="ni">get_astropy_lines</span><span class="nt">(element, wav_min, wav_max)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># 只保留强线</span>
-<span class="ne">---&gt; </span><span class="mi">28</span> <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Observed&#39;</span><span class="p">,</span> <span class="s1">&#39;Rel.&#39;</span><span class="p">,</span> <span class="s1">&#39;Term&#39;</span><span class="p">]]</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\pandas\core\frame.py:4384,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4382</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4383</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">4384</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">4386</span> <span class="c1"># take() does not accept boolean indexers</span>
-<span class="g g-Whitespace">   </span><span class="mi">4387</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\pandas\core\indexes\base.py:6302,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6299</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6300</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6302</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6304</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6305</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\pandas\core\indexes\base.py:6355,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6352</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6354</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="ne">-&gt; </span><span class="mi">6355</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
-
-<span class="ne">KeyError</span>: &quot;[&#39;Term&#39;] not in index&quot;
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_rel</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;.&#39;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="k">if</span> <span class="n">nums</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+            
+    <span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_rel</span><span class="p">)</span>
+    
+    <span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;Element&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">element_name</span>
+    <span class="k">return</span> <span class="n">result_df</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;O III&#39;</span><span class="p">,</span> <span class="s1">&#39;H I&#39;</span><span class="p">,</span> <span class="s1">&#39;CA II&#39;</span><span class="p">,</span> <span class="s1">&#39;He I&#39;</span><span class="p">,</span> <span class="s1">&#39;Na I&#39;</span><span class="p">,</span> <span class="s1">&#39;Mg I&#39;</span><span class="p">]</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">ele</span><span class="p">)</span>  <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;rocket&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">axes_flat</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-<span class="c1"># 绘制氢线 (Hydrogen)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">h_lines</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">h_lines</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">],</span> 
-          <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;H I (NIST 真实数据)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Element&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+    
+    <span class="c1"># 1. 绘制谱线</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">subset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">],</span> 
+              <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    
+    <span class="c1"># 2. 找到最强峰值并标注 (Peak Picking)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">subset</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="c1"># 获取最强线的数据点</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="n">subset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">subset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+        <span class="n">peak_w</span> <span class="o">=</span> <span class="n">peak</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span>
+        <span class="n">peak_i</span> <span class="o">=</span> <span class="n">peak</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># 在峰值上方添加文字标注</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">peak_w</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> nm&#39;</span><span class="p">,</span> 
+                    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">peak_w</span><span class="p">,</span> <span class="n">peak_i</span><span class="p">),</span> 
+                    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>          <span class="c1"># 向上偏移 5 个点</span>
+                    <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>            <span class="c1"># 水平居中</span>
+                    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>            <span class="c1"># 垂直底部对齐</span>
+                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                    <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-<span class="c1"># 绘制钙线 (Calcium)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ca_lines</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">ca_lines</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">],</span> 
-          <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ca II (NIST 真实数据)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># 3. 样式设置</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Element: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">subset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.3</span><span class="p">)</span> <span class="c1"># 增加高度比例(1.3)给文字留空间</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
-<span class="c1"># 标注具体的线名</span>
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">h_lines</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Rel.&#39;</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;H </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Observed&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;波长 (nm)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;相对强度 (Relative Intensity)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;基于 Astroquery/NIST 获取的真实原子谱线分布&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f8932ede6cd3155e600eaa28b918b4ca1e4292d3d9a6dc882a7b9c3c64198885.png" src="../_images/f8932ede6cd3155e600eaa28b918b4ca1e4292d3d9a6dc882a7b9c3c64198885.png" />
 </div>
 </div>
 </section>
