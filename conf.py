@@ -30,6 +30,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 language = 'en'
 
+nb_execution_mode = "off" # 不要执行notebook
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
