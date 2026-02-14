@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>天文 &#8212; DA  documentation</title>
+    <title>知识 &#8212; DA  documentation</title>
   
   
   
@@ -43,14 +43,12 @@
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'astroy/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'astroy/知识';</script>
     <script src="../_static/js/custom.js"></script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="认识" href="main.html" />
-    <link rel="prev" title="seaborn" href="../MLcook/seaborn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -143,8 +141,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
     天文
   </a>
 </li>
@@ -222,8 +220,10 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -252,8 +252,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
     天文
   </a>
 </li>
@@ -296,17 +296,6 @@
     
   </div>
   
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="main.html">认识</a></li>
-</ul></details></li></ul></div>
-</nav></div>
-    </div>
-  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item">
@@ -342,7 +331,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">天文</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">知识</span></li>
   </ul>
 </nav>
 </div>
@@ -360,16 +349,98 @@
                 <article class="bd-article">
                   
   <section id="id1">
-<h1>天文<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>这里主要做一些有意思的天文望远镜等分析。如Hubble光谱
-主要参考STScI的数据研究
-![hst_notebooks](<a class="reference external" href="https://spacetelescope.github.io/hst_notebooks/index.html#installation-instructions">https://spacetelescope.github.io/hst_notebooks/index.html#installation-instructions</a>)</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="main.html">认识</a></li>
+<h1>知识<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>如果将一个探测器放在X光年外，可以观测到地球的过去吗？
+比如，二战80年前，即需要光80光年距离外观测。
+这是回看的逻辑悖论</p>
+<section id="id2">
+<h2>望远镜<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>https://spacetelescope.github.io/hst_notebooks/
+https://archive.stsci.edu/</p>
+<section id="id3">
+<h3>如何得到一张光谱？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>望远镜接受一片区域发来的微弱的光，类似白光。将这一束光通过光栅排列为”彩虹”。将其投到探测器，即得到各频率有多少光。光栅决定了波段。
+比如<code class="docutils literal notranslate"><span class="pre">G160M</span></code>: G是光栅，160表示中间波段在1600$\mathring{A}$ 附近。M表示排列精度（分辨率）。</p>
+<p>将其绘制。
+x-axis: 波长。</p>
+<ul class="simple">
+<li><p>单位：埃。$1\mathring{A} = 10^{-10}米$</p></li>
+<li></li>
 </ul>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">y-axis</span></code>: 亮度</p>
+<ul class="simple">
+<li><p>表明这个颜色上有多少光</p></li>
+<li><p>如果突然亮度突然没了，表示这个颜色被物质吸收了。即吸收线</p></li>
+<li><p>如果亮度突然上升，说明物质正在发射这个光。</p></li>
+</ul>
+</section>
+<section id="hubble">
+<h3>hubble<a class="headerlink" href="#hubble" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Hubble’s observations have pushed the boundaries of our knowledge and have created a string of accomplishments that are unparalleled.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>可见光观测</p></li>
+<li><p>1990-now
+<a class="reference external" href="https://science.nasa.gov/mission/hubble/science/science-highlights/">发现</a>：
+<img alt="" src="https://science.nasa.gov/mission/hubble/science/science-highlights/" /></p></li>
+</ul>
+</section>
+<section id="james-webb">
+<h3>james webb<a class="headerlink" href="#james-webb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>红外观测</p></li>
+<li></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>电磁波谱<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>热辐射：任何物质都在发射电磁波。有热就会有电磁波
+电磁波：物质有温度，内部粒子就会一直做运动，粒子碰撞、加减速，就会发送电磁波
+![[电磁波谱.png]]</p>
+</section>
+<section id="id5">
+<h2>能量公式<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>$$
+E=hv=\frac{hc}{\lambda}
+$$</p>
+<ul class="simple">
+<li><p>$E$ 单个光子的能量</p></li>
+<li><p>$h$ 普朗克常数</p></li>
+<li><p>$v$ 频率</p></li>
+<li><p>$c$ 光速</p></li>
+<li><p>$\lambda$ 波长：</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>光子：<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>光子可以携带信息，就是频率和波长。</p>
+<p>光子飞行的尽头是什么？</p>
+<ol class="arabic simple">
+<li><p>光子撞到物质上，被物质吸收，能量转为热能</p></li>
+<li><p>如果没有撞到任何物质，一直飞。因为空间膨胀，光子波长一直增加。最终成为宇宙背景辐射一部分</p></li>
+<li><p>因为引力，跌入黑洞</p></li>
+</ol>
+<p>光强：既需要物质本身属性，又受外部影响。
+$光强 ~ 跃迁的光子数 * 单个光子能量$
+电子跃迁时候，释放的能量以“光子”形式表现，光子不是一种实物，是量子。</p>
+<ul class="simple">
+<li><p>物质本身：光强并非想发多少就多少。电子跃迁是有特定概率的，概率越大的光子，更容易释放更多光强。</p></li>
+<li><p>外部：受到温度/能量，促进跃迁，光强就会高</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>宇宙红移（空间膨胀）：<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>空间一直在膨胀，“，即产生新的地块。”
+这导致基于空间测量的波长变长了（波峰位置不变）。
+红移：能量低、波长长是红光。所以ok</p>
+</section>
+<section id="id8">
+<h2>观测者<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>我是对的啊~
+如果要研究光子， 那我们本身就应该是光子， 人如果要理解猪的智商， 那我们应该是猪</p>
+</section>
 </section>
 
 
@@ -382,24 +453,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../MLcook/seaborn.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">seaborn</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="main.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">认识</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -412,10 +465,32 @@
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">望远镜</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">如何得到一张光谱？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hubble">hubble</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#james-webb">james webb</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">电磁波谱</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">能量公式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">光子：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">宇宙红移（空间膨胀）：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">观测者</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/astroy/index.rst.txt"
+      <li><a href="../_sources/astroy/知识.md.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

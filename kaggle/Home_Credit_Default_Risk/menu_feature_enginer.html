@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>手动全部特征 &#8212; DA  documentation</title>
+    <title>统一的特征聚合、特征选择过程 &#8212; DA  documentation</title>
   
   
   
@@ -353,7 +353,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">信贷违约风险</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">手动全部特征</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">统一的特征聚合、特征选择过程</span></li>
   </ul>
 </nav>
 </div>
@@ -371,14 +371,15 @@
                 <article class="bd-article">
                   
   <section id="id1">
-<h1>手动全部特征<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>统一的特征聚合、特征选择过程<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>引言<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>在第一个notebook中，使用了application数据集构建，为了提高分数，引入更多数据特征</p>
 <p>手动特征工程是繁琐的，通常依赖领域知识。
 我们尽可能注入更多特征， 由模型识别。
 我们会也会使用一些自动化特征工具，
 会使用pca等降维</p>
+<p>在第一个notebook中，使用了application数据集构建，为了提高分数，引入更多数据特征。</p>
+<p>在这个notebook中，我们描述了<strong>特征聚合和特征选择的统一处理</strong>过程，这不涉及什么领域知识。</p>
 <p>会大量使用pandas操作</p>
 <ul class="simple">
 <li><p>groupby</p></li>
@@ -387,7 +388,7 @@
 <li><p>rename 列</p></li>
 <li></li>
 </ul>
-<p>会涉及到很多特征阶段。 我们通过feather命名区分：
+<p>会涉及到很多特征阶段。我们必须进行一些存储。 我们通过feather命名区分：
 命名规则：<code class="docutils literal notranslate"><span class="pre">[阶段]_[来源表]_[处理程度]</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">01_app_train_raw.feather</span></code> : 01原始， 主表，； 仅做了onehot类型编</p></li>
@@ -396,7 +397,15 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">	04_merged_v1.feather</span></code> : 04 合并子表：</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">04_main_bureau_prev_combined.feather</span></code></p></li>
 </ul>
-<p>这里，第一部分中 讨论引入<code class="docutils literal notranslate"><span class="pre">bureau</span></code> <code class="docutils literal notranslate"><span class="pre">bureau</span> <span class="pre">balance</span></code></p>
+<p>此外，由于涉及大量内存复制和计算机的能力，我需要及时回收掉那些大变量</p>
+<p>在第一部分中，通过引入<em>bureau</em>, <em>bureau_balance</em>表，我们详细阐述了统一的特征处理</p>
+<ul class="simple">
+<li><p>增加特征：聚合ID、分类、数字特征，多层聚合</p></li>
+<li><p>去掉特征：高missing、高相关的特征。</p></li>
+</ul>
+<p>在处理完成后，我们会与<em>application_train/test</em>主表merge，保存特征方便后续使用</p>
+<p>在第二部分中，引入剩余的4个表，我们为这个统一的特征处理过程设置了<code class="docutils literal notranslate"><span class="pre">agg_numeric</span></code>,<code class="docutils literal notranslate"><span class="pre">agg_categorical</span></code>,<code class="docutils literal notranslate"><span class="pre">get_high_corr_columns</span></code>,<code class="docutils literal notranslate"><span class="pre">get_high_missing_columns</span></code>,<code class="docutils literal notranslate"><span class="pre">feature_select</span></code> 等函数，这加快了处理速度</p>
+<p>在完成所有表特征处理后，我们将他们合起来。进行model，看看新特征的效果。确实，很多新特征变成重要的分类特征，这也使得分数提升了</p>
 </section>
 <section id="id3">
 <h2>导入包<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -7659,7 +7668,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_plot</span> <span class="o">=</span> <span class="n">features_importance</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">features_importance_plot</span>
+<span class="n">features_importance_plot</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -11565,8 +11574,9 @@ train: (307511, 242), test: (48744, 241)
 </div>
 </div>
 </section>
+</section>
 <section id="app">
-<h3>合并所以app-子表<a class="headerlink" href="#app" title="Link to this heading">#</a></h3>
+<h2>合并所有app-子表<a class="headerlink" href="#app" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 仅查看appbase shape</span>
@@ -11660,7 +11670,6 @@ app_bureau (307511, 306) (48744, 305)
 </div>
 </div>
 </div>
-</section>
 <section id="id10">
 <h3>modeling<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -14689,7 +14698,9 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-card-balance">credit_card_balance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-cash-balance">引入 pos_cash_balance表</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installments-payments">installments_payments表</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app">合并所以app-子表</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app">合并所有app-子表</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">modeling</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hgbt">hgbt</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lightbgm">lightbgm</a></li>
