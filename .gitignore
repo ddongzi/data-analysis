@@ -29,6 +29,7 @@ __pycache__/
 *.db
 *.json
 *.feather
+*.parquet
 
 # 日志
 *.log
