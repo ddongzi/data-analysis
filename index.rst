@@ -19,5 +19,5 @@
    kaggle/index
    MLcook/index
    astroy/index
-   economy/index
+   economy/economy
    more 
