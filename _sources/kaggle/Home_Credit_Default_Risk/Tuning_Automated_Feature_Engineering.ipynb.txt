@@ -1,0 +1,1535 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "8f9c5803",
+   "metadata": {},
+   "source": [
+    "# 调优自动特征工程\n",
+    "在`自动特征工程`中,我们的df字段类型都是由woodwork自动推断的，几乎是完全自动化的过程。 \n",
+    "\n",
+    "我们需要对字段类型引入更多的人为设置\n",
+    "- 时间序列\n",
+    "- 自定义原语\n",
+    "- 类型纠正"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b1603941",
+   "metadata": {},
+   "source": [
+    "## 导入"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "53cfceb5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import seaborn as sns\n",
+    "import matplotlib.pyplot as plt\n",
+    "import featuretools as ft\n",
+    "import woodwork as ww\n",
+    "from woodwork.column_schema import ColumnSchema\n",
+    "from woodwork.logical_types import NaturalLanguage, Datetime,Boolean\n",
+    "from featuretools.primitives import AggregationPrimitive, TransformPrimitive\n",
+    "from featuretools.tests.testing_utils import make_ecommerce_entityset\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')\n",
+    "import gc\n",
+    "gc.enable()\n",
+    "\n",
+    "print(f'ft: {ft.__version__},  ww: {ww.__version__}')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8d5ae2c6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "application_train = pd.read_csv('data/application_train.csv')\n",
+    "application_test = pd.read_csv('data/application_test.csv')\n",
+    "bureau = pd.read_csv('data/bureau.csv')\n",
+    "bureau_balance = pd.read_csv('data/bureau_balance.csv')\n",
+    "credit_card_balance = pd.read_csv('data/credit_card_balance.csv')\n",
+    "installments_payments = pd.read_csv('data/installments_payments.csv')\n",
+    "previous_application = pd.read_csv('data/previous_application.csv')\n",
+    "pos_cash_balance = pd.read_csv('data/POS_CASH_balance.csv')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6f6df720",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "application_train.dtypes.unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5f862c3b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ww.logical_types"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "da4e6346",
+   "metadata": {},
+   "source": [
+    "## woodwork认识：\n",
+    "- 物理类型\n",
+    "- 逻辑类型：\n",
+    "- 语义标签：额外数据含义\n",
+    "\n",
+    "逻辑类型是必须的， 语义标签是可选的"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d0f67ff7",
+   "metadata": {},
+   "source": [
+    "woodwork使用了Pandas 的 Accessor机制，这是扩展接口，在`import featuretools`时候，就把ww加上去了"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f58f07b0",
+   "metadata": {},
+   "source": [
+    "woodwork初始时候会为其添加逻辑类型，语义标签"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "99ee10d5",
+   "metadata": {},
+   "source": [
+    "### 语义标签"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7e483877",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ww.list_semantic_tags()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "32346c1a",
+   "metadata": {},
+   "source": [
+    "- `numeric`, `category` 标准语义标签和特定的逻辑类型关联\n",
+    "- `index`,`time_index` woodwork为一些索引列添加标签，表明一些含义\n",
+    "- `date_of_birth` 表明应该解释为出生日期\n",
+    "- `ignore`,`passthrough` 应该被忽略，在ft过程中"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0dd57169",
+   "metadata": {},
+   "source": [
+    "我们应该添加额外标签帮助解释"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fc026c70",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bc7408b2",
+   "metadata": {},
+   "source": [
+    "### 逻辑类型"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "043232ce",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ww.list_logical_types()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "db42ecaf",
+   "metadata": {},
+   "source": [
+    "#### unknown类型\n",
+    "当woodwork类型推导没能成功，就设置`unknown`.  我们可以手动设置他"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9d45248f",
+   "metadata": {},
+   "source": [
+    "比如， 下面例子，国家代码没有推导类型成功，就设置了Unknown. 我们可以手动设置`CountryCode`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aab23290",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s = pd.Series(['AU', 'US', 'UA'])\n",
+    "unkown_series = ww.init_series(s)\n",
+    "unkown_series.ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ff9fe108",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "countrycode_series = ww.init_series(unkown_series, 'CountryCode')\n",
+    "countrycode_series.ww"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0b10bd73",
+   "metadata": {},
+   "source": [
+    "key"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fa5be036",
+   "metadata": {},
+   "source": [
+    "#### IntegerNullable \n",
+    "表明是整数，但是可能会有空值，要小心"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "932e1f2b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "series = pd.Series([1, 2, None, 4], dtype=\"Int64\")\n",
+    "intn_series = ww.init_series(series)\n",
+    "intn_series.ww"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9d95ca2b",
+   "metadata": {},
+   "source": [
+    "#### ordinal 有序类型\n",
+    "评分，排名等"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7b5f1fcc",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6f50eb2e",
+   "metadata": {},
+   "source": [
+    "## 处理"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "abaa5b97",
+   "metadata": {},
+   "source": [
+    "我们根据自动推导的，在进行微调"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "537c9d9a",
+   "metadata": {},
+   "source": [
+    "### application"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d91c60d6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "application_train['set'] = 'train'\n",
+    "application_test['set'] = 'test'\n",
+    "application_test['TARGET'] = np.nan\n",
+    "print(application_train.shape, application_test.shape)\n",
+    "app = pd.concat([application_train, application_test], ignore_index=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6bfa8ba7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app_target = app[['SK_ID_CURR', 'TARGET']]\n",
+    "app_set = app[['SK_ID_CURR', 'set']]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7703110b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.init(name= 'app', index='SK_ID_CURR')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "afe0ca90",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.name"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dfdfecb4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f995790c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app_types = {} # 记录正确逻辑类型"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7cb939b9",
+   "metadata": {},
+   "source": [
+    "1. TARGET,set 不参与特征生成, 因此设置ignore"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "eb13ea8f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.set_types(\n",
+    "    semantic_tags={\n",
+    "        'TARGET': 'ignore',\n",
+    "        'set': 'ignore'\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "01a91083",
+   "metadata": {},
+   "source": [
+    "2. flag, is_not 设置为bool"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "efcd6141",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "FLAG_DOCUMENTS = { f'FLAG_DOCUMENT_{i}':'Boolean' for i in range(2, 22)}\n",
+    "app.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'FLAG_MOBIL': 'Boolean',\n",
+    "        'FLAG_EMP_PHONE': 'Boolean',\n",
+    "        'FLAG_WORK_PHONE': 'Boolean',\n",
+    "        'FLAG_CONT_MOBILE': 'Boolean',\n",
+    "        'FLAG_EMAIL': 'Boolean',\n",
+    "        'FLAG_PHONE': 'Boolean',\n",
+    "        'REG_CITY_NOT_LIVE_CITY': 'Boolean',\n",
+    "        'REG_CITY_NOT_WORK_CITY': 'Boolean',\n",
+    "        'LIVE_CITY_NOT_WORK_CITY': 'Boolean',\n",
+    "        **FLAG_DOCUMENTS\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d9dda836",
+   "metadata": {},
+   "source": [
+    "3. 评级\n",
+    "\n",
+    "对于一些异常的，我们可以代替为np.nan， ft是不会处理的"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dc54daee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app['REGION_RATING_CLIENT'].unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2e18938c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app['REGION_RATING_CLIENT_W_CITY'].unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "26982b30",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app['REGION_RATING_CLIENT_W_CITY'][app['REGION_RATING_CLIENT_W_CITY'] == -1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a2555083",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app['REGION_RATING_CLIENT_W_CITY'] = app['REGION_RATING_CLIENT_W_CITY'].replace(-1, np.nan)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bfe0b59d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'REGION_RATING_CLIENT': ww.logical_types.Ordinal(order=[1,2,3]),\n",
+    "        'REGION_RATING_CLIENT_W_CITY': ww.logical_types.Ordinal(order=[1,2,3]),\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c86746b3",
+   "metadata": {},
+   "source": [
+    "4. 时间段，应该为分类"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "eb3cb96b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "app.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'HOUR_APPR_PROCESS_START': 'Categorical',\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c3b771f9",
+   "metadata": {},
+   "source": [
+    "### bureau"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7ca4a0c4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau.ww.init(name= 'bureau', index='SK_ID_BUREAU')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "89e39f41",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "de36aef4",
+   "metadata": {},
+   "source": [
+    "1. id不参与"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7a9b5874",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau.ww.set_types(semantic_tags={'SK_ID_CURR':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e59c4670",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1076d49e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau_balance = bureau_balance.reset_index().rename(columns = {'index':'bureaubalance_index'})\n",
+    "bureau_balance.ww.init(name='bureau_balance', index='bureaubalance_index')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "01680ee2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau_balance.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d310e71c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "bureau_balance.ww.set_types(semantic_tags={'SK_ID_BUREAU':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d57456d3",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "88214411",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "51861296",
+   "metadata": {},
+   "source": [
+    "### previous"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "06fd6728",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application.ww.init(name='previous', index='SK_ID_PREV')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "adbf87cb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c0551cc8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application.ww.set_types(semantic_tags={'SK_ID_CURR':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fbb533d5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'HOUR_APPR_PROCESS_START': 'Categorical',\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1b970b69",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application['NFLAG_LAST_APPL_IN_DAY'].unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b7589ff0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application['NFLAG_INSURED_ON_APPROVAL'].unique()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "814a704a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application['NFLAG_INSURED_ON_APPROVAL'].isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "47447a1c",
+   "metadata": {},
+   "source": [
+    "nan比例过大，我们不应该设置`NFLAG_INSURED_ON_APPROVAL` 为布尔, 而是Categorical"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e4c2d639",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "previous_application.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'NFLAG_LAST_APPL_IN_DAY': 'Boolean',\n",
+    "        'NFLAG_INSURED_ON_APPROVAL': 'Categorical'\n",
+    "        }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d8874a0b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "credit_card_balance = credit_card_balance.reset_index().rename(columns = {'index':'credit_index'})\n",
+    "credit_card_balance.ww.init(name='credit', index = 'credit_index')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1023c60f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "credit_card_balance.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "cfc5a247",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "credit_card_balance.ww.set_types(semantic_tags={'SK_ID_CURR':'ignore', 'SK_ID_PREV':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b6c9849f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments = installments_payments.reset_index().rename(columns = {'index':'installments_index'})\n",
+    "\n",
+    "installments_payments.ww.init(name = 'installments', index='installments_index')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "24f38556",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1f56c28f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments.ww.set_types(semantic_tags={'SK_ID_CURR':'ignore', 'SK_ID_PREV':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7a974f79",
+   "metadata": {},
+   "source": [
+    "`NUM_INSTALMENT_VERSION` 更换类型为整数，这也会影响到后面得特征矩阵"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2e5c63be",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments.ww.set_types(\n",
+    "    logical_types = {\n",
+    "        'NUM_INSTALMENT_VERSION': 'Integer',\n",
+    "        'DAYS_INSTALMENT': 'Integer'\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "09276350",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments['DAYS_INSTALMENT'].isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "213edce0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "installments_payments['NUM_INSTALMENT_VERSION'].isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "67d7711d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pos_cash_balance = pos_cash_balance.reset_index().rename(columns = {'index':'cash_index'})\n",
+    "pos_cash_balance.ww.init(name='cash', index='cash_index')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e570fce7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pos_cash_balance.ww.schema"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e090fd93",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pos_cash_balance.ww.set_types(semantic_tags={'SK_ID_CURR':'ignore', 'SK_ID_PREV':'ignore'})"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b920d11c",
+   "metadata": {},
+   "source": [
+    "## 关系"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9e534c5c",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "13ef33da",
+   "metadata": {},
+   "source": [
+    "featuretools对于已经初始化的ww，有些要求：\n",
+    "- 具备index\n",
+    "- name"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "55a96aab",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es = ft.EntitySet(id='clients')\n",
+    "\n",
+    "# 有主键唯一列\n",
+    "es = es.add_dataframe( dataframe=app,)\n",
+    "es = es.add_dataframe( dataframe=bureau,)\n",
+    "es = es.add_dataframe( dataframe=previous_application)\n",
+    "\n",
+    "# 没有主键唯一的列，需要make_index, 创建一列主键\n",
+    "es = es.add_dataframe(dataframe=bureau_balance)\n",
+    "es = es.add_dataframe( dataframe=credit_card_balance)\n",
+    "es = es.add_dataframe( dataframe=installments_payments)\n",
+    "es = es.add_dataframe(dataframe=pos_cash_balance)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "56ed6406",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 父亲dfname, 父亲列名； 字dfname, 子列名\n",
+    "es = es.add_relationship(\"app\", \"SK_ID_CURR\", \"bureau\", \"SK_ID_CURR\")\n",
+    "es = es.add_relationship(\"bureau\", \"SK_ID_BUREAU\", \"bureau_balance\", \"SK_ID_BUREAU\")\n",
+    "\n",
+    "es = es.add_relationship(\"app\", \"SK_ID_CURR\", \"previous\", \"SK_ID_CURR\")\n",
+    "es = es.add_relationship(\"previous\", \"SK_ID_PREV\", \"cash\", \"SK_ID_PREV\")\n",
+    "es = es.add_relationship(\"previous\", \"SK_ID_PREV\", \"installments\", \"SK_ID_PREV\")\n",
+    "es = es.add_relationship(\"previous\", \"SK_ID_PREV\", \"credit\", \"SK_ID_PREV\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e5406e34",
+   "metadata": {},
+   "source": [
+    "在构建完关系后，语义标签上会携带外键"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f9eaa11c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['app'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b1d27ddf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['bureau'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6bc3914e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['bureau_balance'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f90363d3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['previous'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c01741f9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['cash'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d1bdec13",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['credit'].ww"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "351f406f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['installments'].ww"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cb41357c",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b7d266b6",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3604641e",
+   "metadata": {},
+   "source": [
+    "## 添加interesting values\n",
+    "就是where = 条件聚合。\n",
+    "\n",
+    "比如设置agg原语`mean`,  产生`MEAN(prev.AMT_CREDIT)`\n",
+    "\n",
+    "如果另外设置where原语`count` 和 兴趣 `{\"NAME_CONTRACT_STATUS\": [\"Approved\", \"Refused\"]}` \n",
+    "就会多两个特征\n",
+    "- `COUNT(prev.AMT_CREDIT where NAME_CONTRACT_STATUS==Approved) `\n",
+    "- `COUNT(prev.AMT_CREDIT where NAME_CONTRACT_STATUS==Refused) `\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a8298367",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es.add_interesting_values(dataframe_name='previous', values= {\n",
+    "    \"NAME_CONTRACT_STATUS\": [\"Approved\", \"Refused\"]\n",
+    "})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e8ab2918",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['previous'].ww.columns['NAME_CONTRACT_STATUS'].metadata"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fbe005fe",
+   "metadata": {},
+   "source": [
+    "我们确实为这个列添加了where值"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3039e7b7",
+   "metadata": {},
+   "source": [
+    "## seed feature\n",
+    "where 条件聚合\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "52ee6ce2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 在homecredit的逾期还款情况\n",
+    "FLAG_LATED = ft.Feature(es['installments'].ww['DAYS_ENTRY_PAYMENT']) > ft.Feature(es['installments'].ww['DAYS_INSTALMENT'])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "84350b20",
+   "metadata": {},
+   "source": [
+    "FLAG_LATED标识了一种条件"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "706f646d",
+   "metadata": {},
+   "source": [
+    "放入` ft.dfs(seed_features=[FLAG_LATED], where_primitives=['count', 'mean'])`, dfs会产生\n",
+    "- `COUNT(installments WHERE FLAG_LATED = True)`\n",
+    "- `MEAN(installments WHERE FLAG_LATED = True)`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2abd1eb5",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e81429c5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 在其他机构的逾期还款情况\n",
+    "FLAG_DUE = ft.Feature(es['bureau_balance'].ww['STATUS']).isin(['1', '2', '3', '4', '5'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "FLAG_DUE"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7257fdc5",
+   "metadata": {},
+   "source": [
+    "## 自定义特征原语"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8c5daf19",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "es['previous'].ww['NAME_CONTRACT_STATUS'].value_counts().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b96231f8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class NormalizedModeCount(AggregationPrimitive):\n",
+    "    \"\"\" 计算出现最多的次数占比总数的比例。\n",
+    "    \"\"\"\n",
+    "    name = 'normalized_mode_count'\n",
+    "    input_types = [ColumnSchema(semantic_tags={'category'})]\n",
+    "    return_type = ColumnSchema(semantic_tags={\"numeric\"})\n",
+    "\n",
+    "    def get_function(self):\n",
+    "        def normalized_mode_count(column):\n",
+    "            if len(column) == 0:\n",
+    "                return 0\n",
+    "            counts = column.value_counts()\n",
+    "            if len(counts) == 0:\n",
+    "                return 0\n",
+    "            return counts.max()/counts.sum()\n",
+    "        return normalized_mode_count"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b5a78e5c",
+   "metadata": {},
+   "source": [
+    "比如对于NAME_CONTRACT_STATUS， 表明以往 申请 通过或者拒绝的比例"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e6313578",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class MaxConsecutive(AggregationPrimitive):\n",
+    "    \"\"\" 最大连续次数，一般针对bool\n",
+    "    \"\"\"\n",
+    "    name = 'max_consecutive'\n",
+    "    input_types = [ColumnSchema(logical_type=Boolean)]\n",
+    "    return_type = ColumnSchema(semantic_tags={\"numeric\"})\n",
+    "    def get_function(self):\n",
+    "        def max_consecutive(column):\n",
+    "            if len(column) == 0:\n",
+    "                return 0\n",
+    "            s = \"\".join(column.astype(int).astype(str))\n",
+    "            \n",
+    "            segments = s.split(\"0\")\n",
+    "            return max([len(seg) for seg in segments]) if segments else 0\n",
+    "        return max_consecutive"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c5ab6260",
+   "metadata": {},
+   "source": [
+    "## dfs"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "65bb4416",
+   "metadata": {},
+   "source": [
+    "ignore_variables\n",
+    "除了'ignore', 这里我们也设置，确保原语不会操作这些特征。\n",
+    "\n",
+    "外键和索引不需要管"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "36f8f51d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%%time\n",
+    "default_agg_primitives = [\"count\", \"mean\", \"max\", \"sum\", \"std\"]\n",
+    "default_trans_primitives =  [\"month\", \"weekday\"]\n",
+    "\n",
+    "# 返回特征矩阵； 特征\n",
+    "feature_matrix, features = ft.dfs(\n",
+    "    entityset = es,\n",
+    "    target_dataframe_name = 'app', # 最后要关联到这个表，以这个为主\n",
+    "    agg_primitives= default_agg_primitives + [NormalizedModeCount, MaxConsecutive],\n",
+    "    trans_primitives=default_trans_primitives,\n",
+    "    max_depth=2,\n",
+    "    seed_features=[FLAG_LATED, FLAG_DUE],\n",
+    "    where_primitives=['mean'],\n",
+    "    ignore_columns  = {\n",
+    "        'app':['set']\n",
+    "    }\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3686c323",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "[f for f in features if 'set' in f.get_name().lower()]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4c420fe3",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a5195ba6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "feature_matrix.to_parquet(\"ft_tuning_feature_matrix.parquet\")\n",
+    "ft.save_features(features, \"ft_tuning_feature_definitions.json\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4f2dedd8",
+   "metadata": {},
+   "source": [
+    "耗时1h30min"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "76bd0b8e",
+   "metadata": {},
+   "source": [
+    "我们需要检查我们的特征确实生效了"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4332fa95",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "[f for f in features if f.primitive.name == 'normalized_mode_count']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b7ddcf88",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "[f for f in features if f.primitive.name == 'max_consecutive']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f3da61f5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "[col for col in feature_matrix.columns if 'WHERE' in col]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c512ce7e",
+   "metadata": {},
+   "source": [
+    "？？ 我们没有看到种子特征，`FLAG_LATED`和`FLAG_DUE`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1e8070b6",
+   "metadata": {},
+   "source": [
+    "## modeling\n",
+    "- lgbm不需要one-hot"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "89e34909",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "feature_matrix = pd.read_parquet(\"ft_tuning_feature_matrix.parquet\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bdec30fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "final_fm = feature_matrix.reset_index()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f9a7612b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "final_fm['TARGET']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b06ac067",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "final_fm = pd.merge(final_fm, app_set, on='SK_ID_CURR', how='left')\n",
+    "\n",
+    "train = final_fm[final_fm['set'] == 'train']\n",
+    "test = final_fm[final_fm['set'] == 'test']\n",
+    "\n",
+    "train, test = train.align(test, join = 'inner', axis = 1)\n",
+    "train = train.drop(columns=['set'])\n",
+    "test = test.drop(columns = ['TARGET', 'set'])\n",
+    "print(train.shape, test.shape)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "44141c3f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "train_labels = train['TARGET']\n",
+    "train_ids = train['SK_ID_CURR']\n",
+    "test_ids = test['SK_ID_CURR']\n",
+    "train_features = train.drop(columns=['TARGET', 'SK_ID_CURR'])\n",
+    "test_features = test.drop(columns=['SK_ID_CURR'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9b1cd6d8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import re\n",
+    "# 1. 定义清理函数\n",
+    "def clean_names(df):\n",
+    "    # 替换所有非字母、数字的字符为下划线\n",
+    "    # 这里的正则 [^A-Za-z0-9_] 会匹配空格、斜杠、括号等所有特殊字符\n",
+    "    df.columns = [re.sub(r'[^A-Za-z0-9_]+', '_', col) for col in df.columns]\n",
+    "    # 顺便处理一下可能出现的重复下划线，比如 __\n",
+    "    df.columns = [re.sub(r'_+', '_', col).strip('_') for col in df.columns]\n",
+    "    return df\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "408c3601",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "train_features = clean_names(train_features)\n",
+    "test_features = clean_names(test_features)\n",
+    "\n",
+    "from lightgbm import LGBMClassifier\n",
+    "lgbm_model = LGBMClassifier(\n",
+    "    n_estimators=100,      # 对应 max_iter，树的个数\n",
+    "    learning_rate=0.1,     # 学习率\n",
+    "    max_depth=3,           # 树的最大深度\n",
+    "    random_state=42,       # 保证结果可复现\n",
+    "    n_jobs=-1              # 使用所有 CPU 核心加速\n",
+    ")\n",
+    "lgbm_model.fit(train_features, train_labels)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2beb8ba2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "features_importance = pd.DataFrame(\n",
+    "    {\n",
+    "        'importance': lgbm_model.feature_importances_,\n",
+    "        'feature': lgbm_model.feature_name_\n",
+    "    }\n",
+    ")\n",
+    "features_importance_plot = features_importance.sort_values(by='importance', ascending=False).head(20)\n",
+    "\n",
+    "plt.figure(figsize=(8, 6), dpi=100) \n",
+    "sns.barplot(data=features_importance_plot, x='importance', y='feature')\n",
+    "\n",
+    "plt.yticks(fontsize=7) # 进一步微调\n",
+    "plt.title('Feature Importance', fontsize=14)\n",
+    "plt.tight_layout()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a2b54eca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import time\n",
+    "import os\n",
+    "\n",
+    "def submit(ids, pred, name, feature_count=None):\n",
+    "    \"\"\"\n",
+    "    ids: 测试集的 SK_ID_CURR\n",
+    "    pred: 模型预测概率\n",
+    "    name: 你的实验备注 (如 'lgb_v1', 'baseline')\n",
+    "    feature_count: 可选，记录模型使用了多少个特征\n",
+    "    \"\"\"\n",
+    "    # 1. 创建提交 DataFrame\n",
+    "    submit_df = pd.DataFrame({\n",
+    "        'SK_ID_CURR': ids,\n",
+    "        'TARGET': pred\n",
+    "    })\n",
+    "\n",
+    "    # 2. 生成时间戳 (格式: 0213_1530)\n",
+    "    timestamp = time.strftime(\"%m%d_%H%M\")\n",
+    "    \n",
+    "    # 3. 构造文件名\n",
+    "    # 格式: 0213_1530_lgb_v1_f542.csv\n",
+    "    f_str = f\"_f{feature_count}\" if feature_count else \"\"\n",
+    "    filename = f\"{timestamp}_{name}{f_str}.csv\"\n",
+    "    \n",
+    "    # 4. 确保保存目录存在 (可选)\n",
+    "    if not os.path.exists('submissions'):\n",
+    "        os.makedirs('submissions')\n",
+    "    \n",
+    "    save_path = os.path.join('submissions', filename)\n",
+    "    \n",
+    "    # 5. 保存并打印提示\n",
+    "    submit_df.to_csv(save_path, index=False)\n",
+    "    \n",
+    "    return submit_df\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7fbe2ec1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lgbm_model_pred = lgbm_model.predict_proba(test_features)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0a9fe02c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "submit_df = submit(test['SK_ID_CURR'], lgbm_model_pred[:, 1], \n",
+    "    name='lgbm_baseline',\n",
+    "    feature_count=train_features.shape[1]\n",
+    "    )\n",
+    "submit_df.head()\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "07b952f4",
+   "metadata": {},
+   "source": [
+    "得分76，差不多"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54eb6587",
+   "metadata": {},
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "data-analysis",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.25"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
