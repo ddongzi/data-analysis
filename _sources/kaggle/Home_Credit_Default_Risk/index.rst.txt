@@ -5,7 +5,6 @@
    :maxdepth: 1
 
    初步 <main>
-   特征工程 <menu_feature_enginer>
+   menu_feature_enginer
    Automated_Feature_Engineering_Basics
-
-
+   Tuning_Automated_Feature_Engineering
