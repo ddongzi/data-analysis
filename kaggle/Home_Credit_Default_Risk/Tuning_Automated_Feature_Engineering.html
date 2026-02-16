@@ -318,7 +318,7 @@
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">信贷违约风险</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="main.html">初步</a></li>
-<li class="toctree-l2"><a class="reference internal" href="menu_feature_enginer.html">统一的特征聚合、特征选择过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menu_feature_enginer.html">手动特征工程</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Automated_Feature_Engineering_Basics.html">自动化特征工程</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">调优自动特征工程</a></li>
 </ul>
@@ -418,6 +418,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\woodwork\__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ft: 1.31.0,  ww: 0.31.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,9 +442,49 @@
 </div>
 </div>
 </div>
+<p>为了验证我们的处理过程，必须先抽样一些。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># application_train = application_train.iloc[:1000, :]</span>
+<span class="c1"># application_test = application_test.iloc[:1000, :]</span>
+<span class="c1"># bureau = bureau.iloc[:1000, :]</span>
+<span class="c1"># bureau_balance = bureau_balance.iloc[:1000, :]</span>
+<span class="c1"># credit_card_balance = credit_card_balance.iloc[:1000, :]</span>
+<span class="c1"># installments_payments = installments_payments.iloc[:1000, :]</span>
+<span class="c1"># previous_application = previous_application.iloc[:1000, :]</span>
+<span class="c1"># pos_cash_balance = pos_cash_balance.iloc[:1000, :]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
+<span class="n">application_test</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+<span class="n">application_test</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">application_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">application_train</span><span class="p">,</span> <span class="n">application_test</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">app_target</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">]]</span>
+<span class="n">app_set</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="s1">&#39;set&#39;</span><span class="p">]]</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(307511, 123) (48744, 123)
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">application_train</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([dtype(&#39;int64&#39;), dtype(&#39;O&#39;), dtype(&#39;float64&#39;)], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -443,6 +492,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ww</span><span class="o">.</span><span class="n">logical_types</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;woodwork.logical_types&#39; from &#39;c:\\Users\\63517\\miniconda3\\envs\\data-analysis\\lib\\site-packages\\woodwork\\logical_types.py&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -466,6 +520,76 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>is_standard_tag</th>
+      <th>valid_logical_types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>numeric</td>
+      <td>True</td>
+      <td>[Age, AgeFractional, AgeNullable, Double, Inte...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>category</td>
+      <td>True</td>
+      <td>[Categorical, CountryCode, CurrencyCode, Ordin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>index</td>
+      <td>False</td>
+      <td>Any LogicalType</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>time_index</td>
+      <td>False</td>
+      <td>[Datetime, Age, AgeFractional, AgeNullable, Do...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>date_of_birth</td>
+      <td>False</td>
+      <td>[Datetime]</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ignore</td>
+      <td>False</td>
+      <td>Any LogicalType</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>passthrough</td>
+      <td>False</td>
+      <td>Any LogicalType</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">numeric</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code> 标准语义标签和特定的逻辑类型关联</p></li>
@@ -483,6 +607,325 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type_string</th>
+      <th>description</th>
+      <th>physical_type</th>
+      <th>standard_tags</th>
+      <th>is_default_type</th>
+      <th>is_registered</th>
+      <th>parent_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Address</td>
+      <td>address</td>
+      <td>Represents Logical Types that contain address ...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Age</td>
+      <td>age</td>
+      <td>Represents Logical Types that contain whole nu...</td>
+      <td>int64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AgeFractional</td>
+      <td>age_fractional</td>
+      <td>Represents Logical Types that contain non-nega...</td>
+      <td>float64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Double</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AgeNullable</td>
+      <td>age_nullable</td>
+      <td>Represents Logical Types that contain whole nu...</td>
+      <td>Int64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>IntegerNullable</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Boolean</td>
+      <td>boolean</td>
+      <td>Represents Logical Types that contain binary v...</td>
+      <td>bool</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>BooleanNullable</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>BooleanNullable</td>
+      <td>boolean_nullable</td>
+      <td>Represents Logical Types that contain binary v...</td>
+      <td>boolean</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Categorical</td>
+      <td>categorical</td>
+      <td>Represents Logical Types that contain unordere...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>CountryCode</td>
+      <td>country_code</td>
+      <td>Represents Logical Types that use the ISO-3166...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Categorical</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CurrencyCode</td>
+      <td>currency_code</td>
+      <td>Represents Logical Types that use the ISO-4217...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Categorical</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Datetime</td>
+      <td>datetime</td>
+      <td>Represents Logical Types that contain date and...</td>
+      <td>datetime64[ns]</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Double</td>
+      <td>double</td>
+      <td>Represents Logical Types that contain positive...</td>
+      <td>float64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>EmailAddress</td>
+      <td>email_address</td>
+      <td>Represents Logical Types that contain email ad...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Filepath</td>
+      <td>filepath</td>
+      <td>Represents Logical Types that specify location...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>IPAddress</td>
+      <td>ip_address</td>
+      <td>Represents Logical Types that contain IP addre...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Integer</td>
+      <td>integer</td>
+      <td>Represents Logical Types that contain positive...</td>
+      <td>int64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>IntegerNullable</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>IntegerNullable</td>
+      <td>integer_nullable</td>
+      <td>Represents Logical Types that contain positive...</td>
+      <td>Int64</td>
+      <td>{numeric}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>LatLong</td>
+      <td>lat_long</td>
+      <td>Represents Logical Types that contain latitude...</td>
+      <td>object</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>NaturalLanguage</td>
+      <td>natural_language</td>
+      <td>Represents Logical Types that contain text or ...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Ordinal</td>
+      <td>ordinal</td>
+      <td>Represents Logical Types that contain ordered ...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Categorical</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>PersonFullName</td>
+      <td>person_full_name</td>
+      <td>Represents Logical Types that may contain firs...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>PhoneNumber</td>
+      <td>phone_number</td>
+      <td>Represents Logical Types that contain numeric ...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>PostalCode</td>
+      <td>postal_code</td>
+      <td>Represents Logical Types that contain a series...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Categorical</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>SubRegionCode</td>
+      <td>sub_region_code</td>
+      <td>Represents Logical Types that use the ISO-3166...</td>
+      <td>category</td>
+      <td>{category}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Categorical</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Timedelta</td>
+      <td>timedelta</td>
+      <td>Represents Logical Types that contain values s...</td>
+      <td>timedelta64[ns]</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>URL</td>
+      <td>url</td>
+      <td>Represents Logical Types that contain URLs, wh...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Unknown</td>
+      <td>unknown</td>
+      <td>Represents Logical Types that cannot be inferr...</td>
+      <td>string</td>
+      <td>{}</td>
+      <td>True</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="unknown">
 <h4>unknown类型<a class="headerlink" href="#unknown" title="Link to this heading">#</a></h4>
@@ -496,11 +939,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Series: None (Physical Type = string) (Logical Type = Unknown) (Semantic Tags = set())&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">countrycode_series</span> <span class="o">=</span> <span class="n">ww</span><span class="o">.</span><span class="n">init_series</span><span class="p">(</span><span class="n">unkown_series</span><span class="p">,</span> <span class="s1">&#39;CountryCode&#39;</span><span class="p">)</span>
 <span class="n">countrycode_series</span><span class="o">.</span><span class="n">ww</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Series: None (Physical Type = category) (Logical Type = CountryCode) (Semantic Tags = {&#39;category&#39;})&gt;
 </pre></div>
 </div>
 </div>
@@ -518,6 +971,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Series: None (Physical Type = Int64) (Logical Type = IntegerNullable) (Semantic Tags = {&#39;numeric&#39;})&gt;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="ordinal">
@@ -526,30 +984,12 @@
 </section>
 </section>
 </section>
-<section id="id5">
-<h2>处理<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="ww">
+<h2>ww处理<a class="headerlink" href="#ww" title="Link to this heading">#</a></h2>
 <p>我们根据自动推导的，在进行微调</p>
 <section id="application">
 <h3>application<a class="headerlink" href="#application" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
-<span class="n">application_test</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
-<span class="n">application_test</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">application_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">application_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">application_train</span><span class="p">,</span> <span class="n">application_test</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app_target</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">]]</span>
-<span class="n">app_set</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="s1">&#39;set&#39;</span><span class="p">]]</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>对于set和target这样的标签，我们手动处理，即不让进入ft过程</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">ww</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">name</span><span class="o">=</span> <span class="s1">&#39;app&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
@@ -563,6 +1003,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;app&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,28 +1015,633 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app_types</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># 记录正确逻辑类型</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p>TARGET,set 不参与特征生成, 因此设置ignore</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">ww</span><span class="o">.</span><span class="n">set_types</span><span class="p">(</span>
-    <span class="n">semantic_tags</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;TARGET&#39;</span><span class="p">:</span> <span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;set&#39;</span><span class="p">:</span> <span class="s1">&#39;ignore&#39;</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>TARGET</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CODE_GENDER</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>FLAG_OWN_CAR</th>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_OWN_REALTY</th>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>CNT_CHILDREN</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INCOME_TOTAL</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_GOODS_PRICE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_TYPE_SUITE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_INCOME_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_EDUCATION_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_FAMILY_STATUS</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_HOUSING_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>REGION_POPULATION_RELATIVE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_BIRTH</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_EMPLOYED</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_REGISTRATION</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ID_PUBLISH</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>OWN_CAR_AGE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_MOBIL</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_EMP_PHONE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_WORK_PHONE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_CONT_MOBILE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_PHONE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_EMAIL</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CNT_FAM_MEMBERS</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REGION_RATING_CLIENT</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REGION_RATING_CLIENT_W_CITY</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_REGION_NOT_LIVE_REGION</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_REGION_NOT_WORK_REGION</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVE_REGION_NOT_WORK_REGION</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_CITY_NOT_LIVE_CITY</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_CITY_NOT_WORK_CITY</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVE_CITY_NOT_WORK_CITY</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ORGANIZATION_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_1</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_2</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_3</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_AVG</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_MEDI</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FONDKAPREMONT_MODE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUSETYPE_MODE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>TOTALAREA_MODE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>WALLSMATERIAL_MODE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>EMERGENCYSTATE_MODE</th>
+      <td>BooleanNullable</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DEF_30_CNT_SOCIAL_CIRCLE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DEF_60_CNT_SOCIAL_CIRCLE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_PHONE_CHANGE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_2</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_3</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_4</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_5</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_6</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_7</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_8</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_9</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_10</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_11</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_12</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_13</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_14</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_15</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_16</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_17</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_18</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_19</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_20</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_21</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>flag, is_not 设置为bool</p></li>
@@ -627,6 +1677,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 3], dtype=int64)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,10 +1689,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2,  1,  3, -1], dtype=int64)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT_W_CITY&#39;</span><span class="p">][</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT_W_CITY&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>224393   -1
+Name: REGION_RATING_CLIENT_W_CITY, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -691,6 +1757,108 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_BUREAU</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_ACTIVE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_CURRENCY</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_DAY_OVERDUE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT_ENDDATE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ENDDATE_FACT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_MAX_OVERDUE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_CREDIT_PROLONG</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_DEBT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_LIMIT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_OVERDUE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT_UPDATE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <ol class="arabic simple">
 <li><p>id不参与</p></li>
@@ -716,6 +1884,43 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bureaubalance_index</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_BUREAU</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>STATUS</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -740,6 +1945,208 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_APPLICATION</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DOWN_PAYMENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_GOODS_PRICE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_LAST_APPL_PER_CONTRACT</th>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>NFLAG_LAST_APPL_IN_DAY</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>RATE_DOWN_PAYMENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>RATE_INTEREST_PRIMARY</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>RATE_INTEREST_PRIVILEGED</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CASH_LOAN_PURPOSE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_DECISION</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_PAYMENT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CODE_REJECT_REASON</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_TYPE_SUITE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_CLIENT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_GOODS_CATEGORY</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_PORTFOLIO</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_PRODUCT_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CHANNEL_TYPE</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SELLERPLACE_AREA</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_SELLER_INDUSTRY</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CNT_PAYMENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_YIELD_GROUP</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>PRODUCT_COMBINATION</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_FIRST_DRAWING</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_FIRST_DUE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_DUE_1ST_VERSION</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_DUE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_TERMINATION</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NFLAG_INSURED_ON_APPROVAL</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,6 +2172,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0], dtype=int64)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -772,10 +2184,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IntegerArray&gt;
+[0, 1, &lt;NA&gt;]
+Length: 3, dtype: Int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">previous_application</span><span class="p">[</span><span class="s1">&#39;NFLAG_INSURED_ON_APPROVAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>673065
 </pre></div>
 </div>
 </div>
@@ -807,6 +2231,143 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>credit_index</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_BALANCE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_LIMIT_ACTUAL</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_ATM_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_OTHER_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_POS_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INST_MIN_REGULARITY</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT_TOTAL_CURRENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_RECEIVABLE_PRINCIPAL</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_RECIVABLE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_TOTAL_RECEIVABLE</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_ATM_CURRENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_CURRENT</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_OTHER_CURRENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_POS_CURRENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT_MATURE_CUM</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD_DEF</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,6 +2391,68 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>installments_index</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NUM_INSTALMENT_VERSION</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NUM_INSTALMENT_NUMBER</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_INSTALMENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ENTRY_PAYMENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INSTALMENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT</th>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -857,10 +2480,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">installments_payments</span><span class="p">[</span><span class="s1">&#39;NUM_INSTALMENT_VERSION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -879,6 +2512,68 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cash_index</th>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT_FUTURE</th>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD_DEF</th>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -889,8 +2584,8 @@
 </div>
 </section>
 </section>
-<section id="id6">
-<h2>关系<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="es">
+<h2>构建es<a class="headerlink" href="#es" title="Link to this heading">#</a></h2>
 <p>featuretools对于已经初始化的ww，有些要求：</p>
 <ul class="simple">
 <li><p>具备index</p></li>
@@ -902,7 +2597,7 @@
 
 <span class="c1"># 有主键唯一列</span>
 <span class="n">es</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">add_dataframe</span><span class="p">(</span> <span class="n">dataframe</span><span class="o">=</span><span class="n">app</span><span class="p">,)</span>
-<span class="n">es</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">add_dataframe</span><span class="p">(</span> <span class="n">dataframe</span><span class="o">=</span><span class="n">bureau</span><span class="p">,)</span>
+<span class="n">es</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">add_dataframe</span><span class="p">(</span> <span class="n">dataframe</span><span class="o">=</span><span class="n">bureau</span><span class="p">)</span>
 <span class="n">es</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">add_dataframe</span><span class="p">(</span> <span class="n">dataframe</span><span class="o">=</span><span class="n">previous_application</span><span class="p">)</span>
 
 <span class="c1"># 没有主键唯一的列，需要make_index, 创建一列主键</span>
@@ -935,6 +2630,757 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>TARGET</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CODE_GENDER</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>FLAG_OWN_CAR</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_OWN_REALTY</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>CNT_CHILDREN</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INCOME_TOTAL</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_GOODS_PRICE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_TYPE_SUITE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_INCOME_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_EDUCATION_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_FAMILY_STATUS</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_HOUSING_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>REGION_POPULATION_RELATIVE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_BIRTH</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_EMPLOYED</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_REGISTRATION</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ID_PUBLISH</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>OWN_CAR_AGE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_MOBIL</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_EMP_PHONE</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_WORK_PHONE</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_CONT_MOBILE</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_PHONE</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_EMAIL</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CNT_FAM_MEMBERS</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REGION_RATING_CLIENT</th>
+      <td>category</td>
+      <td>Ordinal: [1, 2, 3]</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>REGION_RATING_CLIENT_W_CITY</th>
+      <td>category</td>
+      <td>Ordinal: [1, 2, 3]</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>REG_REGION_NOT_LIVE_REGION</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_REGION_NOT_WORK_REGION</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVE_REGION_NOT_WORK_REGION</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>REG_CITY_NOT_LIVE_CITY</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>REG_CITY_NOT_WORK_CITY</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>LIVE_CITY_NOT_WORK_CITY</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>ORGANIZATION_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_1</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_2</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>EXT_SOURCE_3</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_AVG</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>APARTMENTS_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>BASEMENTAREA_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BEGINEXPLUATATION_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ELEVATORS_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>ENTRANCES_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMAX_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>LIVINGAREA_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAREA_MEDI</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FONDKAPREMONT_MODE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUSETYPE_MODE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>TOTALAREA_MODE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>WALLSMATERIAL_MODE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>EMERGENCYSTATE_MODE</th>
+      <td>boolean</td>
+      <td>BooleanNullable</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DEF_30_CNT_SOCIAL_CIRCLE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DEF_60_CNT_SOCIAL_CIRCLE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_PHONE_CHANGE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_2</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_3</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_4</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_5</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_6</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_7</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_8</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_9</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_10</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_11</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_12</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_13</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_14</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_15</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_16</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_17</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_18</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_19</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_20</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>FLAG_DOCUMENT_21</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -942,6 +3388,127 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_BUREAU</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_ACTIVE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_CURRENCY</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_DAY_OVERDUE</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT_ENDDATE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ENDDATE_FACT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_MAX_OVERDUE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_CREDIT_PROLONG</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_DEBT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_LIMIT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_SUM_OVERDUE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CREDIT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_CREDIT_UPDATE</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -949,6 +3516,49 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bureaubalance_index</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_BUREAU</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>STATUS</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -956,6 +3566,247 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_APPLICATION</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DOWN_PAYMENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_GOODS_PRICE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>FLAG_LAST_APPL_PER_CONTRACT</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>NFLAG_LAST_APPL_IN_DAY</th>
+      <td>bool</td>
+      <td>Boolean</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th>RATE_DOWN_PAYMENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>RATE_INTEREST_PRIMARY</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>RATE_INTEREST_PRIVILEGED</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CASH_LOAN_PURPOSE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_DECISION</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_PAYMENT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CODE_REJECT_REASON</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_TYPE_SUITE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_CLIENT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_GOODS_CATEGORY</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_PORTFOLIO</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>NAME_PRODUCT_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CHANNEL_TYPE</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SELLERPLACE_AREA</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_SELLER_INDUSTRY</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>CNT_PAYMENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_YIELD_GROUP</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>PRODUCT_COMBINATION</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>DAYS_FIRST_DRAWING</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_FIRST_DUE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_DUE_1ST_VERSION</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_LAST_DUE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_TERMINATION</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NFLAG_INSURED_ON_APPROVAL</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,6 +3814,79 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cash_index</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT_FUTURE</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD_DEF</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -970,6 +3894,169 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>credit_index</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>MONTHS_BALANCE</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_BALANCE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT_LIMIT_ACTUAL</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_ATM_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_OTHER_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_DRAWINGS_POS_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INST_MIN_REGULARITY</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT_TOTAL_CURRENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_RECEIVABLE_PRINCIPAL</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_RECIVABLE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_TOTAL_RECEIVABLE</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_ATM_CURRENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_CURRENT</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_OTHER_CURRENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_DRAWINGS_POS_CURRENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>CNT_INSTALMENT_MATURE_CUM</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NAME_CONTRACT_STATUS</th>
+      <td>category</td>
+      <td>Categorical</td>
+      <td>['category']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>SK_DPD_DEF</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -977,6 +4064,79 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Physical Type</th>
+      <th>Logical Type</th>
+      <th>Semantic Tag(s)</th>
+    </tr>
+    <tr>
+      <th>Column</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>installments_index</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['index']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_PREV</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['foreign_key', 'numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>SK_ID_CURR</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric', 'ignore']</td>
+    </tr>
+    <tr>
+      <th>NUM_INSTALMENT_VERSION</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>NUM_INSTALMENT_NUMBER</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_INSTALMENT</th>
+      <td>int64</td>
+      <td>Integer</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>DAYS_ENTRY_PAYMENT</th>
+      <td>Int64</td>
+      <td>IntegerNullable</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_INSTALMENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+    <tr>
+      <th>AMT_PAYMENT</th>
+      <td>float64</td>
+      <td>Double</td>
+      <td>['numeric']</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 </section>
 <section id="interesting-values">
@@ -1004,29 +4164,54 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataframe_name&#39;: &#39;previous&#39;,
+ &#39;entityset_id&#39;: &#39;clients&#39;,
+ &#39;interesting_values&#39;: [&#39;Approved&#39;, &#39;Refused&#39;]}
+</pre></div>
+</div>
+</div>
 </div>
 <p>我们确实为这个列添加了where值</p>
 </section>
 <section id="seed-feature">
 <h2>seed feature<a class="headerlink" href="#seed-feature" title="Link to this heading">#</a></h2>
-<p>where 条件聚合</p>
+<p>没什么特别，就是构造了一列</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在homecredit的逾期还款情况</span>
-<span class="n">FLAG_LATED</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;installments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;DAYS_ENTRY_PAYMENT&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">ft</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;installments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;DAYS_INSTALMENT&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">previous_application</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>196114.0212179794
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FLAG_LATED</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;installments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;DAYS_ENTRY_PAYMENT&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">ft</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;installments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;DAYS_INSTALMENT&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FLAG_LATED</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Feature: DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <p>FLAG_LATED标识了一种条件</p>
-<p>放入<code class="docutils literal notranslate"> <span class="pre">ft.dfs(seed_features=[FLAG_LATED],</span> <span class="pre">where_primitives=['count',</span> <span class="pre">'mean'])</span></code>, dfs会产生</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">COUNT(installments</span> <span class="pre">WHERE</span> <span class="pre">FLAG_LATED</span> <span class="pre">=</span> <span class="pre">True)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MEAN(installments</span> <span class="pre">WHERE</span> <span class="pre">FLAG_LATED</span> <span class="pre">=</span> <span class="pre">True)</span></code></p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在其他机构的逾期还款情况</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
 <span class="n">FLAG_DUE</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;bureau_balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;STATUS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1038,13 +4223,36 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Feature: STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">FLAG_DUE</span><span class="o">.</span><span class="n">column_schema</span><span class="o">.</span><span class="n">logical_type</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boolean
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section id="id7">
-<h2>自定义特征原语<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>自定义特征原语<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>对于自定义原语，我们一定要小心其性能</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">es</span><span class="p">[</span><span class="s1">&#39;previous&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ww</span><span class="p">[</span><span class="s1">&#39;NAME_CONTRACT_STATUS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1670214
 </pre></div>
 </div>
 </div>
@@ -1082,27 +4290,44 @@
     <span class="n">return_type</span> <span class="o">=</span> <span class="n">ColumnSchema</span><span class="p">(</span><span class="n">semantic_tags</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;numeric&quot;</span><span class="p">})</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">max_consecutive</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">column</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mi">0</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
             
-            <span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">])</span> <span class="k">if</span> <span class="n">segments</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="c1"># 在首尾补 0 方便计算切换点</span>
+            <span class="n">calls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="c1"># 寻找从 0 变 1 和从 1 变 0 的位置</span>
+            <span class="n">diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">calls</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+            <span class="n">starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diffs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diffs</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+            <span class="c1"># 长度即为 结束索引 - 开始索引</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ends</span> <span class="o">-</span> <span class="n">starts</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">max_consecutive</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>我们必须清晰，哪些原语作用哪些列！</p>
+</div>
 </section>
 <section id="dfs">
 <h2>dfs<a class="headerlink" href="#dfs" title="Link to this heading">#</a></h2>
-<p>ignore_variables
-除了’ignore’, 这里我们也设置，确保原语不会操作这些特征。</p>
+<p>特征数估计：
+主表100列，从表50列，兴趣特征1<em>3个分类值， 原语5个。
+50</em> 5 * 3 + 100</p>
 <p>外键和索引不需要管</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">default_agg_primitives</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">]</span>
+<span class="n">default_agg_primitives</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;count&quot;</span><span class="p">,</span>  <span class="c1"># index</span>
+    <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">,</span>  <span class="c1"># numeric</span>
+    <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;num_unique&quot;</span><span class="p">,</span> <span class="c1"># categorical</span>
+    <span class="s1">&#39;percent_true&#39;</span> <span class="c1"># boolean</span>
+    <span class="p">]</span>
 <span class="n">default_trans_primitives</span> <span class="o">=</span>  <span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">]</span>
 
 <span class="c1"># 返回特征矩阵； 特征</span>
@@ -1113,18 +4338,15 @@
     <span class="n">trans_primitives</span><span class="o">=</span><span class="n">default_trans_primitives</span><span class="p">,</span>
     <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">seed_features</span><span class="o">=</span><span class="p">[</span><span class="n">FLAG_LATED</span><span class="p">,</span> <span class="n">FLAG_DUE</span><span class="p">],</span>
-    <span class="n">where_primitives</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span>
-    <span class="n">ignore_columns</span>  <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;app&#39;</span><span class="p">:[</span><span class="s1">&#39;set&#39;</span><span class="p">]</span>
-    <span class="p">}</span>
+    <span class="c1"># n_jobs=2,        # 使用2个核</span>
+    <span class="n">where_primitives</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;percent_true&#39;</span><span class="p">],</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span> <span class="k">if</span> <span class="s1">&#39;set&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 4h 41min 18s
+Wall time: 5h 46min 14s
 </pre></div>
 </div>
 </div>
@@ -1145,6 +4367,90 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Feature: NORMALIZED_MODE_COUNT(bureau.CREDIT_ACTIVE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau.CREDIT_CURRENCY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau.CREDIT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau_balance.STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.CHANNEL_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.CODE_REJECT_REASON)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.HOUR_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_CASH_LOAN_PURPOSE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_CLIENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_CONTRACT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_GOODS_CATEGORY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_PAYMENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_PORTFOLIO)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_PRODUCT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_SELLER_INDUSTRY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_TYPE_SUITE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NAME_YIELD_GROUP)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.NFLAG_INSURED_ON_APPROVAL)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.PRODUCT_COMBINATION)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.WEEKDAY_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau.MODE(bureau_balance.STATUS))&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau_balance.bureau.CREDIT_ACTIVE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau_balance.bureau.CREDIT_CURRENCY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(bureau_balance.bureau.CREDIT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.MODE(cash.NAME_CONTRACT_STATUS))&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(previous.MODE(credit.NAME_CONTRACT_STATUS))&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.CHANNEL_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.CODE_REJECT_REASON)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.HOUR_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_CASH_LOAN_PURPOSE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_CLIENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_CONTRACT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_GOODS_CATEGORY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_PAYMENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_PORTFOLIO)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_PRODUCT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_SELLER_INDUSTRY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_TYPE_SUITE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NAME_YIELD_GROUP)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.NFLAG_INSURED_ON_APPROVAL)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.PRODUCT_COMBINATION)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(cash.previous.WEEKDAY_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.CHANNEL_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.CODE_REJECT_REASON)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.HOUR_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_CASH_LOAN_PURPOSE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_CLIENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_CONTRACT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_GOODS_CATEGORY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_PAYMENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_PORTFOLIO)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_PRODUCT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_SELLER_INDUSTRY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_TYPE_SUITE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NAME_YIELD_GROUP)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.NFLAG_INSURED_ON_APPROVAL)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.PRODUCT_COMBINATION)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(installments.previous.WEEKDAY_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.CHANNEL_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.CODE_REJECT_REASON)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.HOUR_APPR_PROCESS_START)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_CASH_LOAN_PURPOSE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_CLIENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_CONTRACT_STATUS)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_CONTRACT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_GOODS_CATEGORY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_PAYMENT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_PORTFOLIO)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_PRODUCT_TYPE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_SELLER_INDUSTRY)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_TYPE_SUITE)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NAME_YIELD_GROUP)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.NFLAG_INSURED_ON_APPROVAL)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.PRODUCT_COMBINATION)&gt;,
+ &lt;Feature: NORMALIZED_MODE_COUNT(credit.previous.WEEKDAY_APPR_PROCESS_START)&gt;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1152,15 +4458,62 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;WHERE&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Feature: MAX_CONSECUTIVE(previous.FLAG_LAST_APPL_PER_CONTRACT)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(previous.NFLAG_LAST_APPL_IN_DAY)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;]))&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(cash.previous.FLAG_LAST_APPL_PER_CONTRACT)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(cash.previous.NFLAG_LAST_APPL_IN_DAY)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(installments.previous.FLAG_LAST_APPL_PER_CONTRACT)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(installments.previous.NFLAG_LAST_APPL_IN_DAY)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(credit.previous.FLAG_LAST_APPL_PER_CONTRACT)&gt;,
+ &lt;Feature: MAX_CONSECUTIVE(credit.previous.NFLAG_LAST_APPL_IN_DAY)&gt;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>？？ 我们没有看到种子特征，<code class="docutils literal notranslate"><span class="pre">FLAG_LATED</span></code>和<code class="docutils literal notranslate"><span class="pre">FLAG_DUE</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span> <span class="k">if</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Feature: PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT)&gt;,
+ &lt;Feature: MAX(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT))&gt;,
+ &lt;Feature: MEAN(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT))&gt;,
+ &lt;Feature: MEAN(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT) WHERE NAME_CONTRACT_STATUS = Approved)&gt;,
+ &lt;Feature: MEAN(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT) WHERE NAME_CONTRACT_STATUS = Refused)&gt;,
+ &lt;Feature: STD(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT))&gt;,
+ &lt;Feature: SUM(previous.PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT))&gt;,
+ &lt;Feature: PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT WHERE previous.NAME_CONTRACT_STATUS = Refused)&gt;,
+ &lt;Feature: PERCENT_TRUE(installments.DAYS_ENTRY_PAYMENT &gt; DAYS_INSTALMENT WHERE previous.NAME_CONTRACT_STATUS = Approved)&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span> <span class="k">if</span> <span class="s1">&#39;isin&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Feature: MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;]))&gt;,
+ &lt;Feature: PERCENT_TRUE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;]))&gt;,
+ &lt;Feature: MAX(bureau.MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: MAX(bureau.PERCENT_TRUE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: MEAN(bureau.MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: MEAN(bureau.PERCENT_TRUE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: STD(bureau.MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: STD(bureau.PERCENT_TRUE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: SUM(bureau.MAX_CONSECUTIVE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;,
+ &lt;Feature: SUM(bureau.PERCENT_TRUE(bureau_balance.STATUS.isin([&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;])))&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>特征按照我们预想的添加了。</p>
 </section>
 <section id="modeling">
 <h2>modeling<a class="headerlink" href="#modeling" title="Link to this heading">#</a></h2>
@@ -1170,6 +4523,18 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;ft_tuning_feature_matrix.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_matrix</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(356255, 1891)
 </pre></div>
 </div>
 </div>
@@ -1187,6 +4552,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0            1
+1            0
+2            0
+3            0
+4            0
+          ... 
+356250    &lt;NA&gt;
+356251    &lt;NA&gt;
+356252    &lt;NA&gt;
+356253    &lt;NA&gt;
+356254    &lt;NA&gt;
+Name: TARGET, Length: 356255, dtype: Int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1199,6 +4580,11 @@
 <span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;set&#39;</span><span class="p">])</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="s1">&#39;set&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(307511, 1892) (48744, 1891)
 </pre></div>
 </div>
 </div>
@@ -1241,12 +4627,537 @@
     <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>     <span class="c1"># 学习率</span>
     <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>           <span class="c1"># 树的最大深度</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>       <span class="c1"># 保证结果可复现</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>              <span class="c1"># 使用所有 CPU 核心加速</span>
 <span class="p">)</span>
 <span class="n">lgbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 2.594608 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 293128
+[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 1666
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
+[LightGBM] [Info] Start training from score -2.432486
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
+</pre></div>
+</div>
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LGBMClassifier(max_depth=3, n_jobs=-1, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LGBMClassifier</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LGBMClassifier(max_depth=3, n_jobs=-1, random_state=42)</pre></div> </div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1266,6 +5177,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/84630a3b548cd30a90ff84130b7647ee45d05b4a6d397b01a2f05775085a8a50.png" src="../../_images/84630a3b548cd30a90ff84130b7647ee45d05b4a6d397b01a2f05775085a8a50.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1325,6 +5239,58 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SK_ID_CURR</th>
+      <th>TARGET</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>307511</th>
+      <td>100001</td>
+      <td>0.072112</td>
+    </tr>
+    <tr>
+      <th>307512</th>
+      <td>100005</td>
+      <td>0.162662</td>
+    </tr>
+    <tr>
+      <th>307513</th>
+      <td>100013</td>
+      <td>0.029653</td>
+    </tr>
+    <tr>
+      <th>307514</th>
+      <td>100028</td>
+      <td>0.034053</td>
+    </tr>
+    <tr>
+      <th>307515</th>
+      <td>100038</td>
+      <td>0.139559</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>得分76，差不多</p>
 </section>
@@ -1388,16 +5354,16 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">处理</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ww">ww处理</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application">application</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bureau">bureau</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#previous">previous</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">关系</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#es">构建es</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interesting-values">添加interesting values</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-feature">seed feature</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">自定义特征原语</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">自定义特征原语</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfs">dfs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">modeling</a></li>
 </ul>

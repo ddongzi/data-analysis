@@ -50,7 +50,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="调优自动特征工程" href="Tuning_Automated_Feature_Engineering.html" />
-    <link rel="prev" title="统一的特征聚合、特征选择过程" href="menu_feature_enginer.html" />
+    <link rel="prev" title="手动特征工程" href="menu_feature_enginer.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -318,7 +318,7 @@
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">信贷违约风险</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="main.html">初步</a></li>
-<li class="toctree-l2"><a class="reference internal" href="menu_feature_enginer.html">统一的特征聚合、特征选择过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="menu_feature_enginer.html">手动特征工程</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">自动化特征工程</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Tuning_Automated_Feature_Engineering.html">调优自动特征工程</a></li>
 </ul>
@@ -425,6 +425,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\woodwork\__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ft 1.31.0
 np 1.26.4
 pd 2.3.1
@@ -677,6 +681,280 @@ pd 2.3.1
       <td>aggregation</td>
       <td>Calculates the trend of a column over time.</td>
       <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;, ...</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>我们必须清晰，哪些原语作用哪些列！ 一些常见的。</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>37</th>
+      <td>mean</td>
+      <td>aggregation</td>
+      <td>Computes the average for a list of values.</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;percent_true&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>62</th>
+      <td>percent_true</td>
+      <td>aggregation</td>
+      <td>Determines the percent of `True` values.</td>
+      <td>&lt;ColumnSchema (Logical Type = BooleanNullable)...</td>
+      <td>&lt;ColumnSchema (Logical Type = Double) (Semanti...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;mode&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>58</th>
+      <td>mode</td>
+      <td>aggregation</td>
+      <td>Determines the most commonly repeated value.</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['category'])&gt;</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31</th>
+      <td>count</td>
+      <td>aggregation</td>
+      <td>Determines the total number of values, excludi...</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['index'])&gt;</td>
+      <td>&lt;ColumnSchema (Logical Type = IntegerNullable)...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;month&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>181</th>
+      <td>month</td>
+      <td>transform</td>
+      <td>Determines the month value of a datetime.</td>
+      <td>&lt;ColumnSchema (Logical Type = Datetime)&gt;</td>
+      <td>&lt;ColumnSchema (Logical Type = Ordinal: [1, 2, ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="n">ft</span><span class="o">.</span><span class="n">list_primitives</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;std&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+      <th>valid_inputs</th>
+      <th>return_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>aggregation</td>
+      <td>Computes the dispersion relative to the mean v...</td>
+      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>
       <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>
     </tr>
   </tbody>
@@ -2506,7 +2784,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">统一的特征聚合、特征选择过程</p>
+        <p class="prev-next-title">手动特征工程</p>
       </div>
     </a>
     <a class="right-next"

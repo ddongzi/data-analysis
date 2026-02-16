@@ -46,10 +46,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "832d1182",
    "metadata": {},
    "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "c:\\Users\\63517\\miniconda3\\envs\\data-analysis\\lib\\site-packages\\woodwork\\__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n",
+      "  import pkg_resources\n"
+     ]
+    },
     {
      "name": "stdout",
      "output_type": "stream",
@@ -458,6 +466,414 @@
    "source": [
     "# 内置原语\n",
     "ft.list_primitives().head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3f416af3",
+   "metadata": {},
+   "source": [
+    "```{warning} \n",
+    "我们必须清晰，哪些原语作用哪些列！ 一些常见的。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "951bac5d",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>37</th>\n",
+       "      <td>mean</td>\n",
+       "      <td>aggregation</td>\n",
+       "      <td>Computes the average for a list of values.</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    name         type                                 description  \\\n",
+       "37  mean  aggregation  Computes the average for a list of values.   \n",
+       "\n",
+       "                                    valid_inputs  \\\n",
+       "37  <ColumnSchema (Semantic Tags = ['numeric'])>   \n",
+       "\n",
+       "                                     return_type  \n",
+       "37  <ColumnSchema (Semantic Tags = ['numeric'])>  "
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'mean']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "999db041",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>62</th>\n",
+       "      <td>percent_true</td>\n",
+       "      <td>aggregation</td>\n",
+       "      <td>Determines the percent of `True` values.</td>\n",
+       "      <td>&lt;ColumnSchema (Logical Type = BooleanNullable)...</td>\n",
+       "      <td>&lt;ColumnSchema (Logical Type = Double) (Semanti...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "            name         type                               description  \\\n",
+       "62  percent_true  aggregation  Determines the percent of `True` values.   \n",
+       "\n",
+       "                                         valid_inputs  \\\n",
+       "62  <ColumnSchema (Logical Type = BooleanNullable)...   \n",
+       "\n",
+       "                                          return_type  \n",
+       "62  <ColumnSchema (Logical Type = Double) (Semanti...  "
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'percent_true']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "fa0b77d4",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>58</th>\n",
+       "      <td>mode</td>\n",
+       "      <td>aggregation</td>\n",
+       "      <td>Determines the most commonly repeated value.</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['category'])&gt;</td>\n",
+       "      <td>None</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    name         type                                   description  \\\n",
+       "58  mode  aggregation  Determines the most commonly repeated value.   \n",
+       "\n",
+       "                                     valid_inputs return_type  \n",
+       "58  <ColumnSchema (Semantic Tags = ['category'])>        None  "
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'mode']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "33f20c2c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>31</th>\n",
+       "      <td>count</td>\n",
+       "      <td>aggregation</td>\n",
+       "      <td>Determines the total number of values, excludi...</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['index'])&gt;</td>\n",
+       "      <td>&lt;ColumnSchema (Logical Type = IntegerNullable)...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     name         type                                        description  \\\n",
+       "31  count  aggregation  Determines the total number of values, excludi...   \n",
+       "\n",
+       "                                  valid_inputs  \\\n",
+       "31  <ColumnSchema (Semantic Tags = ['index'])>   \n",
+       "\n",
+       "                                          return_type  \n",
+       "31  <ColumnSchema (Logical Type = IntegerNullable)...  "
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'count']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "5d09c839",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>181</th>\n",
+       "      <td>month</td>\n",
+       "      <td>transform</td>\n",
+       "      <td>Determines the month value of a datetime.</td>\n",
+       "      <td>&lt;ColumnSchema (Logical Type = Datetime)&gt;</td>\n",
+       "      <td>&lt;ColumnSchema (Logical Type = Ordinal: [1, 2, ...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      name       type                                description  \\\n",
+       "181  month  transform  Determines the month value of a datetime.   \n",
+       "\n",
+       "                                 valid_inputs  \\\n",
+       "181  <ColumnSchema (Logical Type = Datetime)>   \n",
+       "\n",
+       "                                           return_type  \n",
+       "181  <ColumnSchema (Logical Type = Ordinal: [1, 2, ...  "
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'month']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "2c42dc72",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>type</th>\n",
+       "      <th>description</th>\n",
+       "      <th>valid_inputs</th>\n",
+       "      <th>return_type</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>std</td>\n",
+       "      <td>aggregation</td>\n",
+       "      <td>Computes the dispersion relative to the mean v...</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>\n",
+       "      <td>&lt;ColumnSchema (Semantic Tags = ['numeric'])&gt;</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  name         type                                        description  \\\n",
+       "2  std  aggregation  Computes the dispersion relative to the mean v...   \n",
+       "\n",
+       "                                   valid_inputs  \\\n",
+       "2  <ColumnSchema (Semantic Tags = ['numeric'])>   \n",
+       "\n",
+       "                                    return_type  \n",
+       "2  <ColumnSchema (Semantic Tags = ['numeric'])>  "
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ft.list_primitives()[ft.list_primitives()['name'] == 'std']"
    ]
   },
   {
