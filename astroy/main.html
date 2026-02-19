@@ -49,7 +49,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="宏观经济" href="../economy/economy.html" />
+    <link rel="next" title="huble st" href="hst.html" />
     <link rel="prev" title="天文" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -317,6 +317,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">认识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hst.html">huble st</a></li>
 </ul></details></li></ul></div>
 </nav></div>
     </div>
@@ -386,6 +387,10 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.nist</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nist</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.mast</span><span class="w"> </span><span class="kn">import</span> <span class="n">Observations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cos_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">estimate_snr</span>
 
 <span class="n">fonts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimSun&#39;</span><span class="p">,</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fonts</span>
@@ -507,6 +512,28 @@
 </div>
 </div>
 </section>
+<section id="astroquery">
+<h2>astroquery 库<a class="headerlink" href="#astroquery" title="Link to this heading">#</a></h2>
+<p>https://astroquery.readthedocs.io/en/latest/</p>
+<ul class="simple">
+<li><p>从各种望远镜获取数据</p></li>
+</ul>
+<p>获取一次任务，表示某个望远镜的一次曝光。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Observations</span><span class="o">.</span><span class="n">query_criteria</span><span class="p">(</span><span class="n">obs_id</span><span class="o">=</span><span class="s2">&quot;LDM701020&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><i>Table masked=True length=1</i>
+<table id="table2249033007360" class="table-striped table-bordered table-condensed">
+<thead><tr><th>intentType</th><th>obs_collection</th><th>provenance_name</th><th>instrument_name</th><th>project</th><th>filters</th><th>wavelength_region</th><th>target_name</th><th>target_classification</th><th>obs_id</th><th>s_ra</th><th>s_dec</th><th>dataproduct_type</th><th>proposal_pi</th><th>calib_level</th><th>t_min</th><th>t_max</th><th>t_exptime</th><th>em_min</th><th>em_max</th><th>obs_title</th><th>t_obs_release</th><th>proposal_id</th><th>proposal_type</th><th>sequence_number</th><th>s_region</th><th>jpegURL</th><th>dataURL</th><th>dataRights</th><th>mtFlag</th><th>srcDen</th><th>obsid</th><th>objID</th></tr></thead>
+<thead><tr><th>str7</th><th>str3</th><th>str6</th><th>str7</th><th>str3</th><th>str5</th><th>str2</th><th>str4</th><th>str11</th><th>str9</th><th>float64</th><th>float64</th><th>str8</th><th>str14</th><th>int64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>str34</th><th>float64</th><th>str5</th><th>str7</th><th>int64</th><th>str417</th><th>str37</th><th>str38</th><th>str6</th><th>bool</th><th>float64</th><th>str8</th><th>str10</th></tr></thead>
+<tr><td>science</td><td>HST</td><td>CALCOS</td><td>COS/FUV</td><td>HST</td><td>G160M</td><td>UV</td><td>AV75</td><td>EXT-STAR;OF</td><td>ldm701020</td><td>12.63495833333</td><td>-72.8768</td><td>spectrum</td><td>Fox, Andrew J.</td><td>3</td><td>57975.28908387732</td><td>57975.353713310185</td><td>2070.048</td><td>140.5</td><td>177.5</td><td>COS FUV Spectral Resolution at LP4</td><td>57975.6088657</td><td>15366</td><td>CAL/COS</td><td>--</td><td>POLYGON 12.63613764 -72.8768 12.63603567 -72.87665877 12.63574743 -72.87654196 12.63532275 -72.87646977 12.63483506 -72.87645468 12.63436869 -72.8764993 12.63400426 -72.87659591 12.6338048 -72.87672781 12.63380479 -72.87687219 12.63400424 -72.87700409 12.63436867 -72.8771007 12.63483506 -72.87714532 12.63532276 -72.87713023 12.63574745 -72.87705803 12.63603569 -72.87694122 12.63613764 -72.8768 12.63613764 -72.8768</td><td>mast:HST/product/ldm701020_x1dsum.png</td><td>mast:HST/product/ldm701020_x1dsum.fits</td><td>PUBLIC</td><td>False</td><td>nan</td><td>25868963</td><td>1007521450</td></tr>
+</table></div></div></div>
+</div>
+</section>
 </section>
 
 
@@ -529,11 +556,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="../economy/economy.html"
+       href="hst.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">宏观经济</p>
+        <p class="prev-next-title">huble st</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -557,6 +584,7 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">物质波长</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#astroquery">astroquery 库</a></li>
 </ul>
   </nav></div>
 

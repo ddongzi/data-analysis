@@ -691,7 +691,7 @@ dtype: object
 <li><p><code class="docutils literal notranslate"><span class="pre">number</span></code>逻辑类型包含<code class="docutils literal notranslate"><span class="pre">int64,</span> <span class="pre">float32</span></code>等等；</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">object</span></code>包含<code class="docutils literal notranslate"><span class="pre">object</span></code>等</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">category</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">category</span></code>: 常常应该把Object类型转换为这个，其他如lgbm才会处理</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></li>
 </ul>
@@ -9003,6 +9003,83 @@ dtype: int64
       <td>A2</td>
       <td>B2</td>
       <td>C2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">make_df</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">make_df</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>A3</td>
+      <td>B3</td>
+      <td>C3</td>
     </tr>
   </tbody>
 </table>

@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 49,
+   "execution_count": 2,
    "id": "6e0d07d9",
    "metadata": {},
    "outputs": [],
@@ -21,6 +21,10 @@
     "import seaborn as sns\n",
     "from astroquery.nist import Nist\n",
     "import astropy.units as u\n",
+    "from astropy.table import Table\n",
+    "from astropy.io import fits\n",
+    "from astroquery.mast import Observations\n",
+    "from cos_functions import estimate_snr\n",
     "\n",
     "fonts = ['Microsoft YaHei', 'SimHei', 'SimSun', 'sans-serif']\n",
     "plt.rcParams['font.sans-serif'] = fonts\n",
@@ -53,7 +57,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "table = Nist.query(300 * u.nm, 1500 * u.nm, linename=\"H I\")\n"
+    "table = Nist.query(300 * u.nm, 1500 * u.nm, linename=\"H I\")"
    ]
   },
   {
@@ -187,6 +191,77 @@
    "cell_type": "code",
    "execution_count": null,
    "id": "bfb3afce",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "368d8617",
+   "metadata": {},
+   "source": [
+    "## astroquery 库\n",
+    "https://astroquery.readthedocs.io/en/latest/\n",
+    "- 从各种望远镜获取数据"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "62699117",
+   "metadata": {},
+   "source": [
+    "获取一次任务，表示某个望远镜的一次曝光。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "68564872",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div><i>Table masked=True length=1</i>\n",
+       "<table id=\"table2249033007360\" class=\"table-striped table-bordered table-condensed\">\n",
+       "<thead><tr><th>intentType</th><th>obs_collection</th><th>provenance_name</th><th>instrument_name</th><th>project</th><th>filters</th><th>wavelength_region</th><th>target_name</th><th>target_classification</th><th>obs_id</th><th>s_ra</th><th>s_dec</th><th>dataproduct_type</th><th>proposal_pi</th><th>calib_level</th><th>t_min</th><th>t_max</th><th>t_exptime</th><th>em_min</th><th>em_max</th><th>obs_title</th><th>t_obs_release</th><th>proposal_id</th><th>proposal_type</th><th>sequence_number</th><th>s_region</th><th>jpegURL</th><th>dataURL</th><th>dataRights</th><th>mtFlag</th><th>srcDen</th><th>obsid</th><th>objID</th></tr></thead>\n",
+       "<thead><tr><th>str7</th><th>str3</th><th>str6</th><th>str7</th><th>str3</th><th>str5</th><th>str2</th><th>str4</th><th>str11</th><th>str9</th><th>float64</th><th>float64</th><th>str8</th><th>str14</th><th>int64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>str34</th><th>float64</th><th>str5</th><th>str7</th><th>int64</th><th>str417</th><th>str37</th><th>str38</th><th>str6</th><th>bool</th><th>float64</th><th>str8</th><th>str10</th></tr></thead>\n",
+       "<tr><td>science</td><td>HST</td><td>CALCOS</td><td>COS/FUV</td><td>HST</td><td>G160M</td><td>UV</td><td>AV75</td><td>EXT-STAR;OF</td><td>ldm701020</td><td>12.63495833333</td><td>-72.8768</td><td>spectrum</td><td>Fox, Andrew J.</td><td>3</td><td>57975.28908387732</td><td>57975.353713310185</td><td>2070.048</td><td>140.5</td><td>177.5</td><td>COS FUV Spectral Resolution at LP4</td><td>57975.6088657</td><td>15366</td><td>CAL/COS</td><td>--</td><td>POLYGON 12.63613764 -72.8768 12.63603567 -72.87665877 12.63574743 -72.87654196 12.63532275 -72.87646977 12.63483506 -72.87645468 12.63436869 -72.8764993 12.63400426 -72.87659591 12.6338048 -72.87672781 12.63380479 -72.87687219 12.63400424 -72.87700409 12.63436867 -72.8771007 12.63483506 -72.87714532 12.63532276 -72.87713023 12.63574745 -72.87705803 12.63603569 -72.87694122 12.63613764 -72.8768 12.63613764 -72.8768</td><td>mast:HST/product/ldm701020_x1dsum.png</td><td>mast:HST/product/ldm701020_x1dsum.fits</td><td>PUBLIC</td><td>False</td><td>nan</td><td>25868963</td><td>1007521450</td></tr>\n",
+       "</table></div>"
+      ],
+      "text/plain": [
+       "<Table masked=True length=1>\n",
+       "intentType obs_collection provenance_name ...  srcDen  obsid     objID   \n",
+       "   str7         str3            str6      ... float64   str8     str10   \n",
+       "---------- -------------- --------------- ... ------- -------- ----------\n",
+       "   science            HST          CALCOS ...     nan 25868963 1007521450"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "Observations.query_criteria(obs_id=\"LDM701020\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "057cff0e",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c038e86f",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e9746b4b",
    "metadata": {},
    "outputs": [],
    "source": []
