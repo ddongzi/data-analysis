@@ -1289,15 +1289,7 @@
    "metadata": {},
    "source": [
     "### 7.3.4. Encoding categorical features\n",
-    "To convert categorical features to int codes, we can use `OrignalEncoder`. "
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "6695eea4-19c0-4c6e-8770-7d184e627045",
-   "metadata": {},
-   "source": [
-    "For example, there are some features: `[\"male\", \"female\"], [\"from Europe\", \"from US\", \"from Asia\"], [\"uses Firefox\", \"uses Chrome\", \"uses Safari\", \"uses Internet Explorer\"].`Now, `[\"male\", \"from US\", \"uses Internet Explorer\"]` could be expressed as `[0, 1, 3]` while `[\"female\", \"from Asia\", \"uses Chrome\"]` would be `[1, 2, 1].`"
+    "- `OrignalEncoder` 编码有序特征。OrdinalEncoder 默认是按照字母顺序的， 如果自定义顺序，我们自行转换"
    ]
   },
   {

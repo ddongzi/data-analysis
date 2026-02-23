@@ -2678,6 +2678,54 @@ $$</p>
 </section>
 <section id="patches">
 <h2>4.20 patches补丁图形<a class="headerlink" href="#patches" title="Link to this heading">#</a></h2>
+<p>每个画出来的图形都叫patch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 3., 12., 27., 58., 53., 34., 10.,  3.]),
+ array([-4.55417271, -3.42191846, -2.28966422, -1.15740998, -0.02515573,
+         1.10709851,  2.23935275,  3.371607  ,  4.50386124]),
+ &lt;BarContainer object of 8 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/c7ad5ca5668299c418dc1cb708483d6fbc152939cb809cbec3ea8d5ab37bcf75.png" src="../_images/c7ad5ca5668299c418dc1cb708483d6fbc152939cb809cbec3ea8d5ab37bcf75.png" />
+</div>
+</div>
+<p>ax.patches 就是绘制的8个柱状图. 每个都是Rectangle.</p>
+<ul class="simple">
+<li><p>高度就是计数</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rec1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Height(count): </span><span class="si">{</span><span class="n">rec1</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Left x: </span><span class="si">{</span><span class="n">rec1</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Width: </span><span class="si">{</span><span class="n">rec1</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height(count): 58.0
+Left x: -1.1574099773757962
+Width: 1.1322542435161185
+</pre></div>
+</div>
+</div>
+</div>
 <section id="ellipse">
 <h3>Ellipse 椭圆形<a class="headerlink" href="#ellipse" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">

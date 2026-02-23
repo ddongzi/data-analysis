@@ -632,7 +632,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CODE_GENDER</span></code>: 性别</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DAYS_BIRTH</span></code>: 年龄</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DAYS_REGISTRATION</span></code>: 申请注册到现在的天数. 户口本更新时间</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DAYS_REGISTRATION</span></code>: 客户修改居住地址。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DAYS_ID_PUBLISH</span></code>: 身份证更新时间，身份证更新越频繁，说明个人信息变动越大，风险也越大</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FLAG_MOBIL</span></code>: 是否有手机; <code class="docutils literal notranslate"><span class="pre">FLAG_EMP_PHONE</span></code>: 是否有工作电话; <code class="docutils literal notranslate"><span class="pre">FLAG_WORK_PHONE</span></code>: 是否有工作单位电话; <code class="docutils literal notranslate"><span class="pre">FLAG_CONT_MOBILE</span></code>: 是否有紧急联系人电话; <code class="docutils literal notranslate"><span class="pre">FLAG_PHONE</span></code>: 是否有电话; <code class="docutils literal notranslate"><span class="pre">FLAG_EMAIL</span></code>: 是否有电子邮箱</p>
 <ul>
@@ -644,7 +644,11 @@
 <li><p>联系电话变动越频繁，说明个人信息变动越大，风险也越大</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NAME_EDUCATION_TYPE</span></code> : 教育水平</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NAME_EDUCATION_TYPE</span></code> : 教育水平</p>
+<ul>
+<li><p>Lower secondary：初中（最低）;Secondary / secondary special：高中 / 中专（数据中的“大部队”，占比约 70%）；Incomplete higher：大学肄业（上过大学但没毕业）；Higher education：本科 / 研究生（高等教育）；academic degree：博士 / 教授（最高，但人数极少）</p></li>
+</ul>
+</li>
 </ul>
 <p><strong>车</strong></p>
 <ul class="simple">
@@ -734,12 +738,8 @@
 </ul>
 <p><strong>社交圈</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">OBS_30_CNT_SOCIAL_CIRCLE</span></code>: 过去30天内社交圈中有多少人违约; <code class="docutils literal notranslate"><span class="pre">OBS_60_CNT_SOCIAL_CIRCLE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DEF_30_CNT_SOCIAL_CIRCLE</span></code>: 过去30天内社交圈中有多少人违约, 严重逾期; <code class="docutils literal notranslate"><span class="pre">DEF_60_CNT_SOCIAL_CIRCLE</span></code></p>
-<ul>
-<li><p>社交圈的风险情况，社交圈风险大，个人风险也大</p></li>
-</ul>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OBS_30_CNT_SOCIAL_CIRCLE</span></code>: 过去30天内社交圈中有多少人借钱; <code class="docutils literal notranslate"><span class="pre">OBS_60_CNT_SOCIAL_CIRCLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEF_30_CNT_SOCIAL_CIRCLE</span></code>: 过去30天内社交圈中有多少人违约, <code class="docutils literal notranslate"><span class="pre">DEF_60_CNT_SOCIAL_CIRCLE</span></code></p></li>
 </ul>
 <p><strong>家庭状况</strong>：</p>
 <ul class="simple">

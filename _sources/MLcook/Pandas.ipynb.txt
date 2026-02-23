@@ -4112,6 +4112,24 @@
   },
   {
    "cell_type": "markdown",
+   "id": "8086eeb7",
+   "metadata": {},
+   "source": [
+    "统计百分比"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c097044f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "s.value_counts(normalize=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "6f91caa3",
    "metadata": {},
    "source": [
@@ -6511,7 +6529,8 @@
     "### 统计特征函数\n",
     "- 都会保留索引的，值为df\n",
     "- \n",
-    "- `sum` ; `quantile()`; `mean()`"
+    "- `sum` ; `quantile()`; `mean()`\n",
+    "- `map`"
    ]
   },
   {

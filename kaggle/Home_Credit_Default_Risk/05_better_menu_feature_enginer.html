@@ -371,6 +371,7 @@
 <li><p>有效特征面对假标签表现得应该很差</p></li>
 <li><p>无效特征面对真假标签表现得差不多</p></li>
 </ul>
+<p><a class="reference external" href="https://www.kaggle.com/code/ogrellier/lighgbm-with-selected-features/script">手动特征工程</a></p>
 <p>我们可以用将标签不断打散，每次lgbm计算特征，就可以识别出无效特征了</p>
 <p>以apptrain开始</p>
 <div class="cell docutils container">
@@ -383,7 +384,11 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMClassifier</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinalEncoder</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> 
 </pre></div>
 </div>
 </div>
@@ -411,10 +416,15 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">train_features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
     <span class="n">train_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">test_features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">test_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="null-importance">
+<h2>null importance<a class="headerlink" href="#null-importance" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_features_importance</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
@@ -443,18 +453,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.027028 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-</pre></div>
-</div>
-</div>
 </div>
 <p>多次shuffle</p>
 <ul class="simple">
@@ -476,632 +474,6 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032864 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029712 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029652 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.130851 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.079782 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.034616 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.027148 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.193818 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.103793 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.035159 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032477 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.033302 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.055462 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.026035 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028737 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.105043 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.027749 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.046472 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.054123 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
-[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032326 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028027 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.124021 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.040548 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028537 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.105946 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.040341 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.079202 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.102403 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.213611 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Warning] No further splits with positive gain, best gain: -inf
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.110559 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.072233 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.027134 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028677 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.075606 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.041994 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031788 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.038466 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029079 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.065724 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028184 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.036971 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.035856 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.037599 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.038043 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031128 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032210 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.028938 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.036410 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.030032 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031763 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.038254 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.035795 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.038496 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.110063 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032644 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031928 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.128478 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.114100 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.030417 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.105439 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.111347 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.035273 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.108299 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029419 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.036884 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.110405 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029075 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031503 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.108268 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.037066 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.112126 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.114350 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031500 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032678 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.110729 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.032485 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.137324 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.037150 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031644 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-[LightGBM] [Info] Number of positive: 24825, number of negative: 282686
-[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.029730 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 11311
-[LightGBM] [Info] Number of data points in the train set: 307511, number of used features: 116
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080729 -&gt; initscore=-2.432486
-[LightGBM] [Info] Start training from score -2.432486
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1109,120 +481,6 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fi_dfs</span><span class="p">[</span><span class="n">fi_dfs</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NAME_CONTRACT_TYPE&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gain</th>
-      <th>split</th>
-      <th>feature</th>
-      <th>run</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>13.512700</td>
-      <td>1</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>120</th>
-      <td>28.182740</td>
-      <td>3</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>240</th>
-      <td>67.178120</td>
-      <td>6</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>360</th>
-      <td>37.220660</td>
-      <td>3</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>480</th>
-      <td>16.645969</td>
-      <td>2</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>9000</th>
-      <td>28.127130</td>
-      <td>3</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>76</td>
-    </tr>
-    <tr>
-      <th>9120</th>
-      <td>38.784301</td>
-      <td>3</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>77</td>
-    </tr>
-    <tr>
-      <th>9240</th>
-      <td>12.401240</td>
-      <td>2</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>78</td>
-    </tr>
-    <tr>
-      <th>9360</th>
-      <td>6.858290</td>
-      <td>1</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>79</td>
-    </tr>
-    <tr>
-      <th>9480</th>
-      <td>22.183210</td>
-      <td>2</td>
-      <td>NAME_CONTRACT_TYPE</td>
-      <td>80</td>
-    </tr>
-  </tbody>
-</table>
-<p>80 rows × 4 columns</p>
-</div></div></div>
 </div>
 <p>我们可以绘制 这些重要性得分布，</p>
 <ul class="simple">
@@ -1234,101 +492,6 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gain</th>
-      <th>split</th>
-      <th>feature</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>94</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>FLAG_DOCUMENT_2</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>FLAG_DOCUMENT_10</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>LIVE_REGION_NOT_WORK_REGION</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>REG_REGION_NOT_WORK_REGION</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>REG_REGION_NOT_LIVE_REGION</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>4363.998517</td>
-      <td>136</td>
-      <td>AMT_CREDIT</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>11747.992508</td>
-      <td>479</td>
-      <td>ORGANIZATION_TYPE</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>11884.250595</td>
-      <td>246</td>
-      <td>EXT_SOURCE_1</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>33531.526984</td>
-      <td>175</td>
-      <td>EXT_SOURCE_2</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>40844.902603</td>
-      <td>227</td>
-      <td>EXT_SOURCE_3</td>
-    </tr>
-  </tbody>
-</table>
-<p>120 rows × 3 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1361,9 +524,6 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/f6f0a368d466705e48fac17c7b91156c91fcab4fa6504af95d6fcd2575eb73b8.png" src="../../_images/f6f0a368d466705e48fac17c7b91156c91fcab4fa6504af95d6fcd2575eb73b8.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1371,11 +531,15 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/1d94056cac41327fe42bfde8d7d4e926f594a6baf9208719533268e456f75dc0.png" src="../../_images/1d94056cac41327fe42bfde8d7d4e926f594a6baf9208719533268e456f75dc0.png" />
 </div>
-</div>
-<p>我们以分布得75分位数 作为 分布值， 去与真实对比。 越接近1越好。为了更方便，使用np.log， 0区分</p>
+<p>我们以分布得75分位数 作为 分布值， 去与真实对比。</p>
+<ul class="simple">
+<li><p>如果大于这个值，表示真实特征表现优于75%的噪声</p>
+<ul>
+<li><p>即 score&gt;0 。 我们使用log以0分界，可以更好的剔除</p></li>
+</ul>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_feature_score</span><span class="p">(</span><span class="n">actual_importance</span><span class="p">,</span> <span class="n">shuffle_importances</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span>
@@ -1398,40 +562,6 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>feature</th>
-      <th>gain_score</th>
-      <th>split_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>CODE_GENDER</td>
-      <td>3.293217</td>
-      <td>1.7492</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1471,10 +601,765 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_score</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">features_removed_by_gain_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="p">[</span><span class="n">features_score</span><span class="p">[</span><span class="s1">&#39;gain_score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">features_removed_by_split_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="p">[</span><span class="n">features_score</span><span class="p">[</span><span class="s1">&#39;split_score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">features_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">features_removed_by_gain_score</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">features_removed_by_split_score</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_removed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_features_clean</span> <span class="o">=</span> <span class="n">train_features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">features_removed</span><span class="p">)</span>
+<span class="n">test_features_clean</span> <span class="o">=</span> <span class="n">test_features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">features_removed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lgbm_model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>      
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>   
+<span class="p">)</span>
+<span class="n">lgbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_features_clean</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_pred</span> <span class="o">=</span> <span class="n">lgbm_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train_features_clean</span><span class="p">)</span>
+<span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span> <span class="n">train_pred</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ids: 测试集的 SK_ID_CURR</span>
+<span class="sd">    pred: 模型预测概率</span>
+<span class="sd">    name: 你的实验备注 (如 &#39;lgb_v1&#39;, &#39;baseline&#39;)</span>
+<span class="sd">    feature_count: 可选，记录模型使用了多少个特征</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1. 创建提交 DataFrame</span>
+    <span class="n">submit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">:</span> <span class="n">ids</span><span class="p">,</span>
+        <span class="s1">&#39;TARGET&#39;</span><span class="p">:</span> <span class="n">pred</span>
+    <span class="p">})</span>
+
+    <span class="c1"># 2. 生成时间戳 (格式: 0213_1530)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m</span><span class="si">%d</span><span class="s2">_%H%M&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># 3. 构造文件名</span>
+    <span class="c1"># 格式: 0213_1530_lgb_v1_f542.csv</span>
+    <span class="n">f_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_f</span><span class="si">{</span><span class="n">feature_count</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">feature_count</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">f_str</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    
+    <span class="c1"># 4. 确保保存目录存在 (可选)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">)</span>
+    
+    <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    
+    <span class="c1"># 5. 保存并打印提示</span>
+    <span class="n">submit_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">submit_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>手动特征工程<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>相比之前手动特征工程，我们会构造更多的领域特征</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="application-train-test">
+<h3>application_train/test<a class="headerlink" href="#application-train-test" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">app_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+<span class="n">app_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_test.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_train</span><span class="p">)</span><span class="si">}</span><span class="s1">, test </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;app </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5545c53391d87b8d59a11b0ec43cebb0179c0a2e7e570f5b088252ab14340b58.png" src="../../_images/5545c53391d87b8d59a11b0ec43cebb0179c0a2e7e570f5b088252ab14340b58.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
+app 356255
+</pre></div>
 </div>
 </div>
+</div>
+<section id="code-gender">
+<h4>CODE_GENDER<a class="headerlink" href="#code-gender" title="Link to this heading">#</a></h4>
+<p>概率柱状图。</p>
+<ul class="simple">
+<li><p>高度表示， 违约人数/总人数。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;XNA&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="days-birth">
+<h4>DAYS_BIRTH<a class="headerlink" href="#days-birth" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>岁数分组</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_age</span><span class="p">,</span> <span class="n">max_age</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;birth min age:</span><span class="si">{</span><span class="n">min_age</span><span class="si">}</span><span class="s1">, max age: </span><span class="si">{</span><span class="n">max_age</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_AGE_BIN&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;NEW_AGE_BIN&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;各年龄段的违约率&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>随着年龄增加，违约率逐渐降低</p>
+</section>
+<section id="days-registration">
+<h4>DAYS_REGISTRATION<a class="headerlink" href="#days-registration" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>户口本更新时间</p></li>
+<li><p>更新时间离得越远，人越稳定</p></li>
+<li><p>与年龄 比率，  比例越大越稳定</p></li>
+<li><p>着重标识最近一年修改的</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_YEARS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_REGISTRATION_TO_AGE_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;NEW_REGISTRATION_TO_AGE_RATIO&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最近一年内更新户口居住地址</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_1year_RECENT_REGISTRATION_CHANGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;FLAG_1year_RECENT_REGISTRATION_CHANGE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;最近一年更新居住地址&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最近更新户口居住地址的人可能违约概率大。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;RECENT_3month_REGISTRATION_CHANGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">31</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;RECENT_3month_REGISTRATION_CHANGE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;最近3个月更新居住地址&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="days-id-publish">
+<h4>DAYS_ID_PUBLISH<a class="headerlink" href="#days-id-publish" title="Link to this heading">#</a></h4>
+<p>和DAYS_REGISTRATION强相关嘛？</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">,</span> <span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>相关性不强，我们需要单独处理</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;YEAR_ID_PUBLISH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">]</span><span class="o">/-</span><span class="mi">365</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YEAR_ID_PUBLISH&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;身份证更新年限&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们构造一个新特征，标识</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_DIFF_ID_REG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;DAYS_DIFF_ID_REG&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;身份证更新与居住地更新差值&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="days-last-phone-change">
+<h4>DAYS_LAST_PHONE_CHANGE<a class="headerlink" href="#days-last-phone-change" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_DAYS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_PHONE_CHANGE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_DAYS&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">730</span><span class="p">,</span> <span class="mi">1095</span><span class="p">,</span> <span class="mi">4000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_category_stat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 分类特征 计数、违约率、缺失值多少， 双轴图</span>
+<span class="sd">    可以看到长尾</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temp_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">feature</span><span class="p">,</span> <span class="n">target</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">percent</span> <span class="o">=</span> <span class="n">temp_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt;&gt; </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% missing values!&#39;</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># 按照计数从高到低</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>        <span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;样本总数 (Count)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1"> 的数量与违约率综合分析&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;平均违约率 (Target Mean)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;PHONE_CHANGE_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PHONE_CHANGE_BIN has 12.22% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/c9a25046dd945eaeb4b942ec4ba29689b7b202caac63c7e10aa7ec2543ea22d5.png" src="../../_images/c9a25046dd945eaeb4b942ec4ba29689b7b202caac63c7e10aa7ec2543ea22d5.png" />
+</div>
+</div>
+<p>我们可以看到哪些最近更新手机号的人，确实往往具有更高的违约率.</p>
+</section>
+<section id="flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">
+<h4>FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL<a class="headerlink" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>我们可以将这个联系方式组合为一个特征。组合时候应该有权重</p></li>
+<li><p>一个人必须有FLAG_MOBIL</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CONTACT_SCORE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_EMAIL&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_WORK_PHONE&#39;</span><span class="p">]</span>  <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_PHONE&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_CONT_MOBILE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_EMP_PHONE&#39;</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">contact_cols</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;FLAG_EMAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_WORK_PHONE&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_PHONE&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;FLAG_CONT_MOBILE&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_MOBIL&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_EMP_PHONE&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contact_cols</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Target Mean by </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">)</span> <span class="c1"># 统一 y 轴刻度，方便横向对比“谁的柱子更高</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;CONTACT_SCORE&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>这些特征都没有用，都不需要。组合起来也看不出什么。</p>
+</section>
+<section id="name-education-type">
+<h4>NAME_EDUCATION_TYPE<a class="headerlink" href="#name-education-type" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5a28cd8dcc6a64d3b701e12bc445b1c7483e281e481a8d70f61c60354b305e34.png" src="../../_images/5a28cd8dcc6a64d3b701e12bc445b1c7483e281e481a8d70f61c60354b305e34.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>具有长尾。</p></li>
+<li><p>初中学历作为最低学历，却具备最大违约率； 博士学位作为最高学历，具备最低违约率；</p></li>
+<li><p>这是一个<strong>有序</strong>的特征，显然，学历越高违约率越低</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_EDUCATION_TYPE
+Secondary / secondary special    252379
+Higher education                  87379
+Incomplete higher                 12001
+Lower secondary                    4291
+Academic degree                     205
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+    <span class="s1">&#39;Lower secondary&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;Secondary / secondary special&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;Incomplete higher&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;Higher education&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;Academic degree&#39;</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">})</span>
+<span class="n">app</span><span class="p">[</span><span class="s1">&#39;EDUCATION_ORDINAL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flag-own-car">
+<h4>FLAG_OWN_CAR<a class="headerlink" href="#flag-own-car" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ea28dc5e86cea04f399bf4183ce226ef1d829de2764b4bc525a44ee0a3f5a854.png" src="../../_images/ea28dc5e86cea04f399bf4183ce226ef1d829de2764b4bc525a44ee0a3f5a854.png" />
+</div>
+</div>
+<p>有车的违约率更低</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FLAG_OWN_CAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+    <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FLAG_OWN_CAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NEW_FLAG_OWN_CAR
+0    235235
+1    121020
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="own-car-age">
+<h4>OWN_CAR_AGE<a class="headerlink" href="#own-car-age" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;OWN_CAR_AGE&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/d41a8a1abc4ba61908d70620538df59ce4ed597e8767d41bcea8f5ab551112c7.png" src="../../_images/d41a8a1abc4ba61908d70620538df59ce4ed597e8767d41bcea8f5ab551112c7.png" />
+</div>
+</div>
+<p>看起来没什么区别， 但是右边的长尾效应和异常值 把左边压扁了</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;OWN_CAR_AGE&#39;, ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/04e0837b540d4febf7fb06c1630c66c7afb759b284b361330e711e7a0149d75d.png" src="../../_images/04e0837b540d4febf7fb06c1630c66c7afb759b284b361330e711e7a0149d75d.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>老爷车60-90年算异常数据嘛？</p></li>
+</ol>
+<ul class="simple">
+<li><p>不能，因为显然具有特征意义。</p></li>
+<li><p>一方面，拿出一个新特征，来标识； 另一方面，通过clip到35年，去掉长尾效应</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_OWN_CAR_AGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
+<span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_IS_OLD_CAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">60</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CAR_AGE_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_OWN_CAR_AGE&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_CAR_AGE_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8329a0bbb1aec296e4db7727f22140be1a30f577c6b420839fc4bcf09d0531cc.png" src="../../_images/8329a0bbb1aec296e4db7727f22140be1a30f577c6b420839fc4bcf09d0531cc.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>总体来说，汽车年限越高， 违约率越高.</p></li>
+<li><p>刚买3年内的车，违约率也会高点</p></li>
+</ul>
+</section>
+<section id="id3">
+<h4>房屋评价得分<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>对于房屋详细的特征，他们不重要。我们不要一个个处理！</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>尝试构建房屋评分</p></li>
+<li><p>只采用mode</p></li>
+<li><p>挑几个关键特征</p></li>
+</ol>
+<section id="flag-own-realty">
+<h5>FLAG_OWN_REALTY<a class="headerlink" href="#flag-own-realty" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_REALTY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/28f6ceb9d1787fd1ee68b090c80fd54ab197ac2246735688ac364b180ad9dc89.png" src="../../_images/28f6ceb9d1787fd1ee68b090c80fd54ab197ac2246735688ac364b180ad9dc89.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>就是没房的违约率更高</p></li>
+</ul>
+</section>
+<section id="totalarea-mode">
+<h5>TOTALAREA_MODE<a class="headerlink" href="#totalarea-mode" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TOTALAREA_MODE&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;TOTALAREA_MODE&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/fa146ca6493f88ad916e4289da446b755b69c19cfd163dc557af5d03cbe4981a.png" src="../../_images/fa146ca6493f88ad916e4289da446b755b69c19cfd163dc557af5d03cbe4981a.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h4>地区住址<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>通过求和描述一个人 居住地 工作地 老家 的稳定性</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_LOCATION_INCONSISTENT_COUNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_CITY_NOT_LIVE_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
+                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_CITY_NOT_WORK_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
+                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;LIVE_CITY_NOT_WORK_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
+                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_REGION_NOT_LIVE_REGION&#39;</span><span class="p">]</span><span class="o">+</span>
+                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_REGION_NOT_WORK_REGION&#39;</span><span class="p">]</span> <span class="o">+</span>
+                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;LIVE_REGION_NOT_WORK_REGION&#39;</span><span class="p">]</span>
+                                          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_LOCATION_INCONSISTENT_COUNT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_LOCATION_INCONSISTENT_COUNT has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/ebf734461b9ce755b08e6b638a42f24374b818b36df7db4d97048013a92cc517.png" src="../../_images/ebf734461b9ce755b08e6b638a42f24374b818b36df7db4d97048013a92cc517.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>那些非0的值，往往确实更加具备更高违约率</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_REGION_POPULATION_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_POPULATION_RELATIVE&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_REGION_POPULATION_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; INTER_REGION_POPULATION_BIN has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/4ab28628d40727b4427d62c703f491048c14a2688b0b17df2101447b59e73480.png" src="../../_images/4ab28628d40727b4427d62c703f491048c14a2688b0b17df2101447b59e73480.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>依然是通过bin分桶，能够看到局部之间的下降趋势。地区密度越大（大城市），违约率越低。</p></li>
+</ul>
+<p>对于地区和城市评级，我们通过diff构造</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_REGION_RATING_DIFF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT_W_CITY&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_REGION_RATING_DIFF&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; INTER_REGION_RATING_DIFF has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/958c950332e334ef6376a33c8c5efac807eead3a487318fdb87e9332c6d8167b.png" src="../../_images/958c950332e334ef6376a33c8c5efac807eead3a487318fdb87e9332c6d8167b.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>分类数过少。极度不平均</p></li>
+<li><p>极端的类并未展示出极端的违约率。
+不采用</p></li>
+</ul>
+</section>
+<section id="id5">
+<h4>社交圈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;OBS_30_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">,</span> <span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <td>1.000000</td>
+      <td>0.998768</td>
+    </tr>
+    <tr>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+      <td>0.998768</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>相关性太高了。我们只采用60天的数据</p></li>
+<li><p>“近朱者赤，近墨者黑”， DEF逾期人数更加重要</p></li>
+<li><p>我们假设这个人有100人朋友圈，DEF/OBS表示 这个朋友圈坏账率</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/ce18a8fb76c7a736d1c3a9a07da0841b0d5b082a6e7db4cb7b4264cad0814b3f.png" src="../../_images/ce18a8fb76c7a736d1c3a9a07da0841b0d5b082a6e7db4cb7b4264cad0814b3f.png" />
+</div>
+</div>
+<p>clip去掉长尾噪声，</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/f933e3038662767ee6904711eeef7ffe3d7dca2ef0cf9f808394091a3e0f6dac.png" src="../../_images/f933e3038662767ee6904711eeef7ffe3d7dca2ef0cf9f808394091a3e0f6dac.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_SOCIAL_RATIO_60 has 53.85% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/a177c0c7ad0c8c2fd99449f93ca8275803c990d9e1bbd49ed6c6c4c24ad145d6.png" src="../../_images/a177c0c7ad0c8c2fd99449f93ca8275803c990d9e1bbd49ed6c6c4c24ad145d6.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
 </section>
 
 
@@ -1497,6 +1382,40 @@ And if memory is not enough, you can set `force_col_wise=true`.
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-importance">null importance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">手动特征工程</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-train-test">application_train/test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-gender">CODE_GENDER</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-birth">DAYS_BIRTH</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-registration">DAYS_REGISTRATION</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-id-publish">DAYS_ID_PUBLISH</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-last-phone-change">DAYS_LAST_PHONE_CHANGE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#name-education-type">NAME_EDUCATION_TYPE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-own-car">FLAG_OWN_CAR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#own-car-age">OWN_CAR_AGE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">房屋评价得分</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-own-realty">FLAG_OWN_REALTY</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#totalarea-mode">TOTALAREA_MODE</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">地区住址</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">社交圈</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">

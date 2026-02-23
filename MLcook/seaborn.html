@@ -418,8 +418,6 @@
 </div>
 </div>
 </div>
-<section id="id1">
-<h2>4.16　用Seaborn做数据可视化<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>seaborn 接口返回值：</p>
 <ul class="simple">
 <li><p>ax: 表示单图，</p></li>
@@ -461,7 +459,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 <section id="seabornmatplotlib">
-<h3>4.16.1　Seaborn与Matplotlib<a class="headerlink" href="#seabornmatplotlib" title="Link to this heading">#</a></h3>
+<h2>4.16.1　Seaborn与Matplotlib<a class="headerlink" href="#seabornmatplotlib" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>如果是ax-level接口,返回ax对象; 如histplot、scatterplt</p></li>
 <li><p>figure-level接口，返回网格对象，通过.figure, .axes获取; 如pairplot</p></li>
@@ -520,12 +518,10 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 <p><strong>更好看了seaborn</strong></p>
-</section>
-<section id="id2">
-<h3>4.16.2　Seaborn图形介绍<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>默认很多时候出发legend</p>
+</section>
 <section id="kde">
-<h4>1. 频次直方图、KDE和密度图：数据分布<a class="headerlink" href="#kde" title="Link to this heading">#</a></h4>
+<h2>1. 频次直方图、KDE和密度图：数据分布<a class="headerlink" href="#kde" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span> <span class="c1"># 生成2000个二维正太分布点</span>
@@ -591,8 +587,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id3">
-<h4>2. 矩阵图： 多组2变量关系<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<section id="id1">
+<h2>2. 矩阵图： 多组2变量关系<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>对多维数据可视化，常常需要所有两个变量的关系，探索不同维度之间的相关性。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -692,8 +688,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id4">
-<h4>3. 分面频次直方图：按类别的直方图。 按类别分布<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<section id="id2">
+<h2>3. 分面频次直方图：按类别的直方图。 按类别分布<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span> 
@@ -798,8 +794,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id5">
-<h4>4. 箱线图： 分位点<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<section id="id3">
+<h2>4. 箱线图： 分位点<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>箱体：Q1-Q3分位点. 四分位距<code class="docutils literal notranslate"><span class="pre">IQR</span> <span class="pre">=</span> <span class="pre">Q3</span> <span class="pre">-</span> <span class="pre">Q1</span></code></p></li>
 <li><p>箱体里面横线：median</p></li>
@@ -820,8 +816,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id6">
-<h4>5. 联合分布<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<section id="id4">
+<h2>5. 联合分布<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 jointplot 创建 hexbin 图</span>
@@ -845,8 +841,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id7">
-<h4>6. 条形图: 每个分类统计<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<section id="id5">
+<h2>6. 条形图: 每个分类统计<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;planets&#39;</span><span class="p">)</span> 
@@ -963,8 +959,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id8">
-<h4>7. 热图<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<section id="id6">
+<h2>7. 热图<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成 5x5 矩阵</span>
@@ -1014,8 +1010,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id9">
-<h4>7. 等高线<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<section id="id7">
+<h2>7. 等高线<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -1038,8 +1034,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 </section>
-<section id="id10">
-<h4>8. 折线图<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<section id="lineplot">
+<h2>8. lineplot 折线图<a class="headerlink" href="#lineplot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -1065,8 +1061,6 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <img alt="../_images/4d64b727af5ab3c41f50e9cc0ee8a12d5489dfd522653e90159f30d0625617f2.png" src="../_images/4d64b727af5ab3c41f50e9cc0ee8a12d5489dfd522653e90159f30d0625617f2.png" />
 </div>
 </div>
-</section>
-</section>
 </section>
 <section id="kdeplot">
 <h2>KdePlot 核密度估计<a class="headerlink" href="#kdeplot" title="Link to this heading">#</a></h2>
@@ -1302,9 +1296,234 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </section>
 <section id="barplot">
 <h2>barplot<a class="headerlink" href="#barplot" title="Link to this heading">#</a></h2>
+<p>分类的频率图, 显示误差。 看不到计数</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flights</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flights&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flights</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>passengers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1949</td>
+      <td>Jan</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1949</td>
+      <td>Feb</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1949</td>
+      <td>Mar</td>
+      <td>132</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1949</td>
+      <td>Apr</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1949</td>
+      <td>May</td>
+      <td>121</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">flights</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;passengers&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;passengers&#39;, ylabel=&#39;year&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/5f3363bf0f3e79f04d9fb69bae6488afb30c457c263b2bd96aaa8e4fedc1d22e.png" src="../_images/5f3363bf0f3e79f04d9fb69bae6488afb30c457c263b2bd96aaa8e4fedc1d22e.png" />
+</div>
+</div>
+</section>
+<section id="pointplot">
+<h2>pointplot 点图<a class="headerlink" href="#pointplot" title="Link to this heading">#</a></h2>
+<p>将每组数据转为一个点：均值及误差</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;species&#39;, ylabel=&#39;body_mass_g&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/901446210e9714a1583d00071df72ca7a519daf744c95169fb1aad9b6faa7ebe.png" src="../_images/901446210e9714a1583d00071df72ca7a519daf744c95169fb1aad9b6faa7ebe.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;island&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;island&#39;, ylabel=&#39;body_mass_g&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/c58de36417c94d4360bda2cfe466b50a0bbc598042d884df249bb1fc8f282c19.png" src="../_images/c58de36417c94d4360bda2cfe466b50a0bbc598042d884df249bb1fc8f282c19.png" />
+</div>
+</div>
+</section>
+<section id="countplot">
+<h2>countplot 计数图<a class="headerlink" href="#countplot" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;survived&quot;</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;survived&quot;</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;sns&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2037,24 +2256,20 @@ dtype: object
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.16　用Seaborn做数据可视化</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seabornmatplotlib">4.16.1　Seaborn与Matplotlib</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.16.2　Seaborn图形介绍</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kde">1. 频次直方图、KDE和密度图：数据分布</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 矩阵图： 多组2变量关系</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 分面频次直方图：按类别的直方图。 按类别分布</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4. 箱线图： 分位点</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5. 联合分布</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6. 条形图: 每个分类统计</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7. 热图</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7. 等高线</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">8. 折线图</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seabornmatplotlib">4.16.1　Seaborn与Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kde">1. 频次直方图、KDE和密度图：数据分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. 矩阵图： 多组2变量关系</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 分面频次直方图：按类别的直方图。 按类别分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. 箱线图： 分位点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5. 联合分布</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6. 条形图: 每个分类统计</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7. 热图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7. 等高线</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lineplot">8. lineplot 折线图</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kdeplot">KdePlot 核密度估计</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#barplot">barplot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointplot">pointplot 点图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#countplot">countplot 计数图</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pairgrid">Pairgrid 成对关系网格</a></li>
 </ul>
   </nav></div>
