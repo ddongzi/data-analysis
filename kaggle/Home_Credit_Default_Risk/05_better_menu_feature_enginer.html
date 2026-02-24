@@ -1339,22 +1339,451 @@ Name: count, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_SOCIAL_RATIO_60 has 53.85% missing values!
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../../_images/a177c0c7ad0c8c2fd99449f93ca8275803c990d9e1bbd49ed6c6c4c24ad145d6.png" src="../../_images/a177c0c7ad0c8c2fd99449f93ca8275803c990d9e1bbd49ed6c6c4c24ad145d6.png" />
+<img alt="../../_images/44cf5c3d39d29d22bcbbbb507fae3c5c59075787d45e675432cfe4cbc7fbd7b7.png" src="../../_images/44cf5c3d39d29d22bcbbbb507fae3c5c59075787d45e675432cfe4cbc7fbd7b7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_SOCIAL_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_SOCIAL_BIN has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/d024e9371e542f17679faec2255858a55f225f53bfd1cdd1fdf7a44e289ab26e.png" src="../../_images/d024e9371e542f17679faec2255858a55f225f53bfd1cdd1fdf7a44e289ab26e.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>或许是有用的，这些少数的数据有着很高的违约率</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>家庭<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_FAMILY_STATUS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_FAMILY_STATUS has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/8c1242533413ac405375f5fe0a7ebe27d8d71292e44e1f9807f063684438173f.png" src="../../_images/8c1242533413ac405375f5fe0a7ebe27d8d71292e44e1f9807f063684438173f.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>同居和单身的违约率比较高</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;CNT_FAM_MEMBERS&#39;</span><span class="p">,</span> <span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CNT_FAM_MEMBERS</th>
+      <th>CNT_CHILDREN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CNT_FAM_MEMBERS</th>
+      <td>1.000000</td>
+      <td>0.878912</td>
+    </tr>
+    <tr>
+      <th>CNT_CHILDREN</th>
+      <td>0.878912</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>高度相关，保留一个</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; CNT_CHILDREN has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/aa9ea17f398934898bff114ca7b9515309e24a6a8d3f732f0d7d0483db17652a.png" src="../../_images/aa9ea17f398934898bff114ca7b9515309e24a6a8d3f732f0d7d0483db17652a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CNT_CHILDREN
+0     0.701902
+1     0.198237
+2     0.086169
+3     0.011935
+4     0.001342
+5     0.000269
+6     0.000067
+7     0.000022
+8     0.000014
+11    0.000008
+14    0.000008
+9     0.000006
+12    0.000006
+10    0.000006
+19    0.000006
+20    0.000003
+Name: proportion, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FAM_CNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_FAM_CNT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_FAM_CNT has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/21351fd3159ed8115f5fcfde016c6cf841f09c9359fc5ffe12048b45db33914b.png" src="../../_images/21351fd3159ed8115f5fcfde016c6cf841f09c9359fc5ffe12048b45db33914b.png" />
+</div>
+</div>
+</section>
+<section id="id7">
+<h4>财务能力<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>负债收入比</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1678          25650.0
+20727         25650.0
+186643        26100.0
+240137        26100.0
+246104        26100.0
+             ...     
+131127      6750000.0
+77768       9000000.0
+246858     13500000.0
+203693     18000090.0
+12840     117000000.0
+Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/a95d882f80f7334fdfa40828549748809db0db603c12987ce0a31c88ed6cfd5c.png" src="../../_images/a95d882f80f7334fdfa40828549748809db0db603c12987ce0a31c88ed6cfd5c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/e988ac0e2cfcf4aec0eab57616141c7a3882c426c59e57c5de570b5a952ec67c.png" src="../../_images/e988ac0e2cfcf4aec0eab57616141c7a3882c426c59e57c5de570b5a952ec67c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span>
+<span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO_BIN&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_ANNUITY_INCOME_RATIO_BIN has 0.01% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/bbb738b9d06358583efb2e53fbd29757cae34ba72cc2a2b9cd080908e7625f11.png" src="../../_images/bbb738b9d06358583efb2e53fbd29757cae34ba72cc2a2b9cd080908e7625f11.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">,</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMT_ANNUITY</th>
+      <th>AMT_CREDIT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AMT_ANNUITY</th>
+      <td>1.000000</td>
+      <td>0.762521</td>
+    </tr>
+    <tr>
+      <th>AMT_CREDIT</th>
+      <td>0.762521</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_CREDIT_TO_ANNUITY&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;INTER_CREDIT_TO_ANNUITY&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;INTER_CREDIT_TO_ANNUITY&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f6c386489b603e4a8dabeab6217d9503e542b122f89e3c4a734c0b483308fc43.png" src="../../_images/f6c386489b603e4a8dabeab6217d9503e542b122f89e3c4a734c0b483308fc43.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>近似于贷款期数</p></li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>278
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/2cd74532de457575b734af8021f77c6842a6d5334c04eeb388bbd89ecd728374.png" src="../../_images/2cd74532de457575b734af8021f77c6842a6d5334c04eeb388bbd89ecd728374.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.5</span> <span class="p">,</span><span class="mf">1.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+<span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_CREDIT_TO_GOODS_RATIO_BIN has 0.08% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/6be5f0670ab14152ea794e9ee5fe3d575e376a98e214b6c496a07ff8b41708c7.png" src="../../_images/6be5f0670ab14152ea794e9ee5fe3d575e376a98e214b6c496a07ff8b41708c7.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_INCOME_TYPE
+Working                 183307
+Commercial associate     83019
+Pensioner                64635
+State servant            25235
+Unemployed                  23
+Student                     20
+Businessman                 11
+Maternity leave              5
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>太少了，不具备特征意义</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_INCOME_TYPE has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/00d2754515a38bf33eaad601851512c545e7b3b5d14a3aaa30839771ca98ba91.png" src="../../_images/00d2754515a38bf33eaad601851512c545e7b3b5d14a3aaa30839771ca98ba91.png" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_HOUSING_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_HOUSING_TYPE
+House / apartment      316513
+With parents            17074
+Municipal apartment     12800
+Rented apartment         5599
+Office apartment         3024
+Co-op apartment          1245
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="s1">&#39;NAME_HOUSING_TYPE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_HOUSING_TYPE has 0.00% missing values!
+</pre></div>
+</div>
+<img alt="../../_images/77d2437a8e35ec6cdcf16bf4d4ead06c08f7b102fbb6d4f39fb0de9cad47ff28.png" src="../../_images/77d2437a8e35ec6cdcf16bf4d4ead06c08f7b102fbb6d4f39fb0de9cad47ff28.png" />
 </div>
 </div>
 </section>
@@ -1410,6 +1839,8 @@ Name: count, dtype: int64
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">地区住址</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">社交圈</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">家庭</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">财务能力</a></li>
 </ul>
 </li>
 </ul>
