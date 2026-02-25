@@ -406,13 +406,20 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lgb</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMClassifier</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">KFold</span><span class="p">,</span><span class="n">StratifiedKFold</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="n">gc</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>
 </div>
 </div>
@@ -725,8 +732,140 @@
 <p>相比之前手动特征工程，我们会构造更多的领域特征</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">onehot_encoder</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    df: 输入的 DataFrame</span>
+<span class="sd">    nan_as_category: 是否将 NaN 视为一个独立的类别进行编码</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">original_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_cols</span><span class="p">,</span> <span class="n">dummy_na</span><span class="o">=</span><span class="n">nan_as_category</span><span class="p">)</span>
+    <span class="n">new_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">original_columns</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">new_columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>kfold将数据分为几份，每次用其中一份做验证，其他做训练。得到更稳定结果</p>
+<ul class="simple">
+<li><p>stratified=True 代表分层抽样，保持每份数据中正负样本比例相同</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ids: 测试集的 SK_ID_CURR</span>
+<span class="sd">    pred: 模型预测概率</span>
+<span class="sd">    name: 你的实验备注 (如 &#39;lgb_v1&#39;, &#39;baseline&#39;)</span>
+<span class="sd">    feature_count: 可选，记录模型使用了多少个特征</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1. 创建提交 DataFrame</span>
+    <span class="n">submit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">:</span> <span class="n">ids</span><span class="p">,</span>
+        <span class="s1">&#39;TARGET&#39;</span><span class="p">:</span> <span class="n">pred</span>
+    <span class="p">})</span>
+
+    <span class="c1"># 2. 生成时间戳 (格式: 0213_1530)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m</span><span class="si">%d</span><span class="s2">_%H%M&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># 3. 构造文件名</span>
+    <span class="c1"># 格式: 0213_1530_lgb_v1_f542.csv</span>
+    <span class="n">f_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_f</span><span class="si">{</span><span class="n">feature_count</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">feature_count</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">f_str</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    
+    <span class="c1"># 4. 确保保存目录存在 (可选)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">)</span>
+    
+    <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;submissions&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    
+    <span class="c1"># 5. 保存并打印提示</span>
+    <span class="n">submit_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">submit_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">kfold_lightgbm</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_folds</span><span class="p">,</span> <span class="n">stratified</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="c1"># 替换所有非字母、数字的字符为下划线</span>
+        <span class="c1"># 这里的正则 [^A-Za-z0-9_] 会匹配空格、斜杠、括号等所有特殊字符</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^A-Za-z0-9_]+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+        <span class="c1"># 顺便处理一下可能出现的重复下划线，比如 __</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">df</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">clean_names</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    
+    <span class="n">train_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">stratified</span><span class="p">:</span>
+        <span class="n">fold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">num_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fold</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">num_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span><span class="s1">&#39;SK_ID_BUREAU&#39;</span><span class="p">,</span><span class="s1">&#39;SK_ID_PREV&#39;</span><span class="p">,</span><span class="s1">&#39;index&#39;</span><span class="p">]]</span>
+    <span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">out_of_fold_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">submit_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n_fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">valid_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">])):</span>
+        <span class="n">dtrain</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span>
+            <span class="n">free_raw_data</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">dvalid</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">],</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">],</span>
+            <span class="n">free_raw_data</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;objective&#39;</span><span class="p">:</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="s1">&#39;auc&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="s1">&#39;num_leaves&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span>
+            <span class="n">train_set</span><span class="o">=</span><span class="n">dtrain</span><span class="p">,</span>
+            <span class="n">valid_sets</span><span class="o">=</span><span class="p">[</span><span class="n">dtrain</span><span class="p">,</span> <span class="n">dvalid</span><span class="p">],</span>
+            <span class="n">num_boost_round</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">out_of_fold_preds</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dvalid</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">submit_preds</span> <span class="o">+=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">features</span><span class="p">])</span> <span class="o">/</span> <span class="n">fold</span><span class="o">.</span><span class="n">n_splits</span>
+
+        <span class="n">fold_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">fold_importance_df</span><span class="p">[</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span>
+        <span class="n">fold_importance_df</span><span class="p">[</span><span class="s2">&quot;importance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importance</span><span class="p">(</span><span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
+        <span class="n">fold_importance_df</span><span class="p">[</span><span class="s2">&quot;fold&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_fold</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">feature_importance_df</span><span class="p">,</span> <span class="n">fold_importance_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fold </span><span class="si">%2d</span><span class="s1"> AUC : </span><span class="si">%.6f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n_fold</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">dvalid</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">out_of_fold_preds</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">])))</span>
+        <span class="k">del</span> <span class="n">clf</span><span class="p">,</span> <span class="n">dtrain</span><span class="p">,</span> <span class="n">dvalid</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="n">submit</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">],</span> <span class="n">submit_preds</span><span class="p">,</span> <span class="s1">&#39;lgbm_folds&#39;</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Full AUC score </span><span class="si">%.6f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">],</span> <span class="n">out_of_fold_preds</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">feature_importance_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_importances</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="p">):</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="p">[[</span><span class="s2">&quot;feature&quot;</span><span class="p">,</span> <span class="s2">&quot;importance&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">best_features</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">feature_importance_df</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cols</span><span class="p">)]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;feature&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">best_features</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LightGBM Features (avg over folds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -745,13 +884,128 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
-app 356255
+</div>
+<section id="id3">
+<h4>函数<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">application_train_test</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    1. 异常数据处理</span>
+<span class="sd">    2. 增加一些特征</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">app_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="n">app_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_test.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_train</span><span class="p">)</span><span class="si">}</span><span class="s1">, test </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span><span class="p">])</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;app </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># </span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_ANNUITY_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EMPLOYED_TO_BIRTH_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNITY_TO_INCOME_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_INCOME_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EXT_SOURCE_PROD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EXT_SOURCE_MEAN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EXT_SOURCE_STD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">bin_feature</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_REALTY&#39;</span><span class="p">,</span> <span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]:</span>
+        <span class="n">app</span><span class="p">[</span><span class="n">bin_feature</span><span class="p">],</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="n">bin_feature</span><span class="p">])</span>
+    <span class="n">app</span><span class="p">,</span> <span class="n">new_cat_features</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;app: </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">app</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">application_train_test</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
+app 356255
+app: (356255, 264)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">kfold_lightgbm</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">num_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 19856, number of negative: 226152
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.078917 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 13524
+[LightGBM] [Info] Number of data points in the train set: 246008, number of used features: 244
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080713 -&gt; initscore=-2.432701
+[LightGBM] [Info] Start training from score -2.432701
+Fold  1 AUC : 0.767032
+[LightGBM] [Info] Number of positive: 19813, number of negative: 226196
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.210227 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 13534
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 244
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080538 -&gt; initscore=-2.435064
+[LightGBM] [Info] Start training from score -2.435064
+Fold  2 AUC : 0.766810
+[LightGBM] [Info] Number of positive: 19822, number of negative: 226187
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.123214 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 13495
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 245
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080574 -&gt; initscore=-2.434570
+[LightGBM] [Info] Start training from score -2.434570
+Fold  3 AUC : 0.768366
+[LightGBM] [Info] Number of positive: 19916, number of negative: 226093
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.121960 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 13514
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 244
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080956 -&gt; initscore=-2.429423
+[LightGBM] [Info] Start training from score -2.429423
+Fold  4 AUC : 0.764331
+[LightGBM] [Info] Number of positive: 19893, number of negative: 226116
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.111786 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 13524
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 245
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080863 -&gt; initscore=-2.430680
+[LightGBM] [Info] Start training from score -2.430680
+Fold  5 AUC : 0.762376
+Full AUC score 0.765785
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8127f0787062b526195c7523d0d128391eb059bf69ab34bdbe7b0daac8278dde.png" src="../../_images/8127f0787062b526195c7523d0d128391eb059bf69ab34bdbe7b0daac8278dde.png" />
+</div>
+</div>
+<p>构建新特征才是提分的核心！</p>
+</section>
+<section id="id4">
+<h4>个人信息<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_category_stat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">):</span>
@@ -781,7 +1035,7 @@ app 356255
 </div>
 </div>
 <section id="code-gender">
-<h4>CODE_GENDER<a class="headerlink" href="#code-gender" title="Link to this heading">#</a></h4>
+<h5>CODE_GENDER<a class="headerlink" href="#code-gender" title="Link to this heading">#</a></h5>
 <p>概率柱状图。</p>
 <ul class="simple">
 <li><p>高度表示， 违约人数/总人数。</p></li>
@@ -803,7 +1057,7 @@ app 356255
 </div>
 </section>
 <section id="days-birth">
-<h4>DAYS_BIRTH<a class="headerlink" href="#days-birth" title="Link to this heading">#</a></h4>
+<h5>DAYS_BIRTH<a class="headerlink" href="#days-birth" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p>岁数分组</p></li>
 </ul>
@@ -834,7 +1088,7 @@ app 356255
 <p>随着年龄增加，违约率逐渐降低</p>
 </section>
 <section id="days-registration">
-<h4>DAYS_REGISTRATION<a class="headerlink" href="#days-registration" title="Link to this heading">#</a></h4>
+<h5>DAYS_REGISTRATION<a class="headerlink" href="#days-registration" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p>户口本更新时间</p></li>
 <li><p>更新时间离得越远，人越稳定</p></li>
@@ -896,7 +1150,7 @@ app 356255
 </div>
 </section>
 <section id="days-id-publish">
-<h4>DAYS_ID_PUBLISH<a class="headerlink" href="#days-id-publish" title="Link to this heading">#</a></h4>
+<h5>DAYS_ID_PUBLISH<a class="headerlink" href="#days-id-publish" title="Link to this heading">#</a></h5>
 <p>和DAYS_REGISTRATION强相关嘛？</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -927,7 +1181,7 @@ app 356255
 </div>
 </section>
 <section id="days-last-phone-change">
-<h4>DAYS_LAST_PHONE_CHANGE<a class="headerlink" href="#days-last-phone-change" title="Link to this heading">#</a></h4>
+<h5>DAYS_LAST_PHONE_CHANGE<a class="headerlink" href="#days-last-phone-change" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_DAYS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_PHONE_CHANGE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
@@ -948,17 +1202,11 @@ app 356255
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PHONE_CHANGE_BIN has 12.22% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/c9a25046dd945eaeb4b942ec4ba29689b7b202caac63c7e10aa7ec2543ea22d5.png" src="../../_images/c9a25046dd945eaeb4b942ec4ba29689b7b202caac63c7e10aa7ec2543ea22d5.png" />
-</div>
 </div>
 <p>我们可以看到哪些最近更新手机号的人，确实往往具有更高的违约率.</p>
 </section>
 <section id="flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">
-<h4>FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL<a class="headerlink" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email" title="Link to this heading">#</a></h4>
+<h5>FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL<a class="headerlink" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email" title="Link to this heading">#</a></h5>
 <ol class="arabic simple">
 <li><p>我们可以将这个联系方式组合为一个特征。组合时候应该有权重</p></li>
 <li><p>一个人必须有FLAG_MOBIL</p></li>
@@ -995,15 +1243,12 @@ app 356255
 <p>这些特征都没有用，都不需要。组合起来也看不出什么。</p>
 </section>
 <section id="name-education-type">
-<h4>NAME_EDUCATION_TYPE<a class="headerlink" href="#name-education-type" title="Link to this heading">#</a></h4>
+<h5>NAME_EDUCATION_TYPE<a class="headerlink" href="#name-education-type" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/5a28cd8dcc6a64d3b701e12bc445b1c7483e281e481a8d70f61c60354b305e34.png" src="../../_images/5a28cd8dcc6a64d3b701e12bc445b1c7483e281e481a8d70f61c60354b305e34.png" />
 </div>
 </div>
 <ol class="arabic simple">
@@ -1014,17 +1259,6 @@ app 356255
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_EDUCATION_TYPE
-Secondary / secondary special    252379
-Higher education                  87379
-Incomplete higher                 12001
-Lower secondary                    4291
-Academic degree                     205
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1044,16 +1278,14 @@ Name: count, dtype: int64
 </div>
 </div>
 </section>
-<section id="flag-own-car">
-<h4>FLAG_OWN_CAR<a class="headerlink" href="#flag-own-car" title="Link to this heading">#</a></h4>
+</section>
+<section id="id5">
+<h4>车<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ea28dc5e86cea04f399bf4183ce226ef1d829de2764b4bc525a44ee0a3f5a854.png" src="../../_images/ea28dc5e86cea04f399bf4183ce226ef1d829de2764b4bc525a44ee0a3f5a854.png" />
 </div>
 </div>
 <p>有车的违约率更低</p>
@@ -1073,29 +1305,12 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NEW_FLAG_OWN_CAR
-0    235235
-1    121020
-Name: count, dtype: int64
-</pre></div>
 </div>
-</div>
-</div>
-</section>
-<section id="own-car-age">
-<h4>OWN_CAR_AGE<a class="headerlink" href="#own-car-age" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;OWN_CAR_AGE&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/d41a8a1abc4ba61908d70620538df59ce4ed597e8767d41bcea8f5ab551112c7.png" src="../../_images/d41a8a1abc4ba61908d70620538df59ce4ed597e8767d41bcea8f5ab551112c7.png" />
 </div>
 </div>
 <p>看起来没什么区别， 但是右边的长尾效应和异常值 把左边压扁了</p>
@@ -1104,12 +1319,6 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;OWN_CAR_AGE&#39;, ylabel=&#39;Count&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/04e0837b540d4febf7fb06c1630c66c7afb759b284b361330e711e7a0149d75d.png" src="../../_images/04e0837b540d4febf7fb06c1630c66c7afb759b284b361330e711e7a0149d75d.png" />
 </div>
 </div>
 <ol class="arabic simple">
@@ -1140,17 +1349,14 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8329a0bbb1aec296e4db7727f22140be1a30f577c6b420839fc4bcf09d0531cc.png" src="../../_images/8329a0bbb1aec296e4db7727f22140be1a30f577c6b420839fc4bcf09d0531cc.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>总体来说，汽车年限越高， 违约率越高.</p></li>
 <li><p>刚买3年内的车，违约率也会高点</p></li>
 </ul>
 </section>
-<section id="id3">
-<h4>房屋评价得分<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<section id="id6">
+<h4>房屋评价得分<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>对于房屋详细的特征，他们不重要。我们不要一个个处理！</p></li>
 </ul>
@@ -1167,9 +1373,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/28f6ceb9d1787fd1ee68b090c80fd54ab197ac2246735688ac364b180ad9dc89.png" src="../../_images/28f6ceb9d1787fd1ee68b090c80fd54ab197ac2246735688ac364b180ad9dc89.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>就是没房的违约率更高</p></li>
@@ -1183,17 +1386,11 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;TOTALAREA_MODE&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/fa146ca6493f88ad916e4289da446b755b69c19cfd163dc557af5d03cbe4981a.png" src="../../_images/fa146ca6493f88ad916e4289da446b755b69c19cfd163dc557af5d03cbe4981a.png" />
-</div>
 </div>
 </section>
 </section>
-<section id="id4">
-<h4>地区住址<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<section id="id7">
+<h4>地区住址<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>通过求和描述一个人 居住地 工作地 老家 的稳定性</p></li>
 </ul>
@@ -1216,12 +1413,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_LOCATION_INCONSISTENT_COUNT has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/ebf734461b9ce755b08e6b638a42f24374b818b36df7db4d97048013a92cc517.png" src="../../_images/ebf734461b9ce755b08e6b638a42f24374b818b36df7db4d97048013a92cc517.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>那些非0的值，往往确实更加具备更高违约率</p></li>
@@ -1238,12 +1429,6 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_REGION_POPULATION_BIN&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; INTER_REGION_POPULATION_BIN has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/4ab28628d40727b4427d62c703f491048c14a2688b0b17df2101447b59e73480.png" src="../../_images/4ab28628d40727b4427d62c703f491048c14a2688b0b17df2101447b59e73480.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1263,12 +1448,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; INTER_REGION_RATING_DIFF has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/958c950332e334ef6376a33c8c5efac807eead3a487318fdb87e9332c6d8167b.png" src="../../_images/958c950332e334ef6376a33c8c5efac807eead3a487318fdb87e9332c6d8167b.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>分类数过少。极度不平均</p></li>
@@ -1276,51 +1455,14 @@ Name: count, dtype: int64
 不采用</p></li>
 </ul>
 </section>
-<section id="id5">
-<h4>社交圈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<section id="id8">
+<h4>社交圈<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;OBS_30_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">,</span> <span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
-      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
-      <td>1.000000</td>
-      <td>0.998768</td>
-    </tr>
-    <tr>
-      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
-      <td>0.998768</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>相关性太高了。我们只采用60天的数据</p></li>
@@ -1332,12 +1474,6 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/ce18a8fb76c7a736d1c3a9a07da0841b0d5b082a6e7db4cb7b4264cad0814b3f.png" src="../../_images/ce18a8fb76c7a736d1c3a9a07da0841b0d5b082a6e7db4cb7b4264cad0814b3f.png" />
 </div>
 </div>
 <p>clip去掉长尾噪声，</p>
@@ -1354,12 +1490,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/f933e3038662767ee6904711eeef7ffe3d7dca2ef0cf9f808394091a3e0f6dac.png" src="../../_images/f933e3038662767ee6904711eeef7ffe3d7dca2ef0cf9f808394091a3e0f6dac.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1373,12 +1503,6 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/44cf5c3d39d29d22bcbbbb507fae3c5c59075787d45e675432cfe4cbc7fbd7b7.png" src="../../_images/44cf5c3d39d29d22bcbbbb507fae3c5c59075787d45e675432cfe4cbc7fbd7b7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1402,11 +1526,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1421,30 +1540,18 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_SOCIAL_BIN has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/d024e9371e542f17679faec2255858a55f225f53bfd1cdd1fdf7a44e289ab26e.png" src="../../_images/d024e9371e542f17679faec2255858a55f225f53bfd1cdd1fdf7a44e289ab26e.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>或许是有用的，这些少数的数据有着很高的违约率</p></li>
 </ul>
 </section>
-<section id="id6">
-<h4>家庭<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<section id="id9">
+<h4>家庭<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_FAMILY_STATUS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_FAMILY_STATUS has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/8c1242533413ac405375f5fe0a7ebe27d8d71292e44e1f9807f063684438173f.png" src="../../_images/8c1242533413ac405375f5fe0a7ebe27d8d71292e44e1f9807f063684438173f.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1456,43 +1563,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CNT_FAM_MEMBERS</th>
-      <th>CNT_CHILDREN</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>CNT_FAM_MEMBERS</th>
-      <td>1.000000</td>
-      <td>0.878912</td>
-    </tr>
-    <tr>
-      <th>CNT_CHILDREN</th>
-      <td>0.878912</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>高度相关，保留一个</p>
 <div class="cell docutils container">
@@ -1501,38 +1571,10 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; CNT_CHILDREN has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/aa9ea17f398934898bff114ca7b9515309e24a6a8d3f732f0d7d0483db17652a.png" src="../../_images/aa9ea17f398934898bff114ca7b9515309e24a6a8d3f732f0d7d0483db17652a.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CNT_CHILDREN
-0     0.701902
-1     0.198237
-2     0.086169
-3     0.011935
-4     0.001342
-5     0.000269
-6     0.000067
-7     0.000022
-8     0.000014
-11    0.000008
-14    0.000008
-9     0.000006
-12    0.000006
-10    0.000006
-19    0.000006
-20    0.000003
-Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1550,38 +1592,16 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_FAM_CNT has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/21351fd3159ed8115f5fcfde016c6cf841f09c9359fc5ffe12048b45db33914b.png" src="../../_images/21351fd3159ed8115f5fcfde016c6cf841f09c9359fc5ffe12048b45db33914b.png" />
-</div>
 </div>
 </section>
-<section id="id7">
-<h4>财务能力<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<section id="id10">
+<h4>财务能力<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>负债收入比</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1678          25650.0
-20727         25650.0
-186643        26100.0
-240137        26100.0
-246104        26100.0
-             ...     
-131127      6750000.0
-77768       9000000.0
-246858     13500000.0
-203693     18000090.0
-12840     117000000.0
-Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1592,24 +1612,12 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/a95d882f80f7334fdfa40828549748809db0db603c12987ce0a31c88ed6cfd5c.png" src="../../_images/a95d882f80f7334fdfa40828549748809db0db603c12987ce0a31c88ed6cfd5c.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/e988ac0e2cfcf4aec0eab57616141c7a3882c426c59e57c5de570b5a952ec67c.png" src="../../_images/e988ac0e2cfcf4aec0eab57616141c7a3882c426c59e57c5de570b5a952ec67c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1626,12 +1634,6 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_ANNUITY_INCOME_RATIO_BIN has 0.01% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/bbb738b9d06358583efb2e53fbd29757cae34ba72cc2a2b9cd080908e7625f11.png" src="../../_images/bbb738b9d06358583efb2e53fbd29757cae34ba72cc2a2b9cd080908e7625f11.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1639,43 +1641,6 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>AMT_ANNUITY</th>
-      <th>AMT_CREDIT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>AMT_ANNUITY</th>
-      <td>1.000000</td>
-      <td>0.762521</td>
-    </tr>
-    <tr>
-      <th>AMT_CREDIT</th>
-      <td>0.762521</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1683,12 +1648,6 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;INTER_CREDIT_TO_ANNUITY&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;INTER_CREDIT_TO_ANNUITY&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/f6c386489b603e4a8dabeab6217d9503e542b122f89e3c4a734c0b483308fc43.png" src="../../_images/f6c386489b603e4a8dabeab6217d9503e542b122f89e3c4a734c0b483308fc43.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1698,11 +1657,6 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>278
 </pre></div>
 </div>
 </div>
@@ -1720,12 +1674,6 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/2cd74532de457575b734af8021f77c6842a6d5334c04eeb388bbd89ecd728374.png" src="../../_images/2cd74532de457575b734af8021f77c6842a6d5334c04eeb388bbd89ecd728374.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1734,31 +1682,11 @@ Name: AMT_INCOME_TOTAL, Length: 356255, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_CREDIT_TO_GOODS_RATIO_BIN has 0.08% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/6be5f0670ab14152ea794e9ee5fe3d575e376a98e214b6c496a07ff8b41708c7.png" src="../../_images/6be5f0670ab14152ea794e9ee5fe3d575e376a98e214b6c496a07ff8b41708c7.png" />
-</div>
 </div>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_INCOME_TYPE
-Working                 183307
-Commercial associate     83019
-Pensioner                64635
-State servant            25235
-Unemployed                  23
-Student                     20
-Businessman                 11
-Maternity leave              5
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1770,29 +1698,11 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_INCOME_TYPE has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/00d2754515a38bf33eaad601851512c545e7b3b5d14a3aaa30839771ca98ba91.png" src="../../_images/00d2754515a38bf33eaad601851512c545e7b3b5d14a3aaa30839771ca98ba91.png" />
-</div>
 </div>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_HOUSING_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAME_HOUSING_TYPE
-House / apartment      316513
-With parents            17074
-Municipal apartment     12800
-Rented apartment         5599
-Office apartment         3024
-Co-op apartment          1245
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1803,28 +1713,14 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_HOUSING_TYPE has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/77d2437a8e35ec6cdcf16bf4d4ead06c08f7b102fbb6d4f39fb0de9cad47ff28.png" src="../../_images/77d2437a8e35ec6cdcf16bf4d4ead06c08f7b102fbb6d4f39fb0de9cad47ff28.png" />
-</div>
 </div>
 <p>那些没有住房的人虽少，但违约率高，具有特征意义</p>
 </section>
-<section id="id8">
-<h4>外部信用评分<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<section id="id11">
+<h4>外部信用评分<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EXT_SOURCE_1    0.544301
-EXT_SOURCE_2    0.001875
-EXT_SOURCE_3    0.195458
-dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1843,28 +1739,12 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NEW_EXT_SOURCE_MISSING_CNT
-1    182132
-0    133173
-2     40771
-3       179
-Name: count, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_EXT_SOURCE_MISSING_CNT&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_EXT_SOURCE_MISSING_CNT has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/a17e74da64b76a06b623379d86223f2fc2f0c954b0f67f955218b4b83a66e5f7.png" src="../../_images/a17e74da64b76a06b623379d86223f2fc2f0c954b0f67f955218b4b83a66e5f7.png" />
 </div>
 </div>
 <p>可以看到，确实信用评分缺失更多的人，违约率会更高</p>
@@ -1876,9 +1756,6 @@ Name: count, dtype: int64
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> Distribution by Target&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/fc031c971623bc0cba12c124f3e4a1b64231bb1d6843a44611dff6437a84829f.png" src="../../_images/fc031c971623bc0cba12c124f3e4a1b64231bb1d6843a44611dff6437a84829f.png" />
 </div>
 </div>
 <p>不出所料，这三个外部信用评分确实具有很好的区分能力。</p>
@@ -1909,12 +1786,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; AMT_REQ_CREDIT_BUREAU_YEAR has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/d2c3a77a11369492808323e703a87e7fbc129d6a5342db85f1fd67adf5e1dd18.png" src="../../_images/d2c3a77a11369492808323e703a87e7fbc129d6a5342db85f1fd67adf5e1dd18.png" />
-</div>
 </div>
 <p>最近一周查询比率</p>
 <div class="cell docutils container">
@@ -1931,25 +1802,14 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NEW_REQ_WEEK_TO_YEAR_RATIO_BIN has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/07b25e7e18cf899d1e5dd998c994082ef459824f16f1cdd3dbdaa3d888746fc7.png" src="../../_images/07b25e7e18cf899d1e5dd998c994082ef459824f16f1cdd3dbdaa3d888746fc7.png" />
-</div>
 </div>
 <p>似乎是没什么区分性</p>
 </section>
-<section id="id9">
-<h4>工作情况<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<section id="id12">
+<h4>工作情况<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -1960,23 +1820,10 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DAYS_EMPLOYED&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/8376097c9e6f0bb4261ac6fcdc52527e52f85efabcc6bcf992b4f765dfb4108d.png" src="../../_images/8376097c9e6f0bb4261ac6fcdc52527e52f85efabcc6bcf992b4f765dfb4108d.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">300000</span><span class="p">][</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DAYS_EMPLOYED
-365243    64648
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -2002,12 +1849,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;YEARS_EMPLOYED&#39;, ylabel=&#39;Density&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/b575e0c221bbb11959fc2b719e8fbfda0b62bbbb37080845618e26df20720a93.png" src="../../_images/b575e0c221bbb11959fc2b719e8fbfda0b62bbbb37080845618e26df20720a93.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2022,12 +1863,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; YEARS_EMPLOYED_BIN has 8.86% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/4d497fb295222e5803ed09407e870e620f0a492e0d92fb965c81506067860d9a.png" src="../../_images/4d497fb295222e5803ed09407e870e620f0a492e0d92fb965c81506067860d9a.png" />
-</div>
 </div>
 <p>可以看到，随着工作年限增加，违约率逐渐降低</p>
 <hr class="docutils" />
@@ -2037,102 +1872,110 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; NAME_INCOME_TYPE has 0.00% missing values!
-</pre></div>
-</div>
-<img alt="../../_images/4cbd1a7d2854c5809cc14f6ba1c89f2cb14c72d113dcf59f80bbc44735d752bd.png" src="../../_images/4cbd1a7d2854c5809cc14f6ba1c89f2cb14c72d113dcf59f80bbc44735d752bd.png" />
-</div>
 </div>
 <p>那些没动作的人，确实违约率更高</p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;ORGANIZATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ORGANIZATION_TYPE
-Business Entity Type 3    78832
-XNA                       64648
-Self-employed             44332
-Other                     19390
-Medicine                  12909
-Business Entity Type 2    12032
-Government                11912
-School                    10180
-Trade: type 7              9134
-Kindergarten               7918
-Construction               7760
-Business Entity Type 1     6871
-Transport: type 4          6282
-Trade: type 3              4070
-Industry: type 9           3867
-Industry: type 3           3767
-Security                   3719
-Housing                    3393
-Military                   3164
-Industry: type 11          3120
-Bank                       2881
-Police                     2782
-Agriculture                2746
-Transport: type 2          2652
-Postal                     2451
-Security Ministries        2315
-Trade: type 2              2142
-Restaurant                 2095
-Services                   1877
-University                 1548
-Industry: type 7           1524
-Transport: type 3          1361
-Industry: type 1           1217
-Electricity                1106
-Hotel                      1100
-Industry: type 4           1044
-Trade: type 6               753
-Industry: type 5            696
-Insurance                   677
-Telecom                     672
-Emergency                   651
-Industry: type 2            535
-Advertising                 500
-Realtor                     468
-Industry: type 12           446
-Culture                     440
-Trade: type 1               412
-Mobile                      362
-Legal Services              358
-Cleaning                    303
-Transport: type 1           236
-Industry: type 6            139
-Industry: type 10           133
-Religion                     97
-Trade: type 4                78
-Industry: type 13            73
-Trade: type 5                58
-Industry: type 8             27
-Name: count, dtype: int64
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;ORGANIZATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>:::{warning}
-类别很多，我们要防止Onehot维度爆炸
-:::</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>类别很多，我们要防止Onehot维度爆炸。 树模型分裂过多
+可以使用LabelEncoding</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;ORGANIZATION_TYPE&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; ORGANIZATION_TYPE has 0.00% missing values!
+</div>
+</section>
+<section id="id13">
+<h4>申请行为<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_CONTRACT_TYPE&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../../_images/7b28ef633ed160e7438d5ebfa080ea71fb750a91c50195409061d0673a65ba66.png" src="../../_images/7b28ef633ed160e7438d5ebfa080ea71fb750a91c50195409061d0673a65ba66.png" />
 </div>
 </div>
+<p>有着明显的区分</p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_TYPE_SUITE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>带着家庭和孩子的违约率更低</p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;WEEKDAY_APPR_PROCESS_START&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>区别不太大</p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;HOUR_APPR_PROCESS_START_BIN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FLAG_DOCUMENT_&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>区别不大</p>
+<hr class="docutils" />
 </section>
 </section>
 </section>
@@ -2188,26 +2031,30 @@ Name: count, dtype: int64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-importance">null importance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">手动特征工程</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-train-test">application_train/test</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-gender">CODE_GENDER</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-birth">DAYS_BIRTH</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-registration">DAYS_REGISTRATION</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-id-publish">DAYS_ID_PUBLISH</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#days-last-phone-change">DAYS_LAST_PHONE_CHANGE</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#name-education-type">NAME_EDUCATION_TYPE</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-own-car">FLAG_OWN_CAR</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#own-car-age">OWN_CAR_AGE</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">房屋评价得分</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">函数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">个人信息</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#code-gender">CODE_GENDER</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-birth">DAYS_BIRTH</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-registration">DAYS_REGISTRATION</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-id-publish">DAYS_ID_PUBLISH</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-last-phone-change">DAYS_LAST_PHONE_CHANGE</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#name-education-type">NAME_EDUCATION_TYPE</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">车</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">房屋评价得分</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-own-realty">FLAG_OWN_REALTY</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#totalarea-mode">TOTALAREA_MODE</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">地区住址</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">社交圈</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">家庭</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">财务能力</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">外部信用评分</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">工作情况</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">地区住址</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">社交圈</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">家庭</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">财务能力</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">外部信用评分</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">工作情况</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">申请行为</a></li>
 </ul>
 </li>
 </ul>
