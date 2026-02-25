@@ -413,6 +413,9 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinalEncoder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">KFold</span><span class="p">,</span><span class="n">StratifiedKFold</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">gc</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -686,12 +689,13 @@
 </div>
 </div>
 </div>
+</section>
+<section id="id2">
+<h2>手动特征工程<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>相比之前手动特征工程，我们会构造更多的领域特征</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ids: 测试集的 SK_ID_CURR</span>
 <span class="sd">    pred: 模型预测概率</span>
@@ -726,16 +730,14 @@
 </div>
 </div>
 </div>
-</section>
-<section id="id2">
-<h2>手动特征工程<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>相比之前手动特征工程，我们会构造更多的领域特征</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">onehot_encoder</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    df: 输入的 DataFrame</span>
 <span class="sd">    nan_as_category: 是否将 NaN 视为一个独立的类别进行编码</span>
+
+<span class="sd">    return: 新的cols</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">original_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -889,7 +891,7 @@
 <h4>函数<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">application_train_test</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">application_train_test</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    1. 异常数据处理</span>
 <span class="sd">    2. 增加一些特征</span>
@@ -932,62 +934,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
-app 356255
-app: (356255, 264)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">kfold_lightgbm</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">num_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 19856, number of negative: 226152
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.078917 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 13524
-[LightGBM] [Info] Number of data points in the train set: 246008, number of used features: 244
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080713 -&gt; initscore=-2.432701
-[LightGBM] [Info] Start training from score -2.432701
-Fold  1 AUC : 0.767032
-[LightGBM] [Info] Number of positive: 19813, number of negative: 226196
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.210227 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 13534
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 244
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080538 -&gt; initscore=-2.435064
-[LightGBM] [Info] Start training from score -2.435064
-Fold  2 AUC : 0.766810
-[LightGBM] [Info] Number of positive: 19822, number of negative: 226187
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.123214 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 13495
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 245
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080574 -&gt; initscore=-2.434570
-[LightGBM] [Info] Start training from score -2.434570
-Fold  3 AUC : 0.768366
-[LightGBM] [Info] Number of positive: 19916, number of negative: 226093
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.121960 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 13514
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 244
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080956 -&gt; initscore=-2.429423
-[LightGBM] [Info] Start training from score -2.429423
-Fold  4 AUC : 0.764331
-[LightGBM] [Info] Number of positive: 19893, number of negative: 226116
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.111786 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 13524
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 245
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080863 -&gt; initscore=-2.430680
-[LightGBM] [Info] Start training from score -2.430680
-Fold  5 AUC : 0.762376
-Full AUC score 0.765785
 </pre></div>
 </div>
 </div>
@@ -997,9 +947,6 @@ Full AUC score 0.765785
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8127f0787062b526195c7523d0d128391eb059bf69ab34bdbe7b0daac8278dde.png" src="../../_images/8127f0787062b526195c7523d0d128391eb059bf69ab34bdbe7b0daac8278dde.png" />
 </div>
 </div>
 <p>构建新特征才是提分的核心！</p>
@@ -1975,8 +1922,389 @@ Full AUC score 0.765785
 </div>
 </div>
 <p>区别不大</p>
-<hr class="docutils" />
 </section>
+</section>
+<hr class="docutils" />
+<section id="bureau-and-balance">
+<h3>bureau_and_balance<a class="headerlink" href="#bureau-and-balance" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bureau_and_balance</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">bureau</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/bureau.csv&#39;</span><span class="p">,</span><span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/bureau_balance.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;bureau </span><span class="si">{</span><span class="n">bureau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">, balance </span><span class="si">{</span><span class="n">balance</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">balance</span><span class="p">,</span> <span class="n">balance_cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">balance</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="p">)</span>
+    <span class="n">bureau</span><span class="p">,</span> <span class="n">bureau_cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">bureau</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="p">)</span>
+
+    <span class="c1"># balance</span>
+    <span class="n">balance_aggregations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;MONTHS_BALANCE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">balance_cat_cols</span><span class="p">:</span>
+        <span class="n">balance_aggregations</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="n">balance_agg</span> <span class="o">=</span> <span class="n">balance</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_BUREAU&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">balance_aggregations</span><span class="p">)</span>
+    <span class="n">balance_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">balance_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+    <span class="n">bureau</span> <span class="o">=</span> <span class="n">bureau</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">balance_agg</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_BUREAU&#39;</span><span class="p">)</span>
+    <span class="n">bureau</span> <span class="o">=</span> <span class="n">bureau</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SK_ID_BUREAU&#39;</span><span class="p">])</span>
+    <span class="k">del</span> <span class="n">balance</span><span class="p">,</span> <span class="n">balance_agg</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="c1"># bureau</span>
+    <span class="n">num_aggregations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;DAYS_CREDIT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DAYS_CREDIT_ENDDATE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DAYS_CREDIT_UPDATE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;CREDIT_DAY_OVERDUE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT_MAX_OVERDUE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT_SUM&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT_SUM_DEBT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT_SUM_OVERDUE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT_SUM_LIMIT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;CNT_CREDIT_PROLONG&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;MONTHS_BALANCE_MIN&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;MONTHS_BALANCE_MAX&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;MONTHS_BALANCE_SIZE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">category_aggregations</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">bureau_cat_cols</span><span class="p">:</span>
+        <span class="n">category_aggregations</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">balance_cat_cols</span><span class="p">:</span>
+        <span class="n">category_aggregations</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_MEAN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="n">bureau_agg</span> <span class="o">=</span> <span class="n">bureau</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="o">**</span><span class="n">num_aggregations</span><span class="p">,</span> <span class="o">**</span><span class="n">category_aggregations</span><span class="p">})</span>
+    <span class="n">bureau_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span>
+        <span class="p">[</span><span class="s1">&#39;BUREAU_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">bureau_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># bureau - active where</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">bureau</span><span class="p">[</span><span class="n">bureau</span><span class="p">[</span><span class="s1">&#39;CREDIT_ACTIVE_Active&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">active_agg</span> <span class="o">=</span> <span class="n">active</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span>  <span class="n">active_agg</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">active_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span>
+        <span class="p">[</span><span class="s1">&#39;ACTIVE_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">active_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="p">)</span>
+    <span class="n">bureau_agg</span> <span class="o">=</span> <span class="n">bureau_agg</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">active_agg</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">active_agg</span><span class="p">,</span> <span class="n">active</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="c1"># bureau - closed where</span>
+    <span class="n">closed</span> <span class="o">=</span> <span class="n">bureau</span><span class="p">[</span><span class="n">bureau</span><span class="p">[</span><span class="s1">&#39;CREDIT_ACTIVE_Closed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">closed_agg</span> <span class="o">=</span> <span class="n">closed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
+    <span class="n">closed_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;CLOSED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">closed_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+    <span class="n">bureau_agg</span> <span class="o">=</span> <span class="n">bureau_agg</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">closed_agg</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">closed</span><span class="p">,</span> <span class="n">closed_agg</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">bureau_agg</span><span class="p">[</span><span class="s1">&#39;NEW_RATIO_BUREAU_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">bureau_agg</span><span class="p">[</span><span class="s1">&#39;ACTIVE_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">/</span> <span class="n">bureau_agg</span><span class="p">[</span><span class="s1">&#39;CLOSED_&#39;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+    
+    <span class="k">del</span> <span class="n">bureau</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">bureau_agg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="previous-applications">
+<h3>previous_applications<a class="headerlink" href="#previous-applications" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">previous_applications</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">prev</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/previous_application.csv&#39;</span><span class="p">,</span><span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;prev </span><span class="si">{</span><span class="n">prev</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">prev</span><span class="p">,</span> <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="p">)</span>
+
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_FIRST_DRAWING&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_FIRST_DRAWING&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_FIRST_DUE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_FIRST_DUE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_DUE_1ST_VERSION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_DUE_1ST_VERSION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_DUE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_DUE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_TERMINATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;DAYS_TERMINATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    
+    <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;APP_CREDIT_PERC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;AMT_APPLICATION&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">prev</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span>
+
+    <span class="n">num_aggregations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_APPLICATION&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;APP_CREDIT_PERC&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_DOWN_PAYMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;RATE_DOWN_PAYMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DAYS_DECISION&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;CNT_PAYMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="n">cat_aggregations</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+        <span class="n">cat_aggregations</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+
+    <span class="n">prev_agg</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="o">**</span><span class="n">num_aggregations</span><span class="p">,</span> <span class="o">**</span><span class="n">cat_aggregations</span><span class="p">})</span>
+    <span class="n">prev_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;PREV_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">prev_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+    <span class="c1"># Previous Applications: Approved Applications - only numerical features</span>
+    <span class="n">approved</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">prev</span><span class="p">[</span><span class="s1">&#39;NAME_CONTRACT_STATUS_Approved&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">approved_agg</span> <span class="o">=</span> <span class="n">approved</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;APPROVED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+    <span class="n">prev_agg</span> <span class="o">=</span> <span class="n">prev_agg</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">approved_agg</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+    <span class="c1"># Previous Applications: Refused Applications - only numerical features</span>
+    <span class="n">refused</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">prev</span><span class="p">[</span><span class="s1">&#39;NAME_CONTRACT_STATUS_Refused&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">refused_agg</span> <span class="o">=</span> <span class="n">refused</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
+    <span class="n">refused_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;REFUSED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">refused_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+    <span class="n">prev_agg</span> <span class="o">=</span> <span class="n">prev_agg</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refused_agg</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">refused</span><span class="p">,</span> <span class="n">refused_agg</span><span class="p">,</span> <span class="n">approved</span><span class="p">,</span> <span class="n">approved_agg</span><span class="p">,</span> <span class="n">prev</span>
+
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">prev_agg</span><span class="p">[</span><span class="s1">&#39;NEW_RATIO_PREV_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">prev_agg</span><span class="p">[</span><span class="s1">&#39;APPROVED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">/</span> <span class="n">prev_agg</span><span class="p">[</span><span class="s1">&#39;REFUSED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+    
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">prev_agg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pos-cash-balance">
+<h3>POS_CASH_balance<a class="headerlink" href="#pos-cash-balance" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pos_cash</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/POS_CASH_balance.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">nrows</span><span class="p">)</span>
+    <span class="n">pos</span><span class="p">,</span> <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="p">)</span>
+    <span class="n">aggregations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;MONTHS_BALANCE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;SK_DPD&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;SK_DPD_DEF&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+        <span class="n">aggregations</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="n">pos_agg</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">aggregations</span><span class="p">)</span>
+    <span class="n">pos_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;POS_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">pos_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+
+    <span class="n">pos_agg</span><span class="p">[</span><span class="s1">&#39;POS_COUNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    
+    <span class="k">del</span> <span class="n">pos</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pos_agg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="installments-payments">
+<h3>installments_payments<a class="headerlink" href="#installments-payments" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">installments_payments</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">ins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/installments_payments.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">nrows</span><span class="p">)</span>
+    <span class="n">ins</span><span class="p">,</span> <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">ins</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;PAYMENT_PERC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;AMT_PAYMENT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;AMT_INSTALMENT&#39;</span><span class="p">]</span>
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;PAYMENT_DIFF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;AMT_INSTALMENT&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;AMT_PAYMENT&#39;</span><span class="p">]</span>
+
+    <span class="c1"># DPD逾期天数， DBD提前还款天数</span>
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DPD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DAYS_ENTRY_PAYMENT&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DAYS_INSTALMENT&#39;</span><span class="p">]</span>
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DBD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DAYS_INSTALMENT&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DAYS_ENTRY_PAYMENT&#39;</span><span class="p">]</span>
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DPD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DPD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DBD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;DBD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">aggregations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;NUM_INSTALMENT_VERSION&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;nunique&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DPD&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DBD&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;PAYMENT_PERC&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;PAYMENT_DIFF&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_INSTALMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;AMT_PAYMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;DAYS_ENTRY_PAYMENT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+        <span class="n">aggregations</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    <span class="n">ins_agg</span> <span class="o">=</span> <span class="n">ins</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">aggregations</span><span class="p">)</span>
+    <span class="n">ins_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;INSTAL_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">ins_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+
+    <span class="n">ins_agg</span><span class="p">[</span><span class="s1">&#39;INSTAL_COUNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ins</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    
+    <span class="k">del</span> <span class="n">ins</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ins_agg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="credit-card-balance">
+<h3>credit_card_balance<a class="headerlink" href="#credit-card-balance" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">credit_card_balance</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">cc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/credit_card_balance.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">nrows</span><span class="p">)</span>
+    <span class="n">cc</span><span class="p">,</span> <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span> <span class="n">nan_as_category</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">cc</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;SK_ID_PREV&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cc</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">cc</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="s1">&#39;object&#39;</span><span class="p">]</span>
+    <span class="n">num_aggregations</span> <span class="o">=</span> <span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="p">[</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">}</span>
+
+    <span class="n">category_aggregations</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+        <span class="n">category_aggregations</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+    
+    <span class="n">cc_agg</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="o">**</span><span class="n">num_aggregations</span><span class="p">,</span> <span class="o">**</span><span class="n">category_aggregations</span><span class="p">})</span>
+    <span class="n">cc_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;CC_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">cc_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+
+    <span class="n">cc_agg</span><span class="p">[</span><span class="s1">&#39;CC_COUNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    
+    <span class="k">del</span> <span class="n">cc</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">cc_agg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="main">
+<h3>main<a class="headerlink" href="#main" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="c1"># 执行with代码</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> done in </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">nrows</span> <span class="o">=</span> <span class="mi">10000</span> <span class="k">if</span> <span class="n">debug</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">application_train_test</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s1">&#39;Process bureau and bureau balance&#39;</span><span class="p">):</span>
+        <span class="n">bureau</span> <span class="o">=</span> <span class="n">bureau_and_balance</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bureau shape :</span><span class="si">{</span><span class="n">bureau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bureau</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">bureau</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s2">&quot;Process previous_applications&quot;</span><span class="p">):</span>
+        <span class="n">prev</span> <span class="o">=</span> <span class="n">previous_applications</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Previous applications df shape:&quot;</span><span class="p">,</span> <span class="n">prev</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">prev</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s2">&quot;Process POS-CASH balance&quot;</span><span class="p">):</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">pos_cash</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pos-cash balance df shape:&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">pos</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s2">&quot;Process installments payments&quot;</span><span class="p">):</span>
+        <span class="n">ins</span> <span class="o">=</span> <span class="n">installments_payments</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Installments payments df shape:&quot;</span><span class="p">,</span> <span class="n">ins</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ins</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">ins</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s2">&quot;Process credit card balance&quot;</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">credit_card_balance</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Credit card balance df shape:&quot;</span><span class="p">,</span> <span class="n">cc</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">cc</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s1">&#39;Run lgbm with kfold&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;final DF :</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">kfold_lightgbm</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+        <span class="n">features_importance_df</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="s1">&#39;features_importance_df.feather&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s1">&#39;full run&#39;</span><span class="p">):</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
+app 356255
+app: (356255, 264)
+bureau (1716428, 17), balance (27299925, 3)
+Bureau shape :(305811, 143)
+Process bureau and bureau balance done in 16s
+prev (1670214, 37)
+Previous applications df shape: (338857, 279)
+Process previous_applications done in 22s
+Pos-cash balance df shape: (337252, 18)
+Process POS-CASH balance done in 11s
+Installments payments df shape: (339587, 26)
+Process installments payments done in 23s
+Credit card balance df shape: (103558, 72)
+Process credit card balance done in 14s
+final DF :(356255, 802)
+[LightGBM] [Info] Number of positive: 19987, number of negative: 226021
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 1.091061 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 107211
+[LightGBM] [Info] Number of data points in the train set: 246008, number of used features: 784
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.081245 -&gt; initscore=-2.425546
+[LightGBM] [Info] Start training from score -2.425546
+Fold  1 AUC : 0.783034
+[LightGBM] [Info] Number of positive: 19791, number of negative: 226218
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 1.088944 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 107261
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 783
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080448 -&gt; initscore=-2.436272
+[LightGBM] [Info] Start training from score -2.436272
+Fold  2 AUC : 0.788983
+[LightGBM] [Info] Number of positive: 19912, number of negative: 226097
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.664946 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 107143
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080940 -&gt; initscore=-2.429642
+[LightGBM] [Info] Start training from score -2.429642
+Fold  3 AUC : 0.783279
+[LightGBM] [Info] Number of positive: 19810, number of negative: 226199
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.682813 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 107365
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080526 -&gt; initscore=-2.435228
+[LightGBM] [Info] Start training from score -2.435228
+Fold  4 AUC : 0.789108
+[LightGBM] [Info] Number of positive: 19800, number of negative: 226209
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.621991 seconds.
+You can set `force_col_wise=true` to remove the overhead.
+[LightGBM] [Info] Total Bins 107445
+[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080485 -&gt; initscore=-2.435777
+[LightGBM] [Info] Start training from score -2.435777
+Fold  5 AUC : 0.785867
+Full AUC score 0.786067
+Run lgbm with kfold done in 561s
+full run done in 652s
+</pre></div>
+</div>
+</div>
+</div>
+<p>78分</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;features_importance_df.feather&#39;</span><span class="p">)</span>
+<span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4e5e5b38934a7c6202eaed8a76bd6689ca0033c195504b6eb7dec42354b30a27.png" src="../../_images/4e5e5b38934a7c6202eaed8a76bd6689ca0033c195504b6eb7dec42354b30a27.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -2057,6 +2385,12 @@ Full AUC score 0.765785
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">申请行为</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bureau-and-balance">bureau_and_balance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#previous-applications">previous_applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-cash-balance">POS_CASH_balance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installments-payments">installments_payments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-card-balance">credit_card_balance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main">main</a></li>
 </ul>
 </li>
 </ul>
