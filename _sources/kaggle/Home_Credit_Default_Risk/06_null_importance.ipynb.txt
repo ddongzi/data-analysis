@@ -1,0 +1,364 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "9144b44c",
+   "metadata": {},
+   "source": [
+    "# null importance\n",
+    "\n",
+    "介绍了一种识别无效特征的方法\n",
+    "\n",
+    "- 有效特征面对假标签表现得应该很差\n",
+    "- 无效特征面对真假标签表现得差不多\n",
+    "\n",
+    "我们可以用将标签不断打散，每次lgbm计算特征，就可以识别出无效特征了"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d049b887",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "application_train = pd.read_csv('data/application_train.csv')\n",
+    "application_test = pd.read_csv('data/application_test.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6b49a077",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "train_labels = application_train['TARGET']\n",
+    "train_ids = application_train['SK_ID_CURR']\n",
+    "test_ids = application_test['SK_ID_CURR']\n",
+    "train_features = application_train.drop(columns=['TARGET', 'SK_ID_CURR'])\n",
+    "test_features = application_test.drop(columns=['SK_ID_CURR'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aa4323f7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "for col in train_features.select_dtypes(include=['object']).columns:\n",
+    "    train_features[col] = train_features[col].astype('category')\n",
+    "\n",
+    "for col in test_features.select_dtypes(include=['object']).columns:\n",
+    "    test_features[col] = test_features[col].astype('category')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a511c476",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def get_features_importance(train_features, train_labels):\n",
+    "    lgbm_model = LGBMClassifier(\n",
+    "        n_estimators=100,      \n",
+    "        learning_rate=0.1, \n",
+    "        max_depth=8,      \n",
+    "        random_state=42,   \n",
+    "    )\n",
+    "    lgbm_model.fit(train_features, train_labels)\n",
+    "    features_importance = pd.DataFrame(\n",
+    "        {\n",
+    "            'gain': lgbm_model.booster_.feature_importance(importance_type='gain'),\n",
+    "            'split': lgbm_model.booster_.feature_importance(importance_type='split'),\n",
+    "            'feature': lgbm_model.feature_name_\n",
+    "        }\n",
+    "    )\n",
+    "    return features_importance"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9cf9676b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "actual_fi_df = get_features_importance(train_features, train_labels)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3390dfa9",
+   "metadata": {},
+   "source": [
+    "多次shuffle\n",
+    "- pd没有这个函数， 使用`.sample(frac=1)` 全采样\n",
+    "  - 这个服从正太分布采用"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8023bd5e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "runs = 50\n",
+    "fi_list = []\n",
+    "for i in range(runs):\n",
+    "    shuffle_train_labels = train_labels.sample(frac=1)\n",
+    "    fi_df = get_features_importance(train_features, shuffle_train_labels)\n",
+    "    fi_df['run'] = i + 1\n",
+    "    fi_list.append(fi_df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f0d5b515",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fi_dfs = pd.concat(fi_list, axis=0, ignore_index=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1abd9ad9",
+   "metadata": {},
+   "source": [
+    "我们可以绘制 这些重要性得分布，\n",
+    "- 如果真实重要性与随机重要性相近，那就是假特征"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "451bf86c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "actual_fi_df.sort_values(by='gain')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "53a36883",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def plot_importance_distribution_of_feature(actual_fi_df, df, feature_name):\n",
+    "    data = df[df['feature'] == feature_name]\n",
+    "    \n",
+    "    actual_gain = actual_fi_df.loc[actual_fi_df['feature'] == feature_name, 'gain'].iloc[0]\n",
+    "    actual_split = actual_fi_df.loc[actual_fi_df['feature'] == feature_name, 'split'].iloc[0]\n",
+    "    \n",
+    "    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))\n",
+    "    \n",
+    "    sns.histplot(data['gain'], alpha=0.3, label='Null Gain', ax=ax1, kde=True)\n",
+    "    ax1.axvline(x=actual_gain,  linestyle='--', label=f'Actual: {actual_gain:.1f}')\n",
+    "    ax1.set_title(f'Gain Importance: {feature_name}')\n",
+    "    ax1.legend()\n",
+    "    \n",
+    "    sns.histplot(data['split'],  alpha=0.3, label='Null Split', ax=ax2, kde=True)\n",
+    "    ax2.axvline(x=actual_split,  linestyle='--', label=f'Actual: {actual_split}')\n",
+    "    ax2.set_title(f'Split Importance: {feature_name}')\n",
+    "    ax2.legend()\n",
+    "    \n",
+    "    plt.tight_layout()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "51deed37",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plot_importance_distribution_of_feature(actual_fi_df, fi_dfs, 'FONDKAPREMONT_MODE')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "82348798",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plot_importance_distribution_of_feature(actual_fi_df, fi_dfs, 'EXT_SOURCE_3')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a6080e9c",
+   "metadata": {},
+   "source": [
+    "我们以分布得75分位数 作为 分布值， 去与真实对比。\n",
+    "- 如果大于这个值，表示真实特征表现优于75%的噪声\n",
+    "  - 即 score>0 。 我们使用log以0分界，可以更好的剔除"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bc8d9366",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def get_feature_score(actual_importance, shuffle_importances, feature_name):\n",
+    "    feature_actual_gain = actual_importance[actual_importance['feature'] == feature_name]['gain']\n",
+    "    feature_actual_split = actual_importance[actual_importance['feature'] == feature_name]['split']\n",
+    "    feature_shuffle_gains = shuffle_importances[shuffle_importances['feature'] == feature_name]['gain']\n",
+    "    feature_shuffle_splits = shuffle_importances[shuffle_importances['feature'] == feature_name]['split']\n",
+    "    return pd.DataFrame({\n",
+    "        'feature': feature_name,\n",
+    "        'gain_score':  np.log(1e-10 + feature_actual_gain / np.percentile(feature_shuffle_gains, 75)),\n",
+    "        'split_score': np.log(1e-10 + feature_actual_split / np.percentile(feature_shuffle_splits, 75)),\n",
+    "    })"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7b2cc312",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "get_feature_score(actual_fi_df, fi_dfs, 'CODE_GENDER')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e714c5b9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "features_score = []\n",
+    "for f in actual_fi_df['feature'].unique():\n",
+    "    features_score.append(get_feature_score(actual_fi_df, fi_dfs, f))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e397bd27",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "features_score = pd.concat(features_score, ignore_index=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ff2376a1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plot_gain_features_score = features_score.sort_values(by='gain_score', ascending=False)\n",
+    "plot_split_features_score = features_score.sort_values(by='split_score', ascending=False)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "07ed9026",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, axes = plt.subplots(1, 2, figsize=(20, 10))\n",
+    "\n",
+    "sns.barplot(data=plot_gain_features_score.head(70), x='gain_score', y='feature', ax=axes[0])\n",
+    "axes[0].set_title('Top 70 Features by Gain')\n",
+    "\n",
+    "sns.barplot(data=plot_split_features_score.head(70), x='split_score', y='feature', ax=axes[1])\n",
+    "axes[1].set_title('Top 70 Features by Split')\n",
+    "\n",
+    "plt.tight_layout()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f206e4a4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "features_score.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9ed7b1a5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "threshold = 30\n",
+    "features_removed_by_gain_score = features_score[features_score['gain_score'] < 0]\n",
+    "features_removed_by_split_score = features_score[features_score['split_score'] < 0]\n",
+    "features_removed = set(features_removed_by_gain_score['feature']) & set(features_removed_by_split_score['feature'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b5fad07b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "features_removed"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e021aeb5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "train_features_clean = train_features.drop(columns=features_removed)\n",
+    "test_features_clean = test_features.drop(columns=features_removed)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2d4e706a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lgbm_model = LGBMClassifier(\n",
+    "    n_estimators=100,      \n",
+    "    learning_rate=0.1, \n",
+    "    max_depth=8,      \n",
+    "    random_state=42,   \n",
+    ")\n",
+    "lgbm_model.fit(train_features_clean, train_labels)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b5dfba88",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "train_pred = lgbm_model.predict_proba(train_features_clean)\n",
+    "roc_auc_score(train_labels, train_pred[:, 1])"
+   ]
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

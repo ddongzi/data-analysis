@@ -49,7 +49,7 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="数据分析知识" href="../../MLcook/index.html" />
+    <link rel="next" title="null importance" href="06_null_importance.html" />
     <link rel="prev" title="调优自动特征工程" href="04_Tuning_Automated_Feature_Engineering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -322,6 +322,8 @@
 <li class="toctree-l2"><a class="reference internal" href="03_Automated_Feature_Engineering_Basics.html">3.自动特征工程</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_Tuning_Automated_Feature_Engineering.html">4.调优自动特征工程</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">5.手动特征工程(二)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_null_importance.html">6.null importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_tuning_hyperparam.html">7.lgbm调参</a></li>
 </ul>
 </details></li>
 </ul></details></li></ul></div>
@@ -388,16 +390,9 @@
                   
   <section id="id1">
 <h1>更好的手动特征工程<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>虽然featuretools提供了自动特征工程，但是dfs巨慢，这让人头疼。</p>
-<p>这促使我寻找更好的自动或者手动方式。</p>
-<p>参考Feature Selection with Null Importances</p>
-<ul class="simple">
-<li><p>有效特征面对假标签表现得应该很差</p></li>
-<li><p>无效特征面对真假标签表现得差不多</p></li>
-</ul>
-<p><a class="reference external" href="https://www.kaggle.com/code/ogrellier/lighgbm-with-selected-features/script">手动特征工程</a></p>
-<p>我们可以用将标签不断打散，每次lgbm计算特征，就可以识别出无效特征了</p>
-<p>以apptrain开始</p>
+<p>虽然featuretools提供了自动特征工程，但是dfs巨慢。</p>
+<p>我们应该构建新领域特征，这会大幅提升模型。通过比例、product、minus、count以及之前的agg方法。这个过程中，我们会做一些必要的异常值处理。</p>
+<p>最后，通过kfold-lgbm得到稳定的结果，并剔除之前记录的no_importance_features 加快模型训练</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> 
@@ -416,6 +411,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">early_stopping</span><span class="p">,</span> <span class="n">log_evaluation</span>
 
 <span class="n">gc</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -427,272 +423,8 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">application_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">)</span>
-<span class="n">application_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_test.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_labels</span> <span class="o">=</span> <span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span>
-<span class="n">train_ids</span> <span class="o">=</span> <span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">]</span>
-<span class="n">test_ids</span> <span class="o">=</span> <span class="n">application_test</span><span class="p">[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">]</span>
-<span class="n">train_features</span> <span class="o">=</span> <span class="n">application_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">])</span>
-<span class="n">test_features</span> <span class="o">=</span> <span class="n">application_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">train_features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">train_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">test_features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">test_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="null-importance">
-<h2>null importance<a class="headerlink" href="#null-importance" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_features_importance</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
-    <span class="n">lgbm_model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span>
-        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      
-        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
-        <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>      
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>   
-    <span class="p">)</span>
-    <span class="n">lgbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
-    <span class="n">features_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s1">&#39;gain&#39;</span><span class="p">:</span> <span class="n">lgbm_model</span><span class="o">.</span><span class="n">booster_</span><span class="o">.</span><span class="n">feature_importance</span><span class="p">(</span><span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;split&#39;</span><span class="p">:</span> <span class="n">lgbm_model</span><span class="o">.</span><span class="n">booster_</span><span class="o">.</span><span class="n">feature_importance</span><span class="p">(</span><span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">lgbm_model</span><span class="o">.</span><span class="n">feature_name_</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">features_importance</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actual_fi_df</span> <span class="o">=</span> <span class="n">get_features_importance</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>多次shuffle</p>
-<ul class="simple">
-<li><p>pd没有这个函数， 使用<code class="docutils literal notranslate"><span class="pre">.sample(frac=1)</span></code> 全采样</p>
-<ul>
-<li><p>这个服从正太分布采用</p></li>
-</ul>
-</li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runs</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">fi_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
-    <span class="n">shuffle_train_labels</span> <span class="o">=</span> <span class="n">train_labels</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">fi_df</span> <span class="o">=</span> <span class="n">get_features_importance</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span> <span class="n">shuffle_train_labels</span><span class="p">)</span>
-    <span class="n">fi_df</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">fi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fi_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fi_dfs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">fi_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>我们可以绘制 这些重要性得分布，</p>
-<ul class="simple">
-<li><p>如果真实重要性与随机重要性相近，那就是假特征</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actual_fi_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_importance_distribution_of_feature</span><span class="p">(</span><span class="n">actual_fi_df</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">]</span>
-    
-    <span class="n">actual_gain</span> <span class="o">=</span> <span class="n">actual_fi_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">actual_fi_df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">,</span> <span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">actual_split</span> <span class="o">=</span> <span class="n">actual_fi_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">actual_fi_df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    
-    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-    
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gain&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Null Gain&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">actual_gain</span><span class="p">,</span>  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Actual: </span><span class="si">{</span><span class="n">actual_gain</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Gain Importance: </span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">],</span>  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Null Split&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">actual_split</span><span class="p">,</span>  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Actual: </span><span class="si">{</span><span class="n">actual_split</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Split Importance: </span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importance_distribution_of_feature</span><span class="p">(</span><span class="n">actual_fi_df</span><span class="p">,</span> <span class="n">fi_dfs</span><span class="p">,</span> <span class="s1">&#39;FONDKAPREMONT_MODE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importance_distribution_of_feature</span><span class="p">(</span><span class="n">actual_fi_df</span><span class="p">,</span> <span class="n">fi_dfs</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>我们以分布得75分位数 作为 分布值， 去与真实对比。</p>
-<ul class="simple">
-<li><p>如果大于这个值，表示真实特征表现优于75%的噪声</p>
-<ul>
-<li><p>即 score&gt;0 。 我们使用log以0分界，可以更好的剔除</p></li>
-</ul>
-</li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_feature_score</span><span class="p">(</span><span class="n">actual_importance</span><span class="p">,</span> <span class="n">shuffle_importances</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">):</span>
-    <span class="n">feature_actual_gain</span> <span class="o">=</span> <span class="n">actual_importance</span><span class="p">[</span><span class="n">actual_importance</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">][</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span>
-    <span class="n">feature_actual_split</span> <span class="o">=</span> <span class="n">actual_importance</span><span class="p">[</span><span class="n">actual_importance</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">][</span><span class="s1">&#39;split&#39;</span><span class="p">]</span>
-    <span class="n">feature_shuffle_gains</span> <span class="o">=</span> <span class="n">shuffle_importances</span><span class="p">[</span><span class="n">shuffle_importances</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">][</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span>
-    <span class="n">feature_shuffle_splits</span> <span class="o">=</span> <span class="n">shuffle_importances</span><span class="p">[</span><span class="n">shuffle_importances</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">][</span><span class="s1">&#39;split&#39;</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span>
-        <span class="s1">&#39;gain_score&#39;</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1e-10</span> <span class="o">+</span> <span class="n">feature_actual_gain</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">feature_shuffle_gains</span><span class="p">,</span> <span class="mi">75</span><span class="p">)),</span>
-        <span class="s1">&#39;split_score&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1e-10</span> <span class="o">+</span> <span class="n">feature_actual_split</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">feature_shuffle_splits</span><span class="p">,</span> <span class="mi">75</span><span class="p">)),</span>
-    <span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_feature_score</span><span class="p">(</span><span class="n">actual_fi_df</span><span class="p">,</span> <span class="n">fi_dfs</span><span class="p">,</span> <span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_score</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">actual_fi_df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-    <span class="n">features_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_feature_score</span><span class="p">(</span><span class="n">actual_fi_df</span><span class="p">,</span> <span class="n">fi_dfs</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_score</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">features_score</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_gain_features_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gain_score&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plot_split_features_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;split_score&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plot_gain_features_score</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gain_score&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;feature&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top 70 Features by Gain&#39;</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plot_split_features_score</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;split_score&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;feature&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top 70 Features by Split&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_score</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">features_removed_by_gain_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="p">[</span><span class="n">features_score</span><span class="p">[</span><span class="s1">&#39;gain_score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">features_removed_by_split_score</span> <span class="o">=</span> <span class="n">features_score</span><span class="p">[</span><span class="n">features_score</span><span class="p">[</span><span class="s1">&#39;split_score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">features_removed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">features_removed_by_gain_score</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">features_removed_by_split_score</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_removed</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_features_clean</span> <span class="o">=</span> <span class="n">train_features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">features_removed</span><span class="p">)</span>
-<span class="n">test_features_clean</span> <span class="o">=</span> <span class="n">test_features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">features_removed</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lgbm_model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span>
-    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>      
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>   
-<span class="p">)</span>
-<span class="n">lgbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_features_clean</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_pred</span> <span class="o">=</span> <span class="n">lgbm_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train_features_clean</span><span class="p">)</span>
-<span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span> <span class="n">train_pred</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="id2">
-<h2>手动特征工程<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>相比之前手动特征工程，我们会构造更多的领域特征</p>
+<h2>公共函数<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -754,10 +486,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">feature_count</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ids: 测试集的 SK_ID_CURR</span>
 <span class="sd">    pred: 模型预测概率</span>
@@ -828,14 +557,28 @@
             <span class="s1">&#39;objective&#39;</span><span class="p">:</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span>
             <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="s1">&#39;auc&#39;</span><span class="p">,</span>
             <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-            <span class="s1">&#39;num_leaves&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="s1">&#39;num_leaves&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="s1">&#39;min_child_samples&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
             <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+            <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>    
+
+            <span class="c1"># 特征与数据采样（增加随机性，防止过拟合）</span>
+            <span class="s1">&#39;feature_fraction&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>   <span class="c1"># 每次迭代只用 80% 的特征</span>
+            <span class="s1">&#39;bagging_fraction&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>   <span class="c1"># 每次迭代只用 80% 的数据</span>
+            <span class="s1">&#39;bagging_freq&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>         <span class="c1"># 每 5 轮进行一次采样</span>
+            
+            <span class="s1">&#39;lambda_l1&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s1">&#39;lambda_l2&#39;</span><span class="p">:</span> <span class="mf">0.1</span>  
         <span class="p">}</span>
         <span class="n">clf</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span>
             <span class="n">train_set</span><span class="o">=</span><span class="n">dtrain</span><span class="p">,</span>
             <span class="n">valid_sets</span><span class="o">=</span><span class="p">[</span><span class="n">dtrain</span><span class="p">,</span> <span class="n">dvalid</span><span class="p">],</span>
-            <span class="n">num_boost_round</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+            <span class="n">num_boost_round</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="c1"># 10000个树</span>
+            <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">early_stopping</span><span class="p">(</span><span class="n">stopping_rounds</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span>  <span class="c1"># 如果连续200迭代没有提升auc，就自动停止 </span>
+                <span class="n">log_evaluation</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># 每100轮提醒你一下进度</span>
+            <span class="p">]</span>
         <span class="p">)</span>
         <span class="n">out_of_fold_preds</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dvalid</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="n">submit_preds</span> <span class="o">+=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="n">features</span><span class="p">])</span> <span class="o">/</span> <span class="n">fold</span><span class="o">.</span><span class="n">n_splits</span>
@@ -872,31 +615,14 @@
 </div>
 </div>
 </div>
+</section>
 <section id="application-train-test">
-<h3>application_train/test<a class="headerlink" href="#application-train-test" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">app_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
-<span class="n">app_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_test.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_train</span><span class="p">)</span><span class="si">}</span><span class="s1">, test </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span><span class="p">])</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;app </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="id3">
-<h4>函数<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<h2>application_train/test<a class="headerlink" href="#application-train-test" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">application_train_test</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">    1. 异常数据处理</span>
-<span class="sd">    2. 增加一些特征</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">app_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
     <span class="n">app_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_test.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_train</span><span class="p">)</span><span class="si">}</span><span class="s1">, test </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">app_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -921,1012 +647,15 @@
     <span class="n">app</span><span class="p">,</span> <span class="n">new_cat_features</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span>
     <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;app: </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">app</span>
     
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">application_train_test</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">kfold_lightgbm</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">num_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>构建新特征才是提分的核心！</p>
 </section>
-<section id="id4">
-<h4>个人信息<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_category_stat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 分类特征 计数、违约率、缺失值多少， 双轴图</span>
-<span class="sd">    可以看到长尾</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">temp_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">feature</span><span class="p">,</span> <span class="n">target</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-    <span class="n">percent</span> <span class="o">=</span> <span class="n">temp_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt;&gt; </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% missing values!&#39;</span><span class="p">)</span>
-
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-    <span class="c1"># 按照计数从高到低</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>        <span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;样本总数 (Count)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1"> 的数量与违约率综合分析&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-
-    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;平均违约率 (Target Mean)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="code-gender">
-<h5>CODE_GENDER<a class="headerlink" href="#code-gender" title="Link to this heading">#</a></h5>
-<p>概率柱状图。</p>
-<ul class="simple">
-<li><p>高度表示， 违约人数/总人数。</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;XNA&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="days-birth">
-<h5>DAYS_BIRTH<a class="headerlink" href="#days-birth" title="Link to this heading">#</a></h5>
-<ul class="simple">
-<li><p>岁数分组</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_age</span><span class="p">,</span> <span class="n">max_age</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;birth min age:</span><span class="si">{</span><span class="n">min_age</span><span class="si">}</span><span class="s1">, max age: </span><span class="si">{</span><span class="n">max_age</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_AGE_BIN&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;NEW_AGE_BIN&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;各年龄段的违约率&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>随着年龄增加，违约率逐渐降低</p>
-</section>
-<section id="days-registration">
-<h5>DAYS_REGISTRATION<a class="headerlink" href="#days-registration" title="Link to this heading">#</a></h5>
-<ul class="simple">
-<li><p>户口本更新时间</p></li>
-<li><p>更新时间离得越远，人越稳定</p></li>
-<li><p>与年龄 比率，  比例越大越稳定</p></li>
-<li><p>着重标识最近一年修改的</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_YEARS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_REGISTRATION_TO_AGE_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;NEW_REGISTRATION_TO_AGE_RATIO&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>最近一年内更新户口居住地址</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_1year_RECENT_REGISTRATION_CHANGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;FLAG_1year_RECENT_REGISTRATION_CHANGE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;最近一年更新居住地址&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>最近更新户口居住地址的人可能违约概率大。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;RECENT_3month_REGISTRATION_CHANGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">31</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;RECENT_3month_REGISTRATION_CHANGE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;最近3个月更新居住地址&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="days-id-publish">
-<h5>DAYS_ID_PUBLISH<a class="headerlink" href="#days-id-publish" title="Link to this heading">#</a></h5>
-<p>和DAYS_REGISTRATION强相关嘛？</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">,</span> <span class="s1">&#39;DAYS_BIRTH&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>相关性不强，我们需要单独处理</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;YEAR_ID_PUBLISH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">]</span><span class="o">/-</span><span class="mi">365</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YEAR_ID_PUBLISH&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;身份证更新年限&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>我们构造一个新特征，标识</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_DIFF_ID_REG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_ID_PUBLISH&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_REGISTRATION&#39;</span><span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;DAYS_DIFF_ID_REG&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;身份证更新与居住地更新差值&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="days-last-phone-change">
-<h5>DAYS_LAST_PHONE_CHANGE<a class="headerlink" href="#days-last-phone-change" title="Link to this heading">#</a></h5>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_DAYS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_LAST_PHONE_CHANGE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;PHONE_CHANGE_DAYS&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">730</span><span class="p">,</span> <span class="mi">1095</span><span class="p">,</span> <span class="mi">4000</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;PHONE_CHANGE_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>我们可以看到哪些最近更新手机号的人，确实往往具有更高的违约率.</p>
-</section>
-<section id="flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">
-<h5>FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL<a class="headerlink" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email" title="Link to this heading">#</a></h5>
-<ol class="arabic simple">
-<li><p>我们可以将这个联系方式组合为一个特征。组合时候应该有权重</p></li>
-<li><p>一个人必须有FLAG_MOBIL</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CONTACT_SCORE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_EMAIL&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_WORK_PHONE&#39;</span><span class="p">]</span>  <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_PHONE&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_CONT_MOBILE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_EMP_PHONE&#39;</span><span class="p">]</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="n">contact_cols</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;FLAG_EMAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_WORK_PHONE&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_PHONE&#39;</span><span class="p">,</span> 
-                <span class="s1">&#39;FLAG_CONT_MOBILE&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_MOBIL&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_EMP_PHONE&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contact_cols</span><span class="p">):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Target Mean by </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">)</span> <span class="c1"># 统一 y 轴刻度，方便横向对比“谁的柱子更高</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;CONTACT_SCORE&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>这些特征都没有用，都不需要。组合起来也看不出什么。</p>
-</section>
-<section id="name-education-type">
-<h5>NAME_EDUCATION_TYPE<a class="headerlink" href="#name-education-type" title="Link to this heading">#</a></h5>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p>具有长尾。</p></li>
-<li><p>初中学历作为最低学历，却具备最大违约率； 博士学位作为最高学历，具备最低违约率；</p></li>
-<li><p>这是一个<strong>有序</strong>的特征，显然，学历越高违约率越低</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
-    <span class="s1">&#39;Lower secondary&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;Secondary / secondary special&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;Incomplete higher&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s1">&#39;Higher education&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;Academic degree&#39;</span><span class="p">:</span> <span class="mi">5</span>
-<span class="p">})</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;EDUCATION_ORDINAL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_EDUCATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="id5">
-<h4>车<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>有车的违约率更低</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FLAG_OWN_CAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
-    <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FLAG_OWN_CAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>看起来没什么区别， 但是右边的长尾效应和异常值 把左边压扁了</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p>老爷车60-90年算异常数据嘛？</p></li>
-</ol>
-<ul class="simple">
-<li><p>不能，因为显然具有特征意义。</p></li>
-<li><p>一方面，拿出一个新特征，来标识； 另一方面，通过clip到35年，去掉长尾效应</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_OWN_CAR_AGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_IS_OLD_CAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OWN_CAR_AGE&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">60</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CAR_AGE_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_OWN_CAR_AGE&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_CAR_AGE_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>总体来说，汽车年限越高， 违约率越高.</p></li>
-<li><p>刚买3年内的车，违约率也会高点</p></li>
-</ul>
-</section>
-<section id="id6">
-<h4>房屋评价得分<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p>对于房屋详细的特征，他们不重要。我们不要一个个处理！</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>尝试构建房屋评分</p></li>
-<li><p>只采用mode</p></li>
-<li><p>挑几个关键特征</p></li>
-</ol>
-<section id="flag-own-realty">
-<h5>FLAG_OWN_REALTY<a class="headerlink" href="#flag-own-realty" title="Link to this heading">#</a></h5>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_REALTY&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>就是没房的违约率更高</p></li>
-</ul>
-</section>
-<section id="totalarea-mode">
-<h5>TOTALAREA_MODE<a class="headerlink" href="#totalarea-mode" title="Link to this heading">#</a></h5>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TOTALAREA_MODE&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="id7">
-<h4>地区住址<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p>通过求和描述一个人 居住地 工作地 老家 的稳定性</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_LOCATION_INCONSISTENT_COUNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_CITY_NOT_LIVE_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
-                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_CITY_NOT_WORK_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
-                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;LIVE_CITY_NOT_WORK_CITY&#39;</span><span class="p">]</span> <span class="o">+</span> 
-                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_REGION_NOT_LIVE_REGION&#39;</span><span class="p">]</span><span class="o">+</span>
-                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REG_REGION_NOT_WORK_REGION&#39;</span><span class="p">]</span> <span class="o">+</span>
-                                          <span class="n">app</span><span class="p">[</span><span class="s1">&#39;LIVE_REGION_NOT_WORK_REGION&#39;</span><span class="p">]</span>
-                                          <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_LOCATION_INCONSISTENT_COUNT&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>那些非0的值，往往确实更加具备更高违约率</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_REGION_POPULATION_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_POPULATION_RELATIVE&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_REGION_POPULATION_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>依然是通过bin分桶，能够看到局部之间的下降趋势。地区密度越大（大城市），违约率越低。</p></li>
-</ul>
-<p>对于地区和城市评级，我们通过diff构造</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_REGION_RATING_DIFF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT_W_CITY&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;REGION_RATING_CLIENT&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;INTER_REGION_RATING_DIFF&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>分类数过少。极度不平均</p></li>
-<li><p>极端的类并未展示出极端的违约率。
-不采用</p></li>
-</ul>
-</section>
-<section id="id8">
-<h4>社交圈<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;OBS_30_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">,</span> <span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>相关性太高了。我们只采用60天的数据</p></li>
-<li><p>“近朱者赤，近墨者黑”， DEF逾期人数更加重要</p></li>
-<li><p>我们假设这个人有100人朋友圈，DEF/OBS表示 这个朋友圈坏账率</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>clip去掉长尾噪声，</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DEF_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;OBS_60_CNT_SOCIAL_CIRCLE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_SOCIAL_RATIO_60&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_SOCIAL_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>或许是有用的，这些少数的数据有着很高的违约率</p></li>
-</ul>
-</section>
-<section id="id9">
-<h4>家庭<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_FAMILY_STATUS&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>同居和单身的违约率比较高</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;CNT_FAM_MEMBERS&#39;</span><span class="p">,</span> <span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>高度相关，保留一个</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_FAM_CNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;CNT_CHILDREN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_FAM_CNT&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id10">
-<h4>财务能力<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p>负债收入比</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_INCOME_TOTAL&#39;</span><span class="p">]</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="s1">&#39;NEW_ANNUITY_INCOME_RATIO_BIN&#39;</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">,</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;INTER_CREDIT_TO_ANNUITY&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_ANNUITY&#39;</span><span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;INTER_CREDIT_TO_ANNUITY&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>近似于贷款期数</p></li>
-</ul>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_CREDIT&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_GOODS_PRICE&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.5</span> <span class="p">,</span><span class="mf">1.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
-<span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_CREDIT_TO_GOODS_RATIO_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>太少了，不具备特征意义</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NAME_HOUSING_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="s1">&#39;NAME_HOUSING_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>那些没有住房的人虽少，但违约率高，具有特征意义</p>
-</section>
-<section id="id11">
-<h4>外部信用评分<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>缺失值过多。 但具有意义。表示没有过信用记录。我们必须看重它。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EXT_SOURCE_MISSING_CNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_EXT_SOURCE_MISSING_CNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_EXT_SOURCE_MISSING_CNT&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>可以看到，确实信用评分缺失更多的人，违约率会更高</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;EXT_SOURCE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;EXT_SOURCE_3&#39;</span><span class="p">]):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> Distribution by Target&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>不出所料，这三个外部信用评分确实具有很好的区分能力。</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_HOUR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_WEEK&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_DAY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_MON&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_QRT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_YEAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>查看一年内查询贷款次数</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_YEAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_YEAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_YEAR&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>最近一周查询比率</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_REQ_WEEK_TO_YEAR_RATIO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_WEEK&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;AMT_REQ_CREDIT_BUREAU_YEAR&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_REQ_WEEK_TO_YEAR_RATIO_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_REQ_WEEK_TO_YEAR_RATIO&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_REQ_WEEK_TO_YEAR_RATIO_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>似乎是没什么区分性</p>
-</section>
-<section id="id12">
-<h4>工作情况<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">300000</span><span class="p">][</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">365243</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;YEARS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;DAYS_EMPLOYED&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="o">-</span><span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YEARS_EMPLOYED&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;YEARS_EMPLOYED_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;YEARS_EMPLOYED&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;YEARS_EMPLOYED_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>可以看到，随着工作年限增加，违约率逐渐降低</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_INCOME_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>那些没动作的人，确实违约率更高</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;ORGANIZATION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>类别很多，我们要防止Onehot维度爆炸。 树模型分裂过多
-可以使用LabelEncoding</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;ORGANIZATION_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id13">
-<h4>申请行为<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_CONTRACT_TYPE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>有着明显的区分</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NAME_TYPE_SUITE&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>带着家庭和孩子的违约率更低</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;WEEKDAY_APPR_PROCESS_START&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>区别不太大</p>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START_BIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;HOUR_APPR_PROCESS_START&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;HOUR_APPR_PROCESS_START_BIN&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="p">[[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FLAG_DOCUMENT_&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">[</span><span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_category_stat</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;NEW_DOCUMENT_CNT&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>区别不大</p>
-</section>
-</section>
-<hr class="docutils" />
 <section id="bureau-and-balance">
-<h3>bureau_and_balance<a class="headerlink" href="#bureau-and-balance" title="Link to this heading">#</a></h3>
+<h2>bureau_and_balance<a class="headerlink" href="#bureau-and-balance" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bureau_and_balance</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -2006,9 +735,12 @@
 </div>
 </div>
 </div>
+<p><em>active</em>和<em>closed</em>是同样的逻辑，但是不同的业务含义。<em>active</em>代表当前还款压力，<em>closed</em>代表往日信用记录。
+他们是两类指标，混在一起的话，意义不明确</p>
+<p>这个类似ft工具的where</p>
 </section>
 <section id="previous-applications">
-<h3>previous_applications<a class="headerlink" href="#previous-applications" title="Link to this heading">#</a></h3>
+<h2>previous_applications<a class="headerlink" href="#previous-applications" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">previous_applications</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -2043,12 +775,14 @@
 
     <span class="n">prev_agg</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="o">**</span><span class="n">num_aggregations</span><span class="p">,</span> <span class="o">**</span><span class="n">cat_aggregations</span><span class="p">})</span>
     <span class="n">prev_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;PREV_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">prev_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
+
     <span class="c1"># Previous Applications: Approved Applications - only numerical features</span>
     <span class="n">approved</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">prev</span><span class="p">[</span><span class="s1">&#39;NAME_CONTRACT_STATUS_Approved&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">approved_agg</span> <span class="o">=</span> <span class="n">approved</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;APPROVED_&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">approved_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span>
     <span class="n">prev_agg</span> <span class="o">=</span> <span class="n">prev_agg</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">approved_agg</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span>
+    
     <span class="c1"># Previous Applications: Refused Applications - only numerical features</span>
     <span class="n">refused</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">prev</span><span class="p">[</span><span class="s1">&#39;NAME_CONTRACT_STATUS_Refused&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">refused_agg</span> <span class="o">=</span> <span class="n">refused</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">num_aggregations</span><span class="p">)</span>
@@ -2065,9 +799,10 @@
 </div>
 </div>
 </div>
+<p>同样的，<em>approved</em>和<em>refused</em>代表不同含义，如<em>APPROVED_AMT_CREDIT</em>是银行对客户信心额度，<em>REFUSED_AMT_CREDIT</em>是客户想借没借到的额度</p>
 </section>
 <section id="pos-cash-balance">
-<h3>POS_CASH_balance<a class="headerlink" href="#pos-cash-balance" title="Link to this heading">#</a></h3>
+<h2>POS_CASH_balance<a class="headerlink" href="#pos-cash-balance" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pos_cash</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -2095,7 +830,7 @@
 </div>
 </section>
 <section id="installments-payments">
-<h3>installments_payments<a class="headerlink" href="#installments-payments" title="Link to this heading">#</a></h3>
+<h2>installments_payments<a class="headerlink" href="#installments-payments" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">installments_payments</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -2137,7 +872,7 @@
 </div>
 </section>
 <section id="credit-card-balance">
-<h3>credit_card_balance<a class="headerlink" href="#credit-card-balance" title="Link to this heading">#</a></h3>
+<h2>credit_card_balance<a class="headerlink" href="#credit-card-balance" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">credit_card_balance</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nan_as_category</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -2167,7 +902,7 @@
 </div>
 </section>
 <section id="main">
-<h3>main<a class="headerlink" href="#main" title="Link to this heading">#</a></h3>
+<h2>main<a class="headerlink" href="#main" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@contextmanager</span>
@@ -2175,6 +910,22 @@
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="k">yield</span> <span class="c1"># 执行with代码</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> done in </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_last_no_imp_features</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 获取那些不重要的特征，以供剔除</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;features_importance_df.feather&#39;</span><span class="p">)</span>
+        <span class="n">low_importance_features</span> <span class="o">=</span> <span class="n">features_importance_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;feature&#39;</span><span class="p">)[</span><span class="s1">&#39;importance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">low_importance_features</span> <span class="o">=</span> <span class="n">low_importance_features</span><span class="p">[</span><span class="n">low_importance_features</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">low_importance_features</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
@@ -2215,6 +966,9 @@
         <span class="k">del</span> <span class="n">cc</span>
         <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">timer</span><span class="p">(</span><span class="s1">&#39;Run lgbm with kfold&#39;</span><span class="p">):</span>
+        <span class="n">no_imp_features</span> <span class="o">=</span> <span class="n">get_last_no_imp_features</span><span class="p">()</span>
+        <span class="n">features_to_drop</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">no_imp_features</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">features_to_drop</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;final DF :</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">kfold_lightgbm</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">num_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
         <span class="n">features_importance_df</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="s1">&#39;features_importance_df.feather&#39;</span><span class="p">)</span>
@@ -2232,63 +986,126 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train 307511, test 48744
 app 356255
-app: (356255, 264)
 bureau (1716428, 17), balance (27299925, 3)
 Bureau shape :(305811, 143)
-Process bureau and bureau balance done in 16s
+Process bureau and bureau balance done in 17s
 prev (1670214, 37)
 Previous applications df shape: (338857, 279)
-Process previous_applications done in 22s
+Process previous_applications done in 21s
 Pos-cash balance df shape: (337252, 18)
-Process POS-CASH balance done in 11s
+Process POS-CASH balance done in 12s
 Installments payments df shape: (339587, 26)
 Process installments payments done in 23s
 Credit card balance df shape: (103558, 72)
 Process credit card balance done in 14s
-final DF :(356255, 802)
-[LightGBM] [Info] Number of positive: 19987, number of negative: 226021
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 1.091061 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 107211
-[LightGBM] [Info] Number of data points in the train set: 246008, number of used features: 784
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.081245 -&gt; initscore=-2.425546
-[LightGBM] [Info] Start training from score -2.425546
-Fold  1 AUC : 0.783034
-[LightGBM] [Info] Number of positive: 19791, number of negative: 226218
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 1.088944 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 107261
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 783
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080448 -&gt; initscore=-2.436272
-[LightGBM] [Info] Start training from score -2.436272
-Fold  2 AUC : 0.788983
-[LightGBM] [Info] Number of positive: 19912, number of negative: 226097
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.664946 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 107143
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080940 -&gt; initscore=-2.429642
-[LightGBM] [Info] Start training from score -2.429642
-Fold  3 AUC : 0.783279
-[LightGBM] [Info] Number of positive: 19810, number of negative: 226199
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.682813 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 107365
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080526 -&gt; initscore=-2.435228
-[LightGBM] [Info] Start training from score -2.435228
-Fold  4 AUC : 0.789108
-[LightGBM] [Info] Number of positive: 19800, number of negative: 226209
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.621991 seconds.
-You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 107445
-[LightGBM] [Info] Number of data points in the train set: 246009, number of used features: 782
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.080485 -&gt; initscore=-2.435777
-[LightGBM] [Info] Start training from score -2.435777
-Fold  5 AUC : 0.785867
-Full AUC score 0.786067
-Run lgbm with kfold done in 561s
-full run done in 652s
+final DF :(356255, 720)
+Training until validation scores don&#39;t improve for 200 rounds
+[100]	training&#39;s auc: 0.78238	valid_1&#39;s auc: 0.765774
+[200]	training&#39;s auc: 0.8061	valid_1&#39;s auc: 0.778186
+[300]	training&#39;s auc: 0.822628	valid_1&#39;s auc: 0.784157
+[400]	training&#39;s auc: 0.836671	valid_1&#39;s auc: 0.787432
+[500]	training&#39;s auc: 0.848619	valid_1&#39;s auc: 0.789125
+[600]	training&#39;s auc: 0.859644	valid_1&#39;s auc: 0.790174
+[700]	training&#39;s auc: 0.869208	valid_1&#39;s auc: 0.79104
+[800]	training&#39;s auc: 0.878829	valid_1&#39;s auc: 0.791669
+[900]	training&#39;s auc: 0.88704	valid_1&#39;s auc: 0.792334
+[1000]	training&#39;s auc: 0.894494	valid_1&#39;s auc: 0.792548
+[1100]	training&#39;s auc: 0.901095	valid_1&#39;s auc: 0.79254
+Early stopping, best iteration is:
+[993]	training&#39;s auc: 0.893959	valid_1&#39;s auc: 0.792591
+Fold  1 AUC : 0.792591
+Training until validation scores don&#39;t improve for 200 rounds
+[100]	training&#39;s auc: 0.782763	valid_1&#39;s auc: 0.759153
+[200]	training&#39;s auc: 0.807392	valid_1&#39;s auc: 0.772789
+[300]	training&#39;s auc: 0.823934	valid_1&#39;s auc: 0.779224
+[400]	training&#39;s auc: 0.837874	valid_1&#39;s auc: 0.783119
+[500]	training&#39;s auc: 0.849965	valid_1&#39;s auc: 0.785261
+[600]	training&#39;s auc: 0.860856	valid_1&#39;s auc: 0.786782
+[700]	training&#39;s auc: 0.870219	valid_1&#39;s auc: 0.78738
+[800]	training&#39;s auc: 0.879139	valid_1&#39;s auc: 0.787911
+[900]	training&#39;s auc: 0.887327	valid_1&#39;s auc: 0.788308
+[1000]	training&#39;s auc: 0.895203	valid_1&#39;s auc: 0.788714
+[1100]	training&#39;s auc: 0.902198	valid_1&#39;s auc: 0.788899
+[1200]	training&#39;s auc: 0.908633	valid_1&#39;s auc: 0.789061
+[1300]	training&#39;s auc: 0.914877	valid_1&#39;s auc: 0.789003
+[1400]	training&#39;s auc: 0.920659	valid_1&#39;s auc: 0.789187
+[1500]	training&#39;s auc: 0.925779	valid_1&#39;s auc: 0.789444
+[1600]	training&#39;s auc: 0.930208	valid_1&#39;s auc: 0.789508
+[1700]	training&#39;s auc: 0.934451	valid_1&#39;s auc: 0.789575
+[1800]	training&#39;s auc: 0.93854	valid_1&#39;s auc: 0.789671
+[1900]	training&#39;s auc: 0.942259	valid_1&#39;s auc: 0.789874
+[2000]	training&#39;s auc: 0.945858	valid_1&#39;s auc: 0.789743
+Early stopping, best iteration is:
+[1885]	training&#39;s auc: 0.941636	valid_1&#39;s auc: 0.789935
+Fold  2 AUC : 0.789935
+Training until validation scores don&#39;t improve for 200 rounds
+[100]	training&#39;s auc: 0.782443	valid_1&#39;s auc: 0.760835
+[200]	training&#39;s auc: 0.806232	valid_1&#39;s auc: 0.774092
+[300]	training&#39;s auc: 0.822842	valid_1&#39;s auc: 0.780568
+[400]	training&#39;s auc: 0.836422	valid_1&#39;s auc: 0.783767
+[500]	training&#39;s auc: 0.848625	valid_1&#39;s auc: 0.786248
+[600]	training&#39;s auc: 0.859569	valid_1&#39;s auc: 0.787689
+[700]	training&#39;s auc: 0.869923	valid_1&#39;s auc: 0.789037
+[800]	training&#39;s auc: 0.879094	valid_1&#39;s auc: 0.789732
+[900]	training&#39;s auc: 0.887098	valid_1&#39;s auc: 0.790292
+[1000]	training&#39;s auc: 0.894593	valid_1&#39;s auc: 0.790652
+[1100]	training&#39;s auc: 0.901143	valid_1&#39;s auc: 0.79099
+[1200]	training&#39;s auc: 0.907911	valid_1&#39;s auc: 0.791169
+[1300]	training&#39;s auc: 0.913411	valid_1&#39;s auc: 0.791089
+[1400]	training&#39;s auc: 0.918854	valid_1&#39;s auc: 0.791133
+Early stopping, best iteration is:
+[1201]	training&#39;s auc: 0.907944	valid_1&#39;s auc: 0.791183
+Fold  3 AUC : 0.791183
+Training until validation scores don&#39;t improve for 200 rounds
+[100]	training&#39;s auc: 0.783452	valid_1&#39;s auc: 0.759775
+[200]	training&#39;s auc: 0.80759	valid_1&#39;s auc: 0.772697
+[300]	training&#39;s auc: 0.823811	valid_1&#39;s auc: 0.778664
+[400]	training&#39;s auc: 0.83728	valid_1&#39;s auc: 0.781591
+[500]	training&#39;s auc: 0.849105	valid_1&#39;s auc: 0.783588
+[600]	training&#39;s auc: 0.860079	valid_1&#39;s auc: 0.7851
+[700]	training&#39;s auc: 0.869841	valid_1&#39;s auc: 0.786359
+[800]	training&#39;s auc: 0.879002	valid_1&#39;s auc: 0.787141
+[900]	training&#39;s auc: 0.887656	valid_1&#39;s auc: 0.787323
+[1000]	training&#39;s auc: 0.895257	valid_1&#39;s auc: 0.787467
+[1100]	training&#39;s auc: 0.902494	valid_1&#39;s auc: 0.787827
+[1200]	training&#39;s auc: 0.908634	valid_1&#39;s auc: 0.788189
+[1300]	training&#39;s auc: 0.914872	valid_1&#39;s auc: 0.788379
+[1400]	training&#39;s auc: 0.920066	valid_1&#39;s auc: 0.788461
+[1500]	training&#39;s auc: 0.92536	valid_1&#39;s auc: 0.788412
+[1600]	training&#39;s auc: 0.930068	valid_1&#39;s auc: 0.788697
+[1700]	training&#39;s auc: 0.934425	valid_1&#39;s auc: 0.78877
+[1800]	training&#39;s auc: 0.938771	valid_1&#39;s auc: 0.788662
+[1900]	training&#39;s auc: 0.94271	valid_1&#39;s auc: 0.788981
+[2000]	training&#39;s auc: 0.946599	valid_1&#39;s auc: 0.788999
+[2100]	training&#39;s auc: 0.949967	valid_1&#39;s auc: 0.788967
+Early stopping, best iteration is:
+[1927]	training&#39;s auc: 0.944003	valid_1&#39;s auc: 0.789081
+Fold  4 AUC : 0.789081
+Training until validation scores don&#39;t improve for 200 rounds
+[100]	training&#39;s auc: 0.782267	valid_1&#39;s auc: 0.760801
+[200]	training&#39;s auc: 0.805775	valid_1&#39;s auc: 0.774578
+[300]	training&#39;s auc: 0.822456	valid_1&#39;s auc: 0.781059
+[400]	training&#39;s auc: 0.837006	valid_1&#39;s auc: 0.784653
+[500]	training&#39;s auc: 0.848933	valid_1&#39;s auc: 0.786817
+[600]	training&#39;s auc: 0.860147	valid_1&#39;s auc: 0.788454
+[700]	training&#39;s auc: 0.869955	valid_1&#39;s auc: 0.789242
+[800]	training&#39;s auc: 0.879022	valid_1&#39;s auc: 0.789719
+[900]	training&#39;s auc: 0.887043	valid_1&#39;s auc: 0.790111
+[1000]	training&#39;s auc: 0.894709	valid_1&#39;s auc: 0.790376
+[1100]	training&#39;s auc: 0.901814	valid_1&#39;s auc: 0.790596
+[1200]	training&#39;s auc: 0.90801	valid_1&#39;s auc: 0.790917
+[1300]	training&#39;s auc: 0.914572	valid_1&#39;s auc: 0.791167
+[1400]	training&#39;s auc: 0.920002	valid_1&#39;s auc: 0.791147
+[1500]	training&#39;s auc: 0.92504	valid_1&#39;s auc: 0.791326
+[1600]	training&#39;s auc: 0.929904	valid_1&#39;s auc: 0.79151
+[1700]	training&#39;s auc: 0.934097	valid_1&#39;s auc: 0.791493
+[1800]	training&#39;s auc: 0.938231	valid_1&#39;s auc: 0.791423
+Early stopping, best iteration is:
+[1649]	training&#39;s auc: 0.931961	valid_1&#39;s auc: 0.791637
+Fold  5 AUC : 0.791637
+Full AUC score 0.790754
+Run lgbm with kfold done in 905s
+full run done in 996s
 </pre></div>
 </div>
 </div>
@@ -2296,16 +1113,11 @@ full run done in 652s
 <p>78分</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;features_importance_df.feather&#39;</span><span class="p">)</span>
-<span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_importances</span><span class="p">(</span><span class="n">features_importance_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/4e5e5b38934a7c6202eaed8a76bd6689ca0033c195504b6eb7dec42354b30a27.png" src="../../_images/4e5e5b38934a7c6202eaed8a76bd6689ca0033c195504b6eb7dec42354b30a27.png" />
 </div>
-</div>
-</section>
 </section>
 </section>
 
@@ -2329,11 +1141,11 @@ full run done in 652s
       </div>
     </a>
     <a class="right-next"
-       href="../../MLcook/index.html"
+       href="06_null_importance.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">数据分析知识</p>
+        <p class="prev-next-title">null importance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2356,43 +1168,14 @@ full run done in 652s
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-importance">null importance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">手动特征工程</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-train-test">application_train/test</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">函数</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">个人信息</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#code-gender">CODE_GENDER</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-birth">DAYS_BIRTH</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-registration">DAYS_REGISTRATION</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-id-publish">DAYS_ID_PUBLISH</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#days-last-phone-change">DAYS_LAST_PHONE_CHANGE</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-mobil-flag-emp-phone-flag-work-phone-flag-cont-mobile-flag-phone-flag-email">FLAG_MOBIL，FLAG_EMP_PHONE，FLAG_WORK_PHONE，FLAG_CONT_MOBILE，FLAG_PHONE，FLAG_EMAIL</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#name-education-type">NAME_EDUCATION_TYPE</a></li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">车</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">房屋评价得分</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#flag-own-realty">FLAG_OWN_REALTY</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#totalarea-mode">TOTALAREA_MODE</a></li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">地区住址</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">社交圈</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">家庭</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">财务能力</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">外部信用评分</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">工作情况</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">申请行为</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bureau-and-balance">bureau_and_balance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#previous-applications">previous_applications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-cash-balance">POS_CASH_balance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installments-payments">installments_payments</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-card-balance">credit_card_balance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main">main</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">公共函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-train-test">application_train/test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bureau-and-balance">bureau_and_balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#previous-applications">previous_applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-cash-balance">POS_CASH_balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installments-payments">installments_payments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#credit-card-balance">credit_card_balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main">main</a></li>
 </ul>
   </nav></div>
 
