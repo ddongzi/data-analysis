@@ -326,6 +326,10 @@
 <li class="toctree-l2"><a class="reference internal" href="07_tuning_hyperparam.html">7.lgbm调参</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../optiver_trading_at_the_close/index.html">预测收盘价</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../optiver_trading_at_the_close/01_start.html">1.初步</a></li>
+</ul>
+</details></li>
 </ul></details></li></ul></div>
 </nav></div>
     </div>
@@ -645,6 +649,7 @@
     <span class="k">for</span> <span class="n">bin_feature</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;FLAG_OWN_CAR&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_OWN_REALTY&#39;</span><span class="p">,</span> <span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]:</span>
         <span class="n">app</span><span class="p">[</span><span class="n">bin_feature</span><span class="p">],</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">app</span><span class="p">[</span><span class="n">bin_feature</span><span class="p">])</span>
     <span class="n">app</span><span class="p">,</span> <span class="n">new_cat_features</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    
     <span class="k">del</span> <span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span>
     <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">app</span>

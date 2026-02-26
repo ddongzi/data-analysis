@@ -417,6 +417,71 @@
 </ul>
 </section>
 </section>
+<section id="fillbetween">
+<h2>fillbetween<a class="headerlink" href="#fillbetween" title="Link to this heading">#</a></h2>
+<p>在两条线之间涂颜色</p>
+<ol class="arabic simple">
+<li><p>默认填充折线与X轴</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1efa1921520&gt;]
+</pre></div>
+</div>
+<img alt="../_images/32ecd4cf47294bb7ae4f07eb72f24a4c79c72d74e88cd64865576a09c7d85aa3.png" src="../_images/32ecd4cf47294bb7ae4f07eb72f24a4c79c72d74e88cd64865576a09c7d85aa3.png" />
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>填充两个y、曲线、x轴之间</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1efa4f7f520&gt;]
+</pre></div>
+</div>
+<img alt="../_images/33488581986e8a9ba0553729c1325578769abff5c7b8acfa38c5226a09aaa8e1.png" src="../_images/33488581986e8a9ba0553729c1325578769abff5c7b8acfa38c5226a09aaa8e1.png" />
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>条件填充</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                 <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">),</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1efa5071d90&gt;]
+</pre></div>
+</div>
+<img alt="../_images/2008c6ef6590fec168bd18528577e853abe803f312186d491e4172e3d7be65d4.png" src="../_images/2008c6ef6590fec168bd18528577e853abe803f312186d491e4172e3d7be65d4.png" />
+</div>
+</div>
+</section>
 <section id="id5">
 <h2>4.1 常用技巧<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -3253,6 +3318,7 @@ Width: 1.1322542435161185
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">3D和体积</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fillbetween">fillbetween</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.1 常用技巧</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.1.1 导入 简写</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.1.2 设置绘图样式</a></li>

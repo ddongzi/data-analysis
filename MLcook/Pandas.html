@@ -391,7 +391,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3.0.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.3.1&#39;
 </pre></div>
 </div>
 </div>
@@ -12075,6 +12075,108 @@ Categories (3, interval[int64, right]): [(0, 18] &lt; (18, 35] &lt; (35, 70]]
 <li><p>stack 把列索引变成行索引</p></li>
 </ul>
 </section>
+<section id="melt">
+<h3>melt<a class="headerlink" href="#melt" title="Link to this heading">#</a></h3>
+<p>宽表人类看，长表分析好</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:[</span><span class="s1">&#39;ming&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;math&#39;</span><span class="p">:[</span><span class="mi">90</span><span class="p">],</span>
+    <span class="s1">&#39;english&#39;</span><span class="p">:[</span><span class="mi">30</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>math</th>
+      <th>english</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ming</td>
+      <td>90</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">id_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="c1"># 那几列不变</span>
+    <span class="n">value_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;english&#39;</span><span class="p">],</span> <span class="c1"># 这几个类名合成一列</span>
+    <span class="n">var_name</span> <span class="o">=</span> <span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="c1"># 合成列的名字</span>
+    <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;score&#39;</span> <span class="c1"># 剩余数值列名字</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>subject</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ming</td>
+      <td>math</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ming</td>
+      <td>english</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
 <section id="get-dummies">
 <h3>get_dummies()<a class="headerlink" href="#get-dummies" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -15001,6 +15103,7 @@ Illinois             4     2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-and-pivot-tables">Reshaping and pivot tables</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cut">cut</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stack-unstack">stack 和 unstack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melt">melt</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-dummies">get_dummies()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">3.10　数据透视表</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titantic">3.10.1 示例:titantic</a></li>

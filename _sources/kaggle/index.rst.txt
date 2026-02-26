@@ -9,4 +9,5 @@ kaggle项目
 
    信贷违约风险 <Home_Credit_Default_Risk/index>
 
+   预测收盘价 <optiver_trading_at_the_close/index>
 

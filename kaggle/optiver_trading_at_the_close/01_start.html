@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>introduction &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'kaggle/optiver_trading_at_the_close/01_start';</script>
+    <script src="../../_static/js/custom.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="数据分析知识" href="../../MLcook/index.html" />
+    <link rel="prev" title="预测收盘价走势" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../economy/economy.html">
+    宏观经济
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../astroy/index.html">
+    天文
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../economy/economy.html">
+    宏观经济
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Home_Credit_Default_Risk/index.html">信贷违约风险</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/01_main.html">1.初步</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/02_menu_feature_enginer.html">2.手动特征工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/03_Automated_Feature_Engineering_Basics.html">3.自动特征工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/04_Tuning_Automated_Feature_Engineering.html">4.调优自动特征工程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/05_better_menu_feature_enginer.html">5.手动特征工程(二)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/06_null_importance.html">6.null importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home_Credit_Default_Risk/07_tuning_hyperparam.html">7.lgbm调参</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">预测收盘价</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.初步</a></li>
+</ul>
+</details></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">kaggle项目</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">预测收盘价走势</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">introduction</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction">
+<h1>introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.kaggle.com/code/tomforbes/optiver-trading-at-the-close-introduction#Trading-At-The-Close">介绍</a></p>
+<p>预测股票收盘价</p>
+<p>最后10分钟，允许委托，不支持撤单，最后一刻统一价格撮合（按照成交量最大），产生收盘价。</p>
+<p><strong>近端价、远端价、参考</strong></p>
+<p>15:50:00开始收盘竞价，每隔10秒收集数据</p>
+<p>0-300秒：纳斯达克不公布近端和远端价格</p>
+<p>300-600: 300开始实时发布近端/远端价格</p>
+<p>600：价格确定</p>
+<ul class="simple">
+<li><p>远端价：一些人等到第30秒发起订单，<strong>就是这一秒</strong>，远端价就是只看这几个人可以成交的价格。如果Nan就是得不到成交价格</p></li>
+<li><p>近端价：把这些人的订单和白天剩余订单全在一起，计算出的成交价格就是 近端价。
+近端价相比远端价更加稳定。</p></li>
+<li><p>参考价：近端价和远端价都可能会出现很离谱的价格，参考价是市场设定的保护范围</p></li>
+</ul>
+<p>这三个价格最终会收敛到一起</p>
+<p><strong>imbalance失衡</strong>：</p>
+<p>比如苹果股票，400秒时候。</p>
+<p>按照参考价</p>
+<p>场景1：买方多。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_size</span></code> = 100万 表示按照参考价，不能成交的订单额。即买的人多</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_buy_sell_flag</span></code> = 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matched_size</span></code> = 300万， 按照参考价，此时能够成交的订单额</p></li>
+</ul>
+<p>场景2：正好平衡</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_size</span></code> = 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_buy_sell_flag</span></code> = 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matched_size</span></code> = 400万， 按照参考价，此时能够成交的订单额</p></li>
+</ul>
+<p>wap是加权平均价格，所以总是介于ask和bid之间</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">gc</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;stock_id&#39;, &#39;date_id&#39;, &#39;seconds_in_bucket&#39;, &#39;imbalance_size&#39;,
+       &#39;imbalance_buy_sell_flag&#39;, &#39;reference_price&#39;, &#39;matched_size&#39;,
+       &#39;far_price&#39;, &#39;near_price&#39;, &#39;bid_price&#39;, &#39;bid_size&#39;, &#39;ask_price&#39;,
+       &#39;ask_size&#39;, &#39;wap&#39;, &#39;target&#39;, &#39;time_id&#39;, &#39;row_id&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">info_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;shape </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">n_stock</span> <span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stock_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;stocks </span><span class="si">{</span><span class="n">n_stock</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">n_days</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;days </span><span class="si">{</span><span class="n">n_days</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape (5237980, 17)
+stocks 200
+days 481
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_stock</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">stock</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">plot_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stock_id&#39;</span><span class="p">]</span> <span class="o">==</span><span class="n">stock</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">date</span><span class="p">)</span> <span class="p">]</span>
+    <span class="n">melted_data</span> <span class="o">=</span> <span class="n">plot_df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">id_vars</span> <span class="o">=</span> <span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span>
+        <span class="n">value_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;far_price&#39;</span><span class="p">,</span> <span class="s1">&#39;near_price&#39;</span><span class="p">,</span> <span class="s1">&#39;reference_price&#39;</span><span class="p">,</span><span class="s1">&#39;wap&#39;</span><span class="p">],</span>
+        <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;price_value&#39;</span><span class="p">,</span>
+        <span class="n">var_name</span> <span class="o">=</span> <span class="s1">&#39;price_type&#39;</span>
+    <span class="p">)</span>
+    <span class="c1"># 左图：近端、远端价、参考价 收敛</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">melted_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;price_value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;price_type&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Auction Prices (Stock </span><span class="si">{</span><span class="n">stock</span><span class="si">}</span><span class="s2">, Day </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="n">melted_data</span> <span class="o">=</span> <span class="n">plot_df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">id_vars</span> <span class="o">=</span> <span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span>
+        <span class="n">value_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">],</span>
+        <span class="n">var_name</span> <span class="o">=</span> <span class="s1">&#39;Price_Type&#39;</span><span class="p">,</span>
+        <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;Price_Value&#39;</span>
+    <span class="p">)</span>
+    <span class="c1"># 中图：订单本最优买卖价格</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">melted_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Price_Value&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Price_Type&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Market Liquidity (Stock </span><span class="si">{</span><span class="n">stock</span><span class="si">}</span><span class="s2">, Day </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+
+    <span class="c1"># 右图：imbalance</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">plot_df</span><span class="p">[</span><span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">],</span> <span class="n">plot_df</span><span class="p">[</span><span class="s1">&#39;matched_size&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Matched Size&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Matched size&#39;</span><span class="p">)</span>
+    <span class="n">tax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">plot_df</span><span class="p">[</span><span class="s1">&#39;signed_imb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_df</span><span class="p">[</span><span class="s1">&#39;imbalance_size&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">plot_df</span><span class="p">[</span><span class="s1">&#39;imbalance_buy_sell_flag&#39;</span><span class="p">]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plot_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;signed_imb&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">tax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Signed Imbalance&#39;</span><span class="p">)</span>
+    <span class="n">tax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Signed Imbalance (Buy &gt; 0, Sell &lt; 0)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Imbalance Dynamics (Stock </span><span class="si">{</span><span class="n">stock</span><span class="si">}</span><span class="s2">, Day </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stock</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">stock</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/441c218e56e4bbcdbc369d5a3b64ab4d9999aa27d4299d9cbaf3363955787724.png" src="../../_images/441c218e56e4bbcdbc369d5a3b64ab4d9999aa27d4299d9cbaf3363955787724.png" />
+</div>
+</div>
+<section id="metrics">
+<h2>metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h2>
+<p>MAE</p>
+</section>
+<section id="id1">
+<h2>字段说明<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>stock_id: 股票的唯一标识。</p></li>
+<li><p>date_id: 日期的唯一标识（按天递增）。</p></li>
+<li><p>seconds_in_bucket: 当前竞价时段内经过的秒数（从 0 开始，每 10 秒一行，最高到 540）。</p></li>
+<li><p>time_id / row_id: 唯一行标识。</p></li>
+</ul>
+<p>竞价数据：反应供需</p>
+<ul class="simple">
+<li><p>imbalance_size: 以美元计量的未匹配金额。</p></li>
+<li><p>imbalance_buy_sell_flag: 失衡方向。1 代表买方失衡（买单多），-1 代表卖方失衡，0 代表平衡。</p></li>
+<li><p>matched_size: 当前参考价下可以匹配成交的金额（美元）。</p></li>
+<li><p>reference_price: 参考价格。它是使配对股份最大化、不平衡最小化的价格，通常被限制在最佳买卖价之间。</p></li>
+<li><p>far_price: 远端价格。仅基于竞价订单计算的模拟成交价（不含连续交易时段的订单）。</p></li>
+<li><p>near_price: 近端价格。结合了竞价订单和连续交易订单后的模拟成交价。</p></li>
+</ul>
+<p>订单数据</p>
+<ul class="simple">
+<li><p>bid_price / ask_price: 订单簿中最优买入/卖出价（买一/卖一）。</p></li>
+<li><p>bid_size / ask_size: 最优买入/卖出位的美元金额。</p></li>
+<li><p>wap:成交量加权平均价（Weighted Average Price）
+$$
+\frac{BidPrice * BidSize + AskPrice * AskSize}{BidSize + AskSize}
+$$</p></li>
+<li><p>target
+股票未来 60 秒的 WAP 涨幅，</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>stock_id</th>
+      <th>date_id</th>
+      <th>seconds_in_bucket</th>
+      <th>imbalance_size</th>
+      <th>imbalance_buy_sell_flag</th>
+      <th>reference_price</th>
+      <th>matched_size</th>
+      <th>far_price</th>
+      <th>near_price</th>
+      <th>bid_price</th>
+      <th>bid_size</th>
+      <th>ask_price</th>
+      <th>ask_size</th>
+      <th>wap</th>
+      <th>target</th>
+      <th>time_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5.237980e+06</td>
+      <td>5.237980e+06</td>
+      <td>5.237980e+06</td>
+      <td>5.237760e+06</td>
+      <td>5.237980e+06</td>
+      <td>5.237760e+06</td>
+      <td>5.237760e+06</td>
+      <td>2.343638e+06</td>
+      <td>2.380800e+06</td>
+      <td>5.237760e+06</td>
+      <td>5.237980e+06</td>
+      <td>5.237760e+06</td>
+      <td>5.237980e+06</td>
+      <td>5.237760e+06</td>
+      <td>5.237892e+06</td>
+      <td>5.237980e+06</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>9.928856e+01</td>
+      <td>2.415100e+02</td>
+      <td>2.700000e+02</td>
+      <td>5.715293e+06</td>
+      <td>-1.189619e-02</td>
+      <td>9.999955e-01</td>
+      <td>4.510025e+07</td>
+      <td>1.001713e+00</td>
+      <td>9.996601e-01</td>
+      <td>9.997263e-01</td>
+      <td>5.181359e+04</td>
+      <td>1.000264e+00</td>
+      <td>5.357568e+04</td>
+      <td>9.999920e-01</td>
+      <td>-4.756125e-02</td>
+      <td>1.331005e+04</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>5.787176e+01</td>
+      <td>1.385319e+02</td>
+      <td>1.587451e+02</td>
+      <td>2.051591e+07</td>
+      <td>8.853374e-01</td>
+      <td>2.532497e-03</td>
+      <td>1.398413e+08</td>
+      <td>7.214705e-01</td>
+      <td>1.216920e-02</td>
+      <td>2.499345e-03</td>
+      <td>1.114214e+05</td>
+      <td>2.510042e-03</td>
+      <td>1.293554e+05</td>
+      <td>2.497509e-03</td>
+      <td>9.452860e+00</td>
+      <td>7.619271e+03</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>-1.000000e+00</td>
+      <td>9.352850e-01</td>
+      <td>4.316610e+03</td>
+      <td>7.700000e-05</td>
+      <td>7.869880e-01</td>
+      <td>9.349150e-01</td>
+      <td>0.000000e+00</td>
+      <td>9.398270e-01</td>
+      <td>0.000000e+00</td>
+      <td>9.380080e-01</td>
+      <td>-3.852898e+02</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>4.900000e+01</td>
+      <td>1.220000e+02</td>
+      <td>1.300000e+02</td>
+      <td>8.453415e+04</td>
+      <td>-1.000000e+00</td>
+      <td>9.987630e-01</td>
+      <td>5.279575e+06</td>
+      <td>9.963320e-01</td>
+      <td>9.971000e-01</td>
+      <td>9.985290e-01</td>
+      <td>7.374720e+03</td>
+      <td>9.990290e-01</td>
+      <td>7.823700e+03</td>
+      <td>9.987810e-01</td>
+      <td>-4.559755e+00</td>
+      <td>6.729000e+03</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>9.900000e+01</td>
+      <td>2.420000e+02</td>
+      <td>2.700000e+02</td>
+      <td>1.113604e+06</td>
+      <td>0.000000e+00</td>
+      <td>9.999670e-01</td>
+      <td>1.288264e+07</td>
+      <td>9.998830e-01</td>
+      <td>9.998890e-01</td>
+      <td>9.997280e-01</td>
+      <td>2.196900e+04</td>
+      <td>1.000207e+00</td>
+      <td>2.301792e+04</td>
+      <td>9.999970e-01</td>
+      <td>-6.020069e-02</td>
+      <td>1.334500e+04</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.490000e+02</td>
+      <td>3.610000e+02</td>
+      <td>4.100000e+02</td>
+      <td>4.190951e+06</td>
+      <td>1.000000e+00</td>
+      <td>1.001174e+00</td>
+      <td>3.270013e+07</td>
+      <td>1.003318e+00</td>
+      <td>1.002590e+00</td>
+      <td>1.000905e+00</td>
+      <td>5.583168e+04</td>
+      <td>1.001414e+00</td>
+      <td>5.787841e+04</td>
+      <td>1.001149e+00</td>
+      <td>4.409552e+00</td>
+      <td>1.990700e+04</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.990000e+02</td>
+      <td>4.800000e+02</td>
+      <td>5.400000e+02</td>
+      <td>2.982028e+09</td>
+      <td>1.000000e+00</td>
+      <td>1.077488e+00</td>
+      <td>7.713682e+09</td>
+      <td>4.379531e+02</td>
+      <td>1.309732e+00</td>
+      <td>1.077488e+00</td>
+      <td>3.028784e+07</td>
+      <td>1.077836e+00</td>
+      <td>5.440500e+07</td>
+      <td>1.077675e+00</td>
+      <td>4.460704e+02</td>
+      <td>2.645400e+04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">预测收盘价走势</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../MLcook/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">数据分析知识</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">字段说明</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/kaggle/optiver_trading_at_the_close/01_start.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
