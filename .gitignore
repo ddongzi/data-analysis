@@ -17,8 +17,9 @@ __pycache__/
 *.pyd
 
 # 数据目录（你可以根据自己项目目录结构改）
-../data/
-../datasets/
+data/
+**/data/
+**/datasets/
 *.csv
 *.xlsx
 *.tsv
