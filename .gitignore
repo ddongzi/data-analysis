@@ -71,3 +71,5 @@ data/
 .idea
 
 mastDownload
+
+*.so
