@@ -43,7 +43,7 @@
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'kaggle/House_Prices/Untitled';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'kaggle/House_Prices/main';</script>
     <script src="../../_static/js/custom.js"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
@@ -227,10 +227,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -309,6 +307,15 @@
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -2101,7 +2108,7 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp_numeric_cols</span> <span class="o">=</span><span class="p">[</span>
-   <span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">,</span> <span class="s1">&#39;GarageCars&#39;</span><span class="p">,</span><span class="s1">&#39;1stFlrSF&#39;</span>
+   <span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">,</span> <span class="s1">&#39;GrLivArea&#39;</span><span class="p">,</span><span class="s1">&#39;1stFlrSF&#39;</span>
 <span class="p">]</span>
 <span class="n">imp_category_cols</span> <span class="o">=</span> <span class="p">[</span>
    <span class="s1">&#39;Foundation&#39;</span><span class="p">,</span><span class="s1">&#39;LotShape&#39;</span><span class="p">,</span> <span class="s1">&#39;CentralAir&#39;</span><span class="p">,</span><span class="s1">&#39;Electrical&#39;</span><span class="p">,</span> <span class="s1">&#39;PavedDrive&#39;</span>
@@ -2110,10 +2117,6 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>对于数值特征， 就是离群点</p></li>
-<li><p>对于分类特征，就是频率极低的那些点</p></li>
-</ul>
 <p>关于离群异常点的定义，不能使用简单的IQR，很多数值特征都是长尾的，所需需要log变换</p>
 <section id="id6">
 <h4>目标异常<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
@@ -2282,13 +2285,13 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f1e8e6aee00d4cbdd5957510f3e199ca23086bc4124064311ce866bdb73e1b1a.png" src="../../_images/f1e8e6aee00d4cbdd5957510f3e199ca23086bc4124064311ce866bdb73e1b1a.png" />
+<img alt="../../_images/ba21cb35bc3c8a6a0c91687f95ab80ceb5bb80163ac4ee7e7d2484f0dea81700.png" src="../../_images/ba21cb35bc3c8a6a0c91687f95ab80ceb5bb80163ac4ee7e7d2484f0dea81700.png" />
 </div>
 </div>
 <p>有一些离群点</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span><span class="p">[</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;GrLivArea&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">4500</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span><span class="p">[(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;GrLivArea&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">4000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">200000</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -2396,7 +2399,7 @@ Name: count, dtype: int64
       <td>AllPub</td>
       <td>Corner</td>
       <td>...</td>
-      <td>4.0</td>
+      <td>Gd</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>0</td>
@@ -2498,7 +2501,7 @@ Name: count, dtype: int64
       <td>AllPub</td>
       <td>Corner</td>
       <td>...</td>
-      <td>4.0</td>
+      <td>Gd</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>0</td>
@@ -2516,84 +2519,390 @@ Name: count, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">imp_category_cols</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">imp_category_cols</span><span class="p">)))</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imp_category_cols</span><span class="p">):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">traindata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    
-    <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">containers</span><span class="p">:</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
-        
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Count of </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">traindata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">traindata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">traindata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">traindata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b362efb13d3a810d393a42ba03e57b76bbade8c5337be196ccd5bae796a0694f.png" src="../../_images/b362efb13d3a810d393a42ba03e57b76bbade8c5337be196ccd5bae796a0694f.png" />
+<img alt="../../_images/c9f6ed8637322c5623e06fb38e4ab196ddbe500122fe40159e2d77c779ff5c0c.png" src="../../_images/c9f6ed8637322c5623e06fb38e4ab196ddbe500122fe40159e2d77c779ff5c0c.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span><span class="p">[(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;Foundation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PConc&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">700000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+      <th>SalePrice_log</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>692</th>
+      <td>60</td>
+      <td>RL</td>
+      <td>104.0</td>
+      <td>21535</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>755000</td>
+      <td>13.534473</td>
+    </tr>
+    <tr>
+      <th>1183</th>
+      <td>60</td>
+      <td>RL</td>
+      <td>160.0</td>
+      <td>15623</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>...</td>
+      <td>Ex</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>7</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Abnorml</td>
+      <td>745000</td>
+      <td>13.521139</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 81 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span><span class="p">[(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;Foundation&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;BrkTil&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">400000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+      <th>SalePrice_log</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>186</th>
+      <td>75</td>
+      <td>RM</td>
+      <td>90.0</td>
+      <td>22950</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR2</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>GdPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2006</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>475000</td>
+      <td>13.07107</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 81 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span><span class="p">[(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;LotShape&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IR1&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">traindata</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">700000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+      <th>SalePrice_log</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>692</th>
+      <td>60</td>
+      <td>RL</td>
+      <td>104.0</td>
+      <td>21535</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>755000</td>
+      <td>13.534473</td>
+    </tr>
+    <tr>
+      <th>1183</th>
+      <td>60</td>
+      <td>RL</td>
+      <td>160.0</td>
+      <td>15623</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>...</td>
+      <td>Ex</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>7</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Abnorml</td>
+      <td>745000</td>
+      <td>13.521139</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 81 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="id8">
 <h4>剔除异常行<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">598</span><span class="p">,</span> <span class="mi">955</span><span class="p">,</span> <span class="mi">935</span><span class="p">,</span> <span class="mi">1299</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">314</span><span class="p">,</span> <span class="mi">336</span><span class="p">,</span> <span class="mi">707</span><span class="p">,</span> <span class="mi">379</span><span class="p">,</span> <span class="mi">1183</span><span class="p">,</span> <span class="mi">692</span><span class="p">,</span> <span class="mi">186</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">186</span><span class="p">,</span> <span class="mi">524</span><span class="p">,</span> <span class="mi">739</span><span class="p">,</span> <span class="mi">598</span><span class="p">,</span> <span class="mi">955</span><span class="p">,</span> <span class="mi">636</span><span class="p">,</span> <span class="mi">1062</span><span class="p">,</span> <span class="mi">1191</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">1338</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dropids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">524</span><span class="p">,</span> <span class="mi">1299</span><span class="p">,</span> <span class="mi">692</span><span class="p">,</span> <span class="mi">1183</span><span class="p">,</span><span class="mi">186</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span> <span class="o">=</span> <span class="n">traindata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)</span><span class="o">//</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
-<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">traindata</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-
-
-
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-
-
-
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">78</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-
-
-
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)</span><span class="o">//</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
-
-
-
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-
-
-
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">):</span>
-
-
-
-
-
-
-
-<span class="ne">NameError</span>: name &#39;numeric_cols&#39; is not defined
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata</span> <span class="o">=</span> <span class="n">traindata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dropids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2604,7 +2913,6 @@ Name: count, dtype: int64
 <h3>log变换<a class="headerlink" href="#log" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>方差小一点, 受异常值影响小一点</p></li>
-<li><p>glm指数关系</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4261,7 +4569,7 @@ categoric__SaleCondition_Partial
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/kaggle/House_Prices/Untitled.ipynb.txt"
+      <li><a href="../../_sources/kaggle/House_Prices/main.ipynb.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
