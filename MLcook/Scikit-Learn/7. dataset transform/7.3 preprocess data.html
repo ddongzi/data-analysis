@@ -377,9 +377,56 @@
 <li><p>二值化：0，1</p></li>
 <li><p>正交化：PCA降维</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="standardization-or-mean-removal-and-variance-scaling">
 <h2>7.3.1. Standardization, or mean removal and variance scaling<a class="headerlink" href="#standardization-or-mean-removal-and-variance-scaling" title="Link to this heading">#</a></h2>
 <p>Standardization of datasets is a <strong>common requirement</strong> for many machine learning estimators implemented in scikit-learn; they might <strong>behave badly</strong> if the individual features do not more or less look like standard normally distributed data: Gaussian with zero mean and unit variance.</p>
+<p>在处理异常值的时候，我们可能会使用到标准化(Boxplot), 来描述具体多么偏离，也能统一量纲避免数字过大.</p>
+<p>标准化不改变数据分布，因此和正太(normalization)分布没关系</p>
+<p>偏度和峰度是与正态分布对比的两个</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">price_scaled</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
+<span class="n">price_scaled</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.55992913],
+       [ 0.8616518 ],
+       [-0.46227592],
+       [-1.10285798],
+       [ 0.20683946],
+       [-1.50872252],
+       [-0.96610456],
+       [ 1.36102076],
+       [ 0.40482854],
+       [-0.35430871]])
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">在当前单元格或上一个单元格中执行代码时</span> <span class="n">Kernel</span> <span class="n">崩溃</span><span class="err">。</span>
+
+<span class="n">请查看单元格中的代码</span><span class="err">，</span><span class="n">以确定故障的可能原因</span><span class="err">。</span>
+
+<span class="n">单击</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://aka.ms/vscodeJupyterKernelCrash&#39;</span><span class="o">&gt;</span><span class="n">此处</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="n">了解详细信息</span><span class="err">。</span>
+
+<span class="n">有关更多详细信息</span><span class="err">，</span><span class="n">请查看</span> <span class="n">Jupyter</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;command:jupyter.viewOutput&#39;</span><span class="o">&gt;</span><span class="n">log</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">。</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>标准后值为3，意味比平均房价高出3各标准差</p></li>
+</ul>
+<p>标准正太分布99.7%数据都在$3\sigma$ 之间，我们可以人为在$[-3, 3]$ 之外是异常点</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>

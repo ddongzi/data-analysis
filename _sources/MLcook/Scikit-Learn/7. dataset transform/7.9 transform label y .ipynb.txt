@@ -7,14 +7,13 @@
    "source": [
     "### 7.9.2 label encoding\n",
     "- 对类别标签进行编码，将字符串标签转换为整数标签。\n",
-    "- 用于二分类\n",
     "- 类别的编码值随机，不应该用于反应任何信息\n",
     "  - 如科学家 = 1， 程序员 = 4"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 1,
    "id": "b668e2b8",
    "metadata": {},
    "outputs": [
@@ -81,7 +80,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.13.10"
+   "version": "3.10.15"
   }
  },
  "nbformat": 4,

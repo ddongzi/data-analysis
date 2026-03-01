@@ -802,6 +802,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <li><p>须：非异常范围。端点默认为<code class="docutils literal notranslate"><span class="pre">Q1</span> <span class="pre">-</span> <span class="pre">1.5</span> <span class="pre">×</span> <span class="pre">IQR</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Q3</span> <span class="pre">+</span> <span class="pre">1.5</span> <span class="pre">×</span> <span class="pre">IQR</span></code></p></li>
 <li><p>单独点：异常值</p></li>
 </ul>
+<p>箱线图 缺点 在于盒子里看不到样本的数量. 使用stripplot 分类散点</p>
 <p><code class="docutils literal notranslate"><span class="pre">catplot</span></code> : categorical</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,6 +814,20 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/9f49b45a1798a0ea9176e5206311aab3b52b30b2b6cbed2e55da6276cb4e510a.png" src="../_images/9f49b45a1798a0ea9176e5206311aab3b52b30b2b6cbed2e55da6276cb4e510a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;class&#39;, ylabel=&#39;age&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b9f157d8d47dff9ce35940762fc6deba6455d5476949c2b9bb6bfa1a9622cf31.png" src="../_images/b9f157d8d47dff9ce35940762fc6deba6455d5476949c2b9bb6bfa1a9622cf31.png" />
 </div>
 </div>
 </section>
@@ -961,6 +976,22 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </section>
 <section id="id6">
 <h2>7. 热图<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>可以绘制相关系数矩阵</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corrs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/86cf0e67c43aca2839872c36c168868d2b9d5389a36b06fe801d21db27cab9db.png" src="../_images/86cf0e67c43aca2839872c36c168868d2b9d5389a36b06fe801d21db27cab9db.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成 5x5 矩阵</span>
@@ -978,35 +1009,10 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># 生成 5x5 矩阵</span>
-
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># 绘制热图</span>
-
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> 
-
-<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-
-<span class="g g-Whitespace">     </span><span class="mi">10</span>             <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="g g-Whitespace">     </span><span class="mi">11</span>            <span class="p">)</span> <span class="c1"># 正方形，显示数字，不显示colorbar</span>
-
-
-
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
+<img alt="../_images/57d4003d45d57b2e63c746367fdffbbb11809bdc20bb8592908f99a3bc661ebb.png" src="../_images/57d4003d45d57b2e63c746367fdffbbb11809bdc20bb8592908f99a3bc661ebb.png" />
 </div>
 </div>
 </section>
@@ -1031,6 +1037,26 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/827955dc5a7ffb8885d3bfb0178956590a9c8b009ddd96dfb0ff1f77369e4d56.png" src="../_images/827955dc5a7ffb8885d3bfb0178956590a9c8b009ddd96dfb0ff1f77369e4d56.png" />
+</div>
+</div>
+</section>
+<section id="stripplot">
+<h2>stripplot 条带/ 分类散点图<a class="headerlink" href="#stripplot" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d660931aa9d89b6cd31160da606d72f7898389537ef4c76b0c4efb3615f211fe.png" src="../_images/d660931aa9d89b6cd31160da606d72f7898389537ef4c76b0c4efb3615f211fe.png" />
 </div>
 </div>
 </section>
@@ -2265,6 +2291,7 @@ dtype: object
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6. 条形图: 每个分类统计</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7. 热图</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7. 等高线</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stripplot">stripplot 条带/ 分类散点图</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lineplot">8. lineplot 折线图</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kdeplot">KdePlot 核密度估计</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#barplot">barplot</a></li>

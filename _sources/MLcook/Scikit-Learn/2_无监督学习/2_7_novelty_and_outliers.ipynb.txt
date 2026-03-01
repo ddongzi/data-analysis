@@ -1,0 +1,42 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "d2794b35",
+   "metadata": {},
+   "source": [
+    "# 2.7 新奇值和异常值检测"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a87f2fa5",
+   "metadata": {},
+   "source": [
+    "## 异常值检测"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "94f2f513",
+   "metadata": {},
+   "source": [
+    "### 隔离森林\n",
+    "随机切分特征，那些离群点的路径短"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a98b954a",
+   "metadata": {},
+   "source": []
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
