@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6.1. Pipelines and composite estimators &#8212; DA  documentation</title>
+    <title>7.1. Pipelines and composite estimators &#8212; DA  documentation</title>
   
   
   
@@ -31,7 +31,7 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
@@ -345,7 +345,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">6.1. Pipelines and composite estimators</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">7.1. Pipelines and composite estimators</span></li>
   </ul>
 </nav>
 </div>
@@ -363,7 +363,25 @@
                 <article class="bd-article">
                   
   <section id="pipelines-and-composite-estimators">
-<h1>6.1. Pipelines and composite estimators<a class="headerlink" href="#pipelines-and-composite-estimators" title="Link to this heading">#</a></h1>
+<h1>7.1. Pipelines and composite estimators<a class="headerlink" href="#pipelines-and-composite-estimators" title="Link to this heading">#</a></h1>
+<p>pipeline: 顺序执行。除最后之外，其余都是<code class="docutils literal notranslate"><span class="pre">transformer</span></code>
+比如：填充缺失-&gt;标准化-&gt;regressor</p>
+<p>ColumnTransformer: 并联执行。对不同的列做，不影响互相.最后拼接
+比如：numeric列做标准化，category列做onehot</p>
+<p>FeatureUnion: 与ColumnTransformer对比，这个会对一列做多个特征，最后拼接
+比如：对列同时保留 原始值和平方项</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">SelectKBest</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="pipeline">
+<h2>pipeline<a class="headerlink" href="#pipeline" title="Link to this heading">#</a></h2>
 <p>make_pipeline vs. Pipeline</p>
 <ul class="simple">
 <li><p>Pipeline is more flexible.make_pipeline is more simple</p></li>
@@ -379,7 +397,7 @@
     <span class="p">(</span><span class="s1">&#39;my_scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
     <span class="p">(</span><span class="s1">&#39;my_classifier&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
 <span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;my_scaler&#39;</span><span class="p">])</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;my_scaler&#39;</span><span class="p">])</span>   <span class="c1"># 获取</span>
 </pre></div>
 </div>
 </div>
@@ -409,8 +427,1216 @@
 </div>
 </div>
 </div>
+<section id="tracking-features-name">
+<h3>tracking features name<a class="headerlink" href="#tracking-features-name" title="Link to this heading">#</a></h3>
+<p>保证pipeline链上有这个方法</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-3 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-3 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-3 pre {
+  padding: 0;
+}
+
+#sk-container-id-3 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-3 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-3 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-3 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-3 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-3 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-3 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-3 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-3 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-3 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-3 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label label.sk-toggleable__label,
+#sk-container-id-3 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-3 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-3 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-3 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-3 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-3 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-3 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><body><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;select&#x27;, SelectKBest(k=2)), (&#x27;clf&#x27;, LogisticRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('steps',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">steps&nbsp;</td>
+            <td class="value">[(&#x27;select&#x27;, ...), (&#x27;clf&#x27;, ...)]</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('transform_input',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">transform_input&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('memory',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">memory&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('verbose',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">verbose&nbsp;</td>
+            <td class="value">False</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SelectKBest</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_selection.SelectKBest.html">?<span>Documentation for SelectKBest</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="select__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('score_func',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">score_func&nbsp;</td>
+            <td class="value">&lt;function f_c...00197F6D401F0&gt;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('k',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">k&nbsp;</td>
+            <td class="value">2</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LogisticRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="clf__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('penalty',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">penalty&nbsp;</td>
+            <td class="value">&#x27;l2&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('dual',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">dual&nbsp;</td>
+            <td class="value">False</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('tol',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">tol&nbsp;</td>
+            <td class="value">0.0001</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('C',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">C&nbsp;</td>
+            <td class="value">1.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('fit_intercept',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">fit_intercept&nbsp;</td>
+            <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('intercept_scaling',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">intercept_scaling&nbsp;</td>
+            <td class="value">1</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('class_weight',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">class_weight&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('random_state',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">random_state&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('solver',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">solver&nbsp;</td>
+            <td class="value">&#x27;lbfgs&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_iter',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_iter&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('multi_class',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">multi_class&nbsp;</td>
+            <td class="value">&#x27;deprecated&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('verbose',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">verbose&nbsp;</td>
+            <td class="value">0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('warm_start',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">warm_start&nbsp;</td>
+            <td class="value">False</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_jobs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_jobs&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('l1_ratio',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">l1_ratio&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script></body></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;x2&#39;, &#39;x3&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="columntransformer-for-heterogeneous-data">
+<h2>ColumnTransformer for heterogeneous data<a class="headerlink" href="#columntransformer-for-heterogeneous-data" title="Link to this heading">#</a></h2>
+<p>不同类型的特征需要不同处理。</p>
+<p>可以通过<code class="docutils literal notranslate"><span class="pre">make_column_selector</span></code>获取类型列</p>
+</section>
+<section id="transformedtargetregressor">
+<h2>TransformedTargetRegressor<a class="headerlink" href="#transformedtargetregressor" title="Link to this heading">#</a></h2>
+<p>针对回归模型</p>
+<p>对于目标y而言，经常需要拟合前进行<code class="docutils literal notranslate"><span class="pre">log</span></code>等变换，训练完，预测又要<code class="docutils literal notranslate"><span class="pre">exp</span></code>逆回来。</p>
+<p>这里把他包装起来</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformedTargetRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">TransformedTargetRegressor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class TransformedTargetRegressor in module sklearn.compose._target:
+
+class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseEstimator)
+ |  TransformedTargetRegressor(regressor=None, *, transformer=None, func=None, inverse_func=None, check_inverse=True)
+ |  
+ |  Meta-estimator to regress on a transformed target.
+ |  
+ |  Useful for applying a non-linear transformation to the target `y` in
+ |  regression problems. This transformation can be given as a Transformer
+ |  such as the :class:`~sklearn.preprocessing.QuantileTransformer` or as a
+ |  function and its inverse such as `np.log` and `np.exp`.
+ |  
+ |  The computation during :meth:`fit` is::
+ |  
+ |      regressor.fit(X, func(y))
+ |  
+ |  or::
+ |  
+ |      regressor.fit(X, transformer.transform(y))
+ |  
+ |  The computation during :meth:`predict` is::
+ |  
+ |      inverse_func(regressor.predict(X))
+ |  
+ |  or::
+ |  
+ |      transformer.inverse_transform(regressor.predict(X))
+ |  
+ |  Read more in the :ref:`User Guide &lt;transformed_target_regressor&gt;`.
+ |  
+ |  .. versionadded:: 0.20
+ |  
+ |  Parameters
+ |  ----------
+ |  regressor : object, default=None
+ |      Regressor object such as derived from
+ |      :class:`~sklearn.base.RegressorMixin`. This regressor will
+ |      automatically be cloned each time prior to fitting. If `regressor is
+ |      None`, :class:`~sklearn.linear_model.LinearRegression` is created and used.
+ |  
+ |  transformer : object, default=None
+ |      Estimator object such as derived from
+ |      :class:`~sklearn.base.TransformerMixin`. Cannot be set at the same time
+ |      as `func` and `inverse_func`. If `transformer is None` as well as
+ |      `func` and `inverse_func`, the transformer will be an identity
+ |      transformer. Note that the transformer will be cloned during fitting.
+ |      Also, the transformer is restricting `y` to be a numpy array.
+ |  
+ |  func : function, default=None
+ |      Function to apply to `y` before passing to :meth:`fit`. Cannot be set
+ |      at the same time as `transformer`. If `func is None`, the function used will be
+ |      the identity function. If `func` is set, `inverse_func` also needs to be
+ |      provided. The function needs to return a 2-dimensional array.
+ |  
+ |  inverse_func : function, default=None
+ |      Function to apply to the prediction of the regressor. Cannot be set at
+ |      the same time as `transformer`. The inverse function is used to return
+ |      predictions to the same space of the original training labels. If
+ |      `inverse_func` is set, `func` also needs to be provided. The inverse
+ |      function needs to return a 2-dimensional array.
+ |  
+ |  check_inverse : bool, default=True
+ |      Whether to check that `transform` followed by `inverse_transform`
+ |      or `func` followed by `inverse_func` leads to the original targets.
+ |  
+ |  Attributes
+ |  ----------
+ |  regressor_ : object
+ |      Fitted regressor.
+ |  
+ |  transformer_ : object
+ |      Transformer used in :meth:`fit` and :meth:`predict`.
+ |  
+ |  n_features_in_ : int
+ |      Number of features seen during :term:`fit`. Only defined if the
+ |      underlying regressor exposes such an attribute when fit.
+ |  
+ |      .. versionadded:: 0.24
+ |  
+ |  feature_names_in_ : ndarray of shape (`n_features_in_`,)
+ |      Names of features seen during :term:`fit`. Defined only when `X`
+ |      has feature names that are all strings.
+ |  
+ |      .. versionadded:: 1.0
+ |  
+ |  See Also
+ |  --------
+ |  sklearn.preprocessing.FunctionTransformer : Construct a transformer from an
+ |      arbitrary callable.
+ |  
+ |  Notes
+ |  -----
+ |  Internally, the target `y` is always converted into a 2-dimensional array
+ |  to be used by scikit-learn transformers. At the time of prediction, the
+ |  output will be reshaped to a have the same number of dimensions as `y`.
+ |  
+ |  Examples
+ |  --------
+ |  &gt;&gt;&gt; import numpy as np
+ |  &gt;&gt;&gt; from sklearn.linear_model import LinearRegression
+ |  &gt;&gt;&gt; from sklearn.compose import TransformedTargetRegressor
+ |  &gt;&gt;&gt; tt = TransformedTargetRegressor(regressor=LinearRegression(),
+ |  ...                                 func=np.log, inverse_func=np.exp)
+ |  &gt;&gt;&gt; X = np.arange(4).reshape(-1, 1)
+ |  &gt;&gt;&gt; y = np.exp(2 * X).ravel()
+ |  &gt;&gt;&gt; tt.fit(X, y)
+ |  TransformedTargetRegressor(...)
+ |  &gt;&gt;&gt; tt.score(X, y)
+ |  1.0
+ |  &gt;&gt;&gt; tt.regressor_.coef_
+ |  array([2.])
+ |  
+ |  For a more detailed example use case refer to
+ |  :ref:`sphx_glr_auto_examples_compose_plot_transformed_target.py`.
+ |  
+ |  Method resolution order:
+ |      TransformedTargetRegressor
+ |      sklearn.base.RegressorMixin
+ |      sklearn.base.BaseEstimator
+ |      sklearn.utils._repr_html.base.ReprHTMLMixin
+ |      sklearn.utils._repr_html.base._HTMLDocumentationLinkMixin
+ |      sklearn.utils._metadata_requests._MetadataRequester
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, regressor=None, *, transformer=None, func=None, inverse_func=None, check_inverse=True)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __sklearn_tags__(self)
+ |  
+ |  fit(self, X, y, **fit_params)
+ |      Fit the model according to the given training data.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          Training vector, where `n_samples` is the number of samples and
+ |          `n_features` is the number of features.
+ |      
+ |      y : array-like of shape (n_samples,)
+ |          Target values.
+ |      
+ |      **fit_params : dict
+ |          - If `enable_metadata_routing=False` (default): Parameters directly passed
+ |            to the `fit` method of the underlying regressor.
+ |      
+ |          - If `enable_metadata_routing=True`: Parameters safely routed to the `fit`
+ |            method of the underlying regressor.
+ |      
+ |          .. versionchanged:: 1.6
+ |              See :ref:`Metadata Routing User Guide &lt;metadata_routing&gt;` for
+ |              more details.
+ |      
+ |      Returns
+ |      -------
+ |      self : object
+ |          Fitted estimator.
+ |  
+ |  get_metadata_routing(self)
+ |      Get metadata routing of this object.
+ |      
+ |      Please check :ref:`User Guide &lt;metadata_routing&gt;` on how the routing
+ |      mechanism works.
+ |      
+ |      .. versionadded:: 1.6
+ |      
+ |      Returns
+ |      -------
+ |      routing : MetadataRouter
+ |          A :class:`~sklearn.utils.metadata_routing.MetadataRouter` encapsulating
+ |          routing information.
+ |  
+ |  predict(self, X, **predict_params)
+ |      Predict using the base regressor, applying inverse.
+ |      
+ |      The regressor is used to predict and the `inverse_func` or
+ |      `inverse_transform` is applied before returning the prediction.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          Samples.
+ |      
+ |      **predict_params : dict of str -&gt; object
+ |          - If `enable_metadata_routing=False` (default): Parameters directly passed
+ |            to the `predict` method of the underlying regressor.
+ |      
+ |          - If `enable_metadata_routing=True`: Parameters safely routed to the
+ |            `predict` method of the underlying regressor.
+ |      
+ |          .. versionchanged:: 1.6
+ |              See :ref:`Metadata Routing User Guide &lt;metadata_routing&gt;`
+ |              for more details.
+ |      
+ |      Returns
+ |      -------
+ |      y_hat : ndarray of shape (n_samples,)
+ |          Predicted values.
+ |  
+ |  set_score_request(self: sklearn.compose._target.TransformedTargetRegressor, *, sample_weight: Union[bool, NoneType, str] = &#39;$UNCHANGED$&#39;) -&gt; sklearn.compose._target.TransformedTargetRegressor
+ |      Configure whether metadata should be requested to be passed to the ``score`` method.
+ |      
+ |      Note that this method is only relevant when this estimator is used as a
+ |      sub-estimator within a :term:`meta-estimator` and metadata routing is enabled
+ |      with ``enable_metadata_routing=True`` (see :func:`sklearn.set_config`).
+ |      Please check the :ref:`User Guide &lt;metadata_routing&gt;` on how the routing
+ |      mechanism works.
+ |      
+ |      The options for each parameter are:
+ |      
+ |      - ``True``: metadata is requested, and passed to ``score`` if provided. The request is ignored if metadata is not provided.
+ |      
+ |      - ``False``: metadata is not requested and the meta-estimator will not pass it to ``score``.
+ |      
+ |      - ``None``: metadata is not requested, and the meta-estimator will raise an error if the user provides it.
+ |      
+ |      - ``str``: metadata should be passed to the meta-estimator with this given alias instead of the original name.
+ |      
+ |      The default (``sklearn.utils.metadata_routing.UNCHANGED``) retains the
+ |      existing request. This allows you to change the request for some
+ |      parameters and not others.
+ |      
+ |      .. versionadded:: 1.3
+ |      
+ |      Parameters
+ |      ----------
+ |      sample_weight : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+ |          Metadata routing for ``sample_weight`` parameter in ``score``.
+ |      
+ |      Returns
+ |      -------
+ |      self : object
+ |          The updated object.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  n_features_in_
+ |      Number of features seen during :term:`fit`.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __annotations__ = {&#39;_parameter_constraints&#39;: &lt;class &#39;dict&#39;&gt;}
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.RegressorMixin:
+ |  
+ |  score(self, X, y, sample_weight=None)
+ |      Return :ref:`coefficient of determination &lt;r2_score&gt;` on test data.
+ |      
+ |      The coefficient of determination, :math:`R^2`, is defined as
+ |      :math:`(1 - \frac{u}{v})`, where :math:`u` is the residual
+ |      sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
+ |      is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
+ |      The best possible score is 1.0 and it can be negative (because the
+ |      model can be arbitrarily worse). A constant model that always predicts
+ |      the expected value of `y`, disregarding the input features, would get
+ |      a :math:`R^2` score of 0.0.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features)
+ |          Test samples. For some estimators this may be a precomputed
+ |          kernel matrix or a list of generic objects instead with shape
+ |          ``(n_samples, n_samples_fitted)``, where ``n_samples_fitted``
+ |          is the number of samples used in the fitting for the estimator.
+ |      
+ |      y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+ |          True values for `X`.
+ |      
+ |      sample_weight : array-like of shape (n_samples,), default=None
+ |          Sample weights.
+ |      
+ |      Returns
+ |      -------
+ |      score : float
+ |          :math:`R^2` of ``self.predict(X)`` w.r.t. `y`.
+ |      
+ |      Notes
+ |      -----
+ |      The :math:`R^2` score used when calling ``score`` on a regressor uses
+ |      ``multioutput=&#39;uniform_average&#39;`` from version 0.23 to keep consistent
+ |      with default value of :func:`~sklearn.metrics.r2_score`.
+ |      This influences the ``score`` method of all the multioutput
+ |      regressors (except for
+ |      :class:`~sklearn.multioutput.MultiOutputRegressor`).
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from sklearn.base.RegressorMixin:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.BaseEstimator:
+ |  
+ |  __getstate__(self)
+ |  
+ |  __repr__(self, N_CHAR_MAX=700)
+ |      Return repr(self).
+ |  
+ |  __setstate__(self, state)
+ |  
+ |  __sklearn_clone__(self)
+ |  
+ |  get_params(self, deep=True)
+ |      Get parameters for this estimator.
+ |      
+ |      Parameters
+ |      ----------
+ |      deep : bool, default=True
+ |          If True, will return the parameters for this estimator and
+ |          contained subobjects that are estimators.
+ |      
+ |      Returns
+ |      -------
+ |      params : dict
+ |          Parameter names mapped to their values.
+ |  
+ |  set_params(self, **params)
+ |      Set the parameters of this estimator.
+ |      
+ |      The method works on simple estimators as well as on nested objects
+ |      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
+ |      parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it&#39;s
+ |      possible to update each component of a nested object.
+ |      
+ |      Parameters
+ |      ----------
+ |      **params : dict
+ |          Estimator parameters.
+ |      
+ |      Returns
+ |      -------
+ |      self : estimator instance
+ |          Estimator instance.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from sklearn.utils._metadata_requests._MetadataRequester:
+ |  
+ |  __init_subclass__(**kwargs) from builtins.type
+ |      Set the ``set_{method}_request`` methods.
+ |      
+ |      This uses PEP-487 [1]_ to set the ``set_{method}_request`` methods. It
+ |      looks for the information available in the set default values which are
+ |      set using ``__metadata_request__*`` class attributes, or inferred
+ |      from method signatures.
+ |      
+ |      The ``__metadata_request__*`` class attributes are used when a method
+ |      does not explicitly accept a metadata through its arguments or if the
+ |      developer would like to specify a request value for those metadata
+ |      which are different from the default ``None``.
+ |      
+ |      References
+ |      ----------
+ |      .. [1] https://www.python.org/dev/peps/pep-0487
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000,)
+</pre></div>
+</div>
+</div>
+</div>
 <section id="custom-estimator">
-<h2>custom estimator<a class="headerlink" href="#custom-estimator" title="Link to this heading">#</a></h2>
+<h3>custom estimator<a class="headerlink" href="#custom-estimator" title="Link to this heading">#</a></h3>
+<p>一般不用，而是<code class="docutils literal notranslate"><span class="pre">FunctionTransformer</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">estimator</span></code> 是最基本的对象，实现了<code class="docutils literal notranslate"><span class="pre">fit</span></code>方法</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -524,6 +1750,7 @@
 <p>默认地，fit不允许X中有nan，这通过tags实现</p>
 </section>
 </section>
+</section>
 
 
                 </article>
@@ -554,7 +1781,15 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-estimator">custom estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline">pipeline</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-features-name">tracking features name</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#columntransformer-for-heterogeneous-data">ColumnTransformer for heterogeneous data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformedtargetregressor">TransformedTargetRegressor</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-estimator">custom estimator</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

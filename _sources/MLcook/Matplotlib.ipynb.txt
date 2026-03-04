@@ -220,7 +220,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 2,
    "id": "71f22827-dbcb-4703-ba0a-de5ff9141c9e",
    "metadata": {},
    "outputs": [],
@@ -500,6 +500,22 @@
     "               xlabel='x', ylabel='sin(x)', \n",
     "               title='A Simple Plot');\n",
     "- plt更加简洁，ax,fig还要创建声明， plt导入即可调用"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5bbf5374",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8ab480ef",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ax.tick_params(axis='x', rotation = 90)"
    ]
   },
   {
@@ -3220,6 +3236,74 @@
   },
   {
    "cell_type": "markdown",
+   "id": "191821d4",
+   "metadata": {},
+   "source": [
+    "### tick间隔设置\n",
+    "有时候x轴太多了，比如时间轴"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "2b698a91",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.cbook as cbook\n",
+    "data = cbook.get_sample_data('goog.npz')['price_data']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "e2b25cc3",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([('2004-08-19', 100.  , 104.06,  95.96, 100.34, 22351900, 100.34),\n",
+       "       ('2004-08-20', 101.01, 109.08, 100.5 , 108.31, 11428600, 108.31),\n",
+       "       ('2004-08-23', 110.75, 113.48, 109.05, 109.4 ,  9137200, 109.4 ),\n",
+       "       ...,\n",
+       "       ('2008-10-10', 313.16, 341.89, 310.3 , 332.  , 10597800, 332.  ),\n",
+       "       ('2008-10-13', 355.79, 381.95, 345.75, 381.02,  8905500, 381.02),\n",
+       "       ('2008-10-14', 393.53, 394.5 , 357.  , 362.71,  7784800, 362.71)],\n",
+       "      dtype=[('date', '<M8[D]'), ('open', '<f8'), ('high', '<f8'), ('low', '<f8'), ('close', '<f8'), ('volume', '<i8'), ('adj_close', '<f8')])"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e04e7413",
+   "metadata": {},
+   "source": [
+    "对于pd.date来说，自动ticke"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "70f34c19",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "id": "193f174c",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
    "id": "477096e2-b230-41c0-9379-bcc22e135d15",
    "metadata": {
     "jp-MarkdownHeadingCollapsed": true
@@ -4549,7 +4633,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.9.25"
+   "version": "3.10.15"
   }
  },
  "nbformat": 4,

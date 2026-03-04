@@ -33,6 +33,14 @@
   },
   {
    "cell_type": "markdown",
+   "id": "a35d5cba",
+   "metadata": {},
+   "source": [
+    "nlargest"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "0bd65033",
    "metadata": {},
    "source": [
@@ -485,6 +493,16 @@
     "    }\n",
     ")\n",
     "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8a5ed0c2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    " traindata.select_dtypes(include=['datetime']).columns\n"
    ]
   },
   {

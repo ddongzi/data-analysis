@@ -31,7 +31,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
@@ -674,6 +674,13 @@ title=’A Simple Plot’);</p>
 <ul class="simple">
 <li><p>plt更加简洁，ax,fig还要创建声明， plt导入即可调用</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="id12">
@@ -2491,6 +2498,38 @@ colorbar 多子图中需要指定ax!!</p>
 </div>
 </div>
 </section>
+<section id="tick">
+<h3>tick间隔设置<a class="headerlink" href="#tick" title="Link to this heading">#</a></h3>
+<p>有时候x轴太多了，比如时间轴</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cbook</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cbook</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">cbook</span><span class="o">.</span><span class="n">get_sample_data</span><span class="p">(</span><span class="s1">&#39;goog.npz&#39;</span><span class="p">)[</span><span class="s1">&#39;price_data&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([(&#39;2004-08-19&#39;, 100.  , 104.06,  95.96, 100.34, 22351900, 100.34),
+       (&#39;2004-08-20&#39;, 101.01, 109.08, 100.5 , 108.31, 11428600, 108.31),
+       (&#39;2004-08-23&#39;, 110.75, 113.48, 109.05, 109.4 ,  9137200, 109.4 ),
+       ...,
+       (&#39;2008-10-10&#39;, 313.16, 341.89, 310.3 , 332.  , 10597800, 332.  ),
+       (&#39;2008-10-13&#39;, 355.79, 381.95, 345.75, 381.02,  8905500, 381.02),
+       (&#39;2008-10-14&#39;, 393.53, 394.5 , 357.  , 362.71,  7784800, 362.71)],
+      dtype=[(&#39;date&#39;, &#39;&lt;M8[D]&#39;), (&#39;open&#39;, &#39;&lt;f8&#39;), (&#39;high&#39;, &#39;&lt;f8&#39;), (&#39;low&#39;, &#39;&lt;f8&#39;), (&#39;close&#39;, &#39;&lt;f8&#39;), (&#39;volume&#39;, &#39;&lt;i8&#39;), (&#39;adj_close&#39;, &#39;&lt;f8&#39;)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>对于pd.date来说，自动ticke</p>
+</section>
 </section>
 <section id="matplotlib">
 <h2>4.13　Matplotlib自定义：配置文件与样式表<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h2>
@@ -3382,6 +3421,7 @@ Width: 1.1322542435161185
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">4.12.2　隐藏刻度与标签</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">4.12.3　增减刻度数量</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">4.12.4　花哨的刻度格式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tick">tick间隔设置</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">4.13　Matplotlib自定义：配置文件与样式表</a></li>
