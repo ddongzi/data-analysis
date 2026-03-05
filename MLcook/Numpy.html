@@ -409,9 +409,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.14404357, 1.45427351],
-       [0.        , 0.        , 0.44386323],
-       [0.        , 0.        , 0.        ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.        ,  0.40015721,  0.97873798],
+       [ 0.        ,  0.        , -0.97727788],
+       [ 0.        ,  0.        ,  0.        ]])
 </pre></div>
 </div>
 </div>
@@ -424,9 +424,22 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1, 10, 10],
-       [-1, 10, -1],
-       [-1, -1, -1]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[10, -1, 10],
+       [10, -1, 10],
+       [10, 10, -1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.4105985 ,  0.14404357,  1.45427351,  0.76103773,  0.12167502,
+        0.44386323,  0.33367433,  1.49407907, -0.20515826])
 </pre></div>
 </div>
 </div>
@@ -2529,6 +2542,7 @@ Rainy days with &lt; 0.1 inches : 75
 <section id="id30">
 <h2>2.9　结构化数据：NumPy的结构化数组<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
 <p>组织异构数据</p>
+<p>自定义dtype类型</p>
 <p>可以通过索引访问数据</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2599,6 +2613,48 @@ Rainy days with &lt; 0.1 inches : 75
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Alice&#39;, &#39;Bob&#39;, &#39;Cathy&#39;, &#39;Doug&#39;], dtype=&#39;&lt;U10&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>自定义了一种颜色类型: 4个字节</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">color_dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="p">]</span><span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="p">(</span><span class="mi">155</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">155</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>可以快速访问各颜色通道</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0, 10],
+       [ 0,  0]], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -15083,6 +15139,37 @@ INF:  6.0
 </div>
 </div>
 </section>
+<section id="emath">
+<h2>emath<a class="headerlink" href="#emath" title="Link to this heading">#</a></h2>
+<p>复数</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">emath</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1j
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="datime64">
+<h2>datime64<a class="headerlink" href="#datime64" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2005-02-25&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.datetime64(&#39;2005-02-25&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="exercises">
 <h2>exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <p>This is a collection of exercises that have been collected in the numpy mailing list, on stack overflow
@@ -15388,21 +15475,118 @@ SIMD Extensions:
 </section>
 <section id="consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element">
 <h3>20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element? (★☆☆)<a class="headerlink" href="#consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 5, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">unravel_index</span></code> 计算多维数组 线性索引对应坐标</p>
 </section>
 <section id="create-a-checkerboard-8x8-matrix-using-the-tile-function">
 <h3>21. Create a checkerboard 8x8 matrix using the tile function (★☆☆)<a class="headerlink" href="#create-a-checkerboard-8x8-matrix-using-the-tile-function" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 1, 0, 1, 0, 1],
+       [1, 0, 1, 0, 1, 0, 1, 0],
+       [0, 1, 0, 1, 0, 1, 0, 1],
+       [1, 0, 1, 0, 1, 0, 1, 0],
+       [0, 1, 0, 1, 0, 1, 0, 1],
+       [1, 0, 1, 0, 1, 0, 1, 0],
+       [0, 1, 0, 1, 0, 1, 0, 1],
+       [1, 0, 1, 0, 1, 0, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="normalize-a-5x5-random-matrix">
 <h3>22. Normalize a 5x5 random matrix (★☆☆)<a class="headerlink" href="#normalize-a-5x5-random-matrix" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.40015721,  0.97873798,  2.2408932 ,  1.86755799, -0.97727788],
+       [ 0.95008842, -0.15135721, -0.10321885,  0.4105985 ,  0.14404357],
+       [ 1.45427351,  0.76103773,  0.12167502,  0.44386323,  0.33367433],
+       [ 1.49407907, -0.20515826,  0.3130677 , -0.85409574, -2.55298982],
+       [ 0.6536186 ,  0.8644362 , -0.74216502,  2.26975462, -1.45436567]])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba">
 <h3>23. Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)<a class="headerlink" href="#create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ubyte</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype([(&#39;R&#39;, &#39;u1&#39;), (&#39;g&#39;, &#39;u1&#39;), (&#39;b&#39;, &#39;u1&#39;), (&#39;a&#39;, &#39;u1&#39;)])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product">
 <h3>24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)<a class="headerlink" href="#multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.32395007, -0.51198854],
+       [ 1.08643489,  0.45519865],
+       [ 1.21850698,  0.89708761],
+       [ 0.0385115 , -0.22753733],
+       [-0.348692  , -0.50089328]])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place">
 <h3>25. Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)<a class="headerlink" href="#given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">z</span><span class="p">[(</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">z</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  2,  3, -1, -1, -1, -1,  8,  9, 10])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="what-is-the-output-of-the-following-script">
 <h3>26. What is the output of the following script? (★☆☆)<a class="headerlink" href="#what-is-the-output-of-the-following-script" title="Link to this heading">#</a></h3>
@@ -15412,6 +15596,21 @@ SIMD Extensions:
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+10
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="consider-an-integer-vector-z-which-of-these-expressions-are-legal">
@@ -15424,6 +15623,13 @@ SIMD Extensions:
 <span class="n">Z</span><span class="o">&lt;</span><span class="n">Z</span><span class="o">&gt;</span><span class="n">Z</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="what-are-the-result-of-the-following-expressions">
 <h3>28. What are the result of the following expressions? (★☆☆)<a class="headerlink" href="#what-are-the-result-of-the-following-expressions" title="Link to this heading">#</a></h3>
@@ -15432,20 +15638,99 @@ SIMD Extensions:
 <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\63517\AppData\Local\Temp\ipykernel_19948\699728972.py:1: RuntimeWarning: invalid value encountered in cast
+  np.array([np.nan]).astype(int).astype(float)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.14748365e+09])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="how-to-round-away-from-zero-a-float-array">
 <h3>29. How to round away from zero a float array ? (★☆☆)<a class="headerlink" href="#how-to-round-away-from-zero-a-float-array" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span> <span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.05749243,  6.92817345,  3.98958551, -4.05126098,  6.27595639,
+       -2.06988518,  7.62206394,  1.62545745,  7.63470724,  3.8506318 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.,  7.,  4., -5.,  7., -3.,  8.,  2.,  8.,  4.])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="how-to-find-common-values-between-two-arrays">
 <h3>30. How to find common values between two arrays? (★☆☆)<a class="headerlink" href="#how-to-find-common-values-between-two-arrays" title="Link to this heading">#</a></h3>
-</section>
-<section id="how-to-ignore-all-numpy-warnings-not-recommended">
-<h3>31. How to ignore all numpy warnings (not recommended)? (★☆☆)<a class="headerlink" href="#how-to-ignore-all-numpy-warnings-not-recommended" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="is-the-following-expressions-true">
 <h3>32. Is the following expressions true? (★☆☆)<a class="headerlink" href="#is-the-following-expressions-true" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">emath</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\63517\AppData\Local\Temp\ipykernel_19948\3438155168.py:1: RuntimeWarning: invalid value encountered in sqrt
+  np.sqrt(-1)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">emath</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1j
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="how-to-get-the-dates-of-yesterday-today-and-tomorrow">
@@ -16267,6 +16552,8 @@ SIMD Extensions:
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">2.13 角度相关</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emath">emath</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datime64">datime64</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">exercises</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#print-the-numpy-version-and-the-configuration">2. Print the numpy version and the configuration (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-find-the-memory-size-of-any-array">4. How to find the memory size of any array (★☆☆)</a></li>
@@ -16289,7 +16576,6 @@ SIMD Extensions:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-result-of-the-following-expressions">28. What are the result of the following expressions? (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-round-away-from-zero-a-float-array">29. How to round away from zero a float array ? (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-find-common-values-between-two-arrays">30. How to find common values between two arrays? (★☆☆)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-ignore-all-numpy-warnings-not-recommended">31. How to ignore all numpy warnings (not recommended)? (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-following-expressions-true">32. Is the following expressions true? (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-get-the-dates-of-yesterday-today-and-tomorrow">33. How to get the dates of yesterday, today and tomorrow? (★☆☆)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-get-all-the-dates-corresponding-to-the-month-of-july-2016">34. How to get all the dates corresponding to the month of July 2016? (★★☆)</a></li>

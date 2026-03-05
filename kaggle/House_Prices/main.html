@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>房价预测 &#8212; DA  documentation</title>
+    <title>初步 &#8212; DA  documentation</title>
   
   
   
@@ -379,7 +379,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">房价预测</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">房价预测</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">初步</span></li>
   </ul>
 </nav>
 </div>
@@ -397,7 +397,7 @@
                 <article class="bd-article">
                   
   <section id="id1">
-<h1>房价预测<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>初步<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>特征工程</p></li>
 <li><p>回归模型：线性，非线性</p></li>
@@ -1505,7 +1505,7 @@ Length: 80, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2b4f7165657083bf9cc376955d160a6f40c09e52e2a555dec244d6a545f6d3ef.png" src="../../_images/2b4f7165657083bf9cc376955d160a6f40c09e52e2a555dec244d6a545f6d3ef.png" />
+<img alt="../../_images/6983ee02d2c53c05a83dec7415bcb11dd3d31b6c09eec0980e91962f67f0fd73.png" src="../../_images/6983ee02d2c53c05a83dec7415bcb11dd3d31b6c09eec0980e91962f67f0fd73.png" />
 </div>
 </div>
 <p>确实地，可以看到，这些特征几乎都只用了一个类别！</p>
@@ -1623,7 +1623,7 @@ Length: 80, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a7257302f9a190443cbad10d4bb5366f30bdacc8d94bc423918d4d6ab55fc647.png" src="../../_images/a7257302f9a190443cbad10d4bb5366f30bdacc8d94bc423918d4d6ab55fc647.png" />
+<img alt="../../_images/229bb46e80101575f86dece3000781295ce8ffb913795556daeb7e12dfb01785.png" src="../../_images/229bb46e80101575f86dece3000781295ce8ffb913795556daeb7e12dfb01785.png" />
 </div>
 </div>
 <p>确实的，都有着不错的效果~😊</p>
@@ -1677,7 +1677,7 @@ Length: 80, dtype: object
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;MSZoning&#39;, ylabel=&#39;SalePrice&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/de28fd060db88c8545a21b3c6b363f3dc16ef95d913c3b0527addf95c47492ff.png" src="../../_images/de28fd060db88c8545a21b3c6b363f3dc16ef95d913c3b0527addf95c47492ff.png" />
+<img alt="../../_images/dce7f2090863475b17f76d2401998060b6cbe342e4133b25c986fc621a2bc864.png" src="../../_images/dce7f2090863475b17f76d2401998060b6cbe342e4133b25c986fc621a2bc864.png" />
 </div>
 </div>
 </section>
@@ -2005,7 +2005,7 @@ Length: 80, dtype: int64
 <h4>目标异常<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">])</span>
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SalePrice_log&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
@@ -2015,7 +2015,7 @@ Length: 80, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0ebfe187e9f2218d8fe7bbde56d5328b9a9ae2abceec2e7988a84b987c3f536a.png" src="../../_images/0ebfe187e9f2218d8fe7bbde56d5328b9a9ae2abceec2e7988a84b987c3f536a.png" />
+<img alt="../../_images/289f764ec3293d9658ac9b9db43f658f49de802b41957985741d0dbc0f1501c4.png" src="../../_images/289f764ec3293d9658ac9b9db43f658f49de802b41957985741d0dbc0f1501c4.png" />
 </div>
 </div>
 </section>
@@ -2254,7 +2254,7 @@ Length: 80, dtype: int64
       <td>New</td>
       <td>Partial</td>
       <td>184750</td>
-      <td>12.126759</td>
+      <td>12.126764</td>
     </tr>
     <tr>
       <th>1299</th>
@@ -2278,7 +2278,7 @@ Length: 80, dtype: int64
       <td>New</td>
       <td>Partial</td>
       <td>160000</td>
-      <td>11.982929</td>
+      <td>11.982935</td>
     </tr>
   </tbody>
 </table>
@@ -2380,7 +2380,7 @@ Length: 80, dtype: int64
       <td>New</td>
       <td>Partial</td>
       <td>160000</td>
-      <td>11.982929</td>
+      <td>11.982935</td>
     </tr>
   </tbody>
 </table>
@@ -2403,7 +2403,7 @@ Length: 80, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2727ce6f0e4aaa5c2331f0701e099f9167e697788308879433bcd3836e3b72f4.png" src="../../_images/2727ce6f0e4aaa5c2331f0701e099f9167e697788308879433bcd3836e3b72f4.png" />
+<img alt="../../_images/308e6bfc5c595e63924aac68134e729146e570e2d8b36dcb1b459deb6b514d36.png" src="../../_images/308e6bfc5c595e63924aac68134e729146e570e2d8b36dcb1b459deb6b514d36.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2501,7 +2501,7 @@ Length: 80, dtype: int64
       <td>WD</td>
       <td>Normal</td>
       <td>755000</td>
-      <td>13.534473</td>
+      <td>13.534474</td>
     </tr>
     <tr>
       <th>1183</th>
@@ -2525,7 +2525,7 @@ Length: 80, dtype: int64
       <td>WD</td>
       <td>Abnorml</td>
       <td>745000</td>
-      <td>13.521139</td>
+      <td>13.521141</td>
     </tr>
   </tbody>
 </table>
@@ -2627,7 +2627,7 @@ Length: 80, dtype: int64
       <td>WD</td>
       <td>Normal</td>
       <td>475000</td>
-      <td>13.07107</td>
+      <td>13.071072</td>
     </tr>
   </tbody>
 </table>
@@ -2729,7 +2729,7 @@ Length: 80, dtype: int64
       <td>WD</td>
       <td>Normal</td>
       <td>755000</td>
-      <td>13.534473</td>
+      <td>13.534474</td>
     </tr>
     <tr>
       <th>1183</th>
@@ -2753,7 +2753,7 @@ Length: 80, dtype: int64
       <td>WD</td>
       <td>Abnorml</td>
       <td>745000</td>
-      <td>13.521139</td>
+      <td>13.521141</td>
     </tr>
   </tbody>
 </table>
@@ -2772,6 +2772,15 @@ Length: 80, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 来自model训练后的离散点分析，如需复现这几个ids，请注释掉，然后查看model分析</span>
+<span class="n">dropids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">441</span><span class="p">)</span> 
+<span class="n">dropids</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">971</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">689</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span> <span class="o">=</span> <span class="n">eda_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dropids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">traindata</span> <span class="o">=</span> <span class="n">traindata</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dropids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -2782,9 +2791,8 @@ Length: 80, dtype: int64
 </section>
 <section id="log">
 <h3>log变换<a class="headerlink" href="#log" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>方差小一点, 受异常值影响小一点</p></li>
-</ul>
+<p>log 减小了远端大值误差。 增大了近端小值误差。
+结果就是：远端不离群了，小端更加离群了</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">,</span><span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2795,7 +2803,7 @@ Length: 80, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;TotalBsmtSF&#39;, ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/70f80f657f87496e7b6de2b21b57d79dee3f728ecc3cea3d35cc7d862bccc458.png" src="../../_images/70f80f657f87496e7b6de2b21b57d79dee3f728ecc3cea3d35cc7d862bccc458.png" />
+<img alt="../../_images/9b1f106fb973147eecd045532cc16fc2a45d29d55a5b38a01a2432ea02267571.png" src="../../_images/9b1f106fb973147eecd045532cc16fc2a45d29d55a5b38a01a2432ea02267571.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2828,7 +2836,7 @@ Length: 80, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;TotalBsmtSF&#39;, ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/f455cabc5ef602bc3d7ba807ecb10ba5156d170ff14d2aa9f35635b6f91d4108.png" src="../../_images/f455cabc5ef602bc3d7ba807ecb10ba5156d170ff14d2aa9f35635b6f91d4108.png" />
+<img alt="../../_images/b12758d624f84e5cdf5074aa112c6b5d09b87259ae2d562b266598016bdb50f4.png" src="../../_images/b12758d624f84e5cdf5074aa112c6b5d09b87259ae2d562b266598016bdb50f4.png" />
 </div>
 </div>
 </section>
@@ -2845,7 +2853,7 @@ Length: 80, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6ba08691cad16ed4a62b0f750395885359ea91f8304a1bef60c5ebc9e4533b76.png" src="../../_images/6ba08691cad16ed4a62b0f750395885359ea91f8304a1bef60c5ebc9e4533b76.png" />
+<img alt="../../_images/2ebe414ed6ca43000a0c2f9293243cf44c6e1d322c8328561e1311a6067245f1.png" src="../../_images/2ebe414ed6ca43000a0c2f9293243cf44c6e1d322c8328561e1311a6067245f1.png" />
 </div>
 </div>
 <p>以<code class="docutils literal notranslate"><span class="pre">TotalBsmtSF</span></code>特征而言，每个x值，y分布沿着回归线一致，即方差不变</p>
@@ -2866,7 +2874,7 @@ Length: 80, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cda9f76f308157dbc383d967cdc5d172dff7d99a9e066265b98a9d74fad2decf.png" src="../../_images/cda9f76f308157dbc383d967cdc5d172dff7d99a9e066265b98a9d74fad2decf.png" />
+<img alt="../../_images/5d885c4ab0246c39d93f35312a2b4b9c1de09045dd477144c0f288bd3450081a.png" src="../../_images/5d885c4ab0246c39d93f35312a2b4b9c1de09045dd477144c0f288bd3450081a.png" />
 </div>
 </div>
 <p>数据向上弯表示右偏，红线为正态分布</p>
@@ -2889,7 +2897,7 @@ Length: 80, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3c6c81c2cf12f7c8e3ea12bcb9bb98ac87d6d588e5ee125d9b5c5553f7bac8e8.png" src="../../_images/3c6c81c2cf12f7c8e3ea12bcb9bb98ac87d6d588e5ee125d9b5c5553f7bac8e8.png" />
+<img alt="../../_images/a01c90a95c54d63e854931bb4578786e58403630c774a89ba7fa7e17815306fc.png" src="../../_images/a01c90a95c54d63e854931bb4578786e58403630c774a89ba7fa7e17815306fc.png" />
 </div>
 </div>
 <hr class="docutils" />
@@ -2916,14 +2924,7 @@ Length: 80, dtype: int64
 <p>探索一下</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span> <span class="o">=</span> <span class="n">traindata</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;YrSold&#39;</span><span class="p">]</span> <span class="o">-</span><span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;YrSold&#39;</span><span class="p">]</span> <span class="o">-</span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2931,21 +2932,21 @@ Length: 80, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YrSold&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;YrSold&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fae70688b55b4cceaa1cc7cc9bbcd67dbfc5814cc6405b73aa50c3bae37ffa25.png" src="../../_images/fae70688b55b4cceaa1cc7cc9bbcd67dbfc5814cc6405b73aa50c3bae37ffa25.png" />
+<img alt="../../_images/049aaa3e9c0194f6f1df037a48d73a7db4146ce825924a6c742ffa1ea4697b95.png" src="../../_images/049aaa3e9c0194f6f1df037a48d73a7db4146ce825924a6c742ffa1ea4697b95.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[[</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">,</span> <span class="s1">&#39;HouseAge&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[[</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">,</span> <span class="s1">&#39;HouseAge&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2975,13 +2976,13 @@ Length: 80, dtype: int64
   <tbody>
     <tr>
       <th>YearBuilt</th>
-      <td>1.000000</td>
-      <td>-0.999031</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>HouseAge</th>
-      <td>-0.999031</td>
-      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -2994,7 +2995,7 @@ Length: 80, dtype: int64
 <h3>2. 房屋面积<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;1stFlrSF&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;1stFlrSF&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3003,22 +3004,22 @@ Length: 80, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;1stFlrSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;1stFlrSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/daa3e54e4684158344876862ccf9c503b16afe6d10c15425c5cde7f1004b2ab4.png" src="../../_images/daa3e54e4684158344876862ccf9c503b16afe6d10c15425c5cde7f1004b2ab4.png" />
+<img alt="../../_images/f8fb4ddfb9242df27867b1ca3a9ce193656ce138ea81ad404269c6de49efb404.png" src="../../_images/f8fb4ddfb9242df27867b1ca3a9ce193656ce138ea81ad404269c6de49efb404.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="s1">&#39;1stFlrSF&#39;</span><span class="p">,</span> <span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="s1">&#39;1stFlrSF&#39;</span><span class="p">,</span> <span class="s1">&#39;2ndFlrSF&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalBsmtSF&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3051,29 +3052,29 @@ Length: 80, dtype: int64
     <tr>
       <th>TotalSF</th>
       <td>1.000000</td>
-      <td>0.778648</td>
-      <td>0.320191</td>
-      <td>0.805327</td>
+      <td>0.527859</td>
+      <td>0.687724</td>
+      <td>0.185774</td>
     </tr>
     <tr>
       <th>1stFlrSF</th>
-      <td>0.778648</td>
+      <td>0.527859</td>
       <td>1.000000</td>
-      <td>-0.254859</td>
-      <td>0.800935</td>
+      <td>-0.253567</td>
+      <td>0.268795</td>
     </tr>
     <tr>
       <th>2ndFlrSF</th>
-      <td>0.320191</td>
-      <td>-0.254859</td>
+      <td>0.687724</td>
+      <td>-0.253567</td>
       <td>1.000000</td>
-      <td>-0.227799</td>
+      <td>-0.020634</td>
     </tr>
     <tr>
       <th>TotalBsmtSF</th>
-      <td>0.805327</td>
-      <td>0.800935</td>
-      <td>-0.227799</td>
+      <td>0.185774</td>
+      <td>0.268795</td>
+      <td>-0.020634</td>
       <td>1.000000</td>
     </tr>
   </tbody>
@@ -3086,7 +3087,7 @@ Length: 80, dtype: int64
 <h3>3. 房屋面积*质量评分<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">ft_df</span><span class="p">[</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">eda_data</span><span class="p">[</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3095,21 +3096,21 @@ Length: 80, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ft_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3708d279402e079d2f16ee3ef4cda2b45bd6f78233dc55322a96ad537a5caa81.png" src="../../_images/3708d279402e079d2f16ee3ef4cda2b45bd6f78233dc55322a96ad537a5caa81.png" />
+<img alt="../../_images/ddfdb6771e2b09c544d343df0cc5bfd7e87b8661944253bc675aa6fdc589f683.png" src="../../_images/ddfdb6771e2b09c544d343df0cc5bfd7e87b8661944253bc675aa6fdc589f683.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ft_df</span><span class="p">[[</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">,</span> <span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_data</span><span class="p">[[</span><span class="s1">&#39;HouseSF_PRODUCT_QUAL&#39;</span><span class="p">,</span> <span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3142,29 +3143,29 @@ Length: 80, dtype: int64
     <tr>
       <th>HouseSF_PRODUCT_QUAL</th>
       <td>1.000000</td>
-      <td>0.872667</td>
-      <td>0.927552</td>
-      <td>0.913358</td>
+      <td>0.829884</td>
+      <td>0.921501</td>
+      <td>0.869864</td>
     </tr>
     <tr>
       <th>OverallQual</th>
-      <td>0.872667</td>
+      <td>0.829884</td>
       <td>1.000000</td>
-      <td>0.672473</td>
-      <td>0.799616</td>
+      <td>0.588959</td>
+      <td>0.798928</td>
     </tr>
     <tr>
       <th>TotalSF</th>
-      <td>0.927552</td>
-      <td>0.672473</td>
+      <td>0.921501</td>
+      <td>0.588959</td>
       <td>1.000000</td>
-      <td>0.824964</td>
+      <td>0.730945</td>
     </tr>
     <tr>
       <th>SalePrice</th>
-      <td>0.913358</td>
-      <td>0.799616</td>
-      <td>0.824964</td>
+      <td>0.869864</td>
+      <td>0.798928</td>
+      <td>0.730945</td>
       <td>1.000000</td>
     </tr>
   </tbody>
@@ -5879,7 +5880,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><body><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;fix_map_encoder&#x27;,
                  FunctionTransformer(feature_names_out=&#x27;one-to-one&#x27;,
-                                     func=&lt;function fix_map_encoder at 0x0000015549B1D2D0&gt;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+                                     func=&lt;function fix_map_encoder at 0x000001A364243880&gt;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -5942,7 +5943,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                           this.parentElement.nextElementSibling)"
             ></i></td>
             <td class="param">func&nbsp;</td>
-            <td class="value">&lt;function fix...0015549B1D2D0&gt;</td>
+            <td class="value">&lt;function fix...001A364243880&gt;</td>
         </tr>
     
 
@@ -6067,6 +6068,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="baseline">
 <h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading">#</a></h2>
+<section id="id15">
+<h3>训练<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <p>ft_pipeline完成后会确定所有特征</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6196,7 +6199,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>feature_features transformer done. 
 fix_map_encoder transformer done.
-model_lasso  1.50s
+model_lasso  1.39s
 </pre></div>
 </div>
 </div>
@@ -6221,7 +6224,7 @@ fix_map_encoder transformer done.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09859232693755567
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10355453384529958
 </pre></div>
 </div>
 </div>
@@ -6238,12 +6241,15 @@ fix_map_encoder transformer done.
 fix_map_encoder transformer done.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.11818125959406815
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09958701235931323
 </pre></div>
 </div>
 </div>
 </div>
 <p>可以看到，在训练集和验证集上，效果都不太好</p>
+</section>
+<section id="id16">
+<h3>模型解释<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_names_out</span> <span class="o">=</span> <span class="n">model_lasso</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
@@ -6255,6 +6261,18 @@ fix_map_encoder transformer done.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">model_lasso</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;regressor&#39;</span><span class="p">]</span>
 <span class="n">lasso</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">regressor_</span> <span class="c1"># 内部模型</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lasso</span><span class="o">.</span><span class="n">alpha_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.000449788151223051
 </pre></div>
 </div>
 </div>
@@ -6284,11 +6302,24 @@ fix_map_encoder transformer done.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(197, 3)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 3)
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">feature_coef_df</span><span class="p">[</span><span class="s1">&#39;coef_abs&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span>  <span class="nb">len</span><span class="p">(</span><span class="n">feature_coef_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.535
+</pre></div>
+</div>
+</div>
+</div>
+<p>有64%的特征系数为0</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">high20_coef_features</span><span class="o">=</span> <span class="n">feature_coef_df</span><span class="p">[</span><span class="n">feature_coef_df</span><span class="p">[</span><span class="s1">&#39;coef_abs&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;coef_abs&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -6307,13 +6338,1011 @@ fix_map_encoder transformer done.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;coef&#39;, ylabel=&#39;feature&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d05a93b87bcda9c21d4948b254fdcb60f35975cfabf8d4f5a12e314210d98776.png" src="../../_images/d05a93b87bcda9c21d4948b254fdcb60f35975cfabf8d4f5a12e314210d98776.png" />
+<img alt="../../_images/11973bcb2a4d1c1431546534322e0ddaa67773ae764b99b9298286c8e6c9045d.png" src="../../_images/11973bcb2a4d1c1431546534322e0ddaa67773ae764b99b9298286c8e6c9045d.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_coef_df</span><span class="p">[</span><span class="n">feature_coef_df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;categoric__SaleCondition_Abnorml&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>coef</th>
+      <th>coef_abs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>194</th>
+      <td>categoric__SaleCondition_Abnorml</td>
+      <td>-0.078678</td>
+      <td>0.078678</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_coef_df</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;date__GarageYrBlt&#39;,
+ &#39;date__YearRemodAdd&#39;,
+ &#39;date__YearBuilt&#39;,
+ &#39;date__MoSold&#39;,
+ &#39;numeric__LotFrontage&#39;,
+ &#39;numeric__LotArea&#39;,
+ &#39;numeric__BsmtFinSF1&#39;,
+ &#39;numeric__BsmtFinSF2&#39;,
+ &#39;numeric__BsmtUnfSF&#39;,
+ &#39;numeric__TotalBsmtSF&#39;,
+ &#39;numeric__2ndFlrSF&#39;,
+ &#39;numeric__LowQualFinSF&#39;,
+ &#39;numeric__GrLivArea&#39;,
+ &#39;numeric__GarageArea&#39;,
+ &#39;numeric__WoodDeckSF&#39;,
+ &#39;numeric__OpenPorchSF&#39;,
+ &#39;numeric__EnclosedPorch&#39;,
+ &#39;numeric__3SsnPorch&#39;,
+ &#39;numeric__ScreenPorch&#39;,
+ &#39;numeric__PoolArea&#39;,
+ &#39;numeric__MiscVal&#39;,
+ &#39;numeric__BsmtFullBath&#39;,
+ &#39;numeric__BsmtHalfBath&#39;,
+ &#39;numeric__FullBath&#39;,
+ &#39;numeric__HalfBath&#39;,
+ &#39;numeric__BedroomAbvGr&#39;,
+ &#39;numeric__KitchenAbvGr&#39;,
+ &#39;numeric__TotRmsAbvGrd&#39;,
+ &#39;numeric__Fireplaces&#39;,
+ &#39;numeric__GarageCars&#39;,
+ &#39;numeric__HasBsmt&#39;,
+ &#39;numeric__TotalSF&#39;,
+ &#39;numeric__HouseSF_PRODUCT_QUAL&#39;,
+ &#39;ordianl__OverallQual&#39;,
+ &#39;ordianl__OverallCond&#39;,
+ &#39;ordianl__ExterQual&#39;,
+ &#39;ordianl__ExterCond&#39;,
+ &#39;ordianl__HeatingQC&#39;,
+ &#39;ordianl__KitchenQual&#39;,
+ &#39;categoric__MSSubClass_20&#39;,
+ &#39;categoric__MSSubClass_30&#39;,
+ &#39;categoric__MSSubClass_40&#39;,
+ &#39;categoric__MSSubClass_45&#39;,
+ &#39;categoric__MSSubClass_50&#39;,
+ &#39;categoric__MSSubClass_60&#39;,
+ &#39;categoric__MSSubClass_70&#39;,
+ &#39;categoric__MSSubClass_75&#39;,
+ &#39;categoric__MSSubClass_80&#39;,
+ &#39;categoric__MSSubClass_85&#39;,
+ &#39;categoric__MSSubClass_90&#39;,
+ &#39;categoric__MSSubClass_120&#39;,
+ &#39;categoric__MSSubClass_160&#39;,
+ &#39;categoric__MSSubClass_180&#39;,
+ &#39;categoric__MSSubClass_190&#39;,
+ &#39;categoric__CentralAir_N&#39;,
+ &#39;categoric__CentralAir_Y&#39;,
+ &#39;categoric__MSZoning_C (all)&#39;,
+ &#39;categoric__MSZoning_FV&#39;,
+ &#39;categoric__MSZoning_RH&#39;,
+ &#39;categoric__MSZoning_RL&#39;,
+ &#39;categoric__MSZoning_RM&#39;,
+ &#39;categoric__LotShape_IR1&#39;,
+ &#39;categoric__LotShape_IR2&#39;,
+ &#39;categoric__LotShape_IR3&#39;,
+ &#39;categoric__LotShape_Reg&#39;,
+ &#39;categoric__LotConfig_Corner&#39;,
+ &#39;categoric__LotConfig_CulDSac&#39;,
+ &#39;categoric__LotConfig_FR2&#39;,
+ &#39;categoric__LotConfig_FR3&#39;,
+ &#39;categoric__LotConfig_Inside&#39;,
+ &#39;categoric__Neighborhood_Blmngtn&#39;,
+ &#39;categoric__Neighborhood_Blueste&#39;,
+ &#39;categoric__Neighborhood_BrDale&#39;,
+ &#39;categoric__Neighborhood_BrkSide&#39;,
+ &#39;categoric__Neighborhood_ClearCr&#39;,
+ &#39;categoric__Neighborhood_CollgCr&#39;,
+ &#39;categoric__Neighborhood_Crawfor&#39;,
+ &#39;categoric__Neighborhood_Edwards&#39;,
+ &#39;categoric__Neighborhood_Gilbert&#39;,
+ &#39;categoric__Neighborhood_IDOTRR&#39;,
+ &#39;categoric__Neighborhood_MeadowV&#39;,
+ &#39;categoric__Neighborhood_Mitchel&#39;,
+ &#39;categoric__Neighborhood_NAmes&#39;,
+ &#39;categoric__Neighborhood_NPkVill&#39;,
+ &#39;categoric__Neighborhood_NWAmes&#39;,
+ &#39;categoric__Neighborhood_NoRidge&#39;,
+ &#39;categoric__Neighborhood_NridgHt&#39;,
+ &#39;categoric__Neighborhood_OldTown&#39;,
+ &#39;categoric__Neighborhood_SWISU&#39;,
+ &#39;categoric__Neighborhood_Sawyer&#39;,
+ &#39;categoric__Neighborhood_SawyerW&#39;,
+ &#39;categoric__Neighborhood_Somerst&#39;,
+ &#39;categoric__Neighborhood_StoneBr&#39;,
+ &#39;categoric__Neighborhood_Timber&#39;,
+ &#39;categoric__Neighborhood_Veenker&#39;,
+ &#39;categoric__Condition1_Artery&#39;,
+ &#39;categoric__Condition1_Feedr&#39;,
+ &#39;categoric__Condition1_Norm&#39;,
+ &#39;categoric__Condition1_PosA&#39;,
+ &#39;categoric__Condition1_PosN&#39;,
+ &#39;categoric__Condition1_RRAe&#39;,
+ &#39;categoric__Condition1_RRAn&#39;,
+ &#39;categoric__Condition1_RRNe&#39;,
+ &#39;categoric__Condition1_RRNn&#39;,
+ &#39;categoric__BldgType_1Fam&#39;,
+ &#39;categoric__BldgType_2fmCon&#39;,
+ &#39;categoric__BldgType_Duplex&#39;,
+ &#39;categoric__BldgType_Twnhs&#39;,
+ &#39;categoric__BldgType_TwnhsE&#39;,
+ &#39;categoric__HouseStyle_1.5Fin&#39;,
+ &#39;categoric__HouseStyle_1.5Unf&#39;,
+ &#39;categoric__HouseStyle_1Story&#39;,
+ &#39;categoric__HouseStyle_2.5Fin&#39;,
+ &#39;categoric__HouseStyle_2.5Unf&#39;,
+ &#39;categoric__HouseStyle_2Story&#39;,
+ &#39;categoric__HouseStyle_SFoyer&#39;,
+ &#39;categoric__HouseStyle_SLvl&#39;,
+ &#39;categoric__RoofStyle_Flat&#39;,
+ &#39;categoric__RoofStyle_Gable&#39;,
+ &#39;categoric__RoofStyle_Gambrel&#39;,
+ &#39;categoric__RoofStyle_Hip&#39;,
+ &#39;categoric__RoofStyle_Mansard&#39;,
+ &#39;categoric__RoofStyle_Shed&#39;,
+ &#39;categoric__RoofMatl_CompShg&#39;,
+ &#39;categoric__RoofMatl_Metal&#39;,
+ &#39;categoric__RoofMatl_Tar&amp;Grv&#39;,
+ &#39;categoric__RoofMatl_WdShake&#39;,
+ &#39;categoric__RoofMatl_WdShngl&#39;,
+ &#39;categoric__Exterior1st_AsbShng&#39;,
+ &#39;categoric__Exterior1st_BrkComm&#39;,
+ &#39;categoric__Exterior1st_BrkFace&#39;,
+ &#39;categoric__Exterior1st_CBlock&#39;,
+ &#39;categoric__Exterior1st_CemntBd&#39;,
+ &#39;categoric__Exterior1st_HdBoard&#39;,
+ &#39;categoric__Exterior1st_ImStucc&#39;,
+ &#39;categoric__Exterior1st_MetalSd&#39;,
+ &#39;categoric__Exterior1st_Plywood&#39;,
+ &#39;categoric__Exterior1st_Stone&#39;,
+ &#39;categoric__Exterior1st_Stucco&#39;,
+ &#39;categoric__Exterior1st_VinylSd&#39;,
+ &#39;categoric__Exterior1st_Wd Sdng&#39;,
+ &#39;categoric__Exterior1st_WdShing&#39;,
+ &#39;categoric__Exterior2nd_AsbShng&#39;,
+ &#39;categoric__Exterior2nd_AsphShn&#39;,
+ &#39;categoric__Exterior2nd_Brk Cmn&#39;,
+ &#39;categoric__Exterior2nd_BrkFace&#39;,
+ &#39;categoric__Exterior2nd_CBlock&#39;,
+ &#39;categoric__Exterior2nd_CmentBd&#39;,
+ &#39;categoric__Exterior2nd_HdBoard&#39;,
+ &#39;categoric__Exterior2nd_ImStucc&#39;,
+ &#39;categoric__Exterior2nd_MetalSd&#39;,
+ &#39;categoric__Exterior2nd_Plywood&#39;,
+ &#39;categoric__Exterior2nd_Stone&#39;,
+ &#39;categoric__Exterior2nd_Stucco&#39;,
+ &#39;categoric__Exterior2nd_VinylSd&#39;,
+ &#39;categoric__Exterior2nd_Wd Sdng&#39;,
+ &#39;categoric__Exterior2nd_Wd Shng&#39;,
+ &#39;categoric__Foundation_BrkTil&#39;,
+ &#39;categoric__Foundation_CBlock&#39;,
+ &#39;categoric__Foundation_PConc&#39;,
+ &#39;categoric__Foundation_Slab&#39;,
+ &#39;categoric__Foundation_Stone&#39;,
+ &#39;categoric__Foundation_Wood&#39;,
+ &#39;categoric__Heating_Floor&#39;,
+ &#39;categoric__Heating_GasA&#39;,
+ &#39;categoric__Heating_GasW&#39;,
+ &#39;categoric__Heating_Grav&#39;,
+ &#39;categoric__Heating_OthW&#39;,
+ &#39;categoric__Heating_Wall&#39;,
+ &#39;categoric__Electrical_FuseA&#39;,
+ &#39;categoric__Electrical_FuseF&#39;,
+ &#39;categoric__Electrical_FuseP&#39;,
+ &#39;categoric__Electrical_Mix&#39;,
+ &#39;categoric__Electrical_SBrkr&#39;,
+ &#39;categoric__Electrical_nan&#39;,
+ &#39;categoric__Functional_Maj1&#39;,
+ &#39;categoric__Functional_Maj2&#39;,
+ &#39;categoric__Functional_Min1&#39;,
+ &#39;categoric__Functional_Min2&#39;,
+ &#39;categoric__Functional_Mod&#39;,
+ &#39;categoric__Functional_Sev&#39;,
+ &#39;categoric__Functional_Typ&#39;,
+ &#39;categoric__PavedDrive_N&#39;,
+ &#39;categoric__PavedDrive_P&#39;,
+ &#39;categoric__PavedDrive_Y&#39;,
+ &#39;categoric__SaleType_COD&#39;,
+ &#39;categoric__SaleType_CWD&#39;,
+ &#39;categoric__SaleType_Con&#39;,
+ &#39;categoric__SaleType_ConLD&#39;,
+ &#39;categoric__SaleType_ConLI&#39;,
+ &#39;categoric__SaleType_ConLw&#39;,
+ &#39;categoric__SaleType_New&#39;,
+ &#39;categoric__SaleType_Oth&#39;,
+ &#39;categoric__SaleType_WD&#39;,
+ &#39;categoric__SaleCondition_Abnorml&#39;,
+ &#39;categoric__SaleCondition_AdjLand&#39;,
+ &#39;categoric__SaleCondition_Alloca&#39;,
+ &#39;categoric__SaleCondition_Family&#39;,
+ &#39;categoric__SaleCondition_Normal&#39;,
+ &#39;categoric__SaleCondition_Partial&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>效果是合理的。</p>
 <p>解释：</p>
 <ol class="arabic simple">
 <li><p>MSZoning_C表示在商业区的房子，对房价负面影响大，价格就会低</p></li>
 </ol>
+</section>
+<section id="id17">
+<h3>假设验证<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_valid_pred</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">residuals</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">:</span> <span class="s1">&#39;residual&#39;</span><span class="p">})</span>
+<span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_valid</span>
+<span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_valid_pred</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+<span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">kurt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7928208043477891
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>residual</th>
+      <th>price</th>
+      <th>pred</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>901</th>
+      <td>-0.096132</td>
+      <td>110000</td>
+      <td>99917.879695</td>
+    </tr>
+    <tr>
+      <th>866</th>
+      <td>-0.113979</td>
+      <td>148500</td>
+      <td>132503.149770</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>0.000129</td>
+      <td>118964</td>
+      <td>118979.288769</td>
+    </tr>
+    <tr>
+      <th>351</th>
+      <td>-0.041645</td>
+      <td>318061</td>
+      <td>305087.301564</td>
+    </tr>
+    <tr>
+      <th>743</th>
+      <td>-0.015425</td>
+      <td>179000</td>
+      <td>176260.178689</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">residuals</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;residual&#39;</span><span class="p">,</span><span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span> <span class="n">ax1</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">],</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6c6f6b567010fb2a00fd1a70d0532e0d042708c7672ef04ee4db7dc4fd287355.png" src="../../_images/6c6f6b567010fb2a00fd1a70d0532e0d042708c7672ef04ee4db7dc4fd287355.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span><span class="p">[(</span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span> <span class="o">&gt;-</span><span class="mf">0.2</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9624217118997912
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09954724503378992
+</pre></div>
+</div>
+</div>
+</div>
+<p>误差正态假设基本是成立的，在数据集中区域尤为明显。</p>
+<p>残差在$[-0.2, 0.2]$的数据占比93%。 样本标准差为0.1，参数估计的话，
+符合$2\sigma$内分布95%数据</p>
+<p>那些离群点需要研究下,</p>
+</section>
+<section id="id18">
+<h3>离群<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>找出这些离群点的共同特点，</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>由于没有version控制，notebook不能够反映思路：通过训练再去修改eda过程</p>
+</div>
+<p>根据probplot划分左右</p>
+<p>与 #剔除异常行 配合</p>
+<section id="id19">
+<h4>左侧<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>都是预测值小于真实值！</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals</span><span class="p">[</span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>residual</th>
+      <th>price</th>
+      <th>pred</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>804</th>
+      <td>-0.362065</td>
+      <td>582933</td>
+      <td>405859.631373</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>-0.302780</td>
+      <td>113000</td>
+      <td>83480.065387</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>3个离散点，直接删除即可</p>
+</section>
+<section id="id20">
+<h4>右侧<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<p>着重看下系数大于0的特征。<code class="docutils literal notranslate"><span class="pre">neighborhood</span></code>, <code class="docutils literal notranslate"><span class="pre">totalsf</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_coef_df</span><span class="p">[</span><span class="n">feature_coef_df</span><span class="p">[</span><span class="s1">&#39;coef&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;coef&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>coef</th>
+      <th>coef_abs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31</th>
+      <td>numeric__TotalSF</td>
+      <td>0.102064</td>
+      <td>0.102064</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>categoric__Neighborhood_StoneBr</td>
+      <td>0.085102</td>
+      <td>0.085102</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>categoric__Functional_Typ</td>
+      <td>0.080049</td>
+      <td>0.080049</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>categoric__Neighborhood_Crawfor</td>
+      <td>0.071365</td>
+      <td>0.071365</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>ordianl__OverallQual</td>
+      <td>0.062620</td>
+      <td>0.062620</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>categoric__Neighborhood_NridgHt</td>
+      <td>0.060607</td>
+      <td>0.060607</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>categoric__MSZoning_FV</td>
+      <td>0.058670</td>
+      <td>0.058670</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>numeric__GrLivArea</td>
+      <td>0.056887</td>
+      <td>0.056887</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>categoric__Neighborhood_BrkSide</td>
+      <td>0.053056</td>
+      <td>0.053056</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>categoric__Exterior1st_BrkFace</td>
+      <td>0.049454</td>
+      <td>0.049454</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">residuals</span><span class="p">[</span><span class="s1">&#39;residual&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_ids</span> <span class="o">=</span> <span class="n">residuals</span><span class="p">[</span><span class="n">hard_mask</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_df</span> <span class="o">=</span> <span class="n">eda_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hard_ids</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">hard_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+      <th>SalePrice_log</th>
+      <th>HasBsmt</th>
+      <th>HouseAge</th>
+      <th>TotalSF</th>
+      <th>HouseSF_PRODUCT_QUAL</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>772</th>
+      <td>20</td>
+      <td>RL</td>
+      <td>67.0</td>
+      <td>8877</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1970</td>
+      <td>COD</td>
+      <td>Normal</td>
+      <td>102000</td>
+      <td>11.532728</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1226.728629</td>
+      <td>4906.914514</td>
+    </tr>
+    <tr>
+      <th>711</th>
+      <td>30</td>
+      <td>RL</td>
+      <td>56.0</td>
+      <td>4130</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1970</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>52000</td>
+      <td>10.858999</td>
+      <td>1</td>
+      <td>0</td>
+      <td>734.598422</td>
+      <td>2203.795266</td>
+    </tr>
+    <tr>
+      <th>1384</th>
+      <td>30</td>
+      <td>RL</td>
+      <td>NaN</td>
+      <td>25339</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1970</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>112000</td>
+      <td>11.626254</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1422.704414</td>
+      <td>7113.522072</td>
+    </tr>
+    <tr>
+      <th>745</th>
+      <td>120</td>
+      <td>RL</td>
+      <td>41.0</td>
+      <td>5395</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>HLS</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1970</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>180000</td>
+      <td>12.100712</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1344.198184</td>
+      <td>10753.585469</td>
+    </tr>
+    <tr>
+      <th>1164</th>
+      <td>90</td>
+      <td>RL</td>
+      <td>60.0</td>
+      <td>12900</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1970</td>
+      <td>WD</td>
+      <td>Alloca</td>
+      <td>108959</td>
+      <td>11.598727</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1265.088409</td>
+      <td>5060.353635</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 85 columns</p>
+</div></div></div>
+</div>
+<p>totalsf</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;TotalSF&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/18495a4da9e499fb64ce9dc5727915567ad586c2ebc9fe33083534989359c7c8.png" src="../../_images/18495a4da9e499fb64ce9dc5727915567ad586c2ebc9fe33083534989359c7c8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_df</span><span class="p">[</span><span class="n">hard_df</span><span class="p">[</span><span class="s1">&#39;TotalSF&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2250</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>...</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+      <th>SalePrice_log</th>
+      <th>HasBsmt</th>
+      <th>HouseAge</th>
+      <th>TotalSF</th>
+      <th>HouseSF_PRODUCT_QUAL</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>0 rows × 85 columns</p>
+</div></div></div>
+</div>
+<p>saletype</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_df</span><span class="p">[</span><span class="s1">&#39;SaleType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SaleType
+WD     7
+COD    3
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>WD是最普通的方式，没什么问题</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SaleType&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SaleType&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SaleType&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/faa85635795c7c3f3c4b67a8997872c58746b2017a9d094cef88a370b530cb2c.png" src="../../_images/faa85635795c7c3f3c4b67a8997872c58746b2017a9d094cef88a370b530cb2c.png" />
+</div>
+</div>
+<p>Neighborhood:StoneBr,NridgHt,Crawfor,NoRidge</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Neighborhood&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/e7c19cbd0d381157706c313bcd7ac5a70364fb6ec77299ba0c882f995c79d42d.png" src="../../_images/e7c19cbd0d381157706c313bcd7ac5a70364fb6ec77299ba0c882f995c79d42d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eda_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Neighborhood&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/6b6c0eff8e952a8bef431bcbd0c55e4045a071be75fb08d2fdaacb848a8f5130.png" src="../../_images/6b6c0eff8e952a8bef431bcbd0c55e4045a071be75fb08d2fdaacb848a8f5130.png" />
+</div>
+</div>
+<p>Functional_Typ</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Functional&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Functional&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Functional&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/b627cf4ecf4c2b128b9aff1780c5b81e2e9a88a384deca83dea838dd78d7cce2.png" src="../../_images/b627cf4ecf4c2b128b9aff1780c5b81e2e9a88a384deca83dea838dd78d7cce2.png" />
+</div>
+</div>
+<p>OverallQual</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;OverallQual&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/9761d871c93a58feb70fdefd0f524a28eee85470da4369cfcaa1a7305d323818.png" src="../../_images/9761d871c93a58feb70fdefd0f524a28eee85470da4369cfcaa1a7305d323818.png" />
+</div>
+</div>
+<p>Exterior1st_BrkFace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Exterior1st&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Exterior1st&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Exterior1st&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/cc0e910f75544ee8b5f6b4c98ce39cf517783ff42af041e96fc216c45a75bd82.png" src="../../_images/cc0e910f75544ee8b5f6b4c98ce39cf517783ff42af041e96fc216c45a75bd82.png" />
+</div>
+</div>
+<p>GrLivArea</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hard_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;GrLivArea&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;GrLivArea&#39;, ylabel=&#39;SalePrice&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/9151e996c3cdf203c7c3d3494017d9b1862c35b9bace0c23482fe4967e03143b.png" src="../../_images/9151e996c3cdf203c7c3d3494017d9b1862c35b9bace0c23482fe4967e03143b.png" />
+</div>
+</div>
+<p>都没什么大问题，删除那个异常点试试</p>
+</section>
+</section>
+<section id="id21">
+<h3>submit<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testdata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -6573,27 +7602,27 @@ fix_map_encoder transformer done.
     <tr>
       <th>0</th>
       <td>1461</td>
-      <td>118624.566425</td>
+      <td>122534.862603</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1462</td>
-      <td>166969.986108</td>
+      <td>171915.586727</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1463</td>
-      <td>180939.952527</td>
+      <td>180048.247839</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1464</td>
-      <td>204181.434181</td>
+      <td>203875.194099</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1465</td>
-      <td>207682.453439</td>
+      <td>204187.745363</td>
     </tr>
     <tr>
       <th>...</th>
@@ -6603,27 +7632,27 @@ fix_map_encoder transformer done.
     <tr>
       <th>1454</th>
       <td>2915</td>
-      <td>85783.984691</td>
+      <td>85334.197869</td>
     </tr>
     <tr>
       <th>1455</th>
       <td>2916</td>
-      <td>82530.411673</td>
+      <td>82654.669512</td>
     </tr>
     <tr>
       <th>1456</th>
       <td>2917</td>
-      <td>178248.409379</td>
+      <td>176369.950479</td>
     </tr>
     <tr>
       <th>1457</th>
       <td>2918</td>
-      <td>114169.846425</td>
+      <td>116358.823686</td>
     </tr>
     <tr>
       <th>1458</th>
       <td>2919</td>
-      <td>226280.092432</td>
+      <td>227875.086920</td>
     </tr>
   </tbody>
 </table>
@@ -6631,135 +7660,8 @@ fix_map_encoder transformer done.
 </div></div></div>
 </div>
 <p>得分0.13</p>
+<p>至此，完成了最基本的训练、特征工程。如需提升，则要 ！特征选择</p>
 </section>
-<section id="id15">
-<h2>训练<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_lasso</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_en</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">ElasticNetCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">20</span><span class="p">,),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_poly_linear</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_poly_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_bayesian_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">BayesianRidge</span><span class="p">(),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_dtree</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span>
-    <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
-        <span class="n">regressor</span><span class="o">=</span><span class="n">DecisionTreeRegressor</span><span class="p">(</span>
-            <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>         <span class="c1"># 对 y 应用的对数转换</span>
-        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>  <span class="c1"># 预测时反转</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CV decision tree📌</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1">#&#39;LassoCV&#39;:model_lasso,</span>
-    <span class="c1">#&#39;Elastic-Net&#39;:model_en,</span>
-    <span class="c1">#&#39;RidgeCV&#39;:model_ridge,</span>
-    <span class="c1">#&#39;Poly Linear&#39;:model_poly_linear,</span>
-    <span class="c1">#&#39;Poly Ridge&#39;:model_poly_ridge,</span>
-    <span class="c1">#&#39;Bayesian Ridge&#39;:model_bayesian_ridge,</span>
-    <span class="s1">&#39;Decision Tree Regression&#39;</span><span class="p">:</span><span class="n">model_dtree</span><span class="p">,</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -6848,8 +7750,18 @@ fix_map_encoder transformer done.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal-pipeline">ordinal pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">baseline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">训练</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">baseline</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">训练</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">模型解释</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">假设验证</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">离群</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">左侧</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">右侧</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">submit</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
