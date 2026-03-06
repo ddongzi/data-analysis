@@ -5,4 +5,4 @@
 .. toctree::
    :maxdepth: 1
 
-   1.start <main> 
+   1. start <main> 
