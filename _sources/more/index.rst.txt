@@ -4,6 +4,4 @@ more
 .. toctree::
    :caption: 内容目录
    
-   爬虫
-   投影重建
-   sound
+   投影重建/Compress_sensing

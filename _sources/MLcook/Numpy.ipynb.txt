@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 2,
    "id": "852e15fe",
    "metadata": {},
    "outputs": [],
@@ -16258,21 +16258,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 3,
    "id": "685b38ba-5cce-4531-9153-4b342bd9651b",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "SVDResult(U=array([[ 0.16779392, -0.91359416, -0.3703929 ],\n",
-       "       [ 0.9677028 ,  0.08093775,  0.23874753],\n",
-       "       [-0.18813958, -0.39849063,  0.89766849]]), S=array([2.34988203, 1.13702919, 0.37068151]), Vh=array([[-0.89429886,  0.29450515,  0.33689207],\n",
-       "       [-0.44746433, -0.58473355, -0.67665527],\n",
-       "       [-0.00228637, -0.75587922,  0.65470709]]))"
+       "SVDResult(U=array([[-0.45996176,  0.84045837, -0.28646975],\n",
+       "       [-0.86138526, -0.50065539, -0.08578823],\n",
+       "       [-0.21552406,  0.20730151,  0.95424078]]), S=array([3.45699448, 1.54054236, 0.55365264]), Vh=array([[-0.85231143, -0.50914829,  0.11972159],\n",
+       "       [ 0.36198424, -0.40898848,  0.83767287],\n",
+       "       [ 0.37753496, -0.75729548, -0.53288921]]))"
       ]
      },
-     "execution_count": 8,
+     "execution_count": 3,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -16280,6 +16280,28 @@
    "source": [
     "A = np.random.randn(3, 3)\n",
     "np.linalg.svd(A)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "bb92f89c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# 秩\n",
+    "np.linalg.matrix_rank(A)"
    ]
   },
   {

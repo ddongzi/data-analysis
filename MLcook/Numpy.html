@@ -156,6 +156,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../more/index.html">
+    more
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -269,6 +276,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../economy/economy.html">
     宏观经济
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../more/index.html">
+    more
   </a>
 </li>
 
@@ -14901,11 +14915,24 @@ AIBhCIAAAACGIQACAAAYhgAIAABgGAIgAACAYQiAAAAAhvn/BDKWO+mDPygAAAAASUVORK5CYII=\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVDResult(U=array([[ 0.16779392, -0.91359416, -0.3703929 ],
-       [ 0.9677028 ,  0.08093775,  0.23874753],
-       [-0.18813958, -0.39849063,  0.89766849]]), S=array([2.34988203, 1.13702919, 0.37068151]), Vh=array([[-0.89429886,  0.29450515,  0.33689207],
-       [-0.44746433, -0.58473355, -0.67665527],
-       [-0.00228637, -0.75587922,  0.65470709]]))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVDResult(U=array([[-0.45996176,  0.84045837, -0.28646975],
+       [-0.86138526, -0.50065539, -0.08578823],
+       [-0.21552406,  0.20730151,  0.95424078]]), S=array([3.45699448, 1.54054236, 0.55365264]), Vh=array([[-0.85231143, -0.50914829,  0.11972159],
+       [ 0.36198424, -0.40898848,  0.83767287],
+       [ 0.37753496, -0.75729548, -0.53288921]]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 秩</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>

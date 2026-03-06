@@ -49,6 +49,7 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="more" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -154,6 +155,13 @@
   </a>
 </li>
 
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    more
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -227,10 +235,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -272,6 +278,13 @@
   </a>
 </li>
 
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    more
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -310,6 +323,17 @@
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item">
@@ -345,6 +369,9 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">more</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</span></li>
   </ul>
 </nav>
@@ -375,13 +402,6 @@
 一个角度的投影就是 旋转点再原坐标轴（离散）的权重分配。<br />
 因为点旋转后落不到离散x上，所以通过插值分配。<br />
 点积分到旋转轴上， 和旋转点积分到原坐标轴上， 是等价的。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="id1">
 <h2>1. 生成2值图像<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -921,9 +941,8 @@
 <h3>3. 边缘<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 </section>
 </section>
-</section>
 <section id="id7">
-<h1>4. 重建<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<h2>4. 重建<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p><strong>CT:</strong><br />
 $$
 g = A x
@@ -1031,6 +1050,7 @@ $$</p>
 </div>
 </div>
 </section>
+</section>
 
 
                 </article>
@@ -1042,6 +1062,15 @@ $$</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">more</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -1061,7 +1090,6 @@ $$</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ct">CT扫描、投影</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 生成2值图像</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 投影算子生成</a></li>
@@ -1071,11 +1099,8 @@ $$</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 边缘</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4. 重建</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4. 重建</a></li>
-</ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">

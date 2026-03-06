@@ -20,4 +20,4 @@
    MLcook/index
    astroy/index
    economy/economy
-   more 
+   more/index 
