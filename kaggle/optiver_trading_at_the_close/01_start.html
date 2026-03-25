@@ -413,51 +413,80 @@
   <section id="introduction">
 <h1>introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://www.kaggle.com/code/tomforbes/optiver-trading-at-the-close-introduction#Trading-At-The-Close">介绍</a></p>
-<p>预测股票收盘价相对涨幅</p>
-<p>最后10分钟，允许委托，不支持撤单，最后一刻统一价格撮合（按照成交量最大），产生收盘价。</p>
-<p><strong>近端价、远端价、参考</strong></p>
-<p>15:50:00开始收盘竞价，每隔10秒收集数据</p>
-<p>0-300秒：纳斯达克不公布近端和远端价格</p>
-<p>300-600: 300开始实时发布近端/远端价格</p>
-<p>600：价格确定</p>
+<section id="id1">
+<h2>介绍<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>一、背景：纳斯达克收盘博弈<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>收盘最后 10 分钟（15:50 - 16:00）是市场流动性最剧烈的时刻，采用集合竞价机制。</p>
+<p>订单规则：(15:50之前得是普通挂单)</p>
 <ul class="simple">
-<li><p>远端价：一些人等到第30秒发起订单，<strong>就是这一秒</strong>，远端价就是只看这几个人可以成交的价格。如果Nan就是得不到成交价格</p></li>
-<li><p>近端价：把这些人的订单和白天剩余订单全在一起，计算出的成交价格就是 近端价。
-近端价相比远端价更加稳定。</p></li>
-<li><p>参考价：近端价和远端价都可能会出现很离谱的价格，参考价是市场设定的保护范围</p></li>
+<li><p>限制：可委托，不支持撤单</p></li>
+<li><p>MOC (Market-On-Close)：不计价格，必须成交。主要由指数基金（如标普500指数基金，基金价格需要与指数相等）发起，是价格变动的主要冲击力。MOC往往在靠前时间点出现。MOC经常会暴力拉升价格已完成成交。</p></li>
+<li><p>LOC (Limit-On-Close)：有价格阈值。比如买单大于100块就不成交了.是市场的阻力位。不买入过高价格，不卖出过低价格。</p></li>
 </ul>
-<p>这三个价格最终会收敛到一起</p>
-<p><strong>imbalance失衡</strong>：</p>
-<p>比如苹果股票，400秒时候。</p>
-<p>按照参考价</p>
-<p>场景1：买方多。</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_size</span></code> = 100万 表示按照参考价，不能成交的订单额。即买的人多</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_buy_sell_flag</span></code> = 1</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">matched_size</span></code> = 300万， 按照参考价，此时能够成交的订单额</p></li>
-</ul>
-<p>场景2：正好平衡</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_size</span></code> = 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">imbalance_buy_sell_flag</span></code> = 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">matched_size</span></code> = 400万， 按照参考价，此时能够成交的订单额</p></li>
-</ul>
-<p><strong>wap</strong></p>
-<p>是成交量加权平均价格，所以总是介于ask和bid之间
+<p>撮合逻辑：交易所每 10 秒计算一次“虚拟撮合”，寻找能使成交量最大化的参考价 (Reference Price)。</p>
+</section>
+<section id="id3">
+<h3>二、价格发现<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>近端价、远端价、参考价
+交易所每10秒公布的三个价格，最终它们会收敛于收盘价。远端价和近端价从300秒开始公布。</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>价格维度</p></th>
+<th class="head text-left"><p>定义说明</p></th>
+<th class="head text-left"><p>数据特性</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>远端价 (Far Price)</strong></p></td>
+<td class="text-left"><p>仅考虑拍卖池内的订单（MOC/LOC）计算的成交价。如果是Nan就不能成交</p></td>
+<td class="text-left"><p><strong>高波动/高灵敏</strong>：反映了最核心、最极端的供需缺口。若为 NaN，说明当前买卖盘完全无法匹配。</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>近端价 (Near Price)</strong></p></td>
+<td class="text-left"><p>考虑拍卖池订单 + 白天剩余的普通限价单计算的成交价。</p></td>
+<td class="text-left"><p><strong>稳定性</strong>：由于加入了大量存量订单，它更接近最终真实的收盘平衡点。</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>参考价 (Reference Price)</strong></p></td>
+<td class="text-left"><p>经过保护机制修正的价格，通常介于近端与远端之间。</p></td>
+<td class="text-left"><p><strong>锚点</strong>：它是交易所公布的官方基准，是所有 <code class="docutils literal notranslate"><span class="pre">Imbalance</span></code> 统计的起点。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>wap
+是成交量加权平均价格，所以总是介于ask和bid之间
 $$
 \frac{BidPrice * BidSize + AskPrice * AskSize}{BidSize + AskSize}
+$$</p></li>
+</ol>
+<ul class="simple">
+<li><p>溢价换取成交：当买方极度急切时，会在靠近卖价的位置堆积大量买单。此时 WAP 向上偏移，反映了买方宁愿支付高价也要成交的心理。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>三、 供需平衡(动力)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>供需动力是价格变动的原因。按照<strong>Reference Price</strong>撮合，imbalance代表无法撮合的量。</p>
+<ul class="simple">
+<li><p>imbalance_size：缺口绝对值。</p></li>
+<li><p>imbalance_buy_sell_flag：缺口方向。比如买单过多了，价格就将会上涨。</p></li>
+<li><p>这预示了未来60秒价格移动方向和幅度。</p></li>
+</ul>
+</section>
+<section id="target">
+<h3>四、预测相对收益率target<a class="headerlink" href="#target" title="Link to this heading">#</a></h3>
+<p>预测个股 60 秒后的收益率与大盘收益率的差值。即比大盘强还是弱。（能否跑赢大盘）<br />
+$$
+Target_t = (\frac{StockWap_{t+60}}{StockWap_t} - \frac{IndexWap_{t+60}}{IndexWap_t}) \times 1000
 $$</p>
-<p><strong>target</strong>：</p>
-<p>基于当前wap，预测60s后的wap。这不能反应市场情况，会做一个相对市场指数的涨跌幅。 即是否能跑赢大盘</p>
-<p>比如wap涨了1.2%，市场指数涨了1.3%，z相对涨幅是-0.1%。
-wap涨了 -1.2%， 市场涨了 -1.3%， 相对涨幅 0.1%</p>
-<p>$$
-target_t = (\frac{StockWap_{t+60}}{StockWap_{t}} - \frac{IndexWap_{t+60}}{IndexWap_{t}}) * 1000
-$$</p>
-<p>$target_t$表示的是t时刻进行预测。如$target_t&gt;0$ ： 预测60秒后，股票涨的比大盘多，或是 跌的比大盘少</p>
-<p><code class="docutils literal notranslate"><span class="pre">IndexWap</span></code> 是未知数，但对于同一时间的股票而言，这是不变量</p>
-<p>因此如果要精确得到$target_t$， 需要知道市场指数的涨幅以及股票60s后的wap。</p>
-<p>从预测模型角度，我们是可以直接预测$target_t$，不需要预测分量，</p>
+<p>为什么是相对收益率？而不是个股的收盘价？</p>
+<ul class="simple">
+<li><p>大盘是受到宏观政策影响的，如美联储加息。不可预测。</p></li>
+<li><p>相对收益率去除了大盘影响，更能反映个股真实表现。</p></li>
+<li><p>这也能统一不同股票的量度。</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> 
@@ -468,24 +497,18 @@ $$</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMRegressor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_is_fitted</span>
 
 <span class="n">gc</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
 </pre></div>
@@ -591,43 +614,21 @@ days 481
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1593a9f6f6de086c3922b9f1967ea74e4faa7ec0470e7894ff383f4107fbcd54.png" src="../../_images/1593a9f6f6de086c3922b9f1967ea74e4faa7ec0470e7894ff383f4107fbcd54.png" />
+<img alt="../../_images/2fc0b652898a53148ab21eb0d96c23aa450e234b39e63b497cb5279a705ee144.png" src="../../_images/2fc0b652898a53148ab21eb0d96c23aa450e234b39e63b497cb5279a705ee144.png" />
 </div>
 </div>
+</section>
+</section>
 <section id="metrics">
 <h2>metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h2>
 <p>MAE</p>
 </section>
-<section id="id1">
-<h2>字段说明<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>字段说明<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>分布</p></li>
 <li><p>统计：缺失、异常</p></li>
 </ul>
-<ul class="simple">
-<li><p>stock_id: 股票的唯一标识。</p></li>
-<li><p>date_id: 日期的唯一标识（按天递增）。</p></li>
-<li><p>seconds_in_bucket: 当前竞价时段内经过的秒数（从 0 开始，每 10 秒一行，最高到 540）。</p></li>
-<li><p>time_id / row_id: 唯一行标识。</p></li>
-</ul>
-<p>竞价数据：反应供需</p>
-<ul class="simple">
-<li><p>imbalance_size: 以美元计量的未匹配金额。</p></li>
-<li><p>imbalance_buy_sell_flag: 失衡方向。1 代表买方失衡（买单多），-1 代表卖方失衡，0 代表平衡。</p></li>
-<li><p>matched_size: 当前参考价下可以匹配成交的金额（美元）。</p></li>
-<li><p>reference_price: 参考价格。它是使配对股份最大化、不平衡最小化的价格，通常被限制在最佳买卖价之间。</p></li>
-<li><p>far_price: 远端价格。仅基于竞价订单计算的模拟成交价（不含连续交易时段的订单）。</p></li>
-<li><p>near_price: 近端价格。结合了竞价订单和连续交易订单后的模拟成交价。</p></li>
-</ul>
-<p>订单数据</p>
-<ul class="simple">
-<li><p>bid_price / ask_price: 订单簿中最优买入/卖出价（买一/卖一）。</p></li>
-<li><p>bid_size / ask_size: 最优买入/卖出位的美元金额。</p></li>
-<li><p>wap:成交量加权平均价（Weighted Average Price）</p></li>
-<li><p>target</p></li>
-</ul>
-<p>数据是折叠后的，比如target，如果从查看角度，某个时刻 一些股票得target，这才是预测值，即预测得是一个target向量, 现在折叠起来 不好看了</p>
-<p>因此我们对一个列空间进行统计分布，得到是 特征空间分布特征，无关哪个股票哪天得</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">info_numeric_col</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
@@ -691,648 +692,21 @@ dtype: int64
 </div>
 </div>
 </div>
-<section id="far-price-near-price-reference-price">
-<h3>far_price，near_price,reference_price<a class="headerlink" href="#far-price-near-price-reference-price" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;reference_price&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for reference_price ---
-missing            220.000000
-missing_percent      0.000042
-mean                 0.999996
-std                  0.002532
-min                  0.935285
-25%                  0.998763
-median               0.999967
-75%                  1.001174
-99%                  1.007185
-max                  1.077488
-skewness             0.396552
-kurtosis            11.137140
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/2f5a49080d77447c2608b73ae1c35103ee1de8ec6cc21eea5d711576a19847ae.png" src="../../_images/2f5a49080d77447c2608b73ae1c35103ee1de8ec6cc21eea5d711576a19847ae.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;far_price&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for far_price ---
-missing            2.894342e+06
-missing_percent    5.525684e-01
-mean               1.001713e+00
-std                7.214705e-01
-min                7.700000e-05
-25%                9.963320e-01
-median             9.998830e-01
-75%                1.003318e+00
-99%                1.052688e+00
-max                4.379531e+02
-skewness           4.765590e+02
-kurtosis           2.448905e+05
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/c84186129f94285cb47bd8708d4cc93e6e4908fd93e60802428bdafed3313a80.png" src="../../_images/c84186129f94285cb47bd8708d4cc93e6e4908fd93e60802428bdafed3313a80.png" />
-</div>
-</div>
-<p>缺失值过多，这里缺失本身是一个信号。 设置为0.</p>
 </section>
-<section id="imbalance-size-imbalance-buy-sell-flag-matched-size">
-<h3>imbalance_size,imbalance_buy_sell_flag,matched_size<a class="headerlink" href="#imbalance-size-imbalance-buy-sell-flag-matched-size" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;imbalance_size&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for imbalance_size ---
-missing            2.200000e+02
-missing_percent    4.200092e-05
-mean               5.715293e+06
-std                2.051591e+07
-min                0.000000e+00
-25%                8.453415e+04
-median             1.113604e+06
-75%                4.190951e+06
-99%                7.636496e+07
-max                2.982028e+09
-skewness           2.399480e+01
-kurtosis           1.746991e+03
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/73572a0db5e7df7178462245784e815a863719541f7e8f06026110c61cd61d59.png" src="../../_images/73572a0db5e7df7178462245784e815a863719541f7e8f06026110c61cd61d59.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;imbalance_buy_sell_flag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imbalance_buy_sell_flag
--1    2084349
- 1    2022037
- 0    1131594
-Name: count, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;imbalance_buy_sell_flag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;matched_size&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for matched_size ---
-missing            2.200000e+02
-missing_percent    4.200092e-05
-mean               4.510025e+07
-std                1.398413e+08
-min                4.316610e+03
-25%                5.279575e+06
-median             1.288264e+07
-75%                3.270013e+07
-99%                6.151657e+08
-max                7.713682e+09
-skewness           1.480903e+01
-kurtosis           4.337253e+02
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/9e6f9d753f2af9ad7bbf5cc13d30cfb213fbeac946e9a40dc6db2ecf45ce5230.png" src="../../_images/9e6f9d753f2af9ad7bbf5cc13d30cfb213fbeac946e9a40dc6db2ecf45ce5230.png" />
-</div>
-</div>
-</section>
-<section id="bid-price-bid-size-ask-price-ask-size-wap">
-<h3>bid_price, bid_size	,ask_price, ask_size, wap<a class="headerlink" href="#bid-price-bid-size-ask-price-ask-size-wap" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>stock_id</th>
-      <th>date_id</th>
-      <th>seconds_in_bucket</th>
-      <th>imbalance_size</th>
-      <th>imbalance_buy_sell_flag</th>
-      <th>reference_price</th>
-      <th>matched_size</th>
-      <th>far_price</th>
-      <th>near_price</th>
-      <th>bid_price</th>
-      <th>bid_size</th>
-      <th>ask_price</th>
-      <th>ask_size</th>
-      <th>wap</th>
-      <th>target</th>
-      <th>time_id</th>
-      <th>row_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>369508</th>
-      <td>131</td>
-      <td>35</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1925</td>
-      <td>35_0_131</td>
-    </tr>
-    <tr>
-      <th>369700</th>
-      <td>131</td>
-      <td>35</td>
-      <td>10</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1926</td>
-      <td>35_10_131</td>
-    </tr>
-    <tr>
-      <th>369892</th>
-      <td>131</td>
-      <td>35</td>
-      <td>20</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1927</td>
-      <td>35_20_131</td>
-    </tr>
-    <tr>
-      <th>370084</th>
-      <td>131</td>
-      <td>35</td>
-      <td>30</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1928</td>
-      <td>35_30_131</td>
-    </tr>
-    <tr>
-      <th>370276</th>
-      <td>131</td>
-      <td>35</td>
-      <td>40</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>0.00</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1929</td>
-      <td>35_40_131</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>4774999</th>
-      <td>19</td>
-      <td>438</td>
-      <td>500</td>
-      <td>NaN</td>
-      <td>-1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>115491.18</td>
-      <td>NaN</td>
-      <td>1990.10</td>
-      <td>NaN</td>
-      <td>3.319979</td>
-      <td>24140</td>
-      <td>438_500_19</td>
-    </tr>
-    <tr>
-      <th>4775199</th>
-      <td>19</td>
-      <td>438</td>
-      <td>510</td>
-      <td>NaN</td>
-      <td>-1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>189040.50</td>
-      <td>NaN</td>
-      <td>26283.84</td>
-      <td>NaN</td>
-      <td>-5.049705</td>
-      <td>24141</td>
-      <td>438_510_19</td>
-    </tr>
-    <tr>
-      <th>4775399</th>
-      <td>19</td>
-      <td>438</td>
-      <td>520</td>
-      <td>NaN</td>
-      <td>-1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1392.93</td>
-      <td>NaN</td>
-      <td>43799.80</td>
-      <td>NaN</td>
-      <td>-0.110269</td>
-      <td>24142</td>
-      <td>438_520_19</td>
-    </tr>
-    <tr>
-      <th>4775599</th>
-      <td>19</td>
-      <td>438</td>
-      <td>530</td>
-      <td>NaN</td>
-      <td>-1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>13531.32</td>
-      <td>NaN</td>
-      <td>26881.20</td>
-      <td>NaN</td>
-      <td>-1.689792</td>
-      <td>24143</td>
-      <td>438_530_19</td>
-    </tr>
-    <tr>
-      <th>4775799</th>
-      <td>19</td>
-      <td>438</td>
-      <td>540</td>
-      <td>NaN</td>
-      <td>-1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>3183.84</td>
-      <td>NaN</td>
-      <td>39226.64</td>
-      <td>NaN</td>
-      <td>8.920431</td>
-      <td>24144</td>
-      <td>438_540_19</td>
-    </tr>
-  </tbody>
-</table>
-<p>220 rows × 17 columns</p>
-</div></div></div>
-</div>
-<p>可以删除这些行</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for wap ---
-missing            220.000000
-missing_percent      0.000042
-mean                 0.999992
-std                  0.002498
-min                  0.938008
-25%                  0.998781
-median               0.999997
-75%                  1.001149
-99%                  1.007088
-max                  1.077675
-skewness             0.375521
-kurtosis            10.886225
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/01497720addf61eadee091853881ff2013b42dd935a887190ff7168f0c686d1a.png" src="../../_images/01497720addf61eadee091853881ff2013b42dd935a887190ff7168f0c686d1a.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for bid_price ---
-missing            220.000000
-missing_percent      0.000042
-mean                 0.999726
-std                  0.002499
-min                  0.934915
-25%                  0.998529
-median               0.999728
-75%                  1.000905
-99%                  1.006707
-max                  1.077488
-skewness             0.204360
-kurtosis            10.457828
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/aeb7929b8691ff6c1b6809613c85014eec7b42c86d6aab68d01e6c8259ac37e7.png" src="../../_images/aeb7929b8691ff6c1b6809613c85014eec7b42c86d6aab68d01e6c8259ac37e7.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for ask_price ---
-missing            220.000000
-missing_percent      0.000042
-mean                 1.000264
-std                  0.002510
-min                  0.939827
-25%                  0.999029
-median               1.000207
-75%                  1.001414
-99%                  1.007501
-max                  1.077836
-skewness             0.540173
-kurtosis            11.469103
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/0411bda849002139f808849e18f575700a5dd60fa4714717c9b08040edcdc412.png" src="../../_images/0411bda849002139f808849e18f575700a5dd60fa4714717c9b08040edcdc412.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;imbalance_size&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for imbalance_size ---
-missing            2.200000e+02
-missing_percent    4.200092e-05
-mean               5.715293e+06
-std                2.051591e+07
-min                0.000000e+00
-25%                8.453415e+04
-median             1.113604e+06
-75%                4.190951e+06
-99%                7.636496e+07
-max                2.982028e+09
-skewness           2.399480e+01
-kurtosis           1.746991e+03
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/297221ea2afa23416a4f52329efc625740186e6ea608a671a91a0cdc9595f4ab.png" src="../../_images/297221ea2afa23416a4f52329efc625740186e6ea608a671a91a0cdc9595f4ab.png" />
-</div>
-</div>
-</section>
-<section id="target">
-<h3>target<a class="headerlink" href="#target" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for target ---
-missing             88.000000
-missing_percent      0.000017
-mean                -0.047561
-std                  9.452860
-min               -385.289800
-25%                 -4.559755
-median              -0.060201
-75%                  4.409552
-99%                 25.990010
-max                446.070430
-skewness             0.204669
-kurtosis            22.557970
-dtype: float64
-</pre></div>
-</div>
-<img alt="../../_images/918508436167c75bea707470bad7867125b8268b51f62f94f443bf9b1d2abfc2.png" src="../../_images/918508436167c75bea707470bad7867125b8268b51f62f94f443bf9b1d2abfc2.png" />
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">target</span></code>的分布是 <strong>尖峰长尾</strong>。</p>
-</section>
-<section id="id2">
-<h3>处理<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>把上面的分析，处理一下</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237760, 17)
-(5237760, 17)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stock_id                         0
-date_id                          0
-seconds_in_bucket                0
-imbalance_size                   0
-imbalance_buy_sell_flag          0
-reference_price                  0
-matched_size                     0
-far_price                  2894122
-near_price                 2856960
-bid_price                        0
-bid_size                         0
-ask_price                        0
-ask_size                         0
-wap                              0
-target                           0
-time_id                          0
-row_id                           0
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-</section>
+<section id="id6">
+<h2>特征构造<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>预测策略：</p>
+<ol class="arabic simple">
+<li><p>价格发现：此时价格</p></li>
+<li><p>供需动力：imbalance</p></li>
+<li><p>流动性：放大价格。表明订单池子深度。高流动性意味实时成交量高，意味价格平稳，即不会因为一个订单价格剧烈波动。低流动性反之不平稳。这通过matched_size</p></li>
+</ol>
 </section>
 <section id="baseline">
 <h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading">#</a></h2>
-<p>$$
-x_{stock, t} -&gt; target_{stock, t}
-$$</p>
-<ul class="simple">
-<li><p>stock_id: 标准化后， 应该去掉。不应该对结果影响</p></li>
-<li><p>dateId: 同样的，不具备数值意义，也去掉</p></li>
-</ul>
-<p>问题：</p>
-<ol class="arabic simple">
-<li><p>标准化，按照公式，应该根据stock分组后，stock内进行标准化， 列再标准化？</p></li>
-<li></li>
-</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stock_id                         0
-date_id                          0
-seconds_in_bucket                0
-imbalance_size                 220
-imbalance_buy_sell_flag          0
-reference_price                220
-matched_size                   220
-far_price                  2894342
-near_price                 2857180
-bid_price                      220
-bid_size                         0
-ask_price                      220
-ask_size                         0
-wap                            220
-target                          88
-time_id                          0
-row_id                           0
-dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1340,72 +714,78 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;stock_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date_id&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="s1">&#39;row_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time_id&#39;</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">,</span><span class="s1">&#39;far_price&#39;</span><span class="p">,</span> <span class="s1">&#39;near_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imbalance_size                   0
-imbalance_buy_sell_flag          0
-reference_price                  0
-matched_size                     0
-far_price                  2894122
-near_price                 2856960
-bid_price                        0
-bid_size                         0
-ask_price                        0
-ask_size                         0
-wap                              0
-dtype: int64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237980, 17)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3928320, 11) (1309440, 11)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5237892
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span>  <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">()),</span>
-    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-    <span class="p">(</span><span class="s1">&#39;ridge&#39;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
-<span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237892, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.021072 seconds.
+You can set `force_row_wise=true` to remove the overhead.
+And if memory is not enough, you can set `force_col_wise=true`.
+[LightGBM] [Info] Total Bins 1530
+[LightGBM] [Info] Number of data points in the train set: 5237892, number of used features: 6
+[LightGBM] [Info] Start training from score -0.047561
+</pre></div>
+</div>
+<div class="output text_html"><style>#sk-container-id-3 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1436,15 +816,15 @@ dtype: int64
   }
 }
 
-#sk-container-id-2 {
+#sk-container-id-3 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 pre {
+#sk-container-id-3 pre {
   padding: 0;
 }
 
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-3 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1456,7 +836,7 @@ dtype: int64
   width: 1px;
 }
 
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-3 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1464,7 +844,7 @@ dtype: int64
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 div.sk-container {
+#sk-container-id-3 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1474,7 +854,7 @@ dtype: int64
   position: relative;
 }
 
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-3 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1490,14 +870,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-3 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-3 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1505,28 +885,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-3 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-3 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-3 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-3 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-3 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1544,14 +924,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-3 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-3 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1564,13 +944,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-2 label.sk-toggleable__label .caption {
+#sk-container-id-3 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-3 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1578,27 +958,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-2 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
+#sk-container-id-3 div.sk-toggleable__content {
+  display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-3 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-3 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1606,79 +984,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-3 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
+  display: block;
+  width: 100%;
+  overflow: visible;
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-3 div.sk-label label.sk-toggleable__label,
+#sk-container-id-3 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-3 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-3 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-3 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1688,18 +1066,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-3 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-3 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-3 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1787,7 +1165,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-3 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1802,36 +1180,347 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-3 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-3 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-3 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;imputer&#x27;, SimpleImputer()), (&#x27;scaler&#x27;, StandardScaler()),
-                (&#x27;ridge&#x27;, Ridge())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;imputer&#x27;, SimpleImputer()), (&#x27;scaler&#x27;, StandardScaler()),
-                (&#x27;ridge&#x27;, Ridge())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SimpleImputer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.impute.SimpleImputer.html">?<span>Documentation for SimpleImputer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>SimpleImputer()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Ridge</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.Ridge.html">?<span>Documentation for Ridge</span></a></div></label><div class="sk-toggleable__content fitted"><pre>Ridge()</pre></div> </div></div></div></div></div></div></div></div>
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><body><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LGBMRegressor()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LGBMRegressor</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('boosting_type',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">boosting_type&nbsp;</td>
+            <td class="value">&#x27;gbdt&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('num_leaves',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">num_leaves&nbsp;</td>
+            <td class="value">31</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_depth',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_depth&nbsp;</td>
+            <td class="value">-1</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('learning_rate',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">learning_rate&nbsp;</td>
+            <td class="value">0.1</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_estimators',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_estimators&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('subsample_for_bin',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">subsample_for_bin&nbsp;</td>
+            <td class="value">200000</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('objective',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">objective&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('class_weight',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">class_weight&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_split_gain',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_split_gain&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_child_weight',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_child_weight&nbsp;</td>
+            <td class="value">0.001</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('min_child_samples',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">min_child_samples&nbsp;</td>
+            <td class="value">20</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('subsample',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">subsample&nbsp;</td>
+            <td class="value">1.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('subsample_freq',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">subsample_freq&nbsp;</td>
+            <td class="value">0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('colsample_bytree',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">colsample_bytree&nbsp;</td>
+            <td class="value">1.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('reg_alpha',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">reg_alpha&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('reg_lambda',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">reg_lambda&nbsp;</td>
+            <td class="value">0.0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('random_state',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">random_state&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_jobs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_jobs&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('importance_type',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">importance_type&nbsp;</td>
+            <td class="value">&#x27;split&#x27;</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script></body></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.314769828852861
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.320055859819497
 </pre></div>
 </div>
 </div>
@@ -1857,81 +1546,6 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     <span class="n">sample_prediction</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;stock_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date_id&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="s1">&#39;row_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time_id&#39;</span><span class="p">]))</span>
     <span class="n">env</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_prediction</span><span class="p">)</span>
     <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">86</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">for</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">revealed_targets</span><span class="p">,</span> <span class="n">sample_prediction</span><span class="p">)</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">iter_test</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">sample_prediction</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;stock_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date_id&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">,</span> <span class="s1">&#39;row_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time_id&#39;</span><span class="p">]))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">env</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_prediction</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\63517\Documents\data-analysis\kaggle\optiver_trading_at_the_close\public_timeseries_testing_util.py:45,</span> in <span class="ni">MockApi.iter_test</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">for</span> <span class="n">pth</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_paths</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="n">dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="n">group_order</span> <span class="o">=</span> <span class="n">dataframes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id_column</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id_column</span><span class="p">)</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataframes</span><span class="p">]</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\io\parsers\readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\io\parsers\readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\io\parsers\readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\io\parsers\readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\io\common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;test.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -1986,15 +1600,16 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">metrics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">字段说明</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#far-price-near-price-reference-price">far_price，near_price,reference_price</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imbalance-size-imbalance-buy-sell-flag-matched-size">imbalance_size,imbalance_buy_sell_flag,matched_size</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bid-price-bid-size-ask-price-ask-size-wap">bid_price, bid_size	,ask_price, ask_size, wap</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">target</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">处理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介绍</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">一、背景：纳斯达克收盘博弈</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">二、价格发现</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">三、 供需平衡(动力)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">四、预测相对收益率target</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">字段说明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">特征构造</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">baseline</a></li>
 </ul>
   </nav></div>
