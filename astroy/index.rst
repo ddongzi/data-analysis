@@ -1,8 +1,9 @@
 天文
 ======================
 
-这里主要做一些有意思的天文望远镜等分析。如Hubble光谱
-主要参考STScI的数据研究 
+
+链接：
+![astropy学习](https://learn.astropy.org/)
 ![hst_notebooks](https://spacetelescope.github.io/hst_notebooks/index.html#installation-instructions)
 
 
