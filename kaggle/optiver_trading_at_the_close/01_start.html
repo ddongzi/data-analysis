@@ -144,20 +144,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../astroy/index.html">
-    天文
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../economy/economy.html">
-    宏观经济
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../more/index.html">
     more
   </a>
@@ -262,20 +248,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../MLcook/index.html">
     数据分析知识
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../astroy/index.html">
-    天文
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../economy/economy.html">
-    宏观经济
   </a>
 </li>
 
@@ -429,7 +401,7 @@
 <section id="id3">
 <h3>二、价格发现<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>近端价、远端价、参考价
+<li><p>近端价、远端价、参考价<br />
 交易所每10秒公布的三个价格，最终它们会收敛于收盘价。远端价和近端价从300秒开始公布。</p></li>
 </ol>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -449,14 +421,15 @@
 <td class="text-left"><p><strong>稳定性</strong>：由于加入了大量存量订单，它更接近最终真实的收盘平衡点。</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><strong>参考价 (Reference Price)</strong></p></td>
-<td class="text-left"><p>经过保护机制修正的价格，通常介于近端与远端之间。</p></td>
+<td class="text-left"><p>经过保护机制修正的价格，通常介于近端与远端之间。表明预期，表明意愿</p></td>
 <td class="text-left"><p><strong>锚点</strong>：它是交易所公布的官方基准，是所有 <code class="docutils literal notranslate"><span class="pre">Imbalance</span></code> 统计的起点。</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>wap
+<li><p>wap<br />
+表明盘口实时波动。
 是成交量加权平均价格，所以总是介于ask和bid之间
 $$
 \frac{BidPrice * BidSize + AskPrice * AskSize}{BidSize + AskSize}
@@ -477,8 +450,8 @@ $$</p></li>
 </section>
 <section id="target">
 <h3>四、预测相对收益率target<a class="headerlink" href="#target" title="Link to this heading">#</a></h3>
-<p>预测个股 60 秒后的收益率与大盘收益率的差值。即比大盘强还是弱。（能否跑赢大盘）<br />
-$$
+<p>预测个股 60 秒后的收益率与大盘收益率的差值。即比大盘强还是弱。（能否跑赢大盘）</p>
+<p>$$
 Target_t = (\frac{StockWap_{t+60}}{StockWap_t} - \frac{IndexWap_{t+60}}{IndexWap_t}) \times 1000
 $$</p>
 <p>为什么是相对收益率？而不是个股的收盘价？</p>
@@ -487,6 +460,10 @@ $$</p>
 <li><p>相对收益率去除了大盘影响，更能反映个股真实表现。</p></li>
 <li><p>这也能统一不同股票的量度。</p></li>
 </ul>
+</section>
+</section>
+<section id="id5">
+<h2>导入<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> 
@@ -618,13 +595,12 @@ days 481
 </div>
 </div>
 </section>
-</section>
 <section id="metrics">
 <h2>metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h2>
 <p>MAE</p>
 </section>
-<section id="id5">
-<h2>字段说明<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>处理<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>分布</p></li>
 <li><p>统计：缺失、异常</p></li>
@@ -692,29 +668,22 @@ dtype: int64
 </div>
 </div>
 </div>
-</section>
-<section id="id6">
-<h2>特征构造<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>预测策略：</p>
-<ol class="arabic simple">
-<li><p>价格发现：此时价格</p></li>
-<li><p>供需动力：imbalance</p></li>
-<li><p>流动性：放大价格。表明订单池子深度。高流动性意味实时成交量高，意味价格平稳，即不会因为一个订单价格剧烈波动。低流动性反之不平稳。这通过matched_size</p></li>
-</ol>
-</section>
-<section id="baseline">
-<h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading">#</a></h2>
+<p>220行数据应该是整行缺失的。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;imbalance_size&#39;</span><span class="p">,</span> <span class="s1">&#39;reference_price&#39;</span><span class="p">,</span> <span class="s1">&#39;matched_size&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>220
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">,</span><span class="s1">&#39;far_price&#39;</span><span class="p">,</span> <span class="s1">&#39;near_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;imbalance_size&#39;</span><span class="p">,</span> <span class="s1">&#39;reference_price&#39;</span><span class="p">,</span> <span class="s1">&#39;matched_size&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -726,27 +695,267 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237980, 17)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237760, 17)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5237892
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stock_id                         0
+date_id                          0
+seconds_in_bucket                0
+imbalance_size                   0
+imbalance_buy_sell_flag          0
+reference_price                  0
+matched_size                     0
+far_price                  2894122
+near_price                 2856960
+bid_price                        0
+bid_size                         0
+ask_price                        0
+ask_size                         0
+wap                              0
+target                           0
+time_id                          0
+row_id                           0
+dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;far_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;far_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;near_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;near_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stock_id                   0
+date_id                    0
+seconds_in_bucket          0
+imbalance_size             0
+imbalance_buy_sell_flag    0
+reference_price            0
+matched_size               0
+far_price                  0
+near_price                 0
+bid_price                  0
+bid_size                   0
+ask_price                  0
+ask_size                   0
+wap                        0
+target                     0
+time_id                    0
+row_id                     0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data[&#39;imbalance_size&#39;] = data[&#39;imbalance_size&#39;].fillna(0)</span>
+<span class="c1"># data[&#39;matched_size&#39;] = data[&#39;matched_size&#39;].fillna(0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data[&#39;wap&#39;].isnull().sum()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>特征构造<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>预测策略：</p>
+<ol class="arabic simple">
+<li><p>价格发现：此时价格</p></li>
+<li><p>供需动力：imbalance</p></li>
+<li><p>流动性：放大价格。表明订单池子深度。matched_size</p></li>
+<li><p>时间感知：</p></li>
+</ol>
+<p>$target = f(价格，供需，流动性, 时间感知)$</p>
+<p>价格本身蕴含了时间信息</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237760, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<p>供需动力/流动性表明加速度，即价格变动的强度。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;price_force&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;imbalance_size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;matched_size&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>价格偏移: 预期参考价如果比实时wap高，表明买方急切，价格将抬升。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;price_relative_shift&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;wap&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;wap&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>时间感知，越往后越稳定。也会增大供需动力的权重</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time_urgency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;seconds_in_bucket&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">540</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>有以下推测</p>
+<p>$$
+target \propto Sign(flag) \times  价格动力 \times 价格相对偏移 \times 时间感知
+$$</p>
+<p>非线性模型，可以学习到这个非线性关系。所以构造价格动力和价格相对偏移就可以</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_numeric_col</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;price_force&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistics for price_force ---
+missing              0.000000
+missing_percent      0.000000
+mean                 0.256994
+std                  0.644515
+min                  0.000000
+25%                  0.007440
+median               0.082183
+75%                  0.267303
+99%                  2.508878
+max                123.911685
+skewness            15.864714
+kurtosis           775.489087
+dtype: float64
+</pre></div>
+</div>
+<img alt="../../_images/ddf5d3d2828d8d4f12763933a58b97dac9c9016df45a32d63dea26eb002775ed.png" src="../../_images/ddf5d3d2828d8d4f12763933a58b97dac9c9016df45a32d63dea26eb002775ed.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;price_force&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;imbalance_size&#39;</span><span class="p">,</span> <span class="s1">&#39;matched_size&#39;</span><span class="p">,</span> <span class="s1">&#39;price_force&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imbalance_size</th>
+      <th>matched_size</th>
+      <th>price_force</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2973194</th>
+      <td>47981345.25</td>
+      <td>387221.12</td>
+      <td>123.911685</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>这样的分布是正常的，不属于人为异常数据。  因此可能只要在模型要求下再去进行log、分箱转换。</p>
+</section>
+<section id="baseline">
+<h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>stock_id                   0
+date_id                    0
+seconds_in_bucket          0
+imbalance_size             0
+imbalance_buy_sell_flag    0
+reference_price            0
+matched_size               0
+far_price                  0
+near_price                 0
+bid_price                  0
+bid_size                   0
+ask_price                  0
+ask_size                   0
+wap                        0
+target                     0
+time_id                    0
+row_id                     0
+price_force                0
+price_relative_shift       0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;reference_price&#39;</span><span class="p">,</span><span class="s1">&#39;far_price&#39;</span><span class="p">,</span> <span class="s1">&#39;near_price&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_price&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_price&#39;</span><span class="p">,</span> <span class="s1">&#39;wap&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;imbalance_size&#39;</span><span class="p">,</span> <span class="s1">&#39;matched_size&#39;</span><span class="p">,</span> <span class="s1">&#39;bid_size&#39;</span><span class="p">,</span> <span class="s1">&#39;ask_size&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;price_force&#39;</span><span class="p">,</span> <span class="s1">&#39;price_relative_shift&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;time_urgency&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>应为是不同股票数据，应该进行标准化，对于price，size</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5237760, 19)
 </pre></div>
 </div>
 </div>
@@ -1607,9 +1816,10 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">四、预测相对收益率target</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">导入</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">metrics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">字段说明</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">特征构造</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">处理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">特征构造</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">baseline</a></li>
 </ul>
   </nav></div>

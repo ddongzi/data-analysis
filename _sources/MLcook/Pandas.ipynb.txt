@@ -41,6 +41,38 @@
   },
   {
    "cell_type": "markdown",
+   "id": "9c7874af",
+   "metadata": {},
+   "source": [
+    "data[['far_price', 'near_price']] = data[['far_price', 'near_price']].fillna(data['reference_price'])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2c3ee57f",
+   "metadata": {},
+   "source": [
+    "dropna,  drop行"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "576e0b9b",
+   "metadata": {},
+   "source": [
+    ".all(axis=1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3df7206c",
+   "metadata": {},
+   "source": [
+    ".any()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "0bd65033",
    "metadata": {},
    "source": [
@@ -19453,6 +19485,7 @@
    "source": [
     "### iloc 和loc\n",
     "- loc操作的行列名字。 `loc[行名或者过滤行条件，列名]`\n",
+    "  - 过滤条件就是一个series bool值\n",
     "- iloc操作的是位置"
    ]
   },

@@ -144,20 +144,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../astroy/index.html">
-    天文
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../economy/economy.html">
-    宏观经济
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../more/index.html">
     more
   </a>
@@ -262,20 +248,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="index.html">
     数据分析知识
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../astroy/index.html">
-    天文
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../economy/economy.html">
-    宏观经济
   </a>
 </li>
 
@@ -411,6 +383,10 @@
 </div>
 </div>
 <p>nlargest</p>
+<p>data[[‘far_price’, ‘near_price’]] = data[[‘far_price’, ‘near_price’]].fillna(data[‘reference_price’])</p>
+<p>dropna,  drop行</p>
+<p>.all(axis=1)</p>
+<p>.any()</p>
 <section id="quickstart">
 <h2>quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -13982,7 +13958,11 @@ dtype: int32
 <section id="iloc-loc">
 <h3>iloc 和loc<a class="headerlink" href="#iloc-loc" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>loc操作的行列名字。 <code class="docutils literal notranslate"><span class="pre">loc[行名或者过滤行条件，列名]</span></code></p></li>
+<li><p>loc操作的行列名字。 <code class="docutils literal notranslate"><span class="pre">loc[行名或者过滤行条件，列名]</span></code></p>
+<ul>
+<li><p>过滤条件就是一个series bool值</p></li>
+</ul>
+</li>
 <li><p>iloc操作的是位置</p></li>
 </ul>
 <div class="cell docutils container">
