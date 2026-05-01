@@ -1,0 +1,2314 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>数据准备 &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=98804892" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'myrag/教程';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/js/custom.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">数据准备</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>数据准备<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>python-dotenv could not parse statement starting at line 1
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h2>数据加载<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unstructured.partition.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">partition</span>
+
+<span class="n">pdf_path</span> <span class="o">=</span> <span class="s1">&#39;rag.pdf&#39;</span>
+
+<span class="n">elements</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">pdf_path</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>elements是解析出文本元素列表，每个元素有类型</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;解析出 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1"> 个元素&#39;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;一共 </span><span class="si">{</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1">字符&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">category</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>文本分块<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>把上面的文档元素继续分块，是向量/模型处理的基本单位</p>
+<p>LLM嵌入模型，一般都是长度限制的。所以我们要分块。
+这类模型基于transformer架构：</p>
+<ul class="simple">
+<li><p>分词：把文本切成一个个token</p></li>
+<li><p>向量化：把token转成向量</p></li>
+<li><p>池化降维：把向量池化成一个固定长度的向量。 这代表了这个文本的语义信息。</p></li>
+</ul>
+<p>因此，我们应该尽可能让文本块尽可能精准表达，而非是一味追求长度添加噪声。</p>
+<p>LangChain 给了几种分块策略</p>
+<p><strong>固定长度</strong></p>
+<ul class="simple">
+<li><p>基于段落分界感知</p></li>
+<li><p>并非严格的固定，会尽量保证语义连续，比如段落</p></li>
+<li><p>避免块之间语义分割，重叠 以保证上下文连续性</p></li>
+<li><p>对于日志数据比较好</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;蜂医.txt&#39;</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>递归分块</strong></p>
+<ul class="simple">
+<li><p>按照分隔符分块。 而非段落</p></li>
+<li><p>先按段落分块，如果块太大，再按句子分块，如果还太大，再按词分块</p></li>
+<li><p>对编程语言有着明确分隔符，效果较好。内置支持.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;蜂医.txt&#39;</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;，&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>语义分块</strong></p>
+<ul class="simple">
+<li><p>智能，根据文本语义主题显著变化的地方分块。会调用模型判断边界</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_experimental.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SemanticChunker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-small-zh-v1.5&quot;</span><span class="p">,</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;cpu&#39;</span><span class="p">},</span>
+    <span class="n">encode_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;normalize_embeddings&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_splitter</span> <span class="o">=</span> <span class="n">SemanticChunker</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>基于文档结构分块</strong></p>
+<ul class="simple">
+<li><p>html,md,latex有着明确的结构标签。</p></li>
+</ul>
+<p><strong>其他分块策略</strong></p>
+<ul class="simple">
+<li><p>Unstructured也提供了分块策略：建立在解析元素上，都有元素类型。</p></li>
+<li><p>ChunkViz可视化分块</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h1>索引构建<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<section id="id5">
+<h2>向量嵌入<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>就是将文本、图像等放在全局空间上，用一个向量表示</p></li>
+<li><p>表示为向量后，我们可以度量</p></li>
+</ul>
+<p>RAG检索以这个为基础：</p>
+<ol class="arabic simple">
+<li><p>离线索引：知识文档分块后转为向量，存入向量数据库</p></li>
+<li><p>在线查询：输入问题转为向量</p></li>
+<li><p>相似度计算</p></li>
+<li><p>召回上下文：选取相似度最高的几个文本块，作为上下文，输入给LLM</p></li>
+</ol>
+<p>现在的向量模型通常是BERT结构(transformer)：</p>
+<p>MTEB (Massive Text Embedding Benchmark) 排行榜有各种向量模型</p>
+</section>
+<section id="id6">
+<h2>多模态嵌入<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>文本、图像、表格等都可以转为向量。 共享一个空间。</p></li>
+</ul>
+<p>Hugging Face 是 AI 界的 GitHub。 有各种模型等.其中transformers 库提供各种预训练模型</p>
+<p>CLIP模型；bge-visualized-m3模型</p>
+<p>(BGE_VL_BASE)[https://huggingface.co/BAAI/BGE-VL-base]</p>
+<p>以BGE_VL_BASE为例 ，Visual-Language (图文)</p>
+<p>AutoModel 偏原生，提供了更多的底层接口，适合需要更细粒度控制的用户。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/dong/data-analysis/myrag&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModel</span>
+
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;BAAI/BGE-VL-base&quot;</span> <span class="c1"># or &quot;BAAI/BGE-VL-large&quot;</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># You must set trust_remote_code=True</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_processor</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You&#39;ll still be able to use a slow processor with `use_fast=False`.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CLIPModel(
+  (text_model): CLIPTextTransformer(
+    (embeddings): CLIPTextEmbeddings(
+      (token_embedding): Embedding(49408, 512)
+      (position_embedding): Embedding(77, 512)
+    )
+    (encoder): CLIPEncoder(
+      (layers): ModuleList(
+        (0-11): 12 x CLIPEncoderLayer(
+          (self_attn): CLIPSdpaAttention(
+            (k_proj): Linear(in_features=512, out_features=512, bias=True)
+            (v_proj): Linear(in_features=512, out_features=512, bias=True)
+            (q_proj): Linear(in_features=512, out_features=512, bias=True)
+            (out_proj): Linear(in_features=512, out_features=512, bias=True)
+          )
+          (layer_norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (mlp): CLIPMLP(
+            (activation_fn): QuickGELUActivation()
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+          )
+          (layer_norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+    (final_layer_norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+  (vision_model): CLIPVisionTransformer(
+    (embeddings): CLIPVisionEmbeddings(
+      (patch_embedding): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16), bias=False)
+      (position_embedding): Embedding(197, 768)
+    )
+    (pre_layrnorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (encoder): CLIPEncoder(
+      (layers): ModuleList(
+        (0-11): 12 x CLIPEncoderLayer(
+          (self_attn): CLIPSdpaAttention(
+            (k_proj): Linear(in_features=768, out_features=768, bias=True)
+            (v_proj): Linear(in_features=768, out_features=768, bias=True)
+            (q_proj): Linear(in_features=768, out_features=768, bias=True)
+            (out_proj): Linear(in_features=768, out_features=768, bias=True)
+          )
+          (layer_norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): CLIPMLP(
+            (activation_fn): QuickGELUActivation()
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          )
+          (layer_norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+    (post_layernorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (visual_projection): Linear(in_features=768, out_features=512, bias=False)
+  (text_projection): Linear(in_features=512, out_features=512, bias=False)
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="s2">&quot;data/cir_query.png&quot;</span><span class="p">,</span> 
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Make the background dark, as if the camera has taken the photo at night&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;query </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data/cir_candi_1.png&quot;</span><span class="p">,</span> <span class="s2">&quot;data/cir_candi_2.png&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;candidate </span><span class="si">{</span><span class="n">candidates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">query</span> <span class="o">@</span> <span class="n">candidates</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>query torch.Size([1, 512])
+candidate torch.Size([2, 512])
+tensor([[0.1971, 0.1242]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([512])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>向量数据库<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>存储向量，相似度查询</p></li>
+</ul>
+<p>FAISS 或者ChromaDB ：本地小型</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FAISS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;张三是法外狂徒&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FAISS是一个用于高效相似性搜索和密集向量聚类的库。&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LangChain是一个用于开发由语言模型驱动的应用程序的框架。&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span> <span class="o">=</span><span class="n">t</span> <span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-small-zh-v1.5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>创建</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>保存</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_faiss_path</span> <span class="o">=</span> <span class="s2">&quot;./faiss_index_store&quot;</span>
+<span class="n">vectorstore</span><span class="o">.</span><span class="n">save_local</span><span class="p">(</span><span class="n">local_faiss_path</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FAISS index has been saved to </span><span class="si">{</span><span class="n">local_faiss_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>加载</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">load_local</span><span class="p">(</span>
+    <span class="n">local_faiss_path</span><span class="p">,</span>
+    <span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">allow_dangerous_deserialization</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;张三是谁&quot;</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">loaded_vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;查询: &#39;</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;相似度最高的文档:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;张三是谁&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">results</span> <span class="o">=</span> <span class="n">loaded_vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;查询: &#39;</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;相似度最高的文档:&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+
+<span class="ne">NameError</span>: name &#39;loaded_vectorstore&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="milvus">
+<h2>Milvus实践<a class="headerlink" href="#milvus" title="Link to this heading">#</a></h2>
+<p>这里使用milvus_lite轻量版说明</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymilvus</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pymilvus</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.6.12
+</pre></div>
+</div>
+</div>
+</div>
+<p>!()[https://datawhalechina.github.io/all-in-rag/chapter3/images/3_4_1.webp]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">MilvusClient</span><span class="p">,</span><span class="n">FieldSchema</span><span class="p">,</span> <span class="n">CollectionSchema</span><span class="p">,</span><span class="n">DataType</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/data-analysis/myrag
+</pre></div>
+</div>
+</div>
+</div>
+<p>通用的encoder为多模态，使用之前的BAAI/BGE-VL-base 编码</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModel</span>
+
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;BAAI/BGE-VL-base&quot;</span> <span class="c1"># or &quot;BAAI/BGE-VL-large&quot;</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># You must set trust_remote_code=True</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_processor</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">)</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;multimodal_demo&#39;</span>
+<span class="n">MILVUS_URI</span> <span class="o">=</span> <span class="s1">&#39;milvus_demo.db&#39;</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">MILVUS_URI</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">has_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">):</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/miniconda3/envs/data-analysis/lib/python3.12/site-packages/milvus_lite/__init__.py:15: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  from pkg_resources import DistributionNotFound, get_distribution
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="n">imgs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;dragon&#39;</span><span class="p">,</span> <span class="s1">&#39;*.png&#39;</span><span class="p">))</span>
+<span class="n">imgs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/dragon/dragon05.png&#39;,
+ &#39;data/dragon/dragon04.png&#39;,
+ &#39;data/dragon/dragon06.png&#39;,
+ &#39;data/dragon/dragon02.png&#39;,
+ &#39;data/dragon/query.png&#39;,
+ &#39;data/dragon/dragon03.png&#39;,
+ &#39;data/dragon/other01.png&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 512])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dim</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>512
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;image_path&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们创建了3个字段，存储每个向量</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;多模态图文检索&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;auto_id&#39;: True, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;name&#39;: &#39;id&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.INT64: 5&gt;, &#39;is_primary&#39;: True, &#39;auto_id&#39;: True}, {&#39;name&#39;: &#39;vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 512}}, {&#39;name&#39;: &#39;image_path&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 512}}], &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<p>根据schema结构创建了一个集合（表）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;collection_name&#39;: &#39;multimodal_demo&#39;, &#39;auto_id&#39;: True, &#39;num_shards&#39;: 0, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;field_id&#39;: 100, &#39;name&#39;: &#39;id&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.INT64: 5&gt;, &#39;params&#39;: {}, &#39;auto_id&#39;: True, &#39;is_primary&#39;: True}, {&#39;field_id&#39;: 101, &#39;name&#39;: &#39;vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 512}}, {&#39;field_id&#39;: 102, &#39;name&#39;: &#39;image_path&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 512}}], &#39;functions&#39;: [], &#39;aliases&#39;: [], &#39;collection_id&#39;: 0, &#39;consistency_level&#39;: 0, &#39;properties&#39;: {}, &#39;num_partitions&#39;: 0, &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在可以插入向量数据了</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_insert</span><span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;生成向量&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>    
+        <span class="n">vector</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># 一维</span>
+    <span class="n">data_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;vector&#39;</span><span class="p">:</span> <span class="n">vector</span><span class="p">,</span>
+        <span class="s1">&#39;image_path&#39;</span><span class="p">:</span><span class="n">img_path</span>
+    <span class="p">})</span>
+<span class="k">if</span> <span class="n">data_insert</span><span class="p">:</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span> <span class="n">data_insert</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>生成向量:   0%|          | 0/7 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>生成向量: 100%|██████████| 7/7 [00:02&lt;00:00,  2.81it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<p>为了快速检索，我们为vector字段其添加索引.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
+<span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
+    <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span>
+    <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
+<span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">describe_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;index_type&#39;: &#39;FLAT&#39;,
+ &#39;metric_type&#39;: &#39;COSINE&#39;,
+ &#39;dim&#39;: &#39;512&#39;,
+ &#39;field_name&#39;: &#39;vector&#39;,
+ &#39;index_name&#39;: &#39;vector&#39;,
+ &#39;total_rows&#39;: 0,
+ &#39;indexed_rows&#39;: 0,
+ &#39;pending_index_rows&#39;: 0,
+ &#39;state&#39;: &#39;Finished&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>表加载到内存</p>
+<p>查询</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query_image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;dragon&quot;</span><span class="p">,</span> <span class="s2">&quot;query.png&quot;</span><span class="p">)</span>
+<span class="n">query_text</span> <span class="o">=</span> <span class="s2">&quot;一条龙&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span> <span class="c1"># 转换为普通向量，不带其他信息</span>
+    <span class="n">query_vector</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">query_image_path</span><span class="p">,</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">query_text</span>
+    <span class="p">)</span>
+    <span class="n">query_vector</span> <span class="o">=</span> <span class="n">query_vector</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query_vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.01725715957581997,
+ 0.023119034245610237,
+ -0.007155007682740688,
+ -0.004334800411015749,
+ 0.015785498544573784,
+ -0.014036229811608791,
+ 0.022550037130713463,
+ 0.026307106018066406,
+ -0.016902843490242958,
+ 0.012545951642096043,
+ -0.024153610691428185,
+ -0.0200381800532341,
+ -0.03180725499987602,
+ 0.02135445922613144,
+ 0.00471658818423748,
+ -0.0110956821590662,
+ -0.01773425191640854,
+ -0.00548075744882226,
+ 0.024504518136382103,
+ 0.023137202486395836,
+ 0.00022098403132986277,
+ -0.04467716068029404,
+ 0.002974338596686721,
+ 0.058180760592222214,
+ 0.018238915130496025,
+ 0.011031615547835827,
+ -0.0005261931801214814,
+ -0.0019379250006750226,
+ 0.008150340989232063,
+ -0.05595412850379944,
+ 0.03432084992527962,
+ -0.003189715091139078,
+ 0.0033318372443318367,
+ -0.0007683312869630754,
+ 0.10343178361654282,
+ 0.02090439945459366,
+ -0.006991119589656591,
+ -0.04578687995672226,
+ 0.046655502170324326,
+ -0.013699943199753761,
+ 0.06486772000789642,
+ -0.0036791316233575344,
+ -0.028273137286305428,
+ -0.0447225384414196,
+ 0.009210770949721336,
+ 0.004027809016406536,
+ -0.03813202306628227,
+ 0.002325046341866255,
+ 0.017488213256001472,
+ -0.03747802600264549,
+ 0.04366128519177437,
+ 0.005084858275949955,
+ -0.011327778920531273,
+ -0.014173888601362705,
+ -0.04935619235038757,
+ 0.04337850585579872,
+ -0.013376526534557343,
+ 0.004231274127960205,
+ -0.002888168441131711,
+ -0.051038939505815506,
+ 0.021796314045786858,
+ -0.004969658795744181,
+ -0.031442079693078995,
+ 0.033606670796871185,
+ -0.03413982316851616,
+ 0.027943389490246773,
+ 0.019539862871170044,
+ 0.018885647878050804,
+ 0.04246491193771362,
+ 0.010491108521819115,
+ -0.04992760345339775,
+ 0.025460051372647285,
+ -0.01857236959040165,
+ -0.01041880901902914,
+ 0.031723037362098694,
+ -0.010562309995293617,
+ -0.04431109130382538,
+ 0.021161044016480446,
+ 0.0108086708933115,
+ 0.03311062231659889,
+ -0.01771450974047184,
+ 0.033004336059093475,
+ -0.03564220294356346,
+ 0.045738305896520615,
+ 0.013920591212809086,
+ 0.00031263724667951465,
+ -0.021322963759303093,
+ 0.01258454006165266,
+ -0.0548817403614521,
+ -0.004317665938287973,
+ 0.004049257375299931,
+ 0.0012724632397294044,
+ -0.02544398605823517,
+ 0.04896631836891174,
+ -0.08025453239679337,
+ 0.018300149589776993,
+ 0.006432768888771534,
+ 0.008689074777066708,
+ 0.004310288932174444,
+ 0.008021419867873192,
+ -0.03148946538567543,
+ 0.04547267407178879,
+ 0.0003658626810647547,
+ -0.022923607379198074,
+ 0.0069991713389754295,
+ 0.0006618904299102724,
+ 0.019816929474473,
+ -0.010765034705400467,
+ 0.013970660045742989,
+ -0.042142610996961594,
+ 0.004990597255527973,
+ -0.03799447417259216,
+ 0.0046999286860227585,
+ -0.02766527608036995,
+ -0.0006841809954494238,
+ -0.005994035396724939,
+ -0.011219900101423264,
+ 0.05452277883887291,
+ -0.024770349264144897,
+ -0.009780026972293854,
+ -0.024163292720913887,
+ 0.005441696848720312,
+ -0.048007506877183914,
+ 0.005459580570459366,
+ 0.07246027141809464,
+ -0.03373067080974579,
+ -0.036573782563209534,
+ 0.0537763386964798,
+ -0.00429878244176507,
+ -0.02147180587053299,
+ 0.04679952561855316,
+ -0.01703794300556183,
+ -0.06260868161916733,
+ 0.009125900454819202,
+ -0.03679186850786209,
+ 0.011955498717725277,
+ 0.027012402191758156,
+ -0.014049521647393703,
+ -0.0008340266649611294,
+ 0.01782580465078354,
+ -0.05428105965256691,
+ -0.025508664548397064,
+ 0.04130754992365837,
+ 0.02820466086268425,
+ 0.008078858256340027,
+ -0.029600152745842934,
+ -0.054563988000154495,
+ 0.035902250558137894,
+ 0.030584966763854027,
+ -0.0033976086415350437,
+ -0.041154246777296066,
+ 0.022617505863308907,
+ 0.030867718160152435,
+ -0.04472436010837555,
+ 0.00625521270558238,
+ -0.043415315449237823,
+ 0.002846173010766506,
+ -0.01038645301014185,
+ -0.013968435116112232,
+ -0.010559918358922005,
+ 0.0071199978701770306,
+ 0.026449570432305336,
+ 0.007639661431312561,
+ 0.0028717583045363426,
+ 0.01703326776623726,
+ 0.006243608426302671,
+ -0.006366154178977013,
+ 0.22403040528297424,
+ 0.027406448498368263,
+ -0.00204668752849102,
+ 0.03570186719298363,
+ 0.05619793385267258,
+ -0.002817937871441245,
+ 0.006863473914563656,
+ 0.01259682048112154,
+ 0.00686053279787302,
+ -0.008455134928226471,
+ 0.0672764703631401,
+ 0.04049386456608772,
+ 0.06508046388626099,
+ 0.04208836704492569,
+ 0.029832040891051292,
+ 0.022859347984194756,
+ -0.011444597505033016,
+ 0.00394331943243742,
+ 0.01112842746078968,
+ 0.010723261162638664,
+ 0.0021369338501244783,
+ 0.006139756180346012,
+ -0.023343276232481003,
+ 0.01291088666766882,
+ -0.04048783332109451,
+ -0.026338109746575356,
+ -0.016520505771040916,
+ 0.033475954085588455,
+ 0.022399822250008583,
+ 0.020734934136271477,
+ 0.04111257568001747,
+ -0.053778115659952164,
+ 0.012845882214605808,
+ 0.022561341524124146,
+ -0.0045973495580255985,
+ -0.04705377668142319,
+ -0.005347684491425753,
+ -0.07316438853740692,
+ 0.0002825833798851818,
+ -0.01887393742799759,
+ 0.019026033580303192,
+ 0.044293925166130066,
+ -0.014177486300468445,
+ 0.05007151514291763,
+ -0.05067833513021469,
+ 0.03597937524318695,
+ 0.0037347297184169292,
+ -0.04687092825770378,
+ 0.031064605340361595,
+ -0.009162124246358871,
+ -0.016605019569396973,
+ 0.032052308320999146,
+ 0.0033273862209171057,
+ 0.01931248977780342,
+ 0.028155291453003883,
+ 0.03150732442736626,
+ -0.0486990325152874,
+ -0.029130881652235985,
+ -0.025340009480714798,
+ -0.030816761776804924,
+ -0.02966480515897274,
+ 0.011498196981847286,
+ 0.031741153448820114,
+ 0.09705047309398651,
+ 0.009888658300042152,
+ 0.02265280671417713,
+ 0.00687706982716918,
+ -0.03828027844429016,
+ -0.026689285412430763,
+ 0.05012989789247513,
+ -0.0219754446297884,
+ 0.025467129424214363,
+ 0.002687957137823105,
+ -0.03776376694440842,
+ -0.008667970076203346,
+ -0.00995264295488596,
+ 0.004915305413305759,
+ -0.009121410548686981,
+ 0.0181232001632452,
+ -0.032011888921260834,
+ -0.023395666852593422,
+ 0.039300721138715744,
+ 0.030511904507875443,
+ -0.018207712098956108,
+ 0.008274629712104797,
+ 0.012220816686749458,
+ 0.007080595940351486,
+ 0.08421724289655685,
+ -0.013971284963190556,
+ -0.008213232271373272,
+ 0.00514691649004817,
+ -0.002289024880155921,
+ 0.006537305191159248,
+ 0.05495225638151169,
+ -0.03783566132187843,
+ -0.020319664850831032,
+ 0.019139721989631653,
+ 0.012996502220630646,
+ 0.0026451367884874344,
+ -0.0014669896336272359,
+ -0.01861354149878025,
+ 0.03912750631570816,
+ 0.014590170234441757,
+ 0.01783131994307041,
+ -0.004752890206873417,
+ 0.03392283618450165,
+ -0.035766128450632095,
+ -0.024237629026174545,
+ 0.043810293078422546,
+ 0.021576110273599625,
+ -0.0022583859972655773,
+ 0.0278906412422657,
+ 0.003858233569189906,
+ -0.04671855270862579,
+ -0.0708969384431839,
+ -0.012554203160107136,
+ -0.007484145928174257,
+ -0.03825461119413376,
+ -0.002002252032980323,
+ -0.041197702288627625,
+ 0.014423898421227932,
+ -0.013354676775634289,
+ -0.017300084233283997,
+ -0.006781572476029396,
+ -0.005748219322413206,
+ -0.013947308994829655,
+ 0.0009931783424690366,
+ 0.030914440751075745,
+ 0.005183565896004438,
+ 0.05131112411618233,
+ -0.0006917710998095572,
+ 0.028319191187620163,
+ -0.03036385588347912,
+ 0.007320533972233534,
+ 0.014880714938044548,
+ -0.01966572366654873,
+ 0.021653424948453903,
+ 0.02764413319528103,
+ 0.04182665795087814,
+ -0.002689257962629199,
+ 0.035047151148319244,
+ -0.026337910443544388,
+ -0.06111305579543114,
+ 0.02033030055463314,
+ -0.021004540845751762,
+ 0.015399720519781113,
+ 0.02863197959959507,
+ 0.06019170954823494,
+ 0.007465186528861523,
+ -0.035555534064769745,
+ 0.03229910507798195,
+ 0.018092306330800056,
+ 0.01960783265531063,
+ -0.014245772734284401,
+ -0.03750509396195412,
+ 0.006288720294833183,
+ -0.010495029389858246,
+ 0.018970388919115067,
+ 0.01157231256365776,
+ -0.024289270862936974,
+ -0.01484653539955616,
+ -0.03237852081656456,
+ 0.046513549983501434,
+ -0.06028531864285469,
+ 0.022856123745441437,
+ 0.034513022750616074,
+ 0.01745453104376793,
+ -0.012069456279277802,
+ -0.025968970730900764,
+ -0.007802546489983797,
+ -0.027402929961681366,
+ 0.010357123799622059,
+ 0.023047707974910736,
+ -0.0014871867606416345,
+ 0.005717262160032988,
+ -0.015091167762875557,
+ 0.013935943134129047,
+ 0.045550256967544556,
+ 0.012411003932356834,
+ -0.01023133285343647,
+ 0.056607287377119064,
+ -0.010958494618535042,
+ -0.007793712895363569,
+ 0.040247995406389236,
+ 0.021551555022597313,
+ -0.008383175358176231,
+ 0.01676015928387642,
+ -0.022821376100182533,
+ 0.030545704066753387,
+ -0.015292417258024216,
+ -0.041518647223711014,
+ -0.057613905519247055,
+ -0.037729304283857346,
+ 0.019801117479801178,
+ 0.01977848820388317,
+ 0.7116332054138184,
+ 0.019931050017476082,
+ 0.006174481473863125,
+ -0.0024524109903723,
+ 0.010767723433673382,
+ 0.02489042468369007,
+ -0.014652451500296593,
+ 0.006647939793765545,
+ -0.023615188896656036,
+ -0.005495857913047075,
+ 0.009635820053517818,
+ 0.03313148766756058,
+ -0.04859081655740738,
+ 0.03765284642577171,
+ -0.10855471342802048,
+ 0.017664724960923195,
+ -0.03433528542518616,
+ -0.019702576100826263,
+ -0.0013316376134753227,
+ 0.026380334049463272,
+ 0.028506018221378326,
+ -0.029880065470933914,
+ -0.014280845411121845,
+ -0.01563543826341629,
+ 0.0405624620616436,
+ 0.036177512258291245,
+ -0.013812786899507046,
+ -0.0007198772509582341,
+ 0.02745210938155651,
+ -0.03151382505893707,
+ 0.020118234679102898,
+ -0.013222487643361092,
+ -0.032221850007772446,
+ 0.010561886243522167,
+ -0.026280103251338005,
+ -0.006669860333204269,
+ 0.0041961707174777985,
+ 0.00902063399553299,
+ -0.038854002952575684,
+ -0.04582945257425308,
+ 0.03294404596090317,
+ -0.011831016279757023,
+ -6.13470037933439e-05,
+ 0.008741560392081738,
+ -0.03348862752318382,
+ -0.05250178277492523,
+ 0.012290770187973976,
+ 0.017400220036506653,
+ -0.035075634717941284,
+ 0.00395628809928894,
+ 0.0006650181603617966,
+ 0.012011030688881874,
+ -0.022356495261192322,
+ 0.015387295745313168,
+ -0.05573754757642746,
+ -0.0617278516292572,
+ 0.02828994207084179,
+ 0.04676026478409767,
+ 0.024214405566453934,
+ 0.016368694603443146,
+ -0.005661579314619303,
+ 0.0139152305200696,
+ 0.01719396747648716,
+ -0.009401703253388405,
+ -0.02591640129685402,
+ -0.046764593571424484,
+ 0.012781310826539993,
+ -0.0463295541703701,
+ 0.009778646752238274,
+ 0.04076988995075226,
+ -0.006333301309496164,
+ -0.013779557310044765,
+ 0.01975299045443535,
+ 0.007267938461154699,
+ 0.013169455341994762,
+ -0.004558410961180925,
+ 0.004278371576219797,
+ -0.029460597783327103,
+ 0.011735164560377598,
+ -0.02401990257203579,
+ 0.09172140806913376,
+ 0.00500495033338666,
+ -0.0653383657336235,
+ -0.024464409798383713,
+ -0.0118167195469141,
+ -0.009685369208455086,
+ 0.0003083013871219009,
+ 0.0021183104254305363,
+ -0.04990395903587341,
+ -0.00973911676555872,
+ -0.018324309960007668,
+ -0.02951308898627758,
+ 0.0003097986045759171,
+ -0.016591651365160942,
+ 0.06318841129541397,
+ -0.030361376702785492,
+ 0.023780329152941704,
+ -0.036744095385074615,
+ -0.06377670913934708,
+ 0.017246944829821587,
+ 0.0031307220924645662,
+ -0.059903331100940704,
+ 0.049688614904880524,
+ 0.016578281298279762,
+ -0.0017264264170080423,
+ -0.059142399579286575,
+ 0.02629365399479866,
+ 0.01574123464524746,
+ 0.018745683133602142,
+ -0.019965892657637596,
+ 0.0041762180626392365,
+ -0.023367011919617653,
+ -0.010234961286187172,
+ 0.006891954690217972,
+ -0.053475555032491684,
+ 0.02770664356648922,
+ 0.021135030314326286,
+ -0.02271919511258602,
+ -0.003212864277884364,
+ -0.012896942906081676,
+ 0.003755102399736643,
+ -0.026756076142191887,
+ -0.008663063868880272,
+ -0.026184454560279846,
+ -0.003250307636335492,
+ -0.021312382072210312,
+ -0.011882842518389225,
+ -0.004877633880823851,
+ -0.0031357284169644117,
+ -0.005653830710798502,
+ 0.007398082874715328,
+ 0.022690579295158386,
+ -0.004118712153285742,
+ -0.0318836085498333,
+ -0.011635112576186657,
+ -0.06849472224712372,
+ -0.036900851875543594,
+ -0.009371403604745865,
+ 0.03578375652432442,
+ -0.0336194671690464,
+ 0.009043527767062187,
+ -0.01823064312338829,
+ 0.022632697597146034,
+ -0.06461458653211594,
+ -0.024990079924464226,
+ -0.024703945964574814,
+ -0.004767053760588169,
+ 0.0070261117070913315,
+ -0.018053701147437096,
+ 0.028563305735588074]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">query_vector</span><span class="p">],</span>
+    <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;image_path&#39;</span><span class="p">],</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">search_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ef&quot;</span><span class="p">:</span> <span class="mi">128</span><span class="p">}}</span>
+
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 465990001279631376, &#39;distance&#39;: 0.22547799348831177, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon06.png&#39;}}, {&#39;id&#39;: 465990001279631378, &#39;distance&#39;: 0.1865767538547516, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/query.png&#39;}}, {&#39;id&#39;: 465990001279631377, &#39;distance&#39;: 0.1308782398700714, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon02.png&#39;}}, {&#39;id&#39;: 465990001279631379, &#39;distance&#39;: 0.10418923944234848, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon03.png&#39;}}, {&#39;id&#39;: 465990001279631374, &#39;distance&#39;: 0.09635187685489655, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon05.png&#39;}}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retrieved_images</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;检索结果:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">search_results</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Top </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: ID=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, 距离=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, 路径=&#39;</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;image_path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">retrieved_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;image_path&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>检索结果:
+  Top 1: ID=465990001279631376, 距离=0.2255, 路径=&#39;data/dragon/dragon06.png&#39;
+  Top 2: ID=465990001279631378, 距离=0.1866, 路径=&#39;data/dragon/query.png&#39;
+  Top 3: ID=465990001279631377, 距离=0.1309, 路径=&#39;data/dragon/dragon02.png&#39;
+  Top 4: ID=465990001279631379, 距离=0.1042, 路径=&#39;data/dragon/dragon03.png&#39;
+  Top 5: ID=465990001279631374, 距离=0.0964, 路径=&#39;data/dragon/dragon05.png&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">visualize_results</span><span class="p">(</span><span class="n">query_image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                      <span class="n">retrieved_images</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> 
+                      <span class="n">img_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> 
+                      <span class="n">img_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> 
+                      <span class="n">row_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
+    <span class="c1"># 画布</span>
+    <span class="n">panoramic_width</span> <span class="o">=</span> <span class="n">img_width</span> <span class="o">*</span> <span class="n">row_count</span>
+    <span class="n">panoramic_height</span> <span class="o">=</span> <span class="n">img_height</span> <span class="o">*</span> <span class="n">row_count</span>
+    <span class="n">panoramic_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">panoramic_height</span><span class="p">,</span> <span class="n">panoramic_width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    
+    <span class="c1"># 查询图片放在 左下</span>
+    <span class="n">query_display_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">panoramic_height</span><span class="p">,</span> <span class="n">img_width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="n">query_img_cv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">query_image_path</span><span class="p">)</span>
+    <span class="n">resized_query_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">query_img_cv</span><span class="p">,</span>  <span class="n">dsize</span><span class="o">=</span> <span class="p">(</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">))</span>
+    <span class="n">border_query_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">copyMakeBorder</span><span class="p">(</span>
+        <span class="n">resized_query_img</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">bottom</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">left</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">borderType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="c1"># 常数填充</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">query_display_area</span><span class="p">[</span><span class="n">img_height</span> <span class="o">*</span> <span class="p">(</span><span class="n">row_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">border_query_img</span><span class="p">,</span> <span class="n">dsize</span><span class="o">=</span> <span class="p">(</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">))</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="n">query_display_area</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;query&#39;</span><span class="p">,</span>
+            <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">panoramic_height</span> <span class="o">-</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+            <span class="n">fontScale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">thickness</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+    
+    <span class="c1"># 检索到的结果图片</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">img_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">retrieved_images</span><span class="p">):</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">i</span><span class="o">//</span><span class="n">row_count</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">row_count</span>
+        <span class="n">start_row</span><span class="p">,</span> <span class="n">start_col</span> <span class="o">=</span> <span class="n">row</span><span class="o">*</span><span class="n">img_height</span><span class="p">,</span> <span class="n">col</span><span class="o">*</span><span class="n">img_width</span>
+        <span class="n">retrieved_img_cv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+        <span class="n">resized_retrieved_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">retrieved_img_cv</span><span class="p">,</span>  <span class="n">dsize</span><span class="o">=</span> <span class="p">(</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">))</span>
+        <span class="n">border_retrieved_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">copyMakeBorder</span><span class="p">(</span>
+            <span class="n">resized_retrieved_img</span><span class="p">,</span>
+            <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">bottom</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">left</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">right</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">borderType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="c1"># 常数填充</span>
+            <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">panoramic_image</span><span class="p">[</span><span class="n">start_row</span><span class="p">:</span><span class="n">start_row</span><span class="o">+</span><span class="n">img_height</span><span class="p">,</span> <span class="n">start_col</span><span class="p">:</span><span class="n">start_col</span><span class="o">+</span><span class="n">img_height</span><span class="p">]</span> <span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">border_retrieved_img</span><span class="p">,</span> <span class="n">dsize</span><span class="o">=</span> <span class="p">(</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">))</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="n">panoramic_image</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+            <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="n">start_col</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="n">start_row</span><span class="o">+</span> <span class="mi">30</span><span class="p">),</span>
+            <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+            <span class="n">fontScale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span>
+            <span class="n">thickness</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">query_display_area</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">panoramic_image</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">query_display_area</span><span class="p">,</span><span class="n">panoramic_image</span><span class="p">])</span> <span class="c1"># 横向凭借</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">visualize_results</span><span class="p">(</span>
+    <span class="n">query_image_path</span><span class="o">=</span><span class="n">query_image_path</span><span class="p">,</span>
+    <span class="n">retrieved_images</span><span class="o">=</span><span class="n">retrieved_images</span>
+<span class="p">)</span>
+<span class="n">combined_img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;search_results.png&#39;</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">combined_img_path</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(600, 200, 3), (600, 600, 3)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">combined_img_path</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04b7f4857f02ce471ff727e2aaf50ee657195f79fae80255b48ec0970688465a.png" src="../_images/04b7f4857f02ce471ff727e2aaf50ee657195f79fae80255b48ec0970688465a.png" />
+</div>
+</div>
+<p>确实很好的解释</p>
+</section>
+<section id="id8">
+<h2>索引优化<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section id="id9">
+<h1>检索优化<a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+<section id="id10">
+<h2>混合检索：<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>稀疏向量：精确匹配。
+稠密向量：语义匹配</p>
+<ul class="simple">
+<li><p>稀疏向量。不能有意义的度量语义距离。
+西红柿： [0,0,0…1,0…]
+鸡蛋: [0,1..0..]
+炒: [0,0,..1,..0]
+如果搜索番茄炒蛋，因为西红柿和番茄不是一个东西，是理解不到的。</p></li>
+</ul>
+<ul class="simple">
+<li><p>稠密向量。语义模型训练后。会转为一个都有值的。
+西红柿炒蛋：[0.89, -0.12, 0.77, …, -0.45]
+番茄炒蛋：[0.1,…]
+这是可以语义度量的</p></li>
+</ul>
+<p>现实中，关键词更多指向语义，但是一些产品型号等则需要精确匹配。</p>
+<p>所以要结合两种，来构建检索策略</p>
+</section>
+<section id="id11">
+<h2>查询构建<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>数据是多种多样的，比如SQL数据库，表格，图数据。</p>
+<p>人们需求是复杂的，比如条件聚合等</p>
+<p>查询构建：先使用LLM将自然语言翻译为特定格式的语言。才能连接各种类型数据。比如</p>
+<ul class="simple">
+<li><p>为元数据查询。html或word等有标签的。</p></li>
+<li><p>为图数据查询。cypher查询图数据库语言</p></li>
+<li><p>为SQL结构化数据查询。 text2sql</p></li>
+</ul>
+<p><strong>实现一个text2sql</strong></p>
+<p>BAAI/bge-m3  文本向量嵌入比较好。</p>
+<p>milvus内置了BGEM3EmbeddingFunction 易用</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus.model.hybrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">BGEM3EmbeddingFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">MilvusClient</span><span class="p">,</span><span class="n">FieldSchema</span><span class="p">,</span> <span class="n">CollectionSchema</span><span class="p">,</span><span class="n">DataType</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Knowledge</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 知识库 向量数据库 &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">milvus_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;milvus_demo.db&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">milvus_uri</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span> <span class="o">=</span> <span class="n">BGEM3EmbeddingFunction</span><span class="p">(</span>    
+            <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;BAAI/bge-m3&#39;</span><span class="p">,</span> <span class="c1"># Specify the model name</span>
+            <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="c1"># Specify the device to use</span>
+            <span class="n">use_fp16</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s1">&#39;text2sql_demo&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_collection</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Knowledge OK: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>        
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 初始化集合</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">has_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pk&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">auto_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="c1"># ddl, sql,</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> 
+                        <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">])</span>
+        <span class="p">]</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;多模态图文检索&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+        <span class="n">index_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
+        <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
+            <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
+            <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+            <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 知识库 &quot;&quot;&quot;</span>
+        <span class="c1"># 1. ddl: 表结构定义</span>
+        <span class="c1"># 2. 优秀问答，Q-SQL，供参考。</span>
+        <span class="c1"># 3. 业务描述数据，理解字段</span>
+        <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+        <span class="n">ddl_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;users_ddl.json&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ddl_path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ddl_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">ddl_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_ddl_data</span><span class="p">(</span><span class="n">ddl_data</span><span class="p">)</span>
+                
+        <span class="c1"># 加载Q-&gt;SQL数据</span>
+        <span class="n">qsql_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;users_qsql.json&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">qsql_path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qsql_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">qsql_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_qsql_data</span><span class="p">(</span><span class="n">qsql_data</span><span class="p">)</span>
+        
+        <span class="c1"># 加载描述数据</span>
+        <span class="n">desc_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;users_descriptions.json&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">desc_path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">desc_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">desc_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_description_data</span><span class="p">(</span><span class="n">desc_data</span><span class="p">)</span>
+        
+        <span class="c1"># 加载集合到内存</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;知识已加载到向量数据库&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_ddl_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 格式字符串化 ddl知识 &quot;&quot;&quot;</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;表名：</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;DDL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ddl_statement&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;ddl&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_qsql_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加Q-&gt;SQL数据&quot;&quot;&quot;</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;问题: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;SQL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sql&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            
+            <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;qsql&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_description_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加描述数据&quot;&quot;&quot;</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;表名: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;表描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">if</span> <span class="n">columns</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">+=</span> <span class="s2">&quot;字段信息:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+                    <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+            
+            <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_insert_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">types</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 插入到知识向量数据库 &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">contents</span><span class="p">:</span> 
+            <span class="k">return</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+        <span class="n">data_to_insert</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
+            <span class="n">data_to_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="s1">&#39;dense_vector&#39;</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="p">})</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+            <span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data_to_insert</span>
+        <span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 检索 &quot;&quot;&quot;</span>
+        <span class="n">query_embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="p">([</span><span class="n">query</span><span class="p">])</span>
+        <span class="n">search_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+            <span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">],</span>
+            <span class="n">anns_field</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="c1"># 目标搜索字段</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">top_k</span><span class="p">,</span>
+            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">search_results</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>使用aihubmix提供的各种模型，使用OPenai客户端python库接入</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SQLGenerator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 自然语言转为sql &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AIHUBMIX_API_KEY&#39;</span><span class="p">),</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://aihubmix.com/v1&quot;</span><span class="p">,</span>
+        <span class="p">)</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_query</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 生成sql，需要知识库结果 &quot;&quot;&quot;</span>
+        <span class="c1"># 构建知识上下文</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_context</span><span class="p">(</span><span class="n">knowledge_results</span><span class="p">)</span>
+        <span class="c1"># 提示：上下文-格式化</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;你是SQL专家。根据下面信息将用户问题转为SQL查询语句。</span>
+<span class="s2">数据库信息：</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+<span class="s2">用户问题：</span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span>
+<span class="s2">要求：</span>
+<span class="s2">1. 只返回SQL语句，不要包含任何解释和 ```sql 等标签</span>
+<span class="s2">2. 确保SQL语法正确</span>
+<span class="s2">3. 使用上下文提供表名和字段名</span>
+<span class="s2">4. 如果需要join，根据表结构合理关联</span>
+<span class="s2">SQL语句：&quot;&quot;&quot;</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fix_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_sql</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 矫正修复sql &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_context</span><span class="p">(</span><span class="n">knowledge_results</span><span class="p">)</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            请修复以下sql语句错误。</span>
+<span class="s2">            数据库信息：</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+<span class="s2">            原始sql：</span><span class="si">{</span><span class="n">original_sql</span><span class="si">}</span>
+<span class="s2">            错误信息：</span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span>
+<span class="s2">            请返回修复后的sql语句（只有sql，不要解释）</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 构建LLM 的上下文信息 &quot;&quot;&quot;</span>
+        <span class="n">ddl_info</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">qsql_examples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">descriptions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">ddl_info</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 表结构信息 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">descriptions</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 表和字段意义描述 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">qsql_examples</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 查询示例 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">context</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Text2SQLAgent</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 完整 &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_path</span><span class="o">=</span><span class="s1">&#39;users.db&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">knowledge</span> <span class="o">=</span> <span class="n">Knowledge</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span> <span class="o">=</span> <span class="n">SQLGenerator</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_k_retrieval</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_result_rows</span> <span class="o">=</span> <span class="mi">100</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_retry_count</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_question</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 用户接口查询 &quot;&quot;&quot;</span>
+        <span class="n">knowledge_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">knowledge</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">user_question</span><span class="p">)</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="n">user_question</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="o">=</span><span class="n">knowledge_results</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;generated sql: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">retry_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retry_count</span><span class="p">:</span>
+            <span class="n">success</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;sql&#39;</span><span class="p">:</span> <span class="n">sql</span><span class="p">,</span> <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span><span class="o">.</span><span class="n">fix_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">)</span>
+                <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;max retry count.&#39;</span><span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_execute_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; 执行SQL &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sql</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;SELECT&#39;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+                <span class="c1"># 获取列名和结果</span>
+                <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                <span class="k">return</span> <span class="kc">True</span><span class="p">,{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span><span class="p">,{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 对象销毁时自动关闭连接</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span> <span class="o">=</span> <span class="n">Text2SQLAgent</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetching 30 files: 100%|██████████| 30/30 [00:00&lt;00:00, 57169.07it/s]
+You&#39;re using a XLMRobertaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collection: {&#39;collection_name&#39;: &#39;text2sql_demo&#39;, &#39;auto_id&#39;: True, &#39;num_shards&#39;: 0, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;field_id&#39;: 100, &#39;name&#39;: &#39;pk&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 100}, &#39;auto_id&#39;: True, &#39;is_primary&#39;: True}, {&#39;field_id&#39;: 101, &#39;name&#39;: &#39;content&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 1024}}, {&#39;field_id&#39;: 102, &#39;name&#39;: &#39;type&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 32}}, {&#39;field_id&#39;: 103, &#39;name&#39;: &#39;dense_vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 1024}}], &#39;functions&#39;: [], &#39;aliases&#39;: [], &#39;collection_id&#39;: 0, &#39;consistency_level&#39;: 0, &#39;properties&#39;: {}, &#39;num_partitions&#39;: 0, &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+知识已加载到向量数据库
+Knowledge OK
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;按城市统计用户的平均年龄，只展示平均年龄大于 25 岁的城市，并按人数从多到少排序。&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: True,
+ &#39;sql&#39;: &#39;SELECT city, AVG(age) AS average_age, COUNT(*) AS user_count\nFROM users\nGROUP BY city\nHAVING AVG(age) &gt; 25\nORDER BY user_count DESC;&#39;,
+ &#39;results&#39;: {&#39;status&#39;: &#39;success&#39;,
+  &#39;columns&#39;: [&#39;city&#39;, &#39;average_age&#39;, &#39;user_count&#39;],
+  &#39;data&#39;: [(&#39;青岛&#39;, 33.0, 1),
+   (&#39;长沙&#39;, 29.0, 1),
+   (&#39;西安&#39;, 27.0, 1),
+   (&#39;深圳&#39;, 28.0, 1),
+   (&#39;武汉&#39;, 42.0, 1),
+   (&#39;广州&#39;, 35.0, 1),
+   (&#39;南京&#39;, 31.0, 1),
+   (&#39;上海&#39;, 30.0, 1)]}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;查询所有用户的姓名和年龄段，如果年龄小于 25 岁显示‘青年’，25 到 35 岁显示‘壮年’，其余显示‘资深’&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: True,
+ &#39;sql&#39;: &quot;SELECT name, CASE WHEN age &lt; 25 THEN &#39;青年&#39; WHEN age BETWEEN 25 AND 35 THEN &#39;壮年&#39; ELSE &#39;资深&#39; END AS age_group FROM users;&quot;,
+ &#39;results&#39;: {&#39;status&#39;: &#39;success&#39;,
+  &#39;columns&#39;: [&#39;name&#39;, &#39;age_group&#39;],
+  &#39;data&#39;: [(&#39;张三&#39;, &#39;壮年&#39;),
+   (&#39;李四&#39;, &#39;壮年&#39;),
+   (&#39;王五&#39;, &#39;青年&#39;),
+   (&#39;赵六&#39;, &#39;壮年&#39;),
+   (&#39;孙七&#39;, &#39;壮年&#39;),
+   (&#39;周八&#39;, &#39;青年&#39;),
+   (&#39;吴九&#39;, &#39;资深&#39;),
+   (&#39;郑十&#39;, &#39;壮年&#39;),
+   (&#39;陈十一&#39;, &#39;壮年&#39;),
+   (&#39;林十二&#39;, &#39;青年&#39;),
+   (&#39;韩十三&#39;, &#39;壮年&#39;),
+   (&#39;候十四&#39;, &#39;青年&#39;),
+   (&#39;蔡十五&#39;, &#39;壮年&#39;)]}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;帮我统计一下所有订单的总金额。&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: False, &#39;msg&#39;: &#39;max retry count.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>TEXT2SQL场景在哪里呢？ 整个速度都不如放到gpt翻译 后运行</p>
+</section>
+<section id="id12">
+<h2>查询重构和分发<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>用户的问题很多时候时充满歧义或者复杂的。我们要对其预处理</p>
+<ul class="simple">
+<li><p>查询翻译：构建设计良好的prompt</p></li>
+<li><p>查询路由：根据问题，分发到不同特点的数据库</p></li>
+</ul>
+<p>面对复杂问题的时候，需要分解子问题，子主题。
+比如Langchain 的<code class="docutils literal notranslate"><span class="pre">MultiQueryRe...</span></code></p>
+<p>退步提示： 将问题提升到更高层次、概括、原理。获取这个退步问题的答案，再结合具体的 。</p>
+</section>
+</section>
+<section id="id13">
+<h1>格式化生成<a class="headerlink" href="#id13" title="Link to this heading">#</a></h1>
+<p>之前LLM都是返回一段文字。但是</p>
+<ul class="simple">
+<li><p>表格生成</p></li>
+<li><p>数据提取，格式化存储，每日新闻</p></li>
+</ul>
+<p>Lanchain提供了</p>
+<p>Function calling</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">数据准备</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">数据加载</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">文本分块</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">索引构建</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">向量嵌入</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">多模态嵌入</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">向量数据库</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milvus">Milvus实践</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">索引优化</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">检索优化</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">混合检索：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">查询构建</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">查询重构和分发</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">格式化生成</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/myrag/教程.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

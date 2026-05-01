@@ -365,16 +365,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reduce</span><span class="p">,</span> <span class="nb">any</span>
-
-<span class="ne">NameError</span>: name &#39;reduce&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <p>对原列表切割后，生成的是一份全新的列表</p>
 <div class="cell docutils container">
@@ -1133,21 +1123,11 @@ d=5e-3</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2026-04-08 10:44:48.008333
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 携带时区信息</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span> <span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2026, 4, 8, 2, 45, 21, 507045, tzinfo=datetime.timezone.utc)
 </pre></div>
 </div>
 </div>
@@ -1158,19 +1138,6 @@ d=5e-3</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function now:
-
-now(tz=None) method of builtins.type instance
-    Returns new datetime object representing current time local to tz.
-    
-      tz
-        Timezone object.
-    
-    If no tz is specified, uses local timezone.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1178,20 +1145,10 @@ now(tz=None) method of builtins.type instance
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2026, 4, 8, 2, 42, 6, 999410)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1775616738.217299
 </pre></div>
 </div>
 </div>
@@ -1205,24 +1162,6 @@ now(tz=None) method of builtins.type instance
 <span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1"># 2025-03-06 12:34:56</span>
 
 <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2025-03-06 14:30&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M&quot;</span><span class="p">)</span> <span class="c1"># 日期对象</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2026-04-08 10:41:22.734560
-2025-03-06 14:39:00
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">39</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="o">=</span> <span class="mi">2025</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 日期</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1"># 2025-03-06 12:34:56</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2025-03-06 14:30&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M&quot;</span><span class="p">)</span> <span class="c1"># 日期对象</span>
-
-<span class="ne">NameError</span>: name &#39;date&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1240,11 +1179,6 @@ now(tz=None) method of builtins.type instance
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1775616658.265279
 </pre></div>
 </div>
 </div>
@@ -1503,6 +1437,348 @@ now(tz=None) method of builtins.type instance
 <span class="k">del</span> <span class="n">big_df</span> <span class="c1"># 解除引用</span>
 <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span> <span class="c1"># 强制立即回收内存</span>
 </pre></div>
+</div>
+<p>glob：匹配文件路径</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.py&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>tqdm：显示循环进度条</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># 简单包装 range，也可以使用简写 trange(100)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;正在处理任务&quot;</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># 模拟耗时操作</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>PIL 图片处理</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/dong/data-analysis/MLcook&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;dog.jpg&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span> <span class="c1"># 查看尺寸、格式、颜色模式(RGB)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(191, 148) JPEG RGB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6a3f944a7418094582bea1635733ec3e05bddfcb6c181bb79073c2856e98569c.png" src="../_images/6a3f944a7418094582bea1635733ec3e05bddfcb6c181bb79073c2856e98569c.png" />
+</div>
+</div>
+<p>cv2： opencv 的python库</p>
+<ul class="simple">
+<li><p>读取图片后会转为numpy数组，集成方便</p></li>
+<li><p>颜色顺序是BGR，不是RGB</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;dog.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 52,  76,  42],
+        [ 51,  75,  41],
+        [ 50,  73,  41],
+        ...,
+        [ 24,  31,  10],
+        [ 23,  30,   9],
+        [ 22,  29,   8]],
+
+       [[ 52,  76,  42],
+        [ 51,  75,  41],
+        [ 49,  72,  40],
+        ...,
+        [ 24,  31,  10],
+        [ 23,  30,   9],
+        [ 22,  29,   8]],
+
+       [[ 51,  74,  42],
+        [ 50,  73,  41],
+        [ 49,  72,  40],
+        ...,
+        [ 23,  30,   9],
+        [ 22,  29,   8],
+        [ 21,  28,   7]],
+
+       ...,
+
+       [[ 50, 147, 103],
+        [ 49, 147, 103],
+        [ 50, 147, 103],
+        ...,
+        [ 47, 143, 103],
+        [ 46, 142, 102],
+        [ 46, 142, 102]],
+
+       [[ 49, 147, 103],
+        [ 47, 148, 103],
+        [ 49, 147, 103],
+        ...,
+        [ 48, 144, 104],
+        [ 48, 144, 104],
+        [ 48, 144, 104]],
+
+       [[ 47, 148, 103],
+        [ 47, 148, 103],
+        [ 47, 148, 103],
+        ...,
+        [ 50, 146, 106],
+        [ 49, 145, 105],
+        [ 49, 145, 105]]], shape=(148, 191, 3), dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 添加边框</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">copyMakeBorder</span><span class="p">(</span>
+    <span class="n">resized_img</span><span class="p">,</span>
+    <span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">bottom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">left</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">right</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">borderType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="c1"># 常数填充</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       ...,
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]],
+
+       [[255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0],
+        ...,
+        [255,   0,   0],
+        [255,   0,   0],
+        [255,   0,   0]]], shape=(220, 320, 3), dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="n">resized_img</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;cute dog&#39;</span>
+            <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="c1"># 左下角坐标，x 表示离左边，y表</span>
+            <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+            <span class="n">fontScale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">thickness</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 52,  76,  42],
+        [ 51,  75,  41],
+        [ 51,  75,  41],
+        ...,
+        [ 23,  30,   9],
+        [ 22,  29,   8],
+        [ 22,  29,   8]],
+
+       [[ 52,  76,  42],
+        [ 51,  75,  41],
+        [ 51,  75,  41],
+        ...,
+        [ 23,  30,   9],
+        [ 22,  29,   8],
+        [ 22,  29,   8]],
+
+       [[ 52,  75,  42],
+        [ 51,  75,  41],
+        [ 50,  74,  41],
+        ...,
+        [ 23,  30,   9],
+        [ 22,  29,   8],
+        [ 22,  29,   7]],
+
+       ...,
+
+       [[ 49, 147, 103],
+        [ 49, 147, 103],
+        [ 48, 147, 103],
+        ...,
+        [ 47, 143, 103],
+        [ 47, 143, 103],
+        [ 47, 143, 103]],
+
+       [[ 48, 147, 103],
+        [ 48, 147, 103],
+        [ 47, 148, 103],
+        ...,
+        [ 48, 144, 104],
+        [ 48, 144, 104],
+        [ 48, 144, 104]],
+
+       [[ 47, 148, 103],
+        [ 47, 148, 103],
+        [ 47, 148, 103],
+        ...,
+        [ 49, 145, 105],
+        [ 49, 145, 105],
+        [ 49, 145, 105]]], shape=(200, 300, 3), dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>sqlite</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;demo.db&#39;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users (name) VALUES (&#39;张三&#39;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># 提交更改必要时</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1"># 返回：[(1, &#39;张三&#39;)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, &#39;张三&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>any</p>
+<p>list[dict[str, any]]  是错的，没有any类型</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
