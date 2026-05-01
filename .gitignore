@@ -73,3 +73,8 @@ data/
 mastDownload
 
 *.so
+*.pdf
+*.env
+*.pth
+*.pkl
+*.faiss
