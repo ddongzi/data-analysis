@@ -1165,9 +1165,120 @@
    "id": "9b737036",
    "metadata": {},
    "source": [
-    "datetime, time\n",
+    "## datetime, time\n",
     "- `datetime`：处理日期和时间，如 **获取当前时间、格式化、计算时间差**。  \n",
     "- `time`：处理 **时间戳、延时、CPU 计时**，更底层。 "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "a2c8e93a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2026-04-08 10:44:48.008333\n"
+     ]
+    }
+   ],
+   "source": [
+    "from datetime import datetime, timezone\n",
+    "now = datetime.now()\n",
+    "print(now)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "39d99b8f",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2026, 4, 8, 2, 45, 21, 507045, tzinfo=datetime.timezone.utc)"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# 携带时区信息\n",
+    "datetime.now(tz =timezone.utc)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "790df21f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Help on built-in function now:\n",
+      "\n",
+      "now(tz=None) method of builtins.type instance\n",
+      "    Returns new datetime object representing current time local to tz.\n",
+      "    \n",
+      "      tz\n",
+      "        Timezone object.\n",
+      "    \n",
+      "    If no tz is specified, uses local timezone.\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "help(datetime.now)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "f7a31aa7",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "datetime.datetime(2026, 4, 8, 2, 42, 6, 999410)"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "datetime.utcnow()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "f2ed153c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1775616738.217299"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "datetime.now().timestamp()"
    ]
   },
   {
@@ -1175,11 +1286,28 @@
    "execution_count": null,
    "id": "673e899f",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2026-04-08 10:41:22.734560\n",
+      "2025-03-06 14:39:00\n"
+     ]
+    },
+    {
+     "ename": "NameError",
+     "evalue": "name 'date' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[1], line 7\u001b[0m\n\u001b[0;32m      5\u001b[0m dt \u001b[38;5;241m=\u001b[39m datetime(\u001b[38;5;241m2025\u001b[39m, \u001b[38;5;241m3\u001b[39m, \u001b[38;5;241m6\u001b[39m, \u001b[38;5;241m14\u001b[39m, \u001b[38;5;241m39\u001b[39m)\n\u001b[0;32m      6\u001b[0m \u001b[38;5;28mprint\u001b[39m(dt)\n\u001b[1;32m----> 7\u001b[0m dt \u001b[38;5;241m=\u001b[39m \u001b[43mdate\u001b[49m(year \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m2025\u001b[39m, month\u001b[38;5;241m=\u001b[39m\u001b[38;5;241m1\u001b[39m,day\u001b[38;5;241m=\u001b[39m\u001b[38;5;241m1\u001b[39m) \u001b[38;5;66;03m# 日期\u001b[39;00m\n\u001b[0;32m      9\u001b[0m \u001b[38;5;28mprint\u001b[39m(now\u001b[38;5;241m.\u001b[39mstrftime(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mY-\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mm-\u001b[39m\u001b[38;5;132;01m%d\u001b[39;00m\u001b[38;5;124m \u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mH:\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mM:\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mS\u001b[39m\u001b[38;5;124m\"\u001b[39m))  \u001b[38;5;66;03m# 2025-03-06 12:34:56\u001b[39;00m\n\u001b[0;32m     11\u001b[0m dt \u001b[38;5;241m=\u001b[39m datetime\u001b[38;5;241m.\u001b[39mstrptime(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m2025-03-06 14:30\u001b[39m\u001b[38;5;124m\"\u001b[39m, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mY-\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mm-\u001b[39m\u001b[38;5;132;01m%d\u001b[39;00m\u001b[38;5;124m \u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mH:\u001b[39m\u001b[38;5;124m%\u001b[39m\u001b[38;5;124mM\u001b[39m\u001b[38;5;124m\"\u001b[39m) \u001b[38;5;66;03m# 日期对象\u001b[39;00m\n",
+      "\u001b[1;31mNameError\u001b[0m: name 'date' is not defined"
+     ]
+    }
+   ],
    "source": [
-    "from datetime import datetime\n",
-    "now = datetime.now()\n",
-    "print(now)\n",
     "\n",
     "dt = datetime(2025, 3, 6, 14, 39)\n",
     "print(dt)\n",
@@ -1204,10 +1332,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "id": "459a711e",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1775616658.265279\n"
+     ]
+    }
+   ],
    "source": [
     "import time\n",
     "print(time.time())"
