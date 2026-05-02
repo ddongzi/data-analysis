@@ -2276,6 +2276,28 @@
   },
   {
    "cell_type": "markdown",
+   "id": "249af51b",
+   "metadata": {},
+   "source": [
+    "embed_encoder = BGEM3EmbeddingFunction( \n",
+    "    model_name='BAAI/bge-small-zh-v1.5', # Specify the model name\n",
+    "    device='cpu', # Specify the device to use\n",
+    "    use_fp16=False # 使用16位精度，加快速度\n",
+    "    )"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b07c2301",
+   "metadata": {},
+   "source": [
+    "对一个文本进行编码后，产生dense,sparse两种向量。但是不同的文字理解角度\n",
+    "- 稠密向量：整体含义\n",
+    "- 稀疏向量：关键词"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "5139c61b",
    "metadata": {},
    "source": [

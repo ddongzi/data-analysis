@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>cookrag-baseline &#8212; DA  documentation</title>
+    <title>cookrag_baseline &#8212; DA  documentation</title>
   
   
   
@@ -330,7 +330,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">cookrag-baseline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">cookrag_baseline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../learn/%E6%95%99%E7%A8%8B.html">基本指南</a></li>
 </ul></details></li></ul></div>
 </nav></div>
@@ -374,7 +374,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">rag相关</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cookrag-baseline</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cookrag_baseline</span></li>
   </ul>
 </nav>
 </div>
@@ -392,7 +392,8 @@
                 <article class="bd-article">
                   
   <section id="cookrag-baseline">
-<h1>cookrag-baseline<a class="headerlink" href="#cookrag-baseline" title="Link to this heading">#</a></h1>
+<h1>cookrag_baseline<a class="headerlink" href="#cookrag-baseline" title="Link to this heading">#</a></h1>
+<p>baseline描述最小可行的流程。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -979,7 +980,10 @@ distance:0.6657, content:主题: 羊排焖面的做法 &gt; 章节: 必备原料
 <h2>评估<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <section id="id10">
 <h3>手动测试案例<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p>在ragas评估之前，我应该手动做些输入，来感知效果</p>
+<ul class="simple">
+<li><p>在ragas评估之前，我应该手动做些输入，来感知效果.</p></li>
+<li><p>出现的问题在下一版改进</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;无骨鸡爪怎么处理&#39;</span><span class="p">))</span>
@@ -1331,7 +1335,240 @@ distance:0.6741, content:主题: 无骨鸡爪的做法 &gt; 章节: 计算 &gt; 
 <p>如果您需要更具体的信息，如腌料调配或工具使用，请提供更多细节。</p>
 </div>
 </div>
+<hr class="docutils" />
+<p><strong>一些菜谱相近的</strong>：南派红烧肉，徽派红烧肉，家常红烧肉，简易红烧肉</p>
+<p>我的rag应该能很好回应</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;红烧肉怎么上色&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.7290, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: - 建议先拿出来一半葱姜，再将剩下的`生姜、葱白、蒜、花椒、八角、香叶`提前放入一个碗中备用
+- 凉水锅中放入切好的五花肉，加入料酒与 2/5 葱姜，煮 15 分钟去掉血腥，捞出来后洗干净；
+- 炒[糖色](./../../condiment/简易版炒糖色.md)，注意采用其中提到的操作 2 来制作糖色。
+distance:0.7225, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - 加入 2-3g `盐`，翻炒一下，就可以出锅了。
+distance:0.7134, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - `料酒` 5ml
+- 翻炒至上色；
+- 加入`烧好的开水`炖煮 40 分钟（刀工差的同学切的过大请自觉延长炖煮时间），并放入
+- `生姜` 2 片
+- `香叶` 3 片
+- `八角` 2 个
+- 盖上锅盖煮至沸腾后，加入煮好扎好孔的`鹌鹑蛋`和`豆皮`，开中小火，等待 40 分钟。（中途可适当翻搅防止粘锅）；
+- 打开锅盖，待汤汁快没有的时候开大火收汁（切记不可收干）；
+distance:0.7124, content:主题: 简易红烧肉的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 注：如果有可能，请尽量把刀磨的锋利一些。
+- 主料：`大肉`、`鸡蛋`（可选）、`豆皮`（可选）
+- 辅料：`生姜`、`冰糖`、`生抽`、`老抽`、`料酒`、`香叶`、`八角`、`盐`、`水`、`葱`（记得要开水）
+distance:0.7120, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: 建议在此之前查看炒[糖色](./../../condiment/简易版炒糖色.md)教程  
+- `猪五花肉`切大块（约 4.5cm ）
+- `生姜`切片（每片厚度约 3mm ）
+- `开水`烧开
+- `凉水`自来水即可
+- `小葱`小葱白色的部分`葱白`切成小段（小葱最佳，大葱也可以）
+- `蒜`中间切开，不要拍扁，否则难以捞出以至最后`收汁`时影响味道
+</pre></div>
+</div>
+<p>根据提供的上下文信息，红烧肉上色的主要方法是<strong>炒糖色</strong>。具体操作如下：</p>
+<ul class="simple">
+<li><p>在南派红烧肉的做法中，明确建议炒糖色，并参考“简易版炒糖色”教程中的操作2来制作糖色。</p></li>
+<li><p>在简易红烧肉的做法中，虽未详细说明炒糖色步骤，但原料包括冰糖，且在操作中提到“翻炒至上色”，结合上下文，这通常涉及糖色或酱油（如生抽、老抽）的上色过程。</p></li>
+</ul>
+<p>因此，红烧肉上色主要通过炒糖色实现，具体细节可查阅相关糖色教程。如果需要更精确的步骤，请参考“简易版炒糖色”中的操作指南。</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>回答过于简单，但是知识库给出了。我们可以🙌修改prompt。给出详细指南</p></li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;对比一下南派和徽派红烧肉在甜度控制上的区别。&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.6810, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: - 打开锅盖，待汤汁快没有的时粘稠状出锅（切记不可收干）；
+distance:0.6793, content:主题: 徽派红烧肉的做法 &gt; 章节: 无 &gt; 细节: 无
+内容: 徽式红烧肉是一道由五花肉等食材制成的菜肴。  
+预估烹饪难度：★★★★
+distance:0.6645, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: - 建议先拿出来一半葱姜，再将剩下的`生姜、葱白、蒜、花椒、八角、香叶`提前放入一个碗中备用
+- 凉水锅中放入切好的五花肉，加入料酒与 2/5 葱姜，煮 15 分钟去掉血腥，捞出来后洗干净；
+- 炒[糖色](./../../condiment/简易版炒糖色.md)，注意采用其中提到的操作 2 来制作糖色。
+distance:0.6610, content:主题: 南派红烧肉的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: 一份正好够 1-3 人吃。  
+- 猪五花肉：约 2 斤
+- 油：100-150ml，色拉油、猪油、花生油都可以
+- 姜： 6 片
+- 冰糖：约 15 块
+- 白砂糖：30g
+- 老抽：15ml
+- 料酒：20ml
+- 凉水：没过食材的量即可，看锅大小准备
+- 开水：没过食材的量即可，看锅大小准备
+- 香叶：4 片
+- 八角：3 个
+- 盐：2-3g
+- 花椒：10g
+distance:0.6563, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: 建议在此之前查看炒[糖色](./../../condiment/简易版炒糖色.md)教程  
+- `猪五花肉`切大块（约 4.5cm ）
+- `生姜`切片（每片厚度约 3mm ）
+- `开水`烧开
+- `凉水`自来水即可
+- `小葱`小葱白色的部分`葱白`切成小段（小葱最佳，大葱也可以）
+- `蒜`中间切开，不要拍扁，否则难以捞出以至最后`收汁`时影响味道
+</pre></div>
+</div>
+<p>根据提供的上下文信息，无法对南派和徽派红烧肉在甜度控制上的区别进行对比。</p>
+<p>原因如下：</p>
+<ol class="arabic simple">
+<li><p><strong>关于南派红烧肉</strong>：信息中明确提到了甜度控制的方法和用量。在“操作”部分强调了需要<strong>炒糖色</strong>，在“计算”部分列明了具体用糖量（<strong>冰糖约15块，白砂糖30g</strong>），这表明南派红烧肉的甜度主要来源于炒糖色和后续添加的糖，且用量明确。</p></li>
+<li><p><strong>关于徽派红烧肉</strong>：提供的信息仅包含菜名、主要食材（五花肉）和一个预估的烹饪难度（★★★★）。<strong>完全没有涉及任何具体的操作步骤、调味方法或用料细节</strong>，因此无法得知其制作过程中是否加糖、何时加糖以及加多少糖。</p></li>
+</ol>
+<p><strong>结论</strong>：由于缺少徽派红烧肉做法的关键信息，无法进行有效的对比分析。要完成此对比，需要补充徽派红烧肉在“操作”和“计算”（尤其是用糖部分）的详细内容。</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>不能关注于问题的多个关键词，即跨chunk 🙌</p></li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;我想要一种不要鹌鹑蛋的红烧肉做法，该怎么做&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.7675, content:主题: 简易红烧肉的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: - 八角：2 个
+- 鹌鹑蛋（可选，没有鹌鹑蛋，可以用同等重量的鸡蛋代替）：0-2 个
+- 豆皮（可选）：0-80g
+- 盐：2-3g
+distance:0.7075, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - `料酒` 5ml
+- 翻炒至上色；
+- 加入`烧好的开水`炖煮 40 分钟（刀工差的同学切的过大请自觉延长炖煮时间），并放入
+- `生姜` 2 片
+- `香叶` 3 片
+- `八角` 2 个
+- 盖上锅盖煮至沸腾后，加入煮好扎好孔的`鹌鹑蛋`和`豆皮`，开中小火，等待 40 分钟。（中途可适当翻搅防止粘锅）；
+- 打开锅盖，待汤汁快没有的时候开大火收汁（切记不可收干）；
+distance:0.7075, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 原材料准备
+内容: - `猪五花肉`切大块（约 4.5cm ，冷冻半小时至一小时更好切）
+- `豆皮`切 2cm 的宽度
+- `生姜`切片（每片厚度约 3mm ）
+- `水`烧开
+- `鹌鹑蛋`煮熟并用`叉子`/`牙签`扎孔（尽量多些好入味）
+- `大葱`大葱白色的部分`葱白`
+distance:0.6947, content:主题: 简易红烧肉的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 注：如果有可能，请尽量把刀磨的锋利一些。
+- 主料：`大肉`、`鸡蛋`（可选）、`豆皮`（可选）
+- 辅料：`生姜`、`冰糖`、`生抽`、`老抽`、`料酒`、`香叶`、`八角`、`盐`、`水`、`葱`（记得要开水）
+distance:0.6572, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - 加入 2-3g `盐`，翻炒一下，就可以出锅了。
+</pre></div>
+</div>
+<p>根据您提供的上下文信息，鹌鹑蛋在“简易红烧肉的做法”中被标记为可选配料（0-2 个），因此您可以直接省略它来制作不带鹌鹑蛋的红烧肉。以下是基于上下文调整后的步骤，严格遵循原有做法，仅移除鹌鹑蛋相关部分：</p>
+<p class="rubric" id="id11">不要鹌鹑蛋的简易红烧肉做法</p>
+<p class="rubric" id="id12">原材料准备（基于上下文调整）</p>
+<ul class="simple">
+<li><p><strong>主料</strong>：猪五花肉切大块（约 4.5cm，冷冻半小时至一小时更好切）。</p></li>
+<li><p><strong>可选配料</strong>：豆皮切 2cm 宽度（如果使用，否则省略）。</p></li>
+<li><p><strong>辅料</strong>：生姜切片（每片厚度约 3mm），葱白（大葱白色部分），烧开水。</p></li>
+<li><p><strong>其他必备原料</strong>：料酒、香叶、八角、盐、冰糖、生抽、老抽、水（具体用量见操作步骤）。</p></li>
+</ul>
+<p class="rubric" id="id13">操作步骤</p>
+<ol class="arabic simple">
+<li><p><strong>预处理</strong>：</p>
+<ul class="simple">
+<li><p>猪五花肉按上述切块，生姜切片，葱白备好。</p></li>
+<li><p>烧开一锅水备用。</p></li>
+<li><p>如果使用豆皮，切条备用（可选）。</p></li>
+</ul>
+</li>
+<li><p><strong>开始制作</strong>：</p>
+<ul class="simple">
+<li><p>锅中加入料酒（5ml），将猪五花肉翻炒至上色。</p></li>
+<li><p>加入烧好的开水，炖煮 40 分钟（如果肉块切得过大，可适当延长炖煮时间）。</p></li>
+<li><p>放入生姜（2 片）、香叶（3 片）、八角（2 个），盖上锅盖煮至沸腾。</p></li>
+<li><p><strong>省略鹌鹑蛋</strong>：沸腾后，只加入豆皮（如果使用），开中小火继续炖煮 40 分钟（中途可适当翻搅防止粘锅）。</p></li>
+<li><p>打开锅盖，待汤汁快收干时，开大火收汁（切记不可完全收干）。</p></li>
+<li><p>最后加入盐（2-3g），翻炒均匀即可出锅。</p></li>
+</ul>
+</li>
+</ol>
+<p class="rubric" id="id14">关键说明</p>
+<ul class="simple">
+<li><p>由于鹌鹑蛋是可选配料，省略后不影响其他步骤，您可根据喜好决定是否使用豆皮。</p></li>
+<li><p>上下文中的“鸡蛋（可选）”在必备原料中提到，但您未指定使用，因此这里不引入鸡蛋，仅基于原有做法调整。</p></li>
+</ul>
+<p>如果您需要其他调整或有更多问题，请随时告知！</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;我想做红烧肉，但我家只有白砂糖没有冰糖，哪种做法最适合我&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.7068, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - 冷水锅中放入切好的`猪五花肉`，加入料酒与葱姜，煮 15 分钟去掉血腥
+- 锅中放入两片`生姜`提味
+- 开中小火后直接加入`五花肉`，不需要放入食用油，每块`五花肉`六个面都煎一下，煎至出油即可
+- 将煎出的油倒出备用，并将`五花肉`推至一边，加入 15g `冰糖`，翻炒至`冰糖`融化；
+- 融化后将五花肉与冰糖炒至融合上色，加入
+- `生抽` 10ml
+- `老抽` 15ml
+distance:0.6933, content:主题: 简易红烧肉的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: 每次制作前需要确定计划做几份。一份正好够 2-3 个人吃。  
+如果只有 1 人食用，可以考虑食材减半。  
+- 猪五花肉：约 3~4 斤
+- 姜： 6 片
+- 冰糖：15 克（约 7 块）
+- 生抽：10ml
+- 老抽：15ml
+- 料酒：5ml
+- 开水：没过食材的量，需要 600ml-900ml
+- 香叶：3 片
+- 八角：2 个
+distance:0.6912, content:主题: 简易红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 开始制作
+内容: - 加入 2-3g `盐`，翻炒一下，就可以出锅了。
+distance:0.6841, content:主题: 湖南家常红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: * 带皮五花肉洗净冷水下锅，加入姜片 2~3 片去腥味，煮到沸腾捞出冷水冲净白沫
+* 五花肉切块，尺寸 1.5cm*1.5cm 块状大小
+* 热锅加入油，加入冰糖小火搅拌至焦糖色即可，加入切好的五花肉，中火翻炒上色
+* 加入备好的姜片、八角、桂皮、生抽、老抽、料酒、干小米椒、盐，小火翻炒 1 分钟，加开水没过肉
+* 加盖中火煮沸，转小火慢顿 30 分钟，慢炖期间，间隔 10 分钟搅拌一次防止粘锅
+distance:0.6758, content:主题: 南派红烧肉的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: - 建议先拿出来一半葱姜，再将剩下的`生姜、葱白、蒜、花椒、八角、香叶`提前放入一个碗中备用
+- 凉水锅中放入切好的五花肉，加入料酒与 2/5 葱姜，煮 15 分钟去掉血腥，捞出来后洗干净；
+- 炒[糖色](./../../condiment/简易版炒糖色.md)，注意采用其中提到的操作 2 来制作糖色。
+</pre></div>
+</div>
+<p>根据提供的上下文信息，<strong>南派红烧肉的做法</strong>最适合您。</p>
+<p>这是因为：</p>
+<ol class="arabic simple">
+<li><p>该做法明确要求<strong>炒糖色</strong>，并参考了“简易版炒糖色”的操作。</p></li>
+<li><p>在烹饪中，炒糖色既可以使用冰糖，也可以使用白砂糖。虽然上下文未明确说明，但白砂糖是炒糖色的常用原料之一。</p></li>
+<li><p>而其他两种做法（简易红烧肉、湖南家常红烧肉）的配料表中均直接指定了使用<strong>冰糖</strong>，并未提供使用白砂糖的替代方案。</p></li>
+</ol>
+<p>因此，您需要选择<strong>南派红烧肉的做法</strong>，并使用您家中的<strong>白砂糖</strong>按照其中提到的“炒糖色”步骤进行操作即可。请注意，白砂糖比冰糖更容易炒糊，需要更精确地控制火候。</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>只得到一些上下文，这是不够的。？？红烧肉很多chunk，感知不到更多信息🙌</p></li>
+</ul>
 </section>
+<hr class="docutils" />
 <section id="ragas">
 <h3>ragas<a class="headerlink" href="#ragas" title="Link to this heading">#</a></h3>
 <p>专门评价rag</p>

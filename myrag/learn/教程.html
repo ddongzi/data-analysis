@@ -51,7 +51,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="more" href="../../more/index.html" />
-    <link rel="prev" title="cookrag-baseline" href="../cookrag/baseline.html" />
+    <link rel="prev" title="cookrag_baseline" href="../cookrag/baseline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -330,7 +330,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../cookrag/baseline.html">cookrag-baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cookrag/baseline.html">cookrag_baseline</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">基本指南</a></li>
 </ul></details></li></ul></div>
 </nav></div>
@@ -2187,6 +2187,16 @@ tensor([[0.1971, 0.1242]])
 </ul>
 <p>现实中，关键词更多指向语义，但是一些产品型号等则需要精确匹配。</p>
 <p>所以要结合两种，来构建检索策略</p>
+<p>embed_encoder = BGEM3EmbeddingFunction(
+model_name=’BAAI/bge-small-zh-v1.5’, # Specify the model name
+device=’cpu’, # Specify the device to use
+use_fp16=False # 使用16位精度，加快速度
+)</p>
+<p>对一个文本进行编码后，产生dense,sparse两种向量。但是不同的文字理解角度</p>
+<ul class="simple">
+<li><p>稠密向量：整体含义</p></li>
+<li><p>稀疏向量：关键词</p></li>
+</ul>
 </section>
 <section id="id12">
 <h3>查询构建<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
@@ -2777,7 +2787,7 @@ Knowledge OK
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">cookrag-baseline</p>
+        <p class="prev-next-title">cookrag_baseline</p>
       </div>
     </a>
     <a class="right-next"
