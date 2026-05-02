@@ -5,6 +5,6 @@ rag相关
    :caption: 内容目录
    :titlesonly: 
 
-   cookrag <cookrag>
-   learn <learn>
+   cookrag/baseline
+   learn/教程
 
