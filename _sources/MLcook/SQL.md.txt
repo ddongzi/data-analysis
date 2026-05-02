@@ -235,3 +235,23 @@ group by DATE(log_time), user_id
     where music_id NOT in (
         select music_id from t3
     )
+
+    HAVING watch_cnt > 5
+
+
+
+
+            # 次数，视频时间排名
+    select
+    cid,  sum(watch_cnt) as pv,
+    row_number() over(order by sum(watch_cnt) desc, min(release_date) desc) as rk
+    from t2
+    group by cid
+
+    先根据cid分组了。 然后计算出现的聚合函数值。
+    得到  cid - sum_watch - min_relea
+    
+    
+
+    WHERE NOT (in_time > '12:00:00' AND out_time < '11:00:00')
+in_time NOT BETWEEN '11:00:00' AND '12:00:00'

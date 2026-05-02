@@ -1,0 +1,1440 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cookrag &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'myrag/cookrag/baseline';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/js/custom.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    rag相关
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    rag相关
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cookrag</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cookrag">
+<h1>cookrag<a class="headerlink" href="#cookrag" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="n">cuda_available</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;是否支持 CUDA (GPU加速): </span><span class="si">{</span><span class="n">cuda_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>是否支持 CUDA (GPU加速): False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/data-analysis/myrag/cookrag
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>知识库<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>数据准备<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>将md文档数据加载为结构化数据。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_documents</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 将每个md文档加载为对应document结构 &quot;&quot;&quot;</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">md_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="s1">&#39;*.md&#39;</span><span class="p">)):</span>
+        <span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">md_file</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="n">documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">docls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="k">for</span> <span class="n">docls</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="n">load_documents</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_doc</span> <span class="o">=</span> <span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_doc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Document(metadata={&#39;source&#39;: &#39;/home/dong/data-analysis/myrag/cookrag/data/无骨鸡爪.md&#39;}, page_content=&#39;# 无骨鸡爪的做法\n\n![无骨鸡爪成品](./无骨鸡爪.jpg)\n**图片里的颜色比较浅，家里人爱吃酱油少的**\n\n这是一道做法简单但消耗体力和耐力的无骨鸡爪，酸辣开胃，Q 弹爽口，第一次做的话总耗时 8 个小时 15 分钟。\n\n预估烹饪难度：★★★★★\n\n## 必备原料和工具\n\n- 鸡爪\n- 姜\n- 料酒\n- 大葱\n- 大蒜\n- 小米辣\n- 洋葱\n- 生抽\n- 蚝油\n- 黑醋（推荐陈醋）\n- 白糖\n- 盐\n- 花椒油\n- 香菜\n- 柠檬\n- 折耳根\n\n## 计算\n\n一份正好够 2-3 个人吃。\n\n- 鸡爪 1kg\n- 姜 4 片\n- 料酒 65g\n- 大葱 3 段（5cm 一段）\n- 大蒜 10 瓣\n- 小米辣 4 个少辣，6 个中辣，12 个大辣（推荐大辣）\n- 洋葱 （半个）\n- 生抽 75g = 15g * 5\n- 蚝油 30g = 15g * 2\n- 黑醋（推荐陈醋） 50g\n- 白糖 10g\n- 盐 3g\n- 花椒油 10ml\n- 香菜 3 颗\n- 柠檬 2 颗（以 1 颗为单位来调整酸度）\n- 折耳根 10g\n\n## 操作\n\n### 鸡爪处理\n\n- 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**\n- 用水把他们洗干净，放一边\n- 把`鸡爪`放入大锅中，准备去腥味\n- `大葱`，`料酒`，`姜` 全放进去\n- 加水没过`鸡爪`\n- 大火煮开 **中途可以把浮末捞起来**\n- 水开**100度，沸腾**后等 10 分钟\n- 关火，捞出来，把水沥干，洗干净，放入盆里\n\n### 去骨\n\n这一步可以省略，此步骤大约花费 2 小时\n\n- 放入冰箱，**冷冻层** 20 分钟\n- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨\n- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**\n- 再从手背部用刀分划开至整个手臂\n- 把每只手指关节处都掰一掰**按手指出声音时那种**\n- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分\n- 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了\n- 放入碗中，备用\n\n### 调配腌料\n\n- `小米辣` 切均匀小颗\n- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎\n- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里\n- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去\n- 抓拌均匀\n- 放入冰箱一个晚上（6 个小时）\n- 调配好后全部放入准备好的鸡爪\n\n## 附加内容\n\n- 操作时，需要注意观察沸腾的水位线，如发现低于 3/4 的食材应加热水至没过食材。\n- 鸡爪去骨教程 ：[bili_89324373958](https://www.bilibili.com/video/BV1t44y117D8?share_source=copy_web)\n\n如果您遵循本指南的制作流程而发现有问题或可以改进的流程，请提出 Issue 或 Pull request 。\n&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>分块<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MarkdownHeaderTextSplitter</span></code>基于文档结构的分块。
+我们通过header等分割，基本只有3级。</p></li>
+</ol>
+<ul class="simple">
+<li><p>结果依然是docuemtn</p></li>
+<li><p>这是不够的，因为很长内容，需要二次分块</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">RecursiveCharacterTextSplitter</span></code> 指定块大小</p></li>
+</ol>
+<p>综上我们得到一个分块器：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkdownHeaderTextSplitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">splitter_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 对一些document分块 &quot;&quot;&quot;</span>
+    <span class="n">headers_to_split_on</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 1&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 2&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;###&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 3&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">markdown_splitter</span> <span class="o">=</span> <span class="n">MarkdownHeaderTextSplitter</span><span class="p">(</span><span class="n">headers_to_split_on</span><span class="p">)</span>
+    
+    <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+        <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;，&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="n">all_sections</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+        <span class="n">sections</span>  <span class="o">=</span> <span class="n">markdown_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
+        <span class="n">all_sections</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sections</span><span class="p">)</span>
+
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">all_sections</span><span class="p">)</span>
+
+    <span class="c1"># page_content会丢失层级信息，只保留内容. </span>
+    <span class="c1"># 这导致一勺盐不知道是红烧肉还是豆腐</span>
+    <span class="c1"># 需要手动为其注入</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 1&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 2&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
+        <span class="n">h3</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 3&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;主题: </span><span class="si">{</span><span class="n">h1</span><span class="si">}</span><span class="s2"> &gt; 章节: </span><span class="si">{</span><span class="n">h2</span><span class="si">}</span><span class="s2"> &gt; 细节: </span><span class="si">{</span><span class="n">h3</span><span class="si">}</span><span class="se">\n</span><span class="s2">内容: &quot;</span>
+        <span class="n">chunk</span><span class="o">.</span><span class="n">page_content</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">chunk</span><span class="o">.</span><span class="n">page_content</span> 
+    <span class="k">return</span> <span class="n">chunks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="n">load_documents</span><span class="p">()</span>
+<span class="n">splitted_documents</span> <span class="o">=</span> <span class="n">splitter_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">splitted_documents</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2885
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">splitted_documents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Document(metadata={&#39;Header 1&#39;: &#39;无骨鸡爪的做法&#39;}, page_content=&#39;主题: 无骨鸡爪的做法 &gt; 章节: 无 &gt; 细节: 无\n内容: ![无骨鸡爪成品](./无骨鸡爪.jpg)\n**图片里的颜色比较浅，家里人爱吃酱油少的**  \n这是一道做法简单但消耗体力和耐力的无骨鸡爪，酸辣开胃，Q 弹爽口，第一次做的话总耗时 8 个小时 15 分钟。  \n预估烹饪难度：★★★★★&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>向量嵌入<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>向量嵌入模型只能接受 字符串或者字符串列表，不是document对象。</p>
+<p>我们需要转换</p>
+<p>BGE-M3模型很重，在进行向量嵌入很耗时。
+<a class="reference external" href="https://github.com/FlagOpen/FlagEmbedding/blob/master/README_zh.md">选择模型</a>
+BAAI/bge-small-zh-v1.5</p>
+</section>
+<section id="id5">
+<h3>构造向量数据库<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus.model.hybrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">BGEM3EmbeddingFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">MilvusClient</span><span class="p">,</span><span class="n">FieldSchema</span><span class="p">,</span> <span class="n">CollectionSchema</span><span class="p">,</span><span class="n">DataType</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;milvus_cookrag.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embed_encoder</span> <span class="o">=</span> <span class="n">BGEM3EmbeddingFunction</span><span class="p">(</span> 
+    <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;BAAI/bge-small-zh-v1.5&#39;</span><span class="p">,</span> <span class="c1"># Specify the model name</span>
+            <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="c1"># Specify the device to use</span>
+            <span class="n">use_fp16</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># 使用16位精度，加快速度</span>
+            <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetching 13 files: 100%|██████████| 13/13 [00:00&lt;00:00, 106288.41it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;cookrag_ct&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">has_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">):</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义数据库格式</span>
+<span class="n">fileds</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">embed_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">]),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>TODO ? 如何适配 content 1024 和向量1024</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">fileds</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;cookrag&#39;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>为向量创建索引</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
+<span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
+    <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
+    <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
+<span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;collection_name&#39;: &#39;cookrag_ct&#39;,
+ &#39;auto_id&#39;: True,
+ &#39;num_shards&#39;: 0,
+ &#39;description&#39;: &#39;cookrag&#39;,
+ &#39;fields&#39;: [{&#39;field_id&#39;: 100,
+   &#39;name&#39;: &#39;id&#39;,
+   &#39;description&#39;: &#39;&#39;,
+   &#39;type&#39;: &lt;DataType.INT64: 5&gt;,
+   &#39;params&#39;: {},
+   &#39;auto_id&#39;: True,
+   &#39;is_primary&#39;: True},
+  {&#39;field_id&#39;: 101,
+   &#39;name&#39;: &#39;content&#39;,
+   &#39;description&#39;: &#39;&#39;,
+   &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;,
+   &#39;params&#39;: {&#39;max_length&#39;: 1024}},
+  {&#39;field_id&#39;: 102,
+   &#39;name&#39;: &#39;dense_vector&#39;,
+   &#39;description&#39;: &#39;&#39;,
+   &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;,
+   &#39;params&#39;: {&#39;dim&#39;: 512}}],
+ &#39;functions&#39;: [],
+ &#39;aliases&#39;: [],
+ &#39;collection_id&#39;: 0,
+ &#39;consistency_level&#39;: 0,
+ &#39;properties&#39;: {},
+ &#39;num_partitions&#39;: 0,
+ &#39;enable_dynamic_field&#39;: False,
+ &#39;enable_namespace&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<p>现在我们创建好了这个向量数据库, 将之前分块插入</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_to_insert</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># embedd 一起处理</span>
+<span class="n">all_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">sdoc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">sdoc</span> <span class="ow">in</span> <span class="n">splitted_documents</span><span class="p">]</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="p">(</span><span class="n">all_contents</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_contents</span><span class="p">):</span>
+    <span class="n">data_to_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;dense_vector&#39;</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+        <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">content</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pre tokenize:   0%|          | 0/181 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pre tokenize: 100%|██████████| 181/181 [00:00&lt;00:00, 490.41it/s]
+You&#39;re using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Inference Embeddings: 100%|██████████| 181/181 [00:58&lt;00:00,  3.11it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_to_insert</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1777696511.563046    7464 chttp2_transport.cc:1182] unix:/tmp/tmpj64ttm_5_milvus_cookrag.db.sock: Got goaway [11] err=UNAVAILABLE:GOAWAY received; Error code: 11; Debug Text: too_many_pings {grpc_status:14, http2_error:11, created_time:&quot;2026-05-02T12:35:11.563028731+08:00&quot;}
+E0000 00:00:1777696511.563121    7464 chttp2_transport.cc:1210] unix:/tmp/tmpj64ttm_5_milvus_cookrag.db.sock: Received a GOAWAY with error code ENHANCE_YOUR_CALM and debug data equal to &quot;too_many_pings&quot;. Current keepalive time (before throttling): 10000ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;insert_count&#39;: 2885, &#39;ids&#39;: [466012474396143794, 466012474396143795, 466012474396143796, 466012474396143797, 466012474396143798, 466012474396143799, 466012474396143800, 466012474396143801, 466012474396143802, 466012474396143803, 466012474396143804, 466012474396143805, 466012474396143806, 466012474396143807, 466012474396143808, 466012474396143809, 466012474396143810, 466012474396143811, 466012474396143812, 466012474396143813, 466012474396143814, 466012474396143815, 466012474396143816, 466012474396143817, 466012474396143818, 466012474396143819, 466012474396143820, 466012474396143821, 466012474396143822, 466012474396143823, 466012474396143824, 466012474396143825, 466012474396143826, 466012474396143827, 466012474396143828, 466012474396143829, 466012474396143830, 466012474396143831, 466012474396143832, 466012474396143833, 466012474396143834, 466012474396143835, 466012474396143836, 466012474396143837, 466012474396143838, 466012474396143839, 466012474396143840, 466012474396143841, 466012474396143842, 466012474396143843, 466012474396143844, 466012474396143845, 466012474396143846, 466012474396143847, 466012474396143848, 466012474396143849, 466012474396143850, 466012474396143851, 466012474396143852, 466012474396143853, 466012474396143854, 466012474396143855, 466012474396143856, 466012474396143857, 466012474396143858, 466012474396143859, 466012474396143860, 466012474396143861, 466012474396143862, 466012474396143863, 466012474396143864, 466012474396143865, 466012474396143866, 466012474396143867, 466012474396143868, 466012474396143869, 466012474396143870, 466012474396143871, 466012474396143872, 466012474396143873, 466012474396143874, 466012474396143875, 466012474396143876, 466012474396143877, 466012474396143878, 466012474396143879, 466012474396143880, 466012474396143881, 466012474396143882, 466012474396143883, 466012474396143884, 466012474396143885, 466012474396143886, 466012474396143887, 466012474396143888, 466012474396143889, 466012474396143890, 466012474396143891, 466012474396143892, 466012474396143893, 466012474396143894, 466012474396143895, 466012474396143896, 466012474396143897, 466012474396143898, 466012474396143899, 466012474396143900, 466012474396143901, 466012474396143902, 466012474396143903, 466012474396143904, 466012474396143905, 466012474396143906, 466012474396143907, 466012474396143908, 466012474396143909, 466012474396143910, 466012474396143911, 466012474396143912, 466012474396143913, 466012474396143914, 466012474396143915, 466012474396143916, 466012474396143917, 466012474396143918, 466012474396143919, 466012474396143920, 466012474396143921, 466012474396143922, 466012474396143923, 466012474396143924, 466012474396143925, 466012474396143926, 466012474396143927, 466012474396143928, 466012474396143929, 466012474396143930, 466012474396143931, 466012474396143932, 466012474396143933, 466012474396143934, 466012474396143935, 466012474396143936, 466012474396143937, 466012474396143938, 466012474396143939, 466012474396143940, 466012474396143941, 466012474396143942, 466012474396143943, 466012474396143944, 466012474396143945, 466012474396143946, 466012474396143947, 466012474396143948, 466012474396143949, 466012474396143950, 466012474396143951, 466012474396143952, 466012474396143953, 466012474396143954, 466012474396143955, 466012474396143956, 466012474396143957, 466012474396143958, 466012474396143959, 466012474396143960, 466012474396143961, 466012474396143962, 466012474396143963, 466012474396143964, 466012474396143965, 466012474396143966, 466012474396143967, 466012474396143968, 466012474396143969, 466012474396143970, 466012474396143971, 466012474396143972, 466012474396143973, 466012474396143974, 466012474396143975, 466012474396143976, 466012474396143977, 466012474396143978, 466012474396143979, 466012474396143980, 466012474396143981, 466012474396143982, 466012474396143983, 466012474396143984, 466012474396143985, 466012474396143986, 466012474396143987, 466012474396143988, 466012474396143989, 466012474396143990, 466012474396143991, 466012474396143992, 466012474396143993, 466012474396143994, 466012474396143995, 466012474396143996, 466012474396143997, 466012474396143998, 466012474396143999, 466012474396144000, 466012474396144001, 466012474396144002, 466012474396144003, 466012474396144004, 466012474396144005, 466012474396144006, 466012474396144007, 466012474396144008, 466012474396144009, 466012474396144010, 466012474396144011, 466012474396144012, 466012474396144013, 466012474396144014, 466012474396144015, 466012474396144016, 466012474396144017, 466012474396144018, 466012474396144019, 466012474396144020, 466012474396144021, 466012474396144022, 466012474396144023, 466012474396144024, 466012474396144025, 466012474396144026, 466012474396144027, 466012474396144028, 466012474396144029, 466012474396144030, 466012474396144031, 466012474396144032, 466012474396144033, 466012474396144034, 466012474396144035, 466012474396144036, 466012474396144037, 466012474396144038, 466012474396144039, 466012474396144040, 466012474396144041, 466012474396144042, 466012474396144043, 466012474396144044, 466012474396144045, 466012474396144046, 466012474396144047, 466012474396144048, 466012474396144049, 466012474396144050, 466012474396144051, 466012474396144052, 466012474396144053, 466012474396144054, 466012474396144055, 466012474396144056, 466012474396144057, 466012474396144058, 466012474396144059, 466012474396144060, 466012474396144061, 466012474396144062, 466012474396144063, 466012474396144064, 466012474396144065, 466012474396144066, 466012474396144067, 466012474396144068, 466012474396144069, 466012474396144070, 466012474396144071, 466012474396144072, 466012474396144073, 466012474396144074, 466012474396144075, 466012474396144076, 466012474396144077, 466012474396144078, 466012474396144079, 466012474396144080, 466012474396144081, 466012474396144082, 466012474396144083, 466012474396144084, 466012474396144085, 466012474396144086, 466012474396144087, 466012474396144088, 466012474396144089, 466012474396144090, 466012474396144091, 466012474396144092, 466012474396144093, 466012474396144094, 466012474396144095, 466012474396144096, 466012474396144097, 466012474396144098, 466012474396144099, 466012474396144100, 466012474396144101, 466012474396144102, 466012474396144103, 466012474396144104, 466012474396144105, 466012474396144106, 466012474396144107, 466012474396144108, 466012474396144109, 466012474396144110, 466012474396144111, 466012474396144112, 466012474396144113, 466012474396144114, 466012474396144115, 466012474396144116, 466012474396144117, 466012474396144118, 466012474396144119, 466012474396144120, 466012474396144121, 466012474396144122, 466012474396144123, 466012474396144124, 466012474396144125, 466012474396144126, 466012474396144127, 466012474396144128, 466012474396144129, 466012474396144130, 466012474396144131, 466012474396144132, 466012474396144133, 466012474396144134, 466012474396144135, 466012474396144136, 466012474396144137, 466012474396144138, 466012474396144139, 466012474396144140, 466012474396144141, 466012474396144142, 466012474396144143, 466012474396144144, 466012474396144145, 466012474396144146, 466012474396144147, 466012474396144148, 466012474396144149, 466012474396144150, 466012474396144151, 466012474396144152, 466012474396144153, 466012474396144154, 466012474396144155, 466012474396144156, 466012474396144157, 466012474396144158, 466012474396144159, 466012474396144160, 466012474396144161, 466012474396144162, 466012474396144163, 466012474396144164, 466012474396144165, 466012474396144166, 466012474396144167, 466012474396144168, 466012474396144169, 466012474396144170, 466012474396144171, 466012474396144172, 466012474396144173, 466012474396144174, 466012474396144175, 466012474396144176, 466012474396144177, 466012474396144178, 466012474396144179, 466012474396144180, 466012474396144181, 466012474396144182, 466012474396144183, 466012474396144184, 466012474396144185, 466012474396144186, 466012474396144187, 466012474396144188, 466012474396144189, 466012474396144190, 466012474396144191, 466012474396144192, 466012474396144193, 466012474396144194, 466012474396144195, 466012474396144196, 466012474396144197, 466012474396144198, 466012474396144199, 466012474396144200, 466012474396144201, 466012474396144202, 466012474396144203, 466012474396144204, 466012474396144205, 466012474396144206, 466012474396144207, 466012474396144208, 466012474396144209, 466012474396144210, 466012474396144211, 466012474396144212, 466012474396144213, 466012474396144214, 466012474396144215, 466012474396144216, 466012474396144217, 466012474396144218, 466012474396144219, 466012474396144220, 466012474396144221, 466012474396144222, 466012474396144223, 466012474396144224, 466012474396144225, 466012474396144226, 466012474396144227, 466012474396144228, 466012474396144229, 466012474396144230, 466012474396144231, 466012474396144232, 466012474396144233, 466012474396144234, 466012474396144235, 466012474396144236, 466012474396144237, 466012474396144238, 466012474396144239, 466012474396144240, 466012474396144241, 466012474396144242, 466012474396144243, 466012474396144244, 466012474396144245, 466012474396144246, 466012474396144247, 466012474396144248, 466012474396144249, 466012474396144250, 466012474396144251, 466012474396144252, 466012474396144253, 466012474396144254, 466012474396144255, 466012474396144256, 466012474396144257, 466012474396144258, 466012474396144259, 466012474396144260, 466012474396144261, 466012474396144262, 466012474396144263, 466012474396144264, 466012474396144265, 466012474396144266, 466012474396144267, 466012474396144268, 466012474396144269, 466012474396144270, 466012474396144271, 466012474396144272, 466012474396144273, 466012474396144274, 466012474396144275, 466012474396144276, 466012474396144277, 466012474396144278, 466012474396144279, 466012474396144280, 466012474396144281, 466012474396144282, 466012474396144283, 466012474396144284, 466012474396144285, 466012474396144286, 466012474396144287, 466012474396144288, 466012474396144289, 466012474396144290, 466012474396144291, 466012474396144292, 466012474396144293, 466012474396144294, 466012474396144295, 466012474396144296, 466012474396144297, 466012474396144298, 466012474396144299, 466012474396144300, 466012474396144301, 466012474396144302, 466012474396144303, 466012474396144304, 466012474396144305, 466012474396144306, 466012474396144307, 466012474396144308, 466012474396144309, 466012474396144310, 466012474396144311, 466012474396144312, 466012474396144313, 466012474396144314, 466012474396144315, 466012474396144316, 466012474396144317, 466012474396144318, 466012474396144319, 466012474396144320, 466012474396144321, 466012474396144322, 466012474396144323, 466012474396144324, 466012474396144325, 466012474396144326, 466012474396144327, 466012474396144328, 466012474396144329, 466012474396144330, 466012474396144331, 466012474396144332, 466012474396144333, 466012474396144334, 466012474396144335, 466012474396144336, 466012474396144337, 466012474396144338, 466012474396144339, 466012474396144340, 466012474396144341, 466012474396144342, 466012474396144343, 466012474396144344, 466012474396144345, 466012474396144346, 466012474396144347, 466012474396144348, 466012474396144349, 466012474396144350, 466012474396144351, 466012474396144352, 466012474396144353, 466012474396144354, 466012474396144355, 466012474396144356, 466012474396144357, 466012474396144358, 466012474396144359, 466012474396144360, 466012474396144361, 466012474396144362, 466012474396144363, 466012474396144364, 466012474396144365, 466012474396144366, 466012474396144367, 466012474396144368, 466012474396144369, 466012474396144370, 466012474396144371, 466012474396144372, 466012474396144373, 466012474396144374, 466012474396144375, 466012474396144376, 466012474396144377, 466012474396144378, 466012474396144379, 466012474396144380, 466012474396144381, 466012474396144382, 466012474396144383, 466012474396144384, 466012474396144385, 466012474396144386, 466012474396144387, 466012474396144388, 466012474396144389, 466012474396144390, 466012474396144391, 466012474396144392, 466012474396144393, 466012474396144394, 466012474396144395, 466012474396144396, 466012474396144397, 466012474396144398, 466012474396144399, 466012474396144400, 466012474396144401, 466012474396144402, 466012474396144403, 466012474396144404, 466012474396144405, 466012474396144406, 466012474396144407, 466012474396144408, 466012474396144409, 466012474396144410, 466012474396144411, 466012474396144412, 466012474396144413, 466012474396144414, 466012474396144415, 466012474396144416, 466012474396144417, 466012474396144418, 466012474396144419, 466012474396144420, 466012474396144421, 466012474396144422, 466012474396144423, 466012474396144424, 466012474396144425, 466012474396144426, 466012474396144427, 466012474396144428, 466012474396144429, 466012474396144430, 466012474396144431, 466012474396144432, 466012474396144433, 466012474396144434, 466012474396144435, 466012474396144436, 466012474396144437, 466012474396144438, 466012474396144439, 466012474396144440, 466012474396144441, 466012474396144442, 466012474396144443, 466012474396144444, 466012474396144445, 466012474396144446, 466012474396144447, 466012474396144448, 466012474396144449, 466012474396144450, 466012474396144451, 466012474396144452, 466012474396144453, 466012474396144454, 466012474396144455, 466012474396144456, 466012474396144457, 466012474396144458, 466012474396144459, 466012474396144460, 466012474396144461, 466012474396144462, 466012474396144463, 466012474396144464, 466012474396144465, 466012474396144466, 466012474396144467, 466012474396144468, 466012474396144469, 466012474396144470, 466012474396144471, 466012474396144472, 466012474396144473, 466012474396144474, 466012474396144475, 466012474396144476, 466012474396144477, 466012474396144478, 466012474396144479, 466012474396144480, 466012474396144481, 466012474396144482, 466012474396144483, 466012474396144484, 466012474396144485, 466012474396144486, 466012474396144487, 466012474396144488, 466012474396144489, 466012474396144490, 466012474396144491, 466012474396144492, 466012474396144493, 466012474396144494, 466012474396144495, 466012474396144496, 466012474396144497, 466012474396144498, 466012474396144499, 466012474396144500, 466012474396144501, 466012474396144502, 466012474396144503, 466012474396144504, 466012474396144505, 466012474396144506, 466012474396144507, 466012474396144508, 466012474396144509, 466012474396144510, 466012474396144511, 466012474396144512, 466012474396144513, 466012474396144514, 466012474396144515, 466012474396144516, 466012474396144517, 466012474396144518, 466012474396144519, 466012474396144520, 466012474396144521, 466012474396144522, 466012474396144523, 466012474396144524, 466012474396144525, 466012474396144526, 466012474396144527, 466012474396144528, 466012474396144529, 466012474396144530, 466012474396144531, 466012474396144532, 466012474396144533, 466012474396144534, 466012474396144535, 466012474396144536, 466012474396144537, 466012474396144538, 466012474396144539, 466012474396144540, 466012474396144541, 466012474396144542, 466012474396144543, 466012474396144544, 466012474396144545, 466012474396144546, 466012474396144547, 466012474396144548, 466012474396144549, 466012474396144550, 466012474396144551, 466012474396144552, 466012474396144553, 466012474396144554, 466012474396144555, 466012474396144556, 466012474396144557, 466012474396144558, 466012474396144559, 466012474396144560, 466012474396144561, 466012474396144562, 466012474396144563, 466012474396144564, 466012474396144565, 466012474396144566, 466012474396144567, 466012474396144568, 466012474396144569, 466012474396144570, 466012474396144571, 466012474396144572, 466012474396144573, 466012474396144574, 466012474396144575, 466012474396144576, 466012474396144577, 466012474396144578, 466012474396144579, 466012474396144580, 466012474396144581, 466012474396144582, 466012474396144583, 466012474396144584, 466012474396144585, 466012474396144586, 466012474396144587, 466012474396144588, 466012474396144589, 466012474396144590, 466012474396144591, 466012474396144592, 466012474396144593, 466012474396144594, 466012474396144595, 466012474396144596, 466012474396144597, 466012474396144598, 466012474396144599, 466012474396144600, 466012474396144601, 466012474396144602, 466012474396144603, 466012474396144604, 466012474396144605, 466012474396144606, 466012474396144607, 466012474396144608, 466012474396144609, 466012474396144610, 466012474396144611, 466012474396144612, 466012474396144613, 466012474396144614, 466012474396144615, 466012474396144616, 466012474396144617, 466012474396144618, 466012474396144619, 466012474396144620, 466012474396144621, 466012474396144622, 466012474396144623, 466012474396144624, 466012474396144625, 466012474396144626, 466012474396144627, 466012474396144628, 466012474396144629, 466012474396144630, 466012474396144631, 466012474396144632, 466012474396144633, 466012474396144634, 466012474396144635, 466012474396144636, 466012474396144637, 466012474396144638, 466012474396144639, 466012474396144640, 466012474396144641, 466012474396144642, 466012474396144643, 466012474396144644, 466012474396144645, 466012474396144646, 466012474396144647, 466012474396144648, 466012474396144649, 466012474396144650, 466012474396144651, 466012474396144652, 466012474396144653, 466012474396144654, 466012474396144655, 466012474396144656, 466012474396144657, 466012474396144658, 466012474396144659, 466012474396144660, 466012474396144661, 466012474396144662, 466012474396144663, 466012474396144664, 466012474396144665, 466012474396144666, 466012474396144667, 466012474396144668, 466012474396144669, 466012474396144670, 466012474396144671, 466012474396144672, 466012474396144673, 466012474396144674, 466012474396144675, 466012474396144676, 466012474396144677, 466012474396144678, 466012474396144679, 466012474396144680, 466012474396144681, 466012474396144682, 466012474396144683, 466012474396144684, 466012474396144685, 466012474396144686, 466012474396144687, 466012474396144688, 466012474396144689, 466012474396144690, 466012474396144691, 466012474396144692, 466012474396144693, 466012474396144694, 466012474396144695, 466012474396144696, 466012474396144697, 466012474396144698, 466012474396144699, 466012474396144700, 466012474396144701, 466012474396144702, 466012474396144703, 466012474396144704, 466012474396144705, 466012474396144706, 466012474396144707, 466012474396144708, 466012474396144709, 466012474396144710, 466012474396144711, 466012474396144712, 466012474396144713, 466012474396144714, 466012474396144715, 466012474396144716, 466012474396144717, 466012474396144718, 466012474396144719, 466012474396144720, 466012474396144721, 466012474396144722, 466012474396144723, 466012474396144724, 466012474396144725, 466012474396144726, 466012474396144727, 466012474396144728, 466012474396144729, 466012474396144730, 466012474396144731, 466012474396144732, 466012474396144733, 466012474396144734, 466012474396144735, 466012474396144736, 466012474396144737, 466012474396144738, 466012474396144739, 466012474396144740, 466012474396144741, 466012474396144742, 466012474396144743, 466012474396144744, 466012474396144745, 466012474396144746, 466012474396144747, 466012474396144748, 466012474396144749, 466012474396144750, 466012474396144751, 466012474396144752, 466012474396144753, 466012474396144754, 466012474396144755, 466012474396144756, 466012474396144757, 466012474396144758, 466012474396144759, 466012474396144760, 466012474396144761, 466012474396144762, 466012474396144763, 466012474396144764, 466012474396144765, 466012474396144766, 466012474396144767, 466012474396144768, 466012474396144769, 466012474396144770, 466012474396144771, 466012474396144772, 466012474396144773, 466012474396144774, 466012474396144775, 466012474396144776, 466012474396144777, 466012474396144778, 466012474396144779, 466012474396144780, 466012474396144781, 466012474396144782, 466012474396144783, 466012474396144784, 466012474396144785, 466012474396144786, 466012474396144787, 466012474396144788, 466012474396144789, 466012474396144790, 466012474396144791, 466012474396144792, 466012474396144793, 466012474396144794, 466012474396144795, 466012474396144796, 466012474396144797, 466012474396144798, 466012474396144799, 466012474396144800, 466012474396144801, 466012474396144802, 466012474396144803, 466012474396144804, 466012474396144805, 466012474396144806, 466012474396144807, 466012474396144808, 466012474396144809, 466012474396144810, 466012474396144811, 466012474396144812, 466012474396144813, 466012474396144814, 466012474396144815, 466012474396144816, 466012474396144817, 466012474396144818, 466012474396144819, 466012474396144820, 466012474396144821, 466012474396144822, 466012474396144823, 466012474396144824, 466012474396144825, 466012474396144826, 466012474396144827, 466012474396144828, 466012474396144829, 466012474396144830, 466012474396144831, 466012474396144832, 466012474396144833, 466012474396144834, 466012474396144835, 466012474396144836, 466012474396144837, 466012474396144838, 466012474396144839, 466012474396144840, 466012474396144841, 466012474396144842, 466012474396144843, 466012474396144844, 466012474396144845, 466012474396144846, 466012474396144847, 466012474396144848, 466012474396144849, 466012474396144850, 466012474396144851, 466012474396144852, 466012474396144853, 466012474396144854, 466012474396144855, 466012474396144856, 466012474396144857, 466012474396144858, 466012474396144859, 466012474396144860, 466012474396144861, 466012474396144862, 466012474396144863, 466012474396144864, 466012474396144865, 466012474396144866, 466012474396144867, 466012474396144868, 466012474396144869, 466012474396144870, 466012474396144871, 466012474396144872, 466012474396144873, 466012474396144874, 466012474396144875, 466012474396144876, 466012474396144877, 466012474396144878, 466012474396144879, 466012474396144880, 466012474396144881, 466012474396144882, 466012474396144883, 466012474396144884, 466012474396144885, 466012474396144886, 466012474396144887, 466012474396144888, 466012474396144889, 466012474396144890, 466012474396144891, 466012474396144892, 466012474396144893, 466012474396144894, 466012474396144895, 466012474396144896, 466012474396144897, 466012474396144898, 466012474396144899, 466012474396144900, 466012474396144901, 466012474396144902, 466012474396144903, 466012474396144904, 466012474396144905, 466012474396144906, 466012474396144907, 466012474396144908, 466012474396144909, 466012474396144910, 466012474396144911, 466012474396144912, 466012474396144913, 466012474396144914, 466012474396144915, 466012474396144916, 466012474396144917, 466012474396144918, 466012474396144919, 466012474396144920, 466012474396144921, 466012474396144922, 466012474396144923, 466012474396144924, 466012474396144925, 466012474396144926, 466012474396144927, 466012474396144928, 466012474396144929, 466012474396144930, 466012474396144931, 466012474396144932, 466012474396144933, 466012474396144934, 466012474396144935, 466012474396144936, 466012474396144937, 466012474396144938, 466012474396144939, 466012474396144940, 466012474396144941, 466012474396144942, 466012474396144943, 466012474396144944, 466012474396144945, 466012474396144946, 466012474396144947, 466012474396144948, 466012474396144949, 466012474396144950, 466012474396144951, 466012474396144952, 466012474396144953, 466012474396144954, 466012474396144955, 466012474396144956, 466012474396144957, 466012474396144958, 466012474396144959, 466012474396144960, 466012474396144961, 466012474396144962, 466012474396144963, 466012474396144964, 466012474396144965, 466012474396144966, 466012474396144967, 466012474396144968, 466012474396144969, 466012474396144970, 466012474396144971, 466012474396144972, 466012474396144973, 466012474396144974, 466012474396144975, 466012474396144976, 466012474396144977, 466012474396144978, 466012474396144979, 466012474396144980, 466012474396144981, 466012474396144982, 466012474396144983, 466012474396144984, 466012474396144985, 466012474396144986, 466012474396144987, 466012474396144988, 466012474396144989, 466012474396144990, 466012474396144991, 466012474396144992, 466012474396144993, 466012474396144994, 466012474396144995, 466012474396144996, 466012474396144997, 466012474396144998, 466012474396144999, 466012474396145000, 466012474396145001, 466012474396145002, 466012474396145003, 466012474396145004, 466012474396145005, 466012474396145006, 466012474396145007, 466012474396145008, 466012474396145009, 466012474396145010, 466012474396145011, 466012474396145012, 466012474396145013, 466012474396145014, 466012474396145015, 466012474396145016, 466012474396145017, 466012474396145018, 466012474396145019, 466012474396145020, 466012474396145021, 466012474396145022, 466012474396145023, 466012474396145024, 466012474396145025, 466012474396145026, 466012474396145027, 466012474396145028, 466012474396145029, 466012474396145030, 466012474396145031, 466012474396145032, 466012474396145033, 466012474396145034, 466012474396145035, 466012474396145036, 466012474396145037, 466012474396145038, 466012474396145039, 466012474396145040, 466012474396145041, 466012474396145042, 466012474396145043, 466012474396145044, 466012474396145045, 466012474396145046, 466012474396145047, 466012474396145048, 466012474396145049, 466012474396145050, 466012474396145051, 466012474396145052, 466012474396145053, 466012474396145054, 466012474396145055, 466012474396145056, 466012474396145057, 466012474396145058, 466012474396145059, 466012474396145060, 466012474396145061, 466012474396145062, 466012474396145063, 466012474396145064, 466012474396145065, 466012474396145066, 466012474396145067, 466012474396145068, 466012474396145069, 466012474396145070, 466012474396145071, 466012474396145072, 466012474396145073, 466012474396145074, 466012474396145075, 466012474396145076, 466012474396145077, 466012474396145078, 466012474396145079, 466012474396145080, 466012474396145081, 466012474396145082, 466012474396145083, 466012474396145084, 466012474396145085, 466012474396145086, 466012474396145087, 466012474396145088, 466012474396145089, 466012474396145090, 466012474396145091, 466012474396145092, 466012474396145093, 466012474396145094, 466012474396145095, 466012474396145096, 466012474396145097, 466012474396145098, 466012474396145099, 466012474396145100, 466012474396145101, 466012474396145102, 466012474396145103, 466012474396145104, 466012474396145105, 466012474396145106, 466012474396145107, 466012474396145108, 466012474396145109, 466012474396145110, 466012474396145111, 466012474396145112, 466012474396145113, 466012474396145114, 466012474396145115, 466012474396145116, 466012474396145117, 466012474396145118, 466012474396145119, 466012474396145120, 466012474396145121, 466012474396145122, 466012474396145123, 466012474396145124, 466012474396145125, 466012474396145126, 466012474396145127, 466012474396145128, 466012474396145129, 466012474396145130, 466012474396145131, 466012474396145132, 466012474396145133, 466012474396145134, 466012474396145135, 466012474396145136, 466012474396145137, 466012474396145138, 466012474396145139, 466012474396145140, 466012474396145141, 466012474396145142, 466012474396145143, 466012474396145144, 466012474396145145, 466012474396145146, 466012474396145147, 466012474396145148, 466012474396145149, 466012474396145150, 466012474396145151, 466012474396145152, 466012474396145153, 466012474396145154, 466012474396145155, 466012474396145156, 466012474396145157, 466012474396145158, 466012474396145159, 466012474396145160, 466012474396145161, 466012474396145162, 466012474396145163, 466012474396145164, 466012474396145165, 466012474396145166, 466012474396145167, 466012474396145168, 466012474396145169, 466012474396145170, 466012474396145171, 466012474396145172, 466012474396145173, 466012474396145174, 466012474396145175, 466012474396145176, 466012474396145177, 466012474396145178, 466012474396145179, 466012474396145180, 466012474396145181, 466012474396145182, 466012474396145183, 466012474396145184, 466012474396145185, 466012474396145186, 466012474396145187, 466012474396145188, 466012474396145189, 466012474396145190, 466012474396145191, 466012474396145192, 466012474396145193, 466012474396145194, 466012474396145195, 466012474396145196, 466012474396145197, 466012474396145198, 466012474396145199, 466012474396145200, 466012474396145201, 466012474396145202, 466012474396145203, 466012474396145204, 466012474396145205, 466012474396145206, 466012474396145207, 466012474396145208, 466012474396145209, 466012474396145210, 466012474396145211, 466012474396145212, 466012474396145213, 466012474396145214, 466012474396145215, 466012474396145216, 466012474396145217, 466012474396145218, 466012474396145219, 466012474396145220, 466012474396145221, 466012474396145222, 466012474396145223, 466012474396145224, 466012474396145225, 466012474396145226, 466012474396145227, 466012474396145228, 466012474396145229, 466012474396145230, 466012474396145231, 466012474396145232, 466012474396145233, 466012474396145234, 466012474396145235, 466012474396145236, 466012474396145237, 466012474396145238, 466012474396145239, 466012474396145240, 466012474396145241, 466012474396145242, 466012474396145243, 466012474396145244, 466012474396145245, 466012474396145246, 466012474396145247, 466012474396145248, 466012474396145249, 466012474396145250, 466012474396145251, 466012474396145252, 466012474396145253, 466012474396145254, 466012474396145255, 466012474396145256, 466012474396145257, 466012474396145258, 466012474396145259, 466012474396145260, 466012474396145261, 466012474396145262, 466012474396145263, 466012474396145264, 466012474396145265, 466012474396145266, 466012474396145267, 466012474396145268, 466012474396145269, 466012474396145270, 466012474396145271, 466012474396145272, 466012474396145273, 466012474396145274, 466012474396145275, 466012474396145276, 466012474396145277, 466012474396145278, 466012474396145279, 466012474396145280, 466012474396145281, 466012474396145282, 466012474396145283, 466012474396145284, 466012474396145285, 466012474396145286, 466012474396145287, 466012474396145288, 466012474396145289, 466012474396145290, 466012474396145291, 466012474396145292, 466012474396145293, 466012474396145294, 466012474396145295, 466012474396145296, 466012474396145297, 466012474396145298, 466012474396145299, 466012474396145300, 466012474396145301, 466012474396145302, 466012474396145303, 466012474396145304, 466012474396145305, 466012474396145306, 466012474396145307, 466012474396145308, 466012474396145309, 466012474396145310, 466012474396145311, 466012474396145312, 466012474396145313, 466012474396145314, 466012474396145315, 466012474396145316, 466012474396145317, 466012474396145318, 466012474396145319, 466012474396145320, 466012474396145321, 466012474396145322, 466012474396145323, 466012474396145324, 466012474396145325, 466012474396145326, 466012474396145327, 466012474396145328, 466012474396145329, 466012474396145330, 466012474396145331, 466012474396145332, 466012474396145333, 466012474396145334, 466012474396145335, 466012474396145336, 466012474396145337, 466012474396145338, 466012474396145339, 466012474396145340, 466012474396145341, 466012474396145342, 466012474396145343, 466012474396145344, 466012474396145345, 466012474396145346, 466012474396145347, 466012474396145348, 466012474396145349, 466012474396145350, 466012474396145351, 466012474396145352, 466012474396145353, 466012474396145354, 466012474396145355, 466012474396145356, 466012474396145357, 466012474396145358, 466012474396145359, 466012474396145360, 466012474396145361, 466012474396145362, 466012474396145363, 466012474396145364, 466012474396145365, 466012474396145366, 466012474396145367, 466012474396145368, 466012474396145369, 466012474396145370, 466012474396145371, 466012474396145372, 466012474396145373, 466012474396145374, 466012474396145375, 466012474396145376, 466012474396145377, 466012474396145378, 466012474396145379, 466012474396145380, 466012474396145381, 466012474396145382, 466012474396145383, 466012474396145384, 466012474396145385, 466012474396145386, 466012474396145387, 466012474396145388, 466012474396145389, 466012474396145390, 466012474396145391, 466012474396145392, 466012474396145393, 466012474396145394, 466012474396145395, 466012474396145396, 466012474396145397, 466012474396145398, 466012474396145399, 466012474396145400, 466012474396145401, 466012474396145402, 466012474396145403, 466012474396145404, 466012474396145405, 466012474396145406, 466012474396145407, 466012474396145408, 466012474396145409, 466012474396145410, 466012474396145411, 466012474396145412, 466012474396145413, 466012474396145414, 466012474396145415, 466012474396145416, 466012474396145417, 466012474396145418, 466012474396145419, 466012474396145420, 466012474396145421, 466012474396145422, 466012474396145423, 466012474396145424, 466012474396145425, 466012474396145426, 466012474396145427, 466012474396145428, 466012474396145429, 466012474396145430, 466012474396145431, 466012474396145432, 466012474396145433, 466012474396145434, 466012474396145435, 466012474396145436, 466012474396145437, 466012474396145438, 466012474396145439, 466012474396145440, 466012474396145441, 466012474396145442, 466012474396145443, 466012474396145444, 466012474396145445, 466012474396145446, 466012474396145447, 466012474396145448, 466012474396145449, 466012474396145450, 466012474396145451, 466012474396145452, 466012474396145453, 466012474396145454, 466012474396145455, 466012474396145456, 466012474396145457, 466012474396145458, 466012474396145459, 466012474396145460, 466012474396145461, 466012474396145462, 466012474396145463, 466012474396145464, 466012474396145465, 466012474396145466, 466012474396145467, 466012474396145468, 466012474396145469, 466012474396145470, 466012474396145471, 466012474396145472, 466012474396145473, 466012474396145474, 466012474396145475, 466012474396145476, 466012474396145477, 466012474396145478, 466012474396145479, 466012474396145480, 466012474396145481, 466012474396145482, 466012474396145483, 466012474396145484, 466012474396145485, 466012474396145486, 466012474396145487, 466012474396145488, 466012474396145489, 466012474396145490, 466012474396145491, 466012474396145492, 466012474396145493, 466012474396145494, 466012474396145495, 466012474396145496, 466012474396145497, 466012474396145498, 466012474396145499, 466012474396145500, 466012474396145501, 466012474396145502, 466012474396145503, 466012474396145504, 466012474396145505, 466012474396145506, 466012474396145507, 466012474396145508, 466012474396145509, 466012474396145510, 466012474396145511, 466012474396145512, 466012474396145513, 466012474396145514, 466012474396145515, 466012474396145516, 466012474396145517, 466012474396145518, 466012474396145519, 466012474396145520, 466012474396145521, 466012474396145522, 466012474396145523, 466012474396145524, 466012474396145525, 466012474396145526, 466012474396145527, 466012474396145528, 466012474396145529, 466012474396145530, 466012474396145531, 466012474396145532, 466012474396145533, 466012474396145534, 466012474396145535, 466012474396145536, 466012474396145537, 466012474396145538, 466012474396145539, 466012474396145540, 466012474396145541, 466012474396145542, 466012474396145543, 466012474396145544, 466012474396145545, 466012474396145546, 466012474396145547, 466012474396145548, 466012474396145549, 466012474396145550, 466012474396145551, 466012474396145552, 466012474396145553, 466012474396145554, 466012474396145555, 466012474396145556, 466012474396145557, 466012474396145558, 466012474396145559, 466012474396145560, 466012474396145561, 466012474396145562, 466012474396145563, 466012474396145564, 466012474396145565, 466012474396145566, 466012474396145567, 466012474396145568, 466012474396145569, 466012474396145570, 466012474396145571, 466012474396145572, 466012474396145573, 466012474396145574, 466012474396145575, 466012474396145576, 466012474396145577, 466012474396145578, 466012474396145579, 466012474396145580, 466012474396145581, 466012474396145582, 466012474396145583, 466012474396145584, 466012474396145585, 466012474396145586, 466012474396145587, 466012474396145588, 466012474396145589, 466012474396145590, 466012474396145591, 466012474396145592, 466012474396145593, 466012474396145594, 466012474396145595, 466012474396145596, 466012474396145597, 466012474396145598, 466012474396145599, 466012474396145600, 466012474396145601, 466012474396145602, 466012474396145603, 466012474396145604, 466012474396145605, 466012474396145606, 466012474396145607, 466012474396145608, 466012474396145609, 466012474396145610, 466012474396145611, 466012474396145612, 466012474396145613, 466012474396145614, 466012474396145615, 466012474396145616, 466012474396145617, 466012474396145618, 466012474396145619, 466012474396145620, 466012474396145621, 466012474396145622, 466012474396145623, 466012474396145624, 466012474396145625, 466012474396145626, 466012474396145627, 466012474396145628, 466012474396145629, 466012474396145630, 466012474396145631, 466012474396145632, 466012474396145633, 466012474396145634, 466012474396145635, 466012474396145636, 466012474396145637, 466012474396145638, 466012474396145639, 466012474396145640, 466012474396145641, 466012474396145642, 466012474396145643, 466012474396145644, 466012474396145645, 466012474396145646, 466012474396145647, 466012474396145648, 466012474396145649, 466012474396145650, 466012474396145651, 466012474396145652, 466012474396145653, 466012474396145654, 466012474396145655, 466012474396145656, 466012474396145657, 466012474396145658, 466012474396145659, 466012474396145660, 466012474396145661, 466012474396145662, 466012474396145663, 466012474396145664, 466012474396145665, 466012474396145666, 466012474396145667, 466012474396145668, 466012474396145669, 466012474396145670, 466012474396145671, 466012474396145672, 466012474396145673, 466012474396145674, 466012474396145675, 466012474396145676, 466012474396145677, 466012474396145678, 466012474396145679, 466012474396145680, 466012474396145681, 466012474396145682, 466012474396145683, 466012474396145684, 466012474396145685, 466012474396145686, 466012474396145687, 466012474396145688, 466012474396145689, 466012474396145690, 466012474396145691, 466012474396145692, 466012474396145693, 466012474396145694, 466012474396145695, 466012474396145696, 466012474396145697, 466012474396145698, 466012474396145699, 466012474396145700, 466012474396145701, 466012474396145702, 466012474396145703, 466012474396145704, 466012474396145705, 466012474396145706, 466012474396145707, 466012474396145708, 466012474396145709, 466012474396145710, 466012474396145711, 466012474396145712, 466012474396145713, 466012474396145714, 466012474396145715, 466012474396145716, 466012474396145717, 466012474396145718, 466012474396145719, 466012474396145720, 466012474396145721, 466012474396145722, 466012474396145723, 466012474396145724, 466012474396145725, 466012474396145726, 466012474396145727, 466012474396145728, 466012474396145729, 466012474396145730, 466012474396145731, 466012474396145732, 466012474396145733, 466012474396145734, 466012474396145735, 466012474396145736, 466012474396145737, 466012474396145738, 466012474396145739, 466012474396145740, 466012474396145741, 466012474396145742, 466012474396145743, 466012474396145744, 466012474396145745, 466012474396145746, 466012474396145747, 466012474396145748, 466012474396145749, 466012474396145750, 466012474396145751, 466012474396145752, 466012474396145753, 466012474396145754, 466012474396145755, 466012474396145756, 466012474396145757, 466012474396145758, 466012474396145759, 466012474396145760, 466012474396145761, 466012474396145762, 466012474396145763, 466012474396145764, 466012474396145765, 466012474396145766, 466012474396145767, 466012474396145768, 466012474396145769, 466012474396145770, 466012474396145771, 466012474396145772, 466012474396145773, 466012474396145774, 466012474396145775, 466012474396145776, 466012474396145777, 466012474396145778, 466012474396145779, 466012474396145780, 466012474396145781, 466012474396145782, 466012474396145783, 466012474396145784, 466012474396145785, 466012474396145786, 466012474396145787, 466012474396145788, 466012474396145789, 466012474396145790, 466012474396145791, 466012474396145792, 466012474396145793, 466012474396145794, 466012474396145795, 466012474396145796, 466012474396145797, 466012474396145798, 466012474396145799, 466012474396145800, 466012474396145801, 466012474396145802, 466012474396145803, 466012474396145804, 466012474396145805, 466012474396145806, 466012474396145807, 466012474396145808, 466012474396145809, 466012474396145810, 466012474396145811, 466012474396145812, 466012474396145813, 466012474396145814, 466012474396145815, 466012474396145816, 466012474396145817, 466012474396145818, 466012474396145819, 466012474396145820, 466012474396145821, 466012474396145822, 466012474396145823, 466012474396145824, 466012474396145825, 466012474396145826, 466012474396145827, 466012474396145828, 466012474396145829, 466012474396145830, 466012474396145831, 466012474396145832, 466012474396145833, 466012474396145834, 466012474396145835, 466012474396145836, 466012474396145837, 466012474396145838, 466012474396145839, 466012474396145840, 466012474396145841, 466012474396145842, 466012474396145843, 466012474396145844, 466012474396145845, 466012474396145846, 466012474396145847, 466012474396145848, 466012474396145849, 466012474396145850, 466012474396145851, 466012474396145852, 466012474396145853, 466012474396145854, 466012474396145855, 466012474396145856, 466012474396145857, 466012474396145858, 466012474396145859, 466012474396145860, 466012474396145861, 466012474396145862, 466012474396145863, 466012474396145864, 466012474396145865, 466012474396145866, 466012474396145867, 466012474396145868, 466012474396145869, 466012474396145870, 466012474396145871, 466012474396145872, 466012474396145873, 466012474396145874, 466012474396145875, 466012474396145876, 466012474396145877, 466012474396145878, 466012474396145879, 466012474396145880, 466012474396145881, 466012474396145882, 466012474396145883, 466012474396145884, 466012474396145885, 466012474396145886, 466012474396145887, 466012474396145888, 466012474396145889, 466012474396145890, 466012474396145891, 466012474396145892, 466012474396145893, 466012474396145894, 466012474396145895, 466012474396145896, 466012474396145897, 466012474396145898, 466012474396145899, 466012474396145900, 466012474396145901, 466012474396145902, 466012474396145903, 466012474396145904, 466012474396145905, 466012474396145906, 466012474396145907, 466012474396145908, 466012474396145909, 466012474396145910, 466012474396145911, 466012474396145912, 466012474396145913, 466012474396145914, 466012474396145915, 466012474396145916, 466012474396145917, 466012474396145918, 466012474396145919, 466012474396145920, 466012474396145921, 466012474396145922, 466012474396145923, 466012474396145924, 466012474396145925, 466012474396145926, 466012474396145927, 466012474396145928, 466012474396145929, 466012474396145930, 466012474396145931, 466012474396145932, 466012474396145933, 466012474396145934, 466012474396145935, 466012474396145936, 466012474396145937, 466012474396145938, 466012474396145939, 466012474396145940, 466012474396145941, 466012474396145942, 466012474396145943, 466012474396145944, 466012474396145945, 466012474396145946, 466012474396145947, 466012474396145948, 466012474396145949, 466012474396145950, 466012474396145951, 466012474396145952, 466012474396145953, 466012474396145954, 466012474396145955, 466012474396145956, 466012474396145957, 466012474396145958, 466012474396145959, 466012474396145960, 466012474396145961, 466012474396145962, 466012474396145963, 466012474396145964, 466012474396145965, 466012474396145966, 466012474396145967, 466012474396145968, 466012474396145969, 466012474396145970, 466012474396145971, 466012474396145972, 466012474396145973, 466012474396145974, 466012474396145975, 466012474396145976, 466012474396145977, 466012474396145978, 466012474396145979, 466012474396145980, 466012474396145981, 466012474396145982, 466012474396145983, 466012474396145984, 466012474396145985, 466012474396145986, 466012474396145987, 466012474396145988, 466012474396145989, 466012474396145990, 466012474396145991, 466012474396145992, 466012474396145993, 466012474396145994, 466012474396145995, 466012474396145996, 466012474396145997, 466012474396145998, 466012474396145999, 466012474396146000, 466012474396146001, 466012474396146002, 466012474396146003, 466012474396146004, 466012474396146005, 466012474396146006, 466012474396146007, 466012474396146008, 466012474396146009, 466012474396146010, 466012474396146011, 466012474396146012, 466012474396146013, 466012474396146014, 466012474396146015, 466012474396146016, 466012474396146017, 466012474396146018, 466012474396146019, 466012474396146020, 466012474396146021, 466012474396146022, 466012474396146023, 466012474396146024, 466012474396146025, 466012474396146026, 466012474396146027, 466012474396146028, 466012474396146029, 466012474396146030, 466012474396146031, 466012474396146032, 466012474396146033, 466012474396146034, 466012474396146035, 466012474396146036, 466012474396146037, 466012474396146038, 466012474396146039, 466012474396146040, 466012474396146041, 466012474396146042, 466012474396146043, 466012474396146044, 466012474396146045, 466012474396146046, 466012474396146047, 466012474396146048, 466012474396146049, 466012474396146050, 466012474396146051, 466012474396146052, 466012474396146053, 466012474396146054, 466012474396146055, 466012474396146056, 466012474396146057, 466012474396146058, 466012474396146059, 466012474396146060, 466012474396146061, 466012474396146062, 466012474396146063, 466012474396146064, 466012474396146065, 466012474396146066, 466012474396146067, 466012474396146068, 466012474396146069, 466012474396146070, 466012474396146071, 466012474396146072, 466012474396146073, 466012474396146074, 466012474396146075, 466012474396146076, 466012474396146077, 466012474396146078, 466012474396146079, 466012474396146080, 466012474396146081, 466012474396146082, 466012474396146083, 466012474396146084, 466012474396146085, 466012474396146086, 466012474396146087, 466012474396146088, 466012474396146089, 466012474396146090, 466012474396146091, 466012474396146092, 466012474396146093, 466012474396146094, 466012474396146095, 466012474396146096, 466012474396146097, 466012474396146098, 466012474396146099, 466012474396146100, 466012474396146101, 466012474396146102, 466012474396146103, 466012474396146104, 466012474396146105, 466012474396146106, 466012474396146107, 466012474396146108, 466012474396146109, 466012474396146110, 466012474396146111, 466012474396146112, 466012474396146113, 466012474396146114, 466012474396146115, 466012474396146116, 466012474396146117, 466012474396146118, 466012474396146119, 466012474396146120, 466012474396146121, 466012474396146122, 466012474396146123, 466012474396146124, 466012474396146125, 466012474396146126, 466012474396146127, 466012474396146128, 466012474396146129, 466012474396146130, 466012474396146131, 466012474396146132, 466012474396146133, 466012474396146134, 466012474396146135, 466012474396146136, 466012474396146137, 466012474396146138, 466012474396146139, 466012474396146140, 466012474396146141, 466012474396146142, 466012474396146143, 466012474396146144, 466012474396146145, 466012474396146146, 466012474396146147, 466012474396146148, 466012474396146149, 466012474396146150, 466012474396146151, 466012474396146152, 466012474396146153, 466012474396146154, 466012474396146155, 466012474396146156, 466012474396146157, 466012474396146158, 466012474396146159, 466012474396146160, 466012474396146161, 466012474396146162, 466012474396146163, 466012474396146164, 466012474396146165, 466012474396146166, 466012474396146167, 466012474396146168, 466012474396146169, 466012474396146170, 466012474396146171, 466012474396146172, 466012474396146173, 466012474396146174, 466012474396146175, 466012474396146176, 466012474396146177, 466012474396146178, 466012474396146179, 466012474396146180, 466012474396146181, 466012474396146182, 466012474396146183, 466012474396146184, 466012474396146185, 466012474396146186, 466012474396146187, 466012474396146188, 466012474396146189, 466012474396146190, 466012474396146191, 466012474396146192, 466012474396146193, 466012474396146194, 466012474396146195, 466012474396146196, 466012474396146197, 466012474396146198, 466012474396146199, 466012474396146200, 466012474396146201, 466012474396146202, 466012474396146203, 466012474396146204, 466012474396146205, 466012474396146206, 466012474396146207, 466012474396146208, 466012474396146209, 466012474396146210, 466012474396146211, 466012474396146212, 466012474396146213, 466012474396146214, 466012474396146215, 466012474396146216, 466012474396146217, 466012474396146218, 466012474396146219, 466012474396146220, 466012474396146221, 466012474396146222, 466012474396146223, 466012474396146224, 466012474396146225, 466012474396146226, 466012474396146227, 466012474396146228, 466012474396146229, 466012474396146230, 466012474396146231, 466012474396146232, 466012474396146233, 466012474396146234, 466012474396146235, 466012474396146236, 466012474396146237, 466012474396146238, 466012474396146239, 466012474396146240, 466012474396146241, 466012474396146242, 466012474396146243, 466012474396146244, 466012474396146245, 466012474396146246, 466012474396146247, 466012474396146248, 466012474396146249, 466012474396146250, 466012474396146251, 466012474396146252, 466012474396146253, 466012474396146254, 466012474396146255, 466012474396146256, 466012474396146257, 466012474396146258, 466012474396146259, 466012474396146260, 466012474396146261, 466012474396146262, 466012474396146263, 466012474396146264, 466012474396146265, 466012474396146266, 466012474396146267, 466012474396146268, 466012474396146269, 466012474396146270, 466012474396146271, 466012474396146272, 466012474396146273, 466012474396146274, 466012474396146275, 466012474396146276, 466012474396146277, 466012474396146278, 466012474396146279, 466012474396146280, 466012474396146281, 466012474396146282, 466012474396146283, 466012474396146284, 466012474396146285, 466012474396146286, 466012474396146287, 466012474396146288, 466012474396146289, 466012474396146290, 466012474396146291, 466012474396146292, 466012474396146293, 466012474396146294, 466012474396146295, 466012474396146296, 466012474396146297, 466012474396146298, 466012474396146299, 466012474396146300, 466012474396146301, 466012474396146302, 466012474396146303, 466012474396146304, 466012474396146305, 466012474396146306, 466012474396146307, 466012474396146308, 466012474396146309, 466012474396146310, 466012474396146311, 466012474396146312, 466012474396146313, 466012474396146314, 466012474396146315, 466012474396146316, 466012474396146317, 466012474396146318, 466012474396146319, 466012474396146320, 466012474396146321, 466012474396146322, 466012474396146323, 466012474396146324, 466012474396146325, 466012474396146326, 466012474396146327, 466012474396146328, 466012474396146329, 466012474396146330, 466012474396146331, 466012474396146332, 466012474396146333, 466012474396146334, 466012474396146335, 466012474396146336, 466012474396146337, 466012474396146338, 466012474396146339, 466012474396146340, 466012474396146341, 466012474396146342, 466012474396146343, 466012474396146344, 466012474396146345, 466012474396146346, 466012474396146347, 466012474396146348, 466012474396146349, 466012474396146350, 466012474396146351, 466012474396146352, 466012474396146353, 466012474396146354, 466012474396146355, 466012474396146356, 466012474396146357, 466012474396146358, 466012474396146359, 466012474396146360, 466012474396146361, 466012474396146362, 466012474396146363, 466012474396146364, 466012474396146365, 466012474396146366, 466012474396146367, 466012474396146368, 466012474396146369, 466012474396146370, 466012474396146371, 466012474396146372, 466012474396146373, 466012474396146374, 466012474396146375, 466012474396146376, 466012474396146377, 466012474396146378, 466012474396146379, 466012474396146380, 466012474396146381, 466012474396146382, 466012474396146383, 466012474396146384, 466012474396146385, 466012474396146386, 466012474396146387, 466012474396146388, 466012474396146389, 466012474396146390, 466012474396146391, 466012474396146392, 466012474396146393, 466012474396146394, 466012474396146395, 466012474396146396, 466012474396146397, 466012474396146398, 466012474396146399, 466012474396146400, 466012474396146401, 466012474396146402, 466012474396146403, 466012474396146404, 466012474396146405, 466012474396146406, 466012474396146407, 466012474396146408, 466012474396146409, 466012474396146410, 466012474396146411, 466012474396146412, 466012474396146413, 466012474396146414, 466012474396146415, 466012474396146416, 466012474396146417, 466012474396146418, 466012474396146419, 466012474396146420, 466012474396146421, 466012474396146422, 466012474396146423, 466012474396146424, 466012474396146425, 466012474396146426, 466012474396146427, 466012474396146428, 466012474396146429, 466012474396146430, 466012474396146431, 466012474396146432, 466012474396146433, 466012474396146434, 466012474396146435, 466012474396146436, 466012474396146437, 466012474396146438, 466012474396146439, 466012474396146440, 466012474396146441, 466012474396146442, 466012474396146443, 466012474396146444, 466012474396146445, 466012474396146446, 466012474396146447, 466012474396146448, 466012474396146449, 466012474396146450, 466012474396146451, 466012474396146452, 466012474396146453, 466012474396146454, 466012474396146455, 466012474396146456, 466012474396146457, 466012474396146458, 466012474396146459, 466012474396146460, 466012474396146461, 466012474396146462, 466012474396146463, 466012474396146464, 466012474396146465, 466012474396146466, 466012474396146467, 466012474396146468, 466012474396146469, 466012474396146470, 466012474396146471, 466012474396146472, 466012474396146473, 466012474396146474, 466012474396146475, 466012474396146476, 466012474396146477, 466012474396146478, 466012474396146479, 466012474396146480, 466012474396146481, 466012474396146482, 466012474396146483, 466012474396146484, 466012474396146485, 466012474396146486, 466012474396146487, 466012474396146488, 466012474396146489, 466012474396146490, 466012474396146491, 466012474396146492, 466012474396146493, 466012474396146494, 466012474396146495, 466012474396146496, 466012474396146497, 466012474396146498, 466012474396146499, 466012474396146500, 466012474396146501, 466012474396146502, 466012474396146503, 466012474396146504, 466012474396146505, 466012474396146506, 466012474396146507, 466012474396146508, 466012474396146509, 466012474396146510, 466012474396146511, 466012474396146512, 466012474396146513, 466012474396146514, 466012474396146515, 466012474396146516, 466012474396146517, 466012474396146518, 466012474396146519, 466012474396146520, 466012474396146521, 466012474396146522, 466012474396146523, 466012474396146524, 466012474396146525, 466012474396146526, 466012474396146527, 466012474396146528, 466012474396146529, 466012474396146530, 466012474396146531, 466012474396146532, 466012474396146533, 466012474396146534, 466012474396146535, 466012474396146536, 466012474396146537, 466012474396146538, 466012474396146539, 466012474396146540, 466012474396146541, 466012474396146542, 466012474396146543, 466012474396146544, 466012474396146545, 466012474396146546, 466012474396146547, 466012474396146548, 466012474396146549, 466012474396146550, 466012474396146551, 466012474396146552, 466012474396146553, 466012474396146554, 466012474396146555, 466012474396146556, 466012474396146557, 466012474396146558, 466012474396146559, 466012474396146560, 466012474396146561, 466012474396146562, 466012474396146563, 466012474396146564, 466012474396146565, 466012474396146566, 466012474396146567, 466012474396146568, 466012474396146569, 466012474396146570, 466012474396146571, 466012474396146572, 466012474396146573, 466012474396146574, 466012474396146575, 466012474396146576, 466012474396146577, 466012474396146578, 466012474396146579, 466012474396146580, 466012474396146581, 466012474396146582, 466012474396146583, 466012474396146584, 466012474396146585, 466012474396146586, 466012474396146587, 466012474396146588, 466012474396146589, 466012474396146590, 466012474396146591, 466012474396146592, 466012474396146593, 466012474396146594, 466012474396146595, 466012474396146596, 466012474396146597, 466012474396146598, 466012474396146599, 466012474396146600, 466012474396146601, 466012474396146602, 466012474396146603, 466012474396146604, 466012474396146605, 466012474396146606, 466012474396146607, 466012474396146608, 466012474396146609, 466012474396146610, 466012474396146611, 466012474396146612, 466012474396146613, 466012474396146614, 466012474396146615, 466012474396146616, 466012474396146617, 466012474396146618, 466012474396146619, 466012474396146620, 466012474396146621, 466012474396146622, 466012474396146623, 466012474396146624, 466012474396146625, 466012474396146626, 466012474396146627, 466012474396146628, 466012474396146629, 466012474396146630, 466012474396146631, 466012474396146632, 466012474396146633, 466012474396146634, 466012474396146635, 466012474396146636, 466012474396146637, 466012474396146638, 466012474396146639, 466012474396146640, 466012474396146641, 466012474396146642, 466012474396146643, 466012474396146644, 466012474396146645, 466012474396146646, 466012474396146647, 466012474396146648, 466012474396146649, 466012474396146650, 466012474396146651, 466012474396146652, 466012474396146653, 466012474396146654, 466012474396146655, 466012474396146656, 466012474396146657, 466012474396146658, 466012474396146659, 466012474396146660, 466012474396146661, 466012474396146662, 466012474396146663, 466012474396146664, 466012474396146665, 466012474396146666, 466012474396146667, 466012474396146668, 466012474396146669, 466012474396146670, 466012474396146671, 466012474396146672, 466012474396146673, 466012474396146674, 466012474396146675, 466012474396146676, 466012474396146677, 466012474396146678], &#39;cost&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>搜索<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">knowledge_search</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="p">([</span><span class="n">user_query</span><span class="p">])</span>
+    <span class="n">search_results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+        <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">],</span>
+        <span class="n">anns_field</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
+        <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">search_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knowledges</span><span class="o">=</span> <span class="n">knowledge_search</span><span class="p">(</span><span class="s1">&#39;无骨鸡爪怎么处理&#39;</span><span class="p">)</span>
+<span class="n">knowledges</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 466012474396143798, &#39;distance&#39;: 0.8361238241195679, &#39;entity&#39;: {&#39;content&#39;: &#39;主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理\n内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**\n- 用水把他们洗干净，放一边\n- 把`鸡爪`放入大锅中，准备去腥味\n- `大葱`，`料酒`，`姜` 全放进去\n- 加水没过`鸡爪`\n- 大火煮开 **中途可以把浮末捞起来**\n- 水开**100度，沸腾**后等 10 分钟\n- 关火，捞出来，把水沥干，洗干净，放入盆里&#39;}}, {&#39;id&#39;: 466012474396143800, &#39;distance&#39;: 0.8130049109458923, &#39;entity&#39;: {&#39;content&#39;: &#39;主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨\n内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了\n- 放入碗中，备用&#39;}}, {&#39;id&#39;: 466012474396143799, &#39;distance&#39;: 0.8120466470718384, &#39;entity&#39;: {&#39;content&#39;: &#39;主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨\n内容: 这一步可以省略，此步骤大约花费 2 小时  \n- 放入冰箱，**冷冻层** 20 分钟\n- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨\n- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**\n- 再从手背部用刀分划开至整个手臂\n- 把每只手指关节处都掰一掰**按手指出声音时那种**\n- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分&#39;}}, {&#39;id&#39;: 466012474396143795, &#39;distance&#39;: 0.7977151274681091, &#39;entity&#39;: {&#39;content&#39;: &#39;主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无\n内容: - 鸡爪\n- 姜\n- 料酒\n- 大葱\n- 大蒜\n- 小米辣\n- 洋葱\n- 生抽\n- 蚝油\n- 黑醋（推荐陈醋）\n- 白糖\n- 盐\n- 花椒油\n- 香菜\n- 柠檬\n- 折耳根&#39;}}, {&#39;id&#39;: 466012474396143801, &#39;distance&#39;: 0.7820316553115845, &#39;entity&#39;: {&#39;content&#39;: &#39;主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料\n内容: - `小米辣` 切均匀小颗\n- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎\n- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里\n- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去\n- 抓拌均匀\n- 放入冰箱一个晚上（6 个小时）\n- 调配好后全部放入准备好的鸡爪&#39;}}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_context</span><span class="p">(</span><span class="n">knowledges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 知识库返回结果转换位上下文 &quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">kd</span> <span class="ow">in</span> <span class="n">knowledges</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">+=</span> <span class="n">kd</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;distance:</span><span class="si">{</span><span class="n">kd</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, content:</span><span class="si">{</span><span class="n">kd</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">build_context</span><span class="p">(</span><span class="n">knowledges</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.8361, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理
+内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**
+- 用水把他们洗干净，放一边
+- 把`鸡爪`放入大锅中，准备去腥味
+- `大葱`，`料酒`，`姜` 全放进去
+- 加水没过`鸡爪`
+- 大火煮开 **中途可以把浮末捞起来**
+- 水开**100度，沸腾**后等 10 分钟
+- 关火，捞出来，把水沥干，洗干净，放入盆里
+distance:0.8130, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了
+- 放入碗中，备用
+distance:0.8120, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: 这一步可以省略，此步骤大约花费 2 小时  
+- 放入冰箱，**冷冻层** 20 分钟
+- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨
+- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**
+- 再从手背部用刀分划开至整个手臂
+- 把每只手指关节处都掰一掰**按手指出声音时那种**
+- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分
+distance:0.7977, content:主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 鸡爪
+- 姜
+- 料酒
+- 大葱
+- 大蒜
+- 小米辣
+- 洋葱
+- 生抽
+- 蚝油
+- 黑醋（推荐陈醋）
+- 白糖
+- 盐
+- 花椒油
+- 香菜
+- 柠檬
+- 折耳根
+distance:0.7820, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料
+内容: - `小米辣` 切均匀小颗
+- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎
+- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里
+- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去
+- 抓拌均匀
+- 放入冰箱一个晚上（6 个小时）
+- 调配好后全部放入准备好的鸡爪
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理\n内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**\n- 用水把他们洗干净，放一边\n- 把`鸡爪`放入大锅中，准备去腥味\n- `大葱`，`料酒`，`姜` 全放进去\n- 加水没过`鸡爪`\n- 大火煮开 **中途可以把浮末捞起来**\n- 水开**100度，沸腾**后等 10 分钟\n- 关火，捞出来，把水沥干，洗干净，放入盆里主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨\n内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了\n- 放入碗中，备用主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨\n内容: 这一步可以省略，此步骤大约花费 2 小时  \n- 放入冰箱，**冷冻层** 20 分钟\n- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨\n- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**\n- 再从手背部用刀分划开至整个手臂\n- 把每只手指关节处都掰一掰**按手指出声音时那种**\n- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无\n内容: - 鸡爪\n- 姜\n- 料酒\n- 大葱\n- 大蒜\n- 小米辣\n- 洋葱\n- 生抽\n- 蚝油\n- 黑醋（推荐陈醋）\n- 白糖\n- 盐\n- 花椒油\n- 香菜\n- 柠檬\n- 折耳根主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料\n内容: - `小米辣` 切均匀小颗\n- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎\n- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里\n- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去\n- 抓拌均匀\n- 放入冰箱一个晚上（6 个小时）\n- 调配好后全部放入准备好的鸡爪&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>增强查询<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="p">(</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;你是一个专业的烹饪饮食专家, 严格根据上下文信息回答，如果不知道就说不知道&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;human&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        上下文信息：</span><span class="si">{context}</span><span class="s2"> </span>
+<span class="s2">                </span>
+<span class="s2">        用户输入:</span><span class="si">{query}</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">&#39;context&#39;</span><span class="p">:</span><span class="s1">&#39;躲开&#39;</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">:</span><span class="s1">&#39;无骨鸡爪&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ChatPromptValue(messages=[SystemMessage(content=&#39;你是一个专业的烹饪饮食专家, 严格根据上下文信息回答，如果不知道就说不知道&#39;, additional_kwargs={}, response_metadata={}), HumanMessage(content=&#39;\n        上下文信息：躲开 \n\n        用户输入:无骨鸡爪\n        &#39;, additional_kwargs={}, response_metadata={})])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>生成集成<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>使用LCEL链完成顺序任务</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AIHUBMIX_API_KEY&#39;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://aihubmix.com/v1&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
+<span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">template</span> <span class="o">|</span> <span class="n">llm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rag</span><span class="p">(</span><span class="n">query</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 用户接口 &quot;&quot;&quot;</span>
+    <span class="n">knowledges</span> <span class="o">=</span> <span class="n">knowledge_search</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">build_context</span><span class="p">(</span><span class="n">knowledges</span><span class="o">=</span><span class="n">knowledges</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">&#39;context&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">:</span><span class="n">query</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">rag</span><span class="p">(</span><span class="s1">&#39;铁锅焖面&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.6946, content:主题: 豆角焖面的做法 &gt; 章节: 操作 &gt; 细节: 准备动作
+内容: * 加入上述定量的食用油，手持锅柄，离灶 5cm 处，摇晃锅，使食用油充分挂满锅的三分之二（自下而上）。  
+&gt; ps：不粘锅请忽略上述操作，静待3-5秒油热即可。  
+* 放入全部的姜和全部的葱段，翻炒爆香 5 秒（注意！此时有油飞溅的危险，建议带上手套或做好防护措施）。
+* 放入全部的肉片，放入以后不着急饭锅，静置 5 秒后，再翻炒，使所有的肉都裹满食用油。
+distance:0.6772, content:主题: 豆角焖面的做法 &gt; 章节: 操作 &gt; 细节: 准备动作
+内容: * 盖上锅盖，中火焖 3 分钟。
+* 打开锅盖，将所有的蒜、味精均匀撒入。  
+&gt; ps：此时锅内可能还有水，如果想吃湿一点的请关火，否则不用关火。  
+* 使用筷子不断翻炒，将菜与肉均匀搅拌。
+* 关火
+distance:0.6767, content:主题: 豆角焖面的做法 &gt; 章节: 无 &gt; 细节: 无
+内容: 豆角焖面是一道懒人美食，操作简单，方便美味。  
+预估烹饪难度：★★★
+distance:0.6676, content:主题: 豆角焖面的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: * 热水的用量为：150ml。
+* 葱 10g。
+* 姜 5g。
+* 蒜 10g。  
+使用上述条件，计算出计划使用的原材料比例。
+distance:0.6657, content:主题: 羊排焖面的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 带皮羊排肉
+- 青椒
+- 甜椒
+- 青椒
+- 大葱
+- 花椒
+- 干辣椒
+- 生姜
+- 白砂糖
+- 老抽
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">display_md_jupyter</span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; jupyter是纯文本输出，使用IPython交互内置渲染md &quot;&quot;&quot;</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>根据提供的上下文信息，其中没有提到“铁锅焖面”的具体做法、原料或相关细节。上下文主要涉及“豆角焖面”和“羊排焖面”的部分内容，但未涵盖铁锅焖面。因此，作为专业的烹饪饮食专家，我无法基于给定信息回答这个问题。如果您需要铁锅焖面的做法，请提供更多相关上下文或具体细节。</p>
+</div>
+</div>
+</section>
+<section id="id9">
+<h2>评估<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>手动测试案例<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>在ragas评估之前，我应该手动做些输入，来感知效果</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;无骨鸡爪怎么处理&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.8361, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理
+内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**
+- 用水把他们洗干净，放一边
+- 把`鸡爪`放入大锅中，准备去腥味
+- `大葱`，`料酒`，`姜` 全放进去
+- 加水没过`鸡爪`
+- 大火煮开 **中途可以把浮末捞起来**
+- 水开**100度，沸腾**后等 10 分钟
+- 关火，捞出来，把水沥干，洗干净，放入盆里
+distance:0.8130, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了
+- 放入碗中，备用
+distance:0.8120, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: 这一步可以省略，此步骤大约花费 2 小时  
+- 放入冰箱，**冷冻层** 20 分钟
+- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨
+- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**
+- 再从手背部用刀分划开至整个手臂
+- 把每只手指关节处都掰一掰**按手指出声音时那种**
+- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分
+distance:0.7977, content:主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 鸡爪
+- 姜
+- 料酒
+- 大葱
+- 大蒜
+- 小米辣
+- 洋葱
+- 生抽
+- 蚝油
+- 黑醋（推荐陈醋）
+- 白糖
+- 盐
+- 花椒油
+- 香菜
+- 柠檬
+- 折耳根
+distance:0.7820, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料
+内容: - `小米辣` 切均匀小颗
+- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎
+- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里
+- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去
+- 抓拌均匀
+- 放入冰箱一个晚上（6 个小时）
+- 调配好后全部放入准备好的鸡爪
+</pre></div>
+</div>
+<p>根据提供的上下文信息，无骨鸡爪的处理过程主要包括鸡爪处理、去骨和调配腌料三个步骤。以下是详细步骤：</p>
+<ol class="arabic simple">
+<li><p><strong>鸡爪处理</strong>：</p>
+<ul class="simple">
+<li><p>用剪刀或刀把鸡爪上的指甲部分全部剪掉，包括指甲下面的肉和骨头，确保不留指甲。</p></li>
+<li><p>用水清洗干净，放一边备用。</p></li>
+<li><p>将鸡爪放入大锅中，加入大葱、料酒和姜，加水没过鸡爪。</p></li>
+<li><p>大火煮开，中途捞去浮末。</p></li>
+<li><p>水沸腾（100度）后煮10分钟，关火捞出，沥干水分并洗干净，放入盆中。</p></li>
+</ul>
+</li>
+<li><p><strong>去骨</strong>（此步骤可选，约花费2小时）：</p>
+<ul class="simple">
+<li><p>将鸡爪放入冰箱冷冻层冷冻20分钟。</p></li>
+<li><p>然后分批（每批10个）拿出来去骨。</p></li>
+<li><p>从手指（鸡爪）最前端开始，每只手指用刀划开至手背部分。</p></li>
+<li><p>再从手背部用刀划开至整个手臂。</p></li>
+<li><p>掰每只手指关节处（按出声音）。</p></li>
+<li><p>按着手指最前端往里推，先推到中间手掌手背部分，每只手指都一样操作。</p></li>
+<li><p>完成后，放入碗中备用。</p></li>
+</ul>
+</li>
+<li><p><strong>调配腌料</strong>：</p>
+<ul class="simple">
+<li><p>切小米辣成均匀小颗；切碎大蒜、洋葱、香菜和折耳根。</p></li>
+<li><p>柠檬对半切开，将柠檬汁挤入装有鸡爪的容器中。</p></li>
+<li><p>将所有调料（如生抽、蚝油、黑醋、白糖、盐、花椒油等）和切碎的配料（小米辣、大蒜、洋葱、香菜）倒入容器。</p></li>
+<li><p>抓拌均匀，放入冰箱腌制一个晚上（约6小时）。</p></li>
+</ul>
+</li>
+</ol>
+<p>整个处理过程基于上下文信息，确保无骨鸡爪的制作完整。如果需要更具体的细节，请参考上下文中的相应章节。</p>
+</div>
+</div>
+<p><strong>难区分llm和上下文的产出</strong>：可以看到，由于cook烹饪这种是很普适的，</p>
+<p>修改cook： 无骨鸡爪放10g折耳根。看是否能感知到</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;无骨鸡爪的做法&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.8826, content:主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 鸡爪
+- 姜
+- 料酒
+- 大葱
+- 大蒜
+- 小米辣
+- 洋葱
+- 生抽
+- 蚝油
+- 黑醋（推荐陈醋）
+- 白糖
+- 盐
+- 花椒油
+- 香菜
+- 柠檬
+- 折耳根
+distance:0.8681, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了
+- 放入碗中，备用
+distance:0.8644, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理
+内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**
+- 用水把他们洗干净，放一边
+- 把`鸡爪`放入大锅中，准备去腥味
+- `大葱`，`料酒`，`姜` 全放进去
+- 加水没过`鸡爪`
+- 大火煮开 **中途可以把浮末捞起来**
+- 水开**100度，沸腾**后等 10 分钟
+- 关火，捞出来，把水沥干，洗干净，放入盆里
+distance:0.8464, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: 这一步可以省略，此步骤大约花费 2 小时  
+- 放入冰箱，**冷冻层** 20 分钟
+- 把全部放入不是冷冻层的冰箱，然后分批**10个一批**拿出来去骨
+- 从手指（鸡爪的）最前端开始，每只手指都要用刀划开**划到它的手背部分**
+- 再从手背部用刀分划开至整个手臂
+- 把每只手指关节处都掰一掰**按手指出声音时那种**
+- 按着它的手指最前端，往里推，每只手指都一样，先推到中间手掌手背部分
+distance:0.8412, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料
+内容: - `小米辣` 切均匀小颗
+- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎
+- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里
+- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去
+- 抓拌均匀
+- 放入冰箱一个晚上（6 个小时）
+- 调配好后全部放入准备好的鸡爪
+</pre></div>
+</div>
+<p><strong>无骨鸡爪的做法</strong></p>
+<p><strong>必备原料和工具</strong></p>
+<ul class="simple">
+<li><p><strong>原料：</strong> 鸡爪、姜、料酒、大葱、大蒜、小米辣、洋葱、生抽、蚝油、黑醋（推荐陈醋）、白糖、盐、花椒油、香菜、柠檬、折耳根。</p></li>
+<li><p><strong>工具：</strong> 锅、剪刀或刀、盆、碗、冰箱。</p></li>
+</ul>
+<p><strong>操作步骤</strong></p>
+<p><strong>1. 鸡爪处理</strong></p>
+<ul class="simple">
+<li><p>用剪刀或刀将鸡爪的指甲部分全部剪掉（包括指甲下面的肉和骨头），确保不留任何指甲。</p></li>
+<li><p>将处理好的鸡爪洗净，备用。</p></li>
+<li><p>将鸡爪放入大锅中，加入大葱、料酒和姜。</p></li>
+<li><p>加水没过鸡爪。</p></li>
+<li><p>大火煮开，中途可撇去浮沫。</p></li>
+<li><p>水沸腾后，继续煮10分钟。</p></li>
+<li><p>关火，捞出鸡爪，沥干水分，用凉水冲洗干净，放入盆中。</p></li>
+</ul>
+<p><strong>2. 去骨（可选步骤，此步骤约需2小时）</strong></p>
+<ul class="simple">
+<li><p>将鸡爪放入冰箱<strong>冷冻层</strong>冷冻20分钟。</p></li>
+<li><p>将鸡爪移至冰箱<strong>非冷冻层</strong>，分批（例如10个一批）取出进行去骨。</p></li>
+<li><p>从鸡爪手指的最前端开始，用刀在每只手指上划开，划到手背部分。</p></li>
+<li><p>再从手背部用刀划开至整个手臂。</p></li>
+<li><p>将每只手指的关节处掰一掰（掰到发出声音）。</p></li>
+<li><p>按住手指最前端，向里推，将每只手指的骨头推出，先推至中间手掌手背部分。</p></li>
+<li><p>每只手指皮脱离后，从手掌开始往手臂部分推，直至整个骨头脱出。</p></li>
+<li><p>将去骨的鸡爪放入碗中备用。</p></li>
+</ul>
+<p><strong>3. 调配腌料与腌制</strong></p>
+<ul class="simple">
+<li><p>将小米辣切成均匀的小颗。</p></li>
+<li><p>将大蒜、洋葱、香菜、折耳根切碎。</p></li>
+<li><p>将柠檬对半切开，把柠檬汁挤入装有鸡爪的容器中。</p></li>
+<li><p>将所有调料（生抽、蚝油、黑醋、白糖、盐、花椒油）以及切好的小米辣、大蒜、洋葱、香菜、折耳根全部倒入装鸡爪的容器中。</p></li>
+<li><p>将所有材料抓拌均匀。</p></li>
+<li><p>将容器放入冰箱冷藏腌制一个晚上（约6小时）。</p></li>
+</ul>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;铁锅焖面&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.6946, content:主题: 豆角焖面的做法 &gt; 章节: 操作 &gt; 细节: 准备动作
+内容: * 加入上述定量的食用油，手持锅柄，离灶 5cm 处，摇晃锅，使食用油充分挂满锅的三分之二（自下而上）。  
+&gt; ps：不粘锅请忽略上述操作，静待3-5秒油热即可。  
+* 放入全部的姜和全部的葱段，翻炒爆香 5 秒（注意！此时有油飞溅的危险，建议带上手套或做好防护措施）。
+* 放入全部的肉片，放入以后不着急饭锅，静置 5 秒后，再翻炒，使所有的肉都裹满食用油。
+distance:0.6772, content:主题: 豆角焖面的做法 &gt; 章节: 操作 &gt; 细节: 准备动作
+内容: * 盖上锅盖，中火焖 3 分钟。
+* 打开锅盖，将所有的蒜、味精均匀撒入。  
+&gt; ps：此时锅内可能还有水，如果想吃湿一点的请关火，否则不用关火。  
+* 使用筷子不断翻炒，将菜与肉均匀搅拌。
+* 关火
+distance:0.6767, content:主题: 豆角焖面的做法 &gt; 章节: 无 &gt; 细节: 无
+内容: 豆角焖面是一道懒人美食，操作简单，方便美味。  
+预估烹饪难度：★★★
+distance:0.6676, content:主题: 豆角焖面的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: * 热水的用量为：150ml。
+* 葱 10g。
+* 姜 5g。
+* 蒜 10g。  
+使用上述条件，计算出计划使用的原材料比例。
+distance:0.6657, content:主题: 羊排焖面的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 带皮羊排肉
+- 青椒
+- 甜椒
+- 青椒
+- 大葱
+- 花椒
+- 干辣椒
+- 生姜
+- 白砂糖
+- 老抽
+</pre></div>
+</div>
+<p>根据提供的上下文，未找到直接以“铁锅焖面”命名的菜谱。然而，上下文中详细描述了 <strong>“豆角焖面”</strong> 的做法，且其操作步骤明确使用了铁锅（如“手持锅柄，离灶5cm处，摇晃锅”），同时特别提示“不粘锅请忽略上述操作”。</p>
+<p>因此，基于您提供的“豆角焖面”操作细节，其<strong>使用铁锅的关键步骤</strong>总结如下：</p>
+<ol class="arabic simple">
+<li><p><strong>热锅润油</strong>：将铁锅在灶上加热，加入食用油后离火摇晃，使热油均匀挂满锅壁（约三分之二面积）。这是铁锅防粘的关键步骤。</p></li>
+<li><p><strong>爆香与炒制</strong>：在热油中先放入葱、姜爆香，随即放入肉片静置几秒后再翻炒，使肉片均匀裹油。</p></li>
+<li><p><strong>加盖焖煮</strong>：加入豆角等食材和定量的热水（150ml）后，盖上锅盖，用中火焖煮3分钟。</p></li>
+<li><p><strong>收尾调味</strong>：开盖后加入蒜末、味精，用筷子翻炒均匀。可根据锅内汤汁情况决定是否关火（若喜湿则关火）。</p></li>
+</ol>
+<p>上下文中也提及了“羊排焖面”的原料，但未提供其具体操作方法。如果您想了解的是用铁锅制作羊排焖面或其他焖面，目前信息不足，无法提供具体做法。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;苦瓜炒苹果&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.5871, content:主题: 鸡蛋火腿炒黄瓜的做法 &gt; 章节: 无 &gt; 细节: 无
+内容: 预估烹饪难度：★★
+distance:0.5764, content:主题: 鸡蛋火腿炒黄瓜的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 黄瓜
+- 鸡蛋
+- 火腿肠
+- 盐
+- 生抽
+- 红尖椒（可选）
+distance:0.5763, content:主题: 鸡蛋火腿炒黄瓜的做法 &gt; 章节: 操作 &gt; 细节: 无
+内容: - 把 `半熟鸡蛋` 倒入锅中，调入 2g 盐、3ml 生抽，立刻倒入火腿片和辣椒碎（可选）翻炒均匀
+- 关火，盛盘
+distance:0.5762, content:主题: 奇异果菠菜特调的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 原料:
+- 奇异果
+- 苹果
+- 菠菜叶（ 2-5 片）
+- 水
+- 白砂糖
+- 工具
+- 榨汁机
+distance:0.5704, content:主题: 奇异果菠菜特调的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: - 饮用水 700ml
+- 奇异果 2 个
+- 苹果 1/2 个
+- 菠菜叶 4 叶
+- 白砂糖 12 克
+</pre></div>
+</div>
+<p>根据提供的上下文信息，没有关于“苦瓜炒苹果”的任何做法、原料或操作细节。上下文只涉及“鸡蛋火腿炒黄瓜”和“奇异果菠菜特调”两个食谱。因此，我不知道“苦瓜炒苹果”的做法。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;鸡爪&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>distance:0.7136, content:主题: 无骨鸡爪的做法 &gt; 章节: 必备原料和工具 &gt; 细节: 无
+内容: - 鸡爪
+- 姜
+- 料酒
+- 大葱
+- 大蒜
+- 小米辣
+- 洋葱
+- 生抽
+- 蚝油
+- 黑醋（推荐陈醋）
+- 白糖
+- 盐
+- 花椒油
+- 香菜
+- 柠檬
+- 折耳根
+distance:0.7023, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 调配腌料
+内容: - `小米辣` 切均匀小颗
+- `大蒜`，`洋葱`，`香菜`, 折耳根 切碎
+- `柠檬`对半切开，把柠檬汁挤入鸡爪的容器里
+- 把`全部`调料倒入装鸡爪的容器，`小米辣`，`大蒜`，`洋葱`和`香菜`也放进去
+- 抓拌均匀
+- 放入冰箱一个晚上（6 个小时）
+- 调配好后全部放入准备好的鸡爪
+distance:0.6960, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 鸡爪处理
+内容: - 用剪刀 / 刀 把鸡爪上的指甲的部分全部剪掉 **包括指甲下面的肉和骨头，让它一点指甲都不剩**
+- 用水把他们洗干净，放一边
+- 把`鸡爪`放入大锅中，准备去腥味
+- `大葱`，`料酒`，`姜` 全放进去
+- 加水没过`鸡爪`
+- 大火煮开 **中途可以把浮末捞起来**
+- 水开**100度，沸腾**后等 10 分钟
+- 关火，捞出来，把水沥干，洗干净，放入盆里
+distance:0.6752, content:主题: 无骨鸡爪的做法 &gt; 章节: 操作 &gt; 细节: 去骨
+内容: - 每只手指皮脱离后，从手掌开始往手臂部分推直到整个脱下来了
+- 放入碗中，备用
+distance:0.6741, content:主题: 无骨鸡爪的做法 &gt; 章节: 计算 &gt; 细节: 无
+内容: 一份正好够 2-3 个人吃。  
+- 鸡爪 1kg
+- 姜 4 片
+- 料酒 65g
+- 大葱 3 段（5cm 一段）
+- 大蒜 10 瓣
+- 小米辣 4 个少辣，6 个中辣，12 个大辣（推荐大辣）
+- 洋葱 （半个）
+- 生抽 75g = 15g * 5
+- 蚝油 30g = 15g * 2
+- 黑醋（推荐陈醋） 50g
+- 白糖 10g
+- 盐 3g
+- 花椒油 10ml
+- 香菜 3 颗
+</pre></div>
+</div>
+<p>根据上下文信息，鸡爪是制作无骨鸡爪的主要原料。以下是相关细节：</p>
+<ul class="simple">
+<li><p><strong>原料</strong>：鸡爪是必备原料之一，每份用量为1kg。</p></li>
+<li><p><strong>处理步骤</strong>：</p>
+<ul>
+<li><p>使用剪刀或刀剪掉鸡爪的指甲，包括指甲下的肉和骨头，确保无残留。</p></li>
+<li><p>清洗干净后，放入锅中，加入大葱、料酒和姜去腥，加水没过鸡爪，大火煮开后保持沸腾10分钟。</p></li>
+<li><p>煮好后捞出，沥干水分并清洗干净，然后进行去骨处理。</p></li>
+</ul>
+</li>
+<li><p><strong>去骨</strong>：将每只手指的皮脱离后，从手掌往手臂部分推，直到整个脱下，备用。</p></li>
+<li><p><strong>用途</strong>：处理好的鸡爪将用于调配腌料中，与小米辣、大蒜、洋葱、香菜等混合，并冷藏腌制至少6小时。</p></li>
+</ul>
+<p>如果您需要更具体的信息，如腌料调配或工具使用，请提供更多细节。</p>
+</div>
+</div>
+</section>
+<section id="ragas">
+<h3>ragas<a class="headerlink" href="#ragas" title="Link to this heading">#</a></h3>
+<p>专门评价rag</p>
+<p>为了评估，我们需要准备一个测试集。：</p>
+<ol class="arabic simple">
+<li><p>question， 用户的问题           ，  你准备的测试题</p></li>
+<li><p>contexts， 检索到的原文片段你的   ，RAG 系统检索出的 List[str]</p></li>
+<li><p>answerRAG  ，生成的最终答案你的 ，   RAG 系统生成的字符串</p></li>
+<li><p>ground_truth ，标准答案 (可选)  ， 人工标注的正确答案（用于算召回率）</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">知识库</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">数据准备</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分块</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">向量嵌入</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">构造向量数据库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">搜索</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">增强查询</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">生成集成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">评估</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">手动测试案例</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragas">ragas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/myrag/cookrag/baseline.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

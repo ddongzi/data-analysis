@@ -149,6 +149,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../myrag/index.html">
+    rag相关
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../more/index.html">
     more
   </a>
@@ -255,6 +262,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="index.html">
     数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../myrag/index.html">
+    rag相关
   </a>
 </li>
 
@@ -1198,7 +1212,9 @@ d=5e-3</p>
 </div>
 </div>
 </div>
-<p>json</p>
+</section>
+<section id="json">
+<h2>json<a class="headerlink" href="#json" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -1207,12 +1223,51 @@ d=5e-3</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># &#39;{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;New York&quot;}&#39;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>  <span class="c1"># 生成格式化 JSON， 缩进换行</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># 解析 JSON 字符串</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># 解析 JSON 字符串 为字典</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>  <span class="c1"># Alice</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;New York&quot;}
+{
+    &quot;name&quot;: &quot;Alice&quot;,
+    &quot;age&quot;: 25,
+    &quot;city&quot;: &quot;New York&quot;
+}
+Alice
+</pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 25, &#39;city&#39;: &#39;New York&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>传入字典</p>
 </section>
 <section id="id4">
 <h2>函数参数<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
@@ -1442,7 +1497,12 @@ d=5e-3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
-<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.py&#39;</span><span class="p">)</span>
+<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.md&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SQL.md&#39;]
 </pre></div>
 </div>
 </div>
@@ -1819,6 +1879,7 @@ d=5e-3</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">真假</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datetime-time">datetime, time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">json</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">函数参数</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typing">1.1 typing 类型提示</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gc">8.9 gc</a></li>
