@@ -52,7 +52,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 80,
+   "execution_count": 6,
    "id": "c1a0effe",
    "metadata": {},
    "outputs": [
@@ -163,14 +163,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 86,
+   "execution_count": null,
    "id": "8eb52cd3",
    "metadata": {},
    "outputs": [],
    "source": [
     "from langchain_openai import ChatOpenAI\n",
     "llm = ChatOpenAI(\n",
-    "    api_key= os.getenv('AIHUBMIX_API_KEY'),\n",
+    "    api_key= os.getenv('AIHUBMIX_API_KEY_XIAOMI'),\n",
     "    base_url=\"https://aihubmix.com/v1\",\n",
     "    model='xiaomi-mimo-v2-omni-free',\n",
     ") "

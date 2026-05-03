@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ragas &#8212; DA  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'myrag/cookrag/ragas';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/js/custom.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="基本指南" href="../learn/%E6%95%99%E7%A8%8B.html" />
+    <link rel="prev" title="V1" href="v1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DA  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    rag相关
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../kaggle/index.html">
+    kaggle项目
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../MLcook/index.html">
+    数据分析知识
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    rag相关
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../more/index.html">
+    more
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">cookrag</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baseline.html">cookrag_baseline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v1.html">V1</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ragas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../learn/%E6%95%99%E7%A8%8B.html">基本指南</a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">rag相关</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">cookrag</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ragas</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="ragas">
+<h1>ragas<a class="headerlink" href="#ragas" title="Link to this heading">#</a></h1>
+<p>🤦‍♂️需要调用llm，免费不够，搞不了。</p>
+<p>不需要手动生成测试集，让LLM读文档，用ai练ai。ragas自带了<code class="docutils literal notranslate"><span class="pre">TestsetGenerator</span> </code></p>
+<p>考官：是更强的。不一样的llm,不一样的向量嵌入。  我们要确保考官更加聪明</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestsetGenerator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirectoryLoader</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">DirectoryLoader</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span> <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;*.md&quot;</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No features in text.
+short text: &quot;liangfen&quot;. Defaulting to English.
+short text: &quot;1&quot;. Defaulting to English.
+short text: &quot;bz2&quot;. Defaulting to English.
+short text: &quot;bz4&quot;. Defaulting to English.
+short text: &quot;bz5&quot;. Defaulting to English.
+short text: &quot;bz6&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+short text: &quot;citrus-tea&quot;. Defaulting to English.
+No features in text.
+No features in text.
+short text: &quot;tea&quot;. Defaulting to English.
+short text: &quot;tea&quot;. Defaulting to English.
+short text: &quot;image&quot;. Defaulting to English.
+short text: &quot;image&quot;. Defaulting to English.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+short text: &quot;yuxiangqiezi&quot;. Defaulting to English.
+short text: &quot;bz1&quot;. Defaulting to English.
+short text: &quot;bz2&quot;. Defaulting to English.
+short text: &quot;bz4&quot;. Defaulting to English.
+short text: &quot;bz5&quot;. Defaulting to English.
+short text: &quot;bz6&quot;. Defaulting to English.
+short text: &quot;bz7&quot;. Defaulting to English.
+short text: &quot;gin-fizz&quot;. Defaulting to English.
+No features in text.
+No features in text.
+short text: &quot;build&quot;. Defaulting to English.
+short text: &quot;License&quot;. Defaulting to English.
+short text: &quot;GitHub contributors&quot;. Defaulting to English.
+short text: &quot;npm&quot;. Defaulting to English.
+short text: &quot;Man hours&quot;. Defaulting to English.
+short text: &quot;Docker&quot;. Defaulting to English.
+short text: &quot;{{before}}&quot;. Defaulting to English.
+short text: &quot;{{index_stars}}&quot;. Defaulting to English.
+short text: &quot;{{main}}&quot;. Defaulting to English.
+short text: &quot;{{after}}&quot;. Defaulting to English.
+No features in text.
+No features in text.
+short text: &quot;build&quot;. Defaulting to English.
+short text: &quot;License&quot;. Defaulting to English.
+short text: &quot;GitHub contributors&quot;. Defaulting to English.
+short text: &quot;npm&quot;. Defaulting to English.
+short text: &quot;Man hours&quot;. Defaulting to English.
+short text: &quot;Docker&quot;. Defaulting to English.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+No features in text.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ragas.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">LangchainLLMWrapper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">LangchainEmbeddingsWrapper</span>
+<span class="c1"># llm改用gemini</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AIHUBMIX_API_KEY_GEMINI&#39;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://aihubmix.com/v1&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gemini-3-flash-preview-free&#39;</span><span class="p">,</span>
+<span class="p">)</span> 
+<span class="n">generator_llm</span> <span class="o">=</span> <span class="n">LangchainLLMWrapper</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
+
+<span class="c1"># 使用同样的向量嵌入模型</span>
+<span class="n">generator_embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;BAAI/bge-small-zh-v1.5&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_18868/3289352527.py:11: DeprecationWarning: LangchainLLMWrapper is deprecated and will be removed in a future version. Use llm_factory instead: from openai import OpenAI; from ragas.llms import llm_factory; llm = llm_factory(&#39;gpt-4o-mini&#39;, client=OpenAI(api_key=&#39;...&#39;))
+  generator_llm = LangchainLLMWrapper(llm)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 用户画像</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.persona</span><span class="w"> </span><span class="kn">import</span> <span class="n">Persona</span>
+
+<span class="n">personas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Persona</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;家庭主妇&quot;</span><span class="p">,</span>
+        <span class="n">role_description</span><span class="o">=</span><span class="s2">&quot;一个退休的家庭主妇，想要学习如何做菜&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestsetGenerator</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">TestsetGenerator</span><span class="p">(</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">,</span> <span class="n">embedding_model</span><span class="o">=</span><span class="n">generator_embeddings</span><span class="p">,</span> <span class="n">persona_list</span><span class="o">=</span><span class="n">personas</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 文本分块提取。</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.transforms.extractors.llm_based</span><span class="w"> </span><span class="kn">import</span> <span class="n">NERExtractor</span><span class="p">,</span><span class="n">HeadlinesExtractor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.transforms.splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeadlineSplitter</span>
+
+<span class="n">transforms</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">HeadlinesExtractor</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">),</span> <span class="c1"># 语义上标注，在metadata中标记 header</span>
+    <span class="n">HeadlineSplitter</span><span class="p">(),</span> <span class="c1"># 按照header切割文本 ，物理剪切</span>
+    <span class="n">NERExtractor</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">)</span> <span class="c1"># 语义标注， 使用llm提取文本中的命名实体，。llm这里为了方便就选了一样的</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.synthesizers.single_hop.specific</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SingleHopSpecificQuerySynthesizer</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="c1"># 配置题目类型比例</span>
+<span class="c1"># singhop 单跳查询：在一个文档查询就可以，不跨文档</span>
+<span class="c1"># </span>
+<span class="n">distribution</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">SingleHopSpecificQuerySynthesizer</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">),</span> 
+<span class="p">]</span>
+<span class="c1"># Synthesizer有出题的内部规则，有prompt模板，是英文的，我们需要把他转换为中文</span>
+<span class="k">for</span> <span class="n">query</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">distribution</span><span class="p">:</span>
+    <span class="n">prompts</span> <span class="o">=</span> <span class="k">await</span> <span class="n">query</span><span class="o">.</span><span class="n">adapt_prompts</span><span class="p">(</span><span class="s2">&quot;chinese&quot;</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">set_prompts</span><span class="p">(</span><span class="o">**</span><span class="n">prompts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RateLimitError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">13</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="p">(</span><span class="n">SingleHopSpecificQuerySynthesizer</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Synthesizer有出题的内部规则，有prompt模板，是英文的，我们需要把他转换为中文</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">for</span> <span class="n">query</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">distribution</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">13</span>     <span class="n">prompts</span> <span class="o">=</span> <span class="k">await</span> <span class="n">query</span><span class="o">.</span><span class="n">adapt_prompts</span><span class="p">(</span><span class="s2">&quot;chinese&quot;</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">generator_llm</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">query</span><span class="o">.</span><span class="n">set_prompts</span><span class="p">(</span><span class="o">**</span><span class="n">prompts</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/prompt/mixin.py:81,</span> in <span class="ni">PromptMixin.adapt_prompts</span><span class="nt">(self, language, llm, adapt_instruction)</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span> <span class="n">adapted_prompts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">prompts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="ne">---&gt; </span><span class="mi">81</span>     <span class="n">adapted_prompt</span> <span class="o">=</span> <span class="k">await</span> <span class="n">prompt</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">language</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">adapt_instruction</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="n">adapted_prompts</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">adapted_prompt</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="k">return</span> <span class="n">adapted_prompts</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/prompt/pydantic_prompt.py:368,</span> in <span class="ni">PydanticPrompt.adapt</span><span class="nt">(self, target_language, llm, adapt_instruction)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="sd"> Adapt the prompt to a new language.</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span> <span class="n">strings</span> <span class="o">=</span> <span class="n">get_all_strings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">examples</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">368</span> <span class="n">translated_strings</span> <span class="o">=</span> <span class="k">await</span> <span class="n">translate_statements_prompt</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>     <span class="n">data</span><span class="o">=</span><span class="n">ToTranslate</span><span class="p">(</span><span class="n">target_language</span><span class="o">=</span><span class="n">target_language</span><span class="p">,</span> <span class="n">statements</span><span class="o">=</span><span class="n">strings</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span> <span class="n">translated_examples</span> <span class="o">=</span> <span class="n">update_strings</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">examples</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">old_strings</span><span class="o">=</span><span class="n">strings</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>     <span class="n">new_strings</span><span class="o">=</span><span class="n">translated_strings</span><span class="o">.</span><span class="n">statements</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="n">new_prompt</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/prompt/pydantic_prompt.py:177,</span> in <span class="ni">PydanticPrompt.generate</span><span class="nt">(self, llm, data, temperature, stop, callbacks, retries_left)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="n">callbacks</span> <span class="o">=</span> <span class="n">callbacks</span> <span class="ow">or</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span> <span class="c1"># this is just a special case of generate_multiple</span>
+<span class="ne">--&gt; </span><span class="mi">177</span> <span class="n">output_single</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_multiple</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>     <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span>     <span class="n">retries_left</span><span class="o">=</span><span class="n">retries_left</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span> <span class="k">return</span> <span class="n">output_single</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/prompt/pydantic_prompt.py:277,</span> in <span class="ni">PydanticPrompt.generate_multiple</span><span class="nt">(self, llm, data, n, temperature, stop, callbacks, retries_left)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>     <span class="c1"># This is a standard BaseRagasLLM - use generate()</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="n">ragas_llm</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">llm</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">277</span>     <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ragas_llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="n">prompt_value</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>         <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>         <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="n">callbacks</span><span class="o">=</span><span class="n">prompt_cb</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="n">output_models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">RagasOutputParser</span><span class="p">(</span><span class="n">pydantic_object</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_model</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/llms/base.py:116,</span> in <span class="ni">BaseRagasLLM.generate</span><span class="nt">(self, prompt, n, temperature, stop, callbacks)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="n">temperature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="n">agenerate_text_with_retry</span> <span class="o">=</span> <span class="n">add_async_retry</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="bp">self</span><span class="o">.</span><span class="n">agenerate_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_config</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">116</span> <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agenerate_text_with_retry</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="c1"># check there are no max_token issues</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_finished</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/asyncio/__init__.py:193,</span> in <span class="ni">AsyncRetrying.wraps.&lt;locals&gt;.async_wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="n">copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">async_wrapped</span><span class="o">.</span><span class="n">statistics</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">statistics</span>  <span class="c1"># type: ignore[attr-defined]</span>
+<span class="ne">--&gt; </span><span class="mi">193</span> <span class="k">return</span> <span class="k">await</span> <span class="n">copy</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/asyncio/__init__.py:112,</span> in <span class="ni">AsyncRetrying.__call__</span><span class="nt">(self, fn, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="n">is_async</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">is_coroutine_callable</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="n">do</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="n">retry_state</span><span class="o">=</span><span class="n">retry_state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">do</span><span class="p">,</span> <span class="n">DoAttempt</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/asyncio/__init__.py:157,</span> in <span class="ni">AsyncRetrying.iter</span><span class="nt">(self, retry_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span> <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_state</span><span class="o">.</span><span class="n">actions</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">157</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">action</span><span class="p">(</span><span class="n">retry_state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/_utils.py:111,</span> in <span class="ni">wrap_to_async_func.&lt;locals&gt;.inner</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">111</span>     <span class="k">return</span> <span class="n">call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/__init__.py:413,</span> in <span class="ni">BaseRetrying._post_stop_check_actions.&lt;locals&gt;.exc_check</span><span class="nt">(rs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span> <span class="n">retry_exc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry_error_cls</span><span class="p">(</span><span class="n">fut</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reraise</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">413</span>     <span class="k">raise</span> <span class="n">retry_exc</span><span class="o">.</span><span class="n">reraise</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="k">raise</span> <span class="n">retry_exc</span> <span class="kn">from</span><span class="w"> </span><span class="nn">fut.exception</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/__init__.py:184,</span> in <span class="ni">RetryError.reraise</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="k">def</span><span class="w"> </span><span class="nf">reraise</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">NoReturn</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_attempt</span><span class="o">.</span><span class="n">failed</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">184</span>         <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_attempt</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="k">raise</span> <span class="bp">self</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/concurrent/futures/_base.py:449,</span> in <span class="ni">Future.result</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="k">raise</span> <span class="n">CancelledError</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">FINISHED</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">449</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_result</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CANCELLED</span><span class="p">,</span> <span class="n">CANCELLED_AND_NOTIFIED</span><span class="p">]:</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/concurrent/futures/_base.py:401,</span> in <span class="ni">Future.__get_result</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">401</span>         <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="c1"># Break a reference cycle with the exception in self._exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="bp">self</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tenacity/asyncio/__init__.py:116,</span> in <span class="ni">AsyncRetrying.__call__</span><span class="nt">(self, fn, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">if</span> <span class="n">is_async</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">116</span>         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/ragas/llms/base.py:298,</span> in <span class="ni">LangchainLLMWrapper.agenerate_text</span><span class="nt">(self, prompt, n, temperature, stop, callbacks)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">langchain_llm</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">bypass_n</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>     <span class="bp">self</span><span class="o">.</span><span class="n">langchain_llm</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>  <span class="c1"># type: ignore</span>
+<span class="ne">--&gt; </span><span class="mi">298</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">langchain_llm</span><span class="o">.</span><span class="n">agenerate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="n">prompts</span><span class="o">=</span><span class="p">[</span><span class="n">prompt</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">langchain_llm</span><span class="o">.</span><span class="n">agenerate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">prompts</span><span class="o">=</span><span class="p">[</span><span class="n">prompt</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1036,</span> in <span class="ni">BaseChatModel.agenerate_prompt</span><span class="nt">(self, prompts, stop, callbacks, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1027</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">   </span><span class="mi">1028</span> <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">agenerate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1029</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1033</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1034</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMResult</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1035</span>     <span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_messages</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">1036</span>     <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">agenerate</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1037</span>         <span class="n">prompt_messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:994,</span> in <span class="ni">BaseChatModel.agenerate</span><span class="nt">(self, messages, stop, callbacks, tags, metadata, run_name, run_id, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="k">if</span> <span class="n">run_managers</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span>             <span class="o">*</span><span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">984</span>                 <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_end</span><span class="p">(</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">992</span>             <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span>         <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">994</span>     <span class="k">raise</span> <span class="n">exceptions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">995</span> <span class="n">flattened_outputs</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">996</span>     <span class="n">LLMResult</span><span class="p">(</span><span class="n">generations</span><span class="o">=</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">generations</span><span class="p">],</span> <span class="n">llm_output</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">llm_output</span><span class="p">)</span>  <span class="c1"># type: ignore[union-attr]</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>     <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span>
+<span class="g g-Whitespace">    </span><span class="mi">998</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">999</span> <span class="n">llm_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_combine_llm_outputs</span><span class="p">([</span><span class="n">res</span><span class="o">.</span><span class="n">llm_output</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>  <span class="c1"># type: ignore[union-attr]</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py:1164,</span> in <span class="ni">BaseChatModel._agenerate_with_cache</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">generate_from_stream</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">chunks</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1163</span> <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_agenerate</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;run_manager&quot;</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1164</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agenerate</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">run_manager</span><span class="o">=</span><span class="n">run_manager</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1166</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1167</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1168</span>     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agenerate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/langchain_openai/chat_models/base.py:1456,</span> in <span class="ni">BaseChatOpenAI._agenerate</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1454</span>     <span class="k">if</span> <span class="n">raw_response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_response</span><span class="p">,</span> <span class="s2">&quot;http_response&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1455</span>         <span class="n">e</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">raw_response</span><span class="o">.</span><span class="n">http_response</span>  <span class="c1"># type: ignore[attr-defined]</span>
+<span class="ne">-&gt; </span><span class="mi">1456</span>     <span class="k">raise</span> <span class="n">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">1457</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1458</span>     <span class="bp">self</span><span class="o">.</span><span class="n">include_response_headers</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span>     <span class="ow">and</span> <span class="n">raw_response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span>     <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_response</span><span class="p">,</span> <span class="s2">&quot;headers&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1461</span> <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1462</span>     <span class="n">generation_info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">raw_response</span><span class="o">.</span><span class="n">headers</span><span class="p">)}</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/langchain_openai/chat_models/base.py:1449,</span> in <span class="ni">BaseChatOpenAI._agenerate</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1442</span>         <span class="k">return</span> <span class="n">_construct_lc_result_from_responses_api</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1443</span>             <span class="n">response</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1444</span>             <span class="n">schema</span><span class="o">=</span><span class="n">original_schema_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1445</span>             <span class="n">metadata</span><span class="o">=</span><span class="n">generation_info</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1446</span>             <span class="n">output_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_version</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1447</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1448</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1449</span>         <span class="n">raw_response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">async_client</span><span class="o">.</span><span class="n">with_raw_response</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1450</span>             <span class="o">**</span><span class="n">payload</span>
+<span class="g g-Whitespace">   </span><span class="mi">1451</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1452</span>         <span class="n">response</span> <span class="o">=</span> <span class="n">raw_response</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1453</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/openai/_legacy_response.py:384,</span> in <span class="ni">async_to_raw_response_wrapper.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="n">extra_headers</span><span class="p">[</span><span class="n">RAW_RESPONSE_HEADER</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;extra_headers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra_headers</span>
+<span class="ne">--&gt; </span><span class="mi">384</span> <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">LegacyAPIResponse</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py:2714,</span> in <span class="ni">AsyncCompletions.create</span><span class="nt">(self, messages, model, audio, frequency_penalty, function_call, functions, logit_bias, logprobs, max_completion_tokens, max_tokens, metadata, modalities, n, parallel_tool_calls, prediction, presence_penalty, prompt_cache_key, prompt_cache_retention, reasoning_effort, response_format, safety_identifier, seed, service_tier, stop, store, stream, stream_options, temperature, tool_choice, tools, top_logprobs, top_p, user, verbosity, web_search_options, extra_headers, extra_query, extra_body, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2667</span> <span class="nd">@required_args</span><span class="p">([</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">   </span><span class="mi">2668</span> <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2669</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2711</span>     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">NotGiven</span> <span class="o">=</span> <span class="n">not_given</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2712</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatCompletion</span> <span class="o">|</span> <span class="n">AsyncStream</span><span class="p">[</span><span class="n">ChatCompletionChunk</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2713</span>     <span class="n">validate_response_format</span><span class="p">(</span><span class="n">response_format</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2714</span>     <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2715</span>         <span class="s2">&quot;/chat/completions&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2716</span>         <span class="n">body</span><span class="o">=</span><span class="k">await</span> <span class="n">async_maybe_transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2717</span>             <span class="p">{</span>
+<span class="g g-Whitespace">   </span><span class="mi">2718</span>                 <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2719</span>                 <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2720</span>                 <span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="n">audio</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2721</span>                 <span class="s2">&quot;frequency_penalty&quot;</span><span class="p">:</span> <span class="n">frequency_penalty</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2722</span>                 <span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="n">function_call</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2723</span>                 <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="n">functions</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2724</span>                 <span class="s2">&quot;logit_bias&quot;</span><span class="p">:</span> <span class="n">logit_bias</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2725</span>                 <span class="s2">&quot;logprobs&quot;</span><span class="p">:</span> <span class="n">logprobs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2726</span>                 <span class="s2">&quot;max_completion_tokens&quot;</span><span class="p">:</span> <span class="n">max_completion_tokens</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2727</span>                 <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2728</span>                 <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2729</span>                 <span class="s2">&quot;modalities&quot;</span><span class="p">:</span> <span class="n">modalities</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2730</span>                 <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2731</span>                 <span class="s2">&quot;parallel_tool_calls&quot;</span><span class="p">:</span> <span class="n">parallel_tool_calls</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2732</span>                 <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2733</span>                 <span class="s2">&quot;presence_penalty&quot;</span><span class="p">:</span> <span class="n">presence_penalty</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2734</span>                 <span class="s2">&quot;prompt_cache_key&quot;</span><span class="p">:</span> <span class="n">prompt_cache_key</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2735</span>                 <span class="s2">&quot;prompt_cache_retention&quot;</span><span class="p">:</span> <span class="n">prompt_cache_retention</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2736</span>                 <span class="s2">&quot;reasoning_effort&quot;</span><span class="p">:</span> <span class="n">reasoning_effort</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2737</span>                 <span class="s2">&quot;response_format&quot;</span><span class="p">:</span> <span class="n">response_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2738</span>                 <span class="s2">&quot;safety_identifier&quot;</span><span class="p">:</span> <span class="n">safety_identifier</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2739</span>                 <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2740</span>                 <span class="s2">&quot;service_tier&quot;</span><span class="p">:</span> <span class="n">service_tier</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2741</span>                 <span class="s2">&quot;stop&quot;</span><span class="p">:</span> <span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2742</span>                 <span class="s2">&quot;store&quot;</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2743</span>                 <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="n">stream</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2744</span>                 <span class="s2">&quot;stream_options&quot;</span><span class="p">:</span> <span class="n">stream_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2745</span>                 <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2746</span>                 <span class="s2">&quot;tool_choice&quot;</span><span class="p">:</span> <span class="n">tool_choice</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2747</span>                 <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="n">tools</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2748</span>                 <span class="s2">&quot;top_logprobs&quot;</span><span class="p">:</span> <span class="n">top_logprobs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2749</span>                 <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="n">top_p</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2750</span>                 <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2751</span>                 <span class="s2">&quot;verbosity&quot;</span><span class="p">:</span> <span class="n">verbosity</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2752</span>                 <span class="s2">&quot;web_search_options&quot;</span><span class="p">:</span> <span class="n">web_search_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2753</span>             <span class="p">},</span>
+<span class="g g-Whitespace">   </span><span class="mi">2754</span>             <span class="n">completion_create_params</span><span class="o">.</span><span class="n">CompletionCreateParamsStreaming</span>
+<span class="g g-Whitespace">   </span><span class="mi">2755</span>             <span class="k">if</span> <span class="n">stream</span>
+<span class="g g-Whitespace">   </span><span class="mi">2756</span>             <span class="k">else</span> <span class="n">completion_create_params</span><span class="o">.</span><span class="n">CompletionCreateParamsNonStreaming</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2757</span>         <span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2758</span>         <span class="n">options</span><span class="o">=</span><span class="n">make_request_options</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2759</span>             <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span><span class="p">,</span> <span class="n">extra_query</span><span class="o">=</span><span class="n">extra_query</span><span class="p">,</span> <span class="n">extra_body</span><span class="o">=</span><span class="n">extra_body</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+<span class="g g-Whitespace">   </span><span class="mi">2760</span>         <span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2761</span>         <span class="n">cast_to</span><span class="o">=</span><span class="n">ChatCompletion</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2762</span>         <span class="n">stream</span><span class="o">=</span><span class="n">stream</span> <span class="ow">or</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2763</span>         <span class="n">stream_cls</span><span class="o">=</span><span class="n">AsyncStream</span><span class="p">[</span><span class="n">ChatCompletionChunk</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">2764</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/openai/_base_client.py:1913,</span> in <span class="ni">AsyncAPIClient.post</span><span class="nt">(self, path, cast_to, body, content, files, options, stream, stream_cls)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1904</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1905</span>         <span class="s2">&quot;Passing raw bytes as `body` is deprecated and will be removed in a future version. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1906</span>         <span class="s2">&quot;Please pass raw bytes via the `content` parameter instead.&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1907</span>         <span class="ne">DeprecationWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1908</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1909</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span> <span class="n">opts</span> <span class="o">=</span> <span class="n">FinalRequestOptions</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1911</span>     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">json_data</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="k">await</span> <span class="n">async_to_httpx_files</span><span class="p">(</span><span class="n">files</span><span class="p">),</span> <span class="o">**</span><span class="n">options</span>
+<span class="g g-Whitespace">   </span><span class="mi">1912</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1913</span> <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">cast_to</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/openai/_base_client.py:1698,</span> in <span class="ni">AsyncAPIClient.request</span><span class="nt">(self, cast_to, options, stream, stream_cls)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1695</span>             <span class="k">await</span> <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">aread</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1697</span>         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Re-raising status error&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1698</span>         <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1700</span>     <span class="k">break</span>
+<span class="g g-Whitespace">   </span><span class="mi">1702</span> <span class="k">assert</span> <span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;could not resolve response (should never happen)&quot;</span>
+
+<span class="ne">RateLimitError</span>: Error code: 429 - {&#39;error&#39;: {&#39;message&#39;: &#39;Sorry, you have reached the limit of the free model quota. Please switch to a paid model to enjoy unlimited concurrency. https://console.aihubmix.com/topup (tid: 2026050302531828542206061495648)&#39;, &#39;type&#39;: &#39;Aihubmix_api_error&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>比如有实体，红烧肉，</p>
+<ul class="simple">
+<li><p>查询器启动，将文档和红烧肉 给llm，</p></li>
+<li><p>命令llm：“根据这个实体和原文，给我出一个具体的、单步就能回答的问题。”</p></li>
+<li><p>llm生成问题和答案。</p></li>
+</ul>
+<p>adapt_prompts就是把 命令LLM通常是英文规则，叫 ‘Generate a question’，翻译成中文命令</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ragas.run_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunConfig</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">generate_with_langchain_docs</span><span class="p">(</span>
+    <span class="n">docs</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">testset_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span>
+    <span class="n">query_distribution</span><span class="o">=</span><span class="n">distribution</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>🤦‍♂️🤦‍♂️</p>
+<ul class="simple">
+<li><p>ragas是并发的，</p></li>
+<li><p>很多地方都使用了llm调用，很容易就超过免费模型调用速率限制。</p></li>
+</ul>
+<p>本地内存太小，部署不了。</p>
+<p>付费是为了算力付费，大模型本身是一个复杂函数，没什么。</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="v1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">V1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../learn/%E6%95%99%E7%A8%8B.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">基本指南</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/myrag/cookrag/ragas.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, 蓝色夕阳.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
