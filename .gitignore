@@ -48,6 +48,7 @@ data/
 *.bak
 *.swp
 *.swo
+*.lock
 
 # 结果图片
 *.png
