@@ -7,4 +7,5 @@ cookrag
 
    baseline
    v1
+   ragas
 
