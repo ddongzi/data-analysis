@@ -461,23 +461,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus.model.hybrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">BGEM3EmbeddingFunction</span>
-<span class="n">embed_encoder</span> <span class="o">=</span> <span class="n">BGEM3EmbeddingFunction</span><span class="p">(</span> 
-    <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;BAAI/bge-small-zh-v1.5&#39;</span><span class="p">,</span> <span class="c1"># Specify the model name</span>
-    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="c1"># Specify the device to use</span>
-    <span class="n">use_fp16</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># 使用16位精度，加快速度</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetching 13 files: 100%|██████████| 13/13 [00:00&lt;00:00, 39858.15it/s]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">MilvusClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;milvus_cookrag.db&#39;</span><span class="p">)</span>
 </pre></div>
