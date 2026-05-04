@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>cookrag &#8212; DA  documentation</title>
+    <title>图RAG &#8212; DA  documentation</title>
   
   
   
@@ -43,15 +43,15 @@
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'myrag/cookrag/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'myrag/cookrag/cook_graph_rag';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/js/custom.js"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="cookrag_baseline" href="baseline.html" />
-    <link rel="prev" title="rag相关" href="../index.html" />
+    <link rel="next" title="ragas" href="ragas.html" />
+    <link rel="prev" title="V1" href="v1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -330,10 +330,10 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">cookrag</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">cookrag</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="baseline.html">cookrag_baseline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v1.html">V1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cook_graph_rag.html">图RAG</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">图RAG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ragas.html">ragas</a></li>
 </ul>
 </details></li>
@@ -380,7 +380,10 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">rag相关</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cookrag</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">cookrag</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">图RAG</span></li>
   </ul>
 </nav>
 </div>
@@ -397,18 +400,216 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="cookrag">
-<h1>cookrag<a class="headerlink" href="#cookrag" title="Link to this heading">#</a></h1>
-<p><strong>AI Help AI.</strong></p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">内容目录</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="baseline.html">cookrag_baseline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.html">V1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cook_graph_rag.html">图RAG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ragas.html">ragas</a></li>
-</ul>
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cook_graph_rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphDBClient</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>是否支持 CUDA (GPU加速): False
+</pre></div>
+</div>
+</div>
+</div>
+<section id="rag">
+<h1>图RAG<a class="headerlink" href="#rag" title="Link to this heading">#</a></h1>
+<p>解决v1中跨chunk，上下文不足地问题</p>
+<p><strong>neo4j</strong></p>
+<ul class="simple">
+<li><p>不需要像sql提前定义schema，插入即可。</p></li>
+<li><p>遵循有向图原则，只写 需要 方向。拔丝土豆 需要 土豆原材料，  土豆可以做拔丝土豆。</p></li>
+</ul>
+<p>图schema：节点-关系</p>
+<ol class="arabic simple">
+<li><p>节点：标签，名字，属性</p></li>
+<li><p>关系：类型，属性</p></li>
+</ol>
+<p><strong>llm</strong>：生成图谱，依靠LLM解析出节点关系。<br />
+图构建对llm智力要求很高：</p>
+<ul class="simple">
+<li><p>依靠api免费LLM，请求速率限制，一般每分钟5次。300文章都要1小时了。</p></li>
+<li><p>本地OLLAMA qwen2.5:0.5b虽快但太笨。deepseek-r1:7b和qwen3:8B都很慢也笨。和在线llm没法比</p></li>
+<li><p>算力影响”智力”。参数远不够</p></li>
+<li><p>openrouter这些作为聚合，每天会有限制的</p></li>
+</ul>
+<p><strong>lightRAG</strong>框架，只需要定义嵌入模型和llm。但是对于schema自定义是不够的。</p>
+<section id="prompt">
+<h2>生成图prompt定义<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>这是最重要的！！！也是与之前RAG的区别。尤其是必须建立关系。</p></li>
+<li><p>通过LLM prompt生成特定结构，然后来插入到图。</p></li>
+<li><p>prompt修正好像是个漫长的过程</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    角色</span>
+<span class="s2">    你是一个非常专业的知识图谱构建助手，擅长从非结构化文本中提取实体和逻辑关系。</span>
+
+<span class="s2">    任务</span>
+<span class="s2">    阅读提供的文档，根据以下定义的 Schema 提取知识三元组。</span>
+
+<span class="s2">    自定义 Schema </span>
+<span class="s2">    1. 节点标签 (Labels):</span>
+<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉&quot;的做法&quot;。 </span>
+<span class="s2">    - Ingredient: 食材名字如鸡蛋</span>
+<span class="s2">    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎</span>
+<span class="s2">    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料</span>
+<span class="s2">    - DifficultyLevel: 烹饪难度:1星、2星...、8星</span>
+
+<span class="s2">    2. 关系类型 (Relationships):</span>
+<span class="s2">    - REQUIRES_INGREDIENT: 菜品包含某种食材</span>
+<span class="s2">    - USE_COOKING_METHOD: 菜品使用了某种技法</span>
+<span class="s2">    - BELONGS_CATEGORY: 属于什么分类</span>
+<span class="s2">    - HAS_DIFFICULTY_LEVEL: 难度等级</span>
+<span class="s2">    - SUBSTITUTE_FOR:食材替代 </span>
+
+<span class="s2">    要求：</span>
+<span class="s2">    请尽可能详尽地提取，不要遗漏任何微小的关系。</span>
+<span class="s2">    不要过度推理，只使用文档内容。</span>
+<span class="s2">    涉及实体名字如：食材分类、烹饪方法、食材名字、菜谱分类等，必须准确简短，不能模糊</span>
+<span class="s2">    content属性 必须完整且能重构节点，高度压缩但信息丰满</span>
+
+<span class="s2">    示例输出：</span>
+<span class="s2">    {{</span>
+<span class="s2">    &#39;nodes&#39;:[</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;label&#39;: &#39;Dish&#39;,</span>
+<span class="s2">            &#39;&#39;name&#39;:&#39;拔丝土豆&#39;,</span>
+<span class="s2">            &quot;properties&quot;:{{</span>
+<span class="s2">                &#39;category&#39;:[&#39;素菜&#39;],</span>
+<span class="s2">                &#39;steps&#39;: &#39;1.土豆切块, 2...&#39;,</span>
+<span class="s2">                &#39;note&#39;: &#39;注意提示、附加内容&#39;,</span>
+<span class="s2">                &#39;content&#39;:&#39;拔丝土豆是一道经典的甜口素菜，通过炸制土豆挂糖浆制成，烹饪难度2星。其核心特征是外脆内软、金黄拉丝，适合作为甜点。&#39;</span>
+<span class="s2">            }}</span>
+<span class="s2">        }},</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;name&#39;: &#39;土豆&#39;,</span>
+<span class="s2">            &#39;label&#39;: &#39;Ingredient&#39;,</span>
+<span class="s2">            &quot;properties&quot;:{{</span>
+<span class="s2">                &#39;category&#39;:&#39;食材类别（蔬菜/调料/蛋白质/淀粉类/其他)&#39;,</span>
+<span class="s2">                &#39;content&#39;:&#39;节点内容&#39;</span>
+<span class="s2">            }}</span>
+
+<span class="s2">        }}</span>
+<span class="s2">    ],</span>
+<span class="s2">    &#39;relationships&#39;:[</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;source_label&#39;:&#39;Dish&#39;</span>
+<span class="s2">            &#39;source_name&#39;:&#39;拔丝土豆&#39;,</span>
+<span class="s2">            &quot;target_name&quot;: &quot;土豆&quot;,</span>
+<span class="s2">            &quot;target_label&quot;: &quot;Ingredient&quot;,</span>
+<span class="s2">            &quot;type&quot;: &quot;HAS_INGREDIENT&quot;,</span>
+<span class="s2">            &quot;properties&quot;: {{ &quot;amount&quot;: &quot;2个&quot; }}</span>
+<span class="s2">        }}</span>
+<span class="s2">    ]</span>
+
+<span class="s2">    }}</span>
+
+<span class="s2">    输出格式为json形式, 必须包括节点(名字、标签、属性), 关系(起始标签和名字、终止标签和名字、关系类型、关系属性)</span>
+
+<span class="s2">    待处理文本</span>
+<span class="s2">    </span><span class="si">{text}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>为了能够进行向量化检索，需要为数据库添加索引;通过content生成向量</p>
+<ul>
+<li><p><strong>如何能够保证content不丢失信息</strong>？因为是LLM提取，确实不能够通过content完全拼接为全文。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="text2cypher-prompt">
+<h2>text2cypher-prompt<a class="headerlink" href="#text2cypher-prompt" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>text2cypher的prompt能够返回 正常搜索和向量索引搜索</p></li>
+<li><p>text2cypher只会进行翻译保证符合schema和查询准确。不会将土豆-&gt;马铃薯，所以要向量索引</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>转换为cpyher</p></li>
+<li><p>先进行向量索引。</p></li>
+<li><p>关联返回</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    你是ne04j cypher的专家。根据下面信息将用户问题转为cypher语句。</span>
+
+<span class="s2">    neo4j Schema </span>
+<span class="s2">    1. 节点标签 (Labels):</span>
+<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉&quot;的做法&quot;。 </span>
+<span class="s2">    - Ingredient: 食材名字如鸡蛋</span>
+<span class="s2">    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎</span>
+<span class="s2">    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料</span>
+<span class="s2">    - DifficultyLevel: 烹饪难度:1星、2星...、8星</span>
+
+<span class="s2">    2. 关系类型 (Relationships):</span>
+<span class="s2">    - REQUIRES_INGREDIENT: 菜品包含某种食材</span>
+<span class="s2">    - USE_COOKING_METHOD: 菜品使用了某种技法</span>
+<span class="s2">    - BELONGS_CATEGORY: 属于什么分类</span>
+<span class="s2">    - HAS_DIFFICULTY_LEVEL: 难度等级</span>
+<span class="s2">    - SUBSTITUTE_FOR:食材替代 </span>
+
+<span class="s2">    示例节点和关系数据：</span>
+<span class="s2">    {{</span>
+<span class="s2">    &#39;nodes&#39;:[</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;&#39;name&#39;:&#39;拔丝土豆&#39;,</span>
+<span class="s2">            &#39;label&#39;: &#39;Dish&#39;,</span>
+<span class="s2">            &#39;properties&#39;:{{</span>
+<span class="s2">                &#39;path&#39;:&#39;&#39;,</span>
+<span class="s2">                &#39;category&#39;:[&#39;素菜&#39;],</span>
+<span class="s2">                &#39;steps&#39;: &#39;1.土豆切块, 2...&#39;,</span>
+<span class="s2">                &#39;note&#39;: &#39;放一些附加内容或者未注意到的文本内容&#39;</span>
+<span class="s2">            }}</span>
+<span class="s2">        }},</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;name&#39;: &#39;土豆&#39;,</span>
+<span class="s2">            &#39;label&#39;: &#39;Ingredient&#39;,</span>
+<span class="s2">            &#39;properties&#39;:{{</span>
+<span class="s2">                &#39;category&#39;:&#39;食材类别（蔬菜/调料/蛋白质/淀粉类/其他)&#39;</span>
+<span class="s2">            }}</span>
+<span class="s2">        }}</span>
+<span class="s2">    ],</span>
+<span class="s2">    &#39;relationships&#39;:[</span>
+<span class="s2">        {{</span>
+<span class="s2">            &#39;source_label&#39;:&#39;Dish&#39;</span>
+<span class="s2">            &#39;source_name&#39;:&#39;拔丝土豆&#39;,</span>
+<span class="s2">            &quot;target_name&quot;: &quot;土豆&quot;,</span>
+<span class="s2">            &quot;target_label&quot;: &quot;Ingredient&quot;,</span>
+<span class="s2">            &quot;type&quot;: &quot;HAS_INGREDIENT&quot;,</span>
+<span class="s2">            &quot;properties&quot;: {{ &quot;amount&quot;: &quot;2个&quot; }}</span>
+<span class="s2">        }}</span>
+<span class="s2">    ]</span>
+
+<span class="s2">    }}</span>
+
+<span class="s2">    要求：</span>
+<span class="s2">    1. 只返回cypher语句，不要包含任何解释标签</span>
+<span class="s2">    2. 确保cypher语法正确</span>
+<span class="s2">    3. 使用上下文提供标签、关系、属性等</span>
+<span class="s2">    4. RETURN 返回需要进行AS易懂的字段描述</span>
+<span class="s2">    5. 当问题涉及模糊语义（如口感、场景、功效）时，请使用以下语法：</span>
+<span class="s2">        CALL db.index.vector.queryNodes(&#39;dish_vector_index&#39;, 5, $vec) YIELD node AS d</span>
+<span class="s2">        后续可以继续match和return</span>
+
+<span class="s2">    用户问题</span>
+<span class="s2">    </span><span class="si">{text}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>构建上下文<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>数据库返回list-dict，不转字符串，可以直接作为context</p>
+</section>
 </section>
 
 
@@ -422,20 +623,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="v1.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">rag相关</p>
+        <p class="prev-next-title">V1</p>
       </div>
     </a>
     <a class="right-next"
-       href="baseline.html"
+       href="ragas.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">cookrag_baseline</p>
+        <p class="prev-next-title">ragas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -451,9 +652,23 @@
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">生成图prompt定义</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text2cypher-prompt">text2cypher-prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">构建上下文</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/myrag/cookrag/index.rst.txt">
+    <a href="../../_sources/myrag/cookrag/cook_graph_rag.ipynb.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

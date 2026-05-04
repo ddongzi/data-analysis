@@ -1,0 +1,301 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "e6e3872e",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "是否支持 CUDA (GPU加速): False\n"
+     ]
+    }
+   ],
+   "source": [
+    "from cook_graph_rag import GraphDBClient"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "928c6e2f",
+   "metadata": {},
+   "source": [
+    "# 图RAG"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b07228d6",
+   "metadata": {},
+   "source": [
+    "解决v1中跨chunk，上下文不足地问题"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "57b5369f",
+   "metadata": {},
+   "source": [
+    "**neo4j**\n",
+    "- 不需要像sql提前定义schema，插入即可。    \n",
+    "- 遵循有向图原则，只写 需要 方向。拔丝土豆 需要 土豆原材料，  土豆可以做拔丝土豆。    \n",
+    "\n",
+    "图schema：节点-关系\n",
+    "1. 节点：标签，名字，属性\n",
+    "2. 关系：类型，属性"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0912004f",
+   "metadata": {},
+   "source": [
+    "**llm**：生成图谱，依靠LLM解析出节点关系。    \n",
+    "图构建对llm智力要求很高：\n",
+    "- 依靠api免费LLM，请求速率限制，一般每分钟5次。300文章都要1小时了。\n",
+    "- 本地OLLAMA qwen2.5:0.5b虽快但太笨。deepseek-r1:7b和qwen3:8B都很慢也笨。和在线llm没法比\n",
+    "- 算力影响\"智力\"。参数远不够\n",
+    "- openrouter这些作为聚合，每天会有限制的"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b9cee8de",
+   "metadata": {},
+   "source": [
+    "**lightRAG**框架，只需要定义嵌入模型和llm。但是对于schema自定义是不够的。"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "42c88b78",
+   "metadata": {},
+   "source": [
+    "## 生成图prompt定义\n",
+    "- 这是最重要的！！！也是与之前RAG的区别。尤其是必须建立关系。\n",
+    "- 通过LLM prompt生成特定结构，然后来插入到图。\n",
+    "- prompt修正好像是个漫长的过程"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "58ca4d1e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "prompt = \"\"\"\n",
+    "    角色\n",
+    "    你是一个非常专业的知识图谱构建助手，擅长从非结构化文本中提取实体和逻辑关系。\n",
+    "\n",
+    "    任务\n",
+    "    阅读提供的文档，根据以下定义的 Schema 提取知识三元组。\n",
+    "\n",
+    "    自定义 Schema \n",
+    "    1. 节点标签 (Labels):\n",
+    "    - Dish: 菜名：文档起始标题名字，去掉\"的做法\"。 \n",
+    "    - Ingredient: 食材名字如鸡蛋\n",
+    "    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎\n",
+    "    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料\n",
+    "    - DifficultyLevel: 烹饪难度:1星、2星...、8星\n",
+    "\n",
+    "    2. 关系类型 (Relationships):\n",
+    "    - REQUIRES_INGREDIENT: 菜品包含某种食材\n",
+    "    - USE_COOKING_METHOD: 菜品使用了某种技法\n",
+    "    - BELONGS_CATEGORY: 属于什么分类\n",
+    "    - HAS_DIFFICULTY_LEVEL: 难度等级\n",
+    "    - SUBSTITUTE_FOR:食材替代 \n",
+    "\n",
+    "    要求：\n",
+    "    请尽可能详尽地提取，不要遗漏任何微小的关系。\n",
+    "    不要过度推理，只使用文档内容。\n",
+    "    涉及实体名字如：食材分类、烹饪方法、食材名字、菜谱分类等，必须准确简短，不能模糊\n",
+    "    content属性 必须完整且能重构节点，高度压缩但信息丰满\n",
+    "\n",
+    "    示例输出：\n",
+    "    {{\n",
+    "    'nodes':[\n",
+    "        {{\n",
+    "            'label': 'Dish',\n",
+    "            ''name':'拔丝土豆',\n",
+    "            \"properties\":{{\n",
+    "                'category':['素菜'],\n",
+    "                'steps': '1.土豆切块, 2...',\n",
+    "                'note': '注意提示、附加内容',\n",
+    "                'content':'拔丝土豆是一道经典的甜口素菜，通过炸制土豆挂糖浆制成，烹饪难度2星。其核心特征是外脆内软、金黄拉丝，适合作为甜点。'\n",
+    "            }}\n",
+    "        }},\n",
+    "        {{\n",
+    "            'name': '土豆',\n",
+    "            'label': 'Ingredient',\n",
+    "            \"properties\":{{\n",
+    "                'category':'食材类别（蔬菜/调料/蛋白质/淀粉类/其他)',\n",
+    "                'content':'节点内容'\n",
+    "            }}\n",
+    "\n",
+    "        }}\n",
+    "    ],\n",
+    "    'relationships':[\n",
+    "        {{\n",
+    "            'source_label':'Dish'\n",
+    "            'source_name':'拔丝土豆',\n",
+    "            \"target_name\": \"土豆\",\n",
+    "            \"target_label\": \"Ingredient\",\n",
+    "            \"type\": \"HAS_INGREDIENT\",\n",
+    "            \"properties\": {{ \"amount\": \"2个\" }}\n",
+    "        }}\n",
+    "    ]\n",
+    "\n",
+    "    }}\n",
+    "\n",
+    "    输出格式为json形式, 必须包括节点(名字、标签、属性), 关系(起始标签和名字、终止标签和名字、关系类型、关系属性)\n",
+    "\n",
+    "    待处理文本\n",
+    "    {text}\n",
+    "    \"\"\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "73201c50",
+   "metadata": {},
+   "source": [
+    "- 为了能够进行向量化检索，需要为数据库添加索引;通过content生成向量\n",
+    "  - **如何能够保证content不丢失信息**？因为是LLM提取，确实不能够通过content完全拼接为全文。"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aafd1456",
+   "metadata": {},
+   "source": [
+    "## text2cypher-prompt"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "09669a99",
+   "metadata": {},
+   "source": [
+    "- text2cypher的prompt能够返回 正常搜索和向量索引搜索\n",
+    "- text2cypher只会进行翻译保证符合schema和查询准确。不会将土豆->马铃薯，所以要向量索引\n",
+    "1. 转换为cpyher\n",
+    "2. 先进行向量索引。\n",
+    "3. 关联返回"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "802cd16f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "prompt = \"\"\"\n",
+    "    你是ne04j cypher的专家。根据下面信息将用户问题转为cypher语句。\n",
+    "\n",
+    "    neo4j Schema \n",
+    "    1. 节点标签 (Labels):\n",
+    "    - Dish: 菜名：文档起始标题名字，去掉\"的做法\"。 \n",
+    "    - Ingredient: 食材名字如鸡蛋\n",
+    "    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎\n",
+    "    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料\n",
+    "    - DifficultyLevel: 烹饪难度:1星、2星...、8星\n",
+    "\n",
+    "    2. 关系类型 (Relationships):\n",
+    "    - REQUIRES_INGREDIENT: 菜品包含某种食材\n",
+    "    - USE_COOKING_METHOD: 菜品使用了某种技法\n",
+    "    - BELONGS_CATEGORY: 属于什么分类\n",
+    "    - HAS_DIFFICULTY_LEVEL: 难度等级\n",
+    "    - SUBSTITUTE_FOR:食材替代 \n",
+    "\n",
+    "    示例节点和关系数据：\n",
+    "    {{\n",
+    "    'nodes':[\n",
+    "        {{\n",
+    "            ''name':'拔丝土豆',\n",
+    "            'label': 'Dish',\n",
+    "            'properties':{{\n",
+    "                'path':'',\n",
+    "                'category':['素菜'],\n",
+    "                'steps': '1.土豆切块, 2...',\n",
+    "                'note': '放一些附加内容或者未注意到的文本内容'\n",
+    "            }}\n",
+    "        }},\n",
+    "        {{\n",
+    "            'name': '土豆',\n",
+    "            'label': 'Ingredient',\n",
+    "            'properties':{{\n",
+    "                'category':'食材类别（蔬菜/调料/蛋白质/淀粉类/其他)'\n",
+    "            }}\n",
+    "        }}\n",
+    "    ],\n",
+    "    'relationships':[\n",
+    "        {{\n",
+    "            'source_label':'Dish'\n",
+    "            'source_name':'拔丝土豆',\n",
+    "            \"target_name\": \"土豆\",\n",
+    "            \"target_label\": \"Ingredient\",\n",
+    "            \"type\": \"HAS_INGREDIENT\",\n",
+    "            \"properties\": {{ \"amount\": \"2个\" }}\n",
+    "        }}\n",
+    "    ]\n",
+    "\n",
+    "    }}\n",
+    "\n",
+    "    要求：\n",
+    "    1. 只返回cypher语句，不要包含任何解释标签\n",
+    "    2. 确保cypher语法正确\n",
+    "    3. 使用上下文提供标签、关系、属性等\n",
+    "    4. RETURN 返回需要进行AS易懂的字段描述\n",
+    "    5. 当问题涉及模糊语义（如口感、场景、功效）时，请使用以下语法：\n",
+    "        CALL db.index.vector.queryNodes('dish_vector_index', 5, $vec) YIELD node AS d\n",
+    "        后续可以继续match和return\n",
+    "\n",
+    "    用户问题\n",
+    "    {text}\n",
+    "    \"\"\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fe4c16c9",
+   "metadata": {},
+   "source": [
+    "## 构建上下文"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c7137953",
+   "metadata": {},
+   "source": [
+    "数据库返回list-dict，不转字符串，可以直接作为context"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "data-analysis",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.20"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
