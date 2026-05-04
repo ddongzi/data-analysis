@@ -5,6 +5,5 @@ rag相关
    :caption: 内容目录
    :titlesonly: 
 
-   cookrag <cookrag/index>
+   cookrag/index
    learn/教程
-
