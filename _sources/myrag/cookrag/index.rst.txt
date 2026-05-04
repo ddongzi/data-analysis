@@ -7,7 +7,7 @@ cookrag
    :caption: 内容目录
    :titlesonly: 
 
-   baseline
-   v1
-   cook_graph_rag
-   ragas
+   baseline.ipynb
+   v1.ipynb
+   cook_graph_rag.ipynb
+   ragas.ipynb
