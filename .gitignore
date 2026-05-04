@@ -79,3 +79,5 @@ mastDownload
 *.pth
 *.pkl
 *.faiss
+
+!requirements.txt
