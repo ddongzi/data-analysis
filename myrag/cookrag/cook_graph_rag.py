@@ -18,12 +18,11 @@ print(f"是否支持 CUDA (GPU加速): {cuda_available}")
 load_dotenv()
 
 llm = ChatOpenAI(
-    api_key= os.getenv('AIHUBMIX_API_KEY'),
-    base_url="https://aihubmix.com/v1",
-    model='xiaomi-mimo-v2-omni-free',
+    api_key= 'ollama',
+    base_url="http://localhost:11434/v1",
+    model='qwen2.5:7b-instruct',
     temperature=0, # 更加严谨冷酷统一
 ) 
-
 def graph_extractor(text: str) ->dict:
     """
     """
@@ -123,8 +122,8 @@ class GraphDBClient:
     def clear_database(self):
         with self.driver.session() as session:
             # 删除所有节点及其关系
-            # session.run("MATCH (n) DETACH DELETE n")
-            # print("Database cleared.")
+            session.run("MATCH (n) DETACH DELETE n")
+            print("Database cleared.")
             pass
     def close(self):
         self.driver.close()
@@ -303,18 +302,19 @@ class GraphDBClient:
 def load_files(file_paths:list[str]):
     """ 加载到图库， fangbianceshi """
     for path in file_paths:
-        with open(path) as f:
+        with open(path, mode= 'r', encoding='utf-8') as f:
             text = f.read()
             graph_content = graph_extractor(text=text)
             client.save(graph_content)
             print(f"{path} done. ..")
-            # time.sleep(10)
+            time.sleep(10)
+
+client = GraphDBClient("bolt://localhost:7687", "neo4j", "12345678")
 
 def main():
-    client = GraphDBClient("bolt://localhost:7687", "neo4j", "12345678")
-    
     DATA_FOLDER = os.path.join(os.getcwd(), 'data')
-    file_paths = glob.glob(os.path.join(DATA_FOLDER,  '3Star.md'))
+    file_paths = glob.glob(os.path.join(DATA_FOLDER,  '*.md'))
     load_files(file_paths)
 
     result = client.search("我想吃点辣的东西")
+main()
