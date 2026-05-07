@@ -410,6 +410,15 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>是否支持 CUDA (GPU加速): False
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading weights: 100%|██████████| 71/71 [00:00&lt;00:00, 5461.43it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>向量索引 `dish_vector_index` 
+Database cleared.
+Successfully committed.
+c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
+</pre></div>
+</div>
 </div>
 </div>
 <section id="rag">
@@ -429,7 +438,7 @@
 图构建对llm智力要求很高：</p>
 <ul class="simple">
 <li><p>依靠api免费LLM，请求速率限制，一般每分钟5次。300文章都要1小时了。</p></li>
-<li><p>本地OLLAMA qwen2.5:0.5b虽快但太笨。deepseek-r1:7b和qwen3:8B都很慢也笨。和在线llm没法比</p></li>
+<li><p>本地OLLAMA qwen2.5:0.5b虽快但太笨。qwen2.5 7B instruct慢。deepseek-r1:7b和qwen3:8B都很慢也笨。和在线llm没法比</p></li>
 <li><p>算力影响”智力”。参数远不够</p></li>
 <li><p>openrouter这些作为聚合，每天会有限制的</p></li>
 </ul>
@@ -610,6 +619,19 @@
 <h2>构建上下文<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>数据库返回list-dict，不转字符串，可以直接作为context</p>
 </section>
+<section id="id2">
+<h2>其他<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>测试 qwen2.5-7b instruct</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_FOLDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">file_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER</span><span class="p">,</span>  <span class="s1">&#39;无骨鸡爪.md&#39;</span><span class="p">))</span>
+<span class="n">load_files</span><span class="p">(</span><span class="n">file_paths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
 
@@ -662,6 +684,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">生成图prompt定义</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text2cypher-prompt">text2cypher-prompt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">构建上下文</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">其他</a></li>
 </ul>
   </nav></div>
 
