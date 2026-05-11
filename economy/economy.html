@@ -371,13 +371,6 @@
                   
   <section id="id1">
 <h1>宏观经济<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p>plotly带来交互，但是导致文件过大，不能上传github，得不偿失</p>
-<ul>
-<li><p>TODO: 替换为seaborn</p></li>
-</ul>
-</li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -395,8 +388,12 @@
     <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span>
     <span class="n">font</span><span class="o">=</span><span class="n">fonts</span><span class="p">,</span>
     <span class="n">rc</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;axes.unicode_minus&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>   <span class="c1"># 解决负号乱码</span>
-        <span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">2.5</span>         <span class="c1"># 线条加粗，更有质感</span>
+        <span class="s2">&quot;axes.unicode_minus&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span>
+        <span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>  <span class="c1"># 在这里设置！(宽, 高) 单位是英寸</span>
+        <span class="s2">&quot;figure.dpi&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>           <span class="c1"># 提高清晰度，默认的图有时比较糊</span>
+        <span class="s2">&quot;axes.titlesize&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>        <span class="c1"># 标题大一点，方便一眼看到指标名称</span>
+        <span class="s2">&quot;axes.labelsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>        <span class="c1"># 坐标轴标签字体</span>
     <span class="p">}</span>
 <span class="p">)</span>
 </pre></div>
@@ -833,100 +830,918 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="ne">SSLError</span>: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)
+<span class="ne">SSLError</span>: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1010)
 
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
 <span class="ne">MaxRetryError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\adapters.py:644,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">644</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">645</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">646</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">647</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">648</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">649</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">650</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">652</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">654</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">655</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">656</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\requests\adapters.py:645,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">645</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">646</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">649</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">650</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">651</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">652</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\urllib3\connectionpool.py:841,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\urllib3\connectionpool.py:841,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
 <span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="n">new_e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">new_e</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">841</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">842</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">new_e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
 <span class="g g-Whitespace">    </span><span class="mi">843</span> <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\urllib3\util\retry.py:535,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\urllib3\util\retry.py:535,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
 <span class="g g-Whitespace">    </span><span class="mi">534</span>     <span class="n">reason</span> <span class="o">=</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">ResponseError</span><span class="p">(</span><span class="n">cause</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">535</span>     <span class="k">raise</span> <span class="n">MaxRetryError</span><span class="p">(</span><span class="n">_pool</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">reason</span>  <span class="c1"># type: ignore[arg-type]</span>
 <span class="g g-Whitespace">    </span><span class="mi">537</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Incremented Retry for (url=&#39;</span><span class="si">%s</span><span class="s2">&#39;): </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">new_retry</span><span class="p">)</span>
 
-<span class="ne">MaxRetryError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)&#39;)))
+<span class="ne">MaxRetryError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1010)&#39;)))
 
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">macro_china_shrzgm_df</span> <span class="o">=</span> <span class="n">ak</span><span class="o">.</span><span class="n">macro_china_shrzgm</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">macro_china_shrzgm_df</span><span class="p">[</span><span class="s1">&#39;月份&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;月份&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span> <span class="n">col</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;其中-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\akshare\economic\macro_china.py:267,</span> in <span class="ni">macro_china_shrzgm</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="n">TLSAdapter</span><span class="p">())</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\akshare\economic\macro_china.py:267,</span> in <span class="ni">macro_china_shrzgm</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="n">TLSAdapter</span><span class="p">())</span>
 <span class="g g-Whitespace">    </span><span class="mi">266</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://data.mofcom.gov.cn/datamofcom/front/gnmy/shrzgmQuery&quot;</span>
 <span class="ne">--&gt; </span><span class="mi">267</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="n">data_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:637,</span> in <span class="ni">Session.post</span><span class="nt">(self, url, data, json, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">626</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a POST request. Returns :class:`Response` object.</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
-<span class="sd">   (...)    634     :rtype: requests.Response</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">637</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\requests\sessions.py:640,</span> in <span class="ni">Session.post</span><span class="nt">(self, url, data, json, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a POST request. Returns :class:`Response` object.</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)    637     :rtype: requests.Response</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">640</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:589,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">589</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">return</span> <span class="n">resp</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\requests\sessions.py:592,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">592</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span> <span class="k">return</span> <span class="n">resp</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\sessions.py:703,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\requests\sessions.py:706,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">706</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
 
-<span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\Lib\site-packages\requests\adapters.py:675,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="k">raise</span> <span class="n">ProxyError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
-<span class="ne">--&gt; </span><span class="mi">675</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">File c:\Users\63517\miniconda3\envs\data-science\Lib\site-packages\requests\adapters.py:676,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="k">raise</span> <span class="n">ProxyError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
+<span class="ne">--&gt; </span><span class="mi">676</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="ne">SSLError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1032)&#39;)))
+<span class="ne">SSLError</span>: HTTPSConnectionPool(host=&#39;data.mofcom.gov.cn&#39;, port=443): Max retries exceeded with url: /datamofcom/front/gnmy/shrzgmQuery (Caused by SSLError(SSLError(1, &#39;[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1010)&#39;)))
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">macro_china_shrzgm_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>社会融资规模增量</th>
+      <th>人民币贷款</th>
+      <th>委托贷款外币贷款</th>
+      <th>委托贷款</th>
+      <th>信托贷款</th>
+      <th>未贴现银行承兑汇票</th>
+      <th>企业债券</th>
+      <th>非金融企业境内股票融资</th>
+    </tr>
+    <tr>
+      <th>月份</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-01</th>
+      <td>20516</td>
+      <td>14708</td>
+      <td>212</td>
+      <td>832</td>
+      <td>52</td>
+      <td>1946</td>
+      <td>1868</td>
+      <td>526.0</td>
+    </tr>
+    <tr>
+      <th>2015-02-01</th>
+      <td>13609</td>
+      <td>11437</td>
+      <td>-146</td>
+      <td>1299</td>
+      <td>38</td>
+      <td>-592</td>
+      <td>716</td>
+      <td>542.0</td>
+    </tr>
+    <tr>
+      <th>2015-03-01</th>
+      <td>12433</td>
+      <td>9920</td>
+      <td>-4</td>
+      <td>1111</td>
+      <td>-77</td>
+      <td>-910</td>
+      <td>1344</td>
+      <td>639.0</td>
+    </tr>
+    <tr>
+      <th>2015-04-01</th>
+      <td>10582</td>
+      <td>8045</td>
+      <td>-265</td>
+      <td>344</td>
+      <td>-46</td>
+      <td>-74</td>
+      <td>1616</td>
+      <td>597.0</td>
+    </tr>
+    <tr>
+      <th>2015-05-01</th>
+      <td>12397</td>
+      <td>8510</td>
+      <td>81</td>
+      <td>324</td>
+      <td>-195</td>
+      <td>961</td>
+      <td>1710</td>
+      <td>584.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2025-08-01</th>
+      <td>25660</td>
+      <td>6253</td>
+      <td>-91</td>
+      <td>-165</td>
+      <td>350</td>
+      <td>1973</td>
+      <td>1338</td>
+      <td>456.0</td>
+    </tr>
+    <tr>
+      <th>2025-09-01</th>
+      <td>35299</td>
+      <td>16081</td>
+      <td>-129</td>
+      <td>283</td>
+      <td>62</td>
+      <td>3234</td>
+      <td>136</td>
+      <td>499.0</td>
+    </tr>
+    <tr>
+      <th>2025-10-01</th>
+      <td>8178</td>
+      <td>-154</td>
+      <td>-200</td>
+      <td>1654</td>
+      <td>155</td>
+      <td>-2895</td>
+      <td>2500</td>
+      <td>695.0</td>
+    </tr>
+    <tr>
+      <th>2025-11-01</th>
+      <td>24926</td>
+      <td>4096</td>
+      <td>-222</td>
+      <td>-187</td>
+      <td>843</td>
+      <td>1488</td>
+      <td>4145</td>
+      <td>341.0</td>
+    </tr>
+    <tr>
+      <th>2025-12-01</th>
+      <td>22075</td>
+      <td>9804</td>
+      <td>-675</td>
+      <td>308</td>
+      <td>679</td>
+      <td>-1492</td>
+      <td>1541</td>
+      <td>559.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>132 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_df</span> <span class="o">=</span> <span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">macro_china_shrzgm_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="p">:][[</span><span class="s1">&#39;人民币贷款&#39;</span><span class="p">,</span><span class="s1">&#39;企业债券&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;社融&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;社融&#39;}, xlabel=&#39;月份&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/d5cb0dad87a832ff2cf2513d361ea2d8faaf25cbb2e2dea01f4933d2a7ab0e7b.png" src="../_images/d5cb0dad87a832ff2cf2513d361ea2d8faaf25cbb2e2dea01f4933d2a7ab0e7b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 消除1月份 人名币贷款 峰值。 采用同比增量。</span>
+<span class="n">growth_df</span> <span class="o">=</span> <span class="n">plot_df</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">growth_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;人名币贷款_同比&#39;</span><span class="p">,</span> <span class="s1">&#39;企业债券_同比&#39;</span><span class="p">]</span>
+<span class="n">growth_df</span><span class="p">[</span><span class="mi">12</span><span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;社融同比增量&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;社融同比增量&#39;}, xlabel=&#39;月份&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b0078d265c264dc980c834425b9033d5cebfbc8312c0aa9d9f756746e4b7a901.png" src="../_images/b0078d265c264dc980c834425b9033d5cebfbc8312c0aa9d9f756746e4b7a901.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>人民币贷款</th>
+      <th>企业债券</th>
+    </tr>
+    <tr>
+      <th>月份</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-02-01</th>
+      <td>13413</td>
+      <td>1356</td>
+    </tr>
+    <tr>
+      <th>2021-03-01</th>
+      <td>27511</td>
+      <td>3807</td>
+    </tr>
+    <tr>
+      <th>2021-04-01</th>
+      <td>12840</td>
+      <td>3624</td>
+    </tr>
+    <tr>
+      <th>2021-05-01</th>
+      <td>14294</td>
+      <td>-1077</td>
+    </tr>
+    <tr>
+      <th>2021-06-01</th>
+      <td>23182</td>
+      <td>3927</td>
+    </tr>
+    <tr>
+      <th>2021-07-01</th>
+      <td>8391</td>
+      <td>3091</td>
+    </tr>
+    <tr>
+      <th>2021-08-01</th>
+      <td>12713</td>
+      <td>4649</td>
+    </tr>
+    <tr>
+      <th>2021-09-01</th>
+      <td>17755</td>
+      <td>1137</td>
+    </tr>
+    <tr>
+      <th>2021-10-01</th>
+      <td>7752</td>
+      <td>2261</td>
+    </tr>
+    <tr>
+      <th>2021-11-01</th>
+      <td>13021</td>
+      <td>4006</td>
+    </tr>
+    <tr>
+      <th>2021-12-01</th>
+      <td>10350</td>
+      <td>2167</td>
+    </tr>
+    <tr>
+      <th>2022-01-01</th>
+      <td>41988</td>
+      <td>5838</td>
+    </tr>
+    <tr>
+      <th>2022-02-01</th>
+      <td>9084</td>
+      <td>3610</td>
+    </tr>
+    <tr>
+      <th>2022-03-01</th>
+      <td>32291</td>
+      <td>3750</td>
+    </tr>
+    <tr>
+      <th>2022-04-01</th>
+      <td>3616</td>
+      <td>3652</td>
+    </tr>
+    <tr>
+      <th>2022-05-01</th>
+      <td>18230</td>
+      <td>366</td>
+    </tr>
+    <tr>
+      <th>2022-06-01</th>
+      <td>61759</td>
+      <td>2346</td>
+    </tr>
+    <tr>
+      <th>2022-07-01</th>
+      <td>4088</td>
+      <td>960</td>
+    </tr>
+    <tr>
+      <th>2022-08-01</th>
+      <td>13344</td>
+      <td>1512</td>
+    </tr>
+    <tr>
+      <th>2022-09-01</th>
+      <td>25686</td>
+      <td>345</td>
+    </tr>
+    <tr>
+      <th>2022-10-01</th>
+      <td>4431</td>
+      <td>2413</td>
+    </tr>
+    <tr>
+      <th>2022-11-01</th>
+      <td>11448</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>2022-12-01</th>
+      <td>14401</td>
+      <td>-4887</td>
+    </tr>
+    <tr>
+      <th>2023-01-01</th>
+      <td>49314</td>
+      <td>1638</td>
+    </tr>
+    <tr>
+      <th>2023-02-01</th>
+      <td>18184</td>
+      <td>3662</td>
+    </tr>
+    <tr>
+      <th>2023-03-01</th>
+      <td>39487</td>
+      <td>3357</td>
+    </tr>
+    <tr>
+      <th>2023-04-01</th>
+      <td>4431</td>
+      <td>2940</td>
+    </tr>
+    <tr>
+      <th>2023-05-01</th>
+      <td>12219</td>
+      <td>-2144</td>
+    </tr>
+    <tr>
+      <th>2023-06-01</th>
+      <td>32413</td>
+      <td>2249</td>
+    </tr>
+    <tr>
+      <th>2023-07-01</th>
+      <td>364</td>
+      <td>1290</td>
+    </tr>
+    <tr>
+      <th>2023-08-01</th>
+      <td>13412</td>
+      <td>2788</td>
+    </tr>
+    <tr>
+      <th>2023-09-01</th>
+      <td>25369</td>
+      <td>650</td>
+    </tr>
+    <tr>
+      <th>2023-10-01</th>
+      <td>4837</td>
+      <td>1178</td>
+    </tr>
+    <tr>
+      <th>2023-11-01</th>
+      <td>11120</td>
+      <td>1388</td>
+    </tr>
+    <tr>
+      <th>2023-12-01</th>
+      <td>11092</td>
+      <td>-2741</td>
+    </tr>
+    <tr>
+      <th>2024-01-01</th>
+      <td>48401</td>
+      <td>4320</td>
+    </tr>
+    <tr>
+      <th>2024-02-01</th>
+      <td>9773</td>
+      <td>1423</td>
+    </tr>
+    <tr>
+      <th>2024-03-01</th>
+      <td>32920</td>
+      <td>4237</td>
+    </tr>
+    <tr>
+      <th>2024-04-01</th>
+      <td>3349</td>
+      <td>1707</td>
+    </tr>
+    <tr>
+      <th>2024-05-01</th>
+      <td>8197</td>
+      <td>285</td>
+    </tr>
+    <tr>
+      <th>2024-06-01</th>
+      <td>21927</td>
+      <td>2100</td>
+    </tr>
+    <tr>
+      <th>2024-07-01</th>
+      <td>-808</td>
+      <td>2036</td>
+    </tr>
+    <tr>
+      <th>2024-08-01</th>
+      <td>10411</td>
+      <td>1703</td>
+    </tr>
+    <tr>
+      <th>2024-09-01</th>
+      <td>19742</td>
+      <td>-1926</td>
+    </tr>
+    <tr>
+      <th>2024-10-01</th>
+      <td>2965</td>
+      <td>987</td>
+    </tr>
+    <tr>
+      <th>2024-11-01</th>
+      <td>5216</td>
+      <td>2381</td>
+    </tr>
+    <tr>
+      <th>2024-12-01</th>
+      <td>8402</td>
+      <td>-159</td>
+    </tr>
+    <tr>
+      <th>2025-01-01</th>
+      <td>52194</td>
+      <td>4454</td>
+    </tr>
+    <tr>
+      <th>2025-02-01</th>
+      <td>6528</td>
+      <td>1702</td>
+    </tr>
+    <tr>
+      <th>2025-03-01</th>
+      <td>38234</td>
+      <td>-905</td>
+    </tr>
+    <tr>
+      <th>2025-04-01</th>
+      <td>884</td>
+      <td>2340</td>
+    </tr>
+    <tr>
+      <th>2025-05-01</th>
+      <td>5923</td>
+      <td>1496</td>
+    </tr>
+    <tr>
+      <th>2025-06-01</th>
+      <td>23600</td>
+      <td>2422</td>
+    </tr>
+    <tr>
+      <th>2025-07-01</th>
+      <td>-4296</td>
+      <td>2748</td>
+    </tr>
+    <tr>
+      <th>2025-08-01</th>
+      <td>6253</td>
+      <td>1338</td>
+    </tr>
+    <tr>
+      <th>2025-09-01</th>
+      <td>16081</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>2025-10-01</th>
+      <td>-154</td>
+      <td>2500</td>
+    </tr>
+    <tr>
+      <th>2025-11-01</th>
+      <td>4096</td>
+      <td>4145</td>
+    </tr>
+    <tr>
+      <th>2025-12-01</th>
+      <td>9804</td>
+      <td>1541</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>📌 反映每个月中国实体经济从各渠道获得的新增资金总量以及结构</p>
 <ul class="simple">
 <li><p>社融增量主要来自人名币贷款。</p></li>
 <li><p>每年的趋势大致相同，一月份是社融增量高峰。这体现了政策、银行、企业贷款需求的周期性。</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>人民币贷款</th>
+      <th>企业债券</th>
+    </tr>
+    <tr>
+      <th>月份</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2022-02-01</th>
+      <td>-32.274659</td>
+      <td>166.224189</td>
+    </tr>
+    <tr>
+      <th>2022-03-01</th>
+      <td>17.374868</td>
+      <td>-1.497242</td>
+    </tr>
+    <tr>
+      <th>2022-04-01</th>
+      <td>-71.838006</td>
+      <td>0.772627</td>
+    </tr>
+    <tr>
+      <th>2022-05-01</th>
+      <td>27.536029</td>
+      <td>-133.983287</td>
+    </tr>
+    <tr>
+      <th>2022-06-01</th>
+      <td>166.409283</td>
+      <td>-40.259740</td>
+    </tr>
+    <tr>
+      <th>2022-07-01</th>
+      <td>-51.281135</td>
+      <td>-68.942090</td>
+    </tr>
+    <tr>
+      <th>2022-08-01</th>
+      <td>4.963423</td>
+      <td>-67.476877</td>
+    </tr>
+    <tr>
+      <th>2022-09-01</th>
+      <td>44.669107</td>
+      <td>-69.656992</td>
+    </tr>
+    <tr>
+      <th>2022-10-01</th>
+      <td>-42.840557</td>
+      <td>6.722689</td>
+    </tr>
+    <tr>
+      <th>2022-11-01</th>
+      <td>-12.080485</td>
+      <td>-84.922616</td>
+    </tr>
+    <tr>
+      <th>2022-12-01</th>
+      <td>39.140097</td>
+      <td>-325.519151</td>
+    </tr>
+    <tr>
+      <th>2023-01-01</th>
+      <td>17.447842</td>
+      <td>-71.942446</td>
+    </tr>
+    <tr>
+      <th>2023-02-01</th>
+      <td>100.176134</td>
+      <td>1.440443</td>
+    </tr>
+    <tr>
+      <th>2023-03-01</th>
+      <td>22.284847</td>
+      <td>-10.480000</td>
+    </tr>
+    <tr>
+      <th>2023-04-01</th>
+      <td>22.538717</td>
+      <td>-19.496166</td>
+    </tr>
+    <tr>
+      <th>2023-05-01</th>
+      <td>-32.973121</td>
+      <td>-685.792350</td>
+    </tr>
+    <tr>
+      <th>2023-06-01</th>
+      <td>-47.516961</td>
+      <td>-4.134697</td>
+    </tr>
+    <tr>
+      <th>2023-07-01</th>
+      <td>-91.095890</td>
+      <td>34.375000</td>
+    </tr>
+    <tr>
+      <th>2023-08-01</th>
+      <td>0.509592</td>
+      <td>84.391534</td>
+    </tr>
+    <tr>
+      <th>2023-09-01</th>
+      <td>-1.234135</td>
+      <td>88.405797</td>
+    </tr>
+    <tr>
+      <th>2023-10-01</th>
+      <td>9.162717</td>
+      <td>-51.181102</td>
+    </tr>
+    <tr>
+      <th>2023-11-01</th>
+      <td>-2.865129</td>
+      <td>129.801325</td>
+    </tr>
+    <tr>
+      <th>2023-12-01</th>
+      <td>-22.977571</td>
+      <td>-43.912421</td>
+    </tr>
+    <tr>
+      <th>2024-01-01</th>
+      <td>-1.851401</td>
+      <td>163.736264</td>
+    </tr>
+    <tr>
+      <th>2024-02-01</th>
+      <td>-46.254949</td>
+      <td>-61.141453</td>
+    </tr>
+    <tr>
+      <th>2024-03-01</th>
+      <td>-16.630790</td>
+      <td>26.213881</td>
+    </tr>
+    <tr>
+      <th>2024-04-01</th>
+      <td>-24.418867</td>
+      <td>-41.938776</td>
+    </tr>
+    <tr>
+      <th>2024-05-01</th>
+      <td>-32.915951</td>
+      <td>-113.292910</td>
+    </tr>
+    <tr>
+      <th>2024-06-01</th>
+      <td>-32.351217</td>
+      <td>-6.625167</td>
+    </tr>
+    <tr>
+      <th>2024-07-01</th>
+      <td>-321.978022</td>
+      <td>57.829457</td>
+    </tr>
+    <tr>
+      <th>2024-08-01</th>
+      <td>-22.375485</td>
+      <td>-38.916786</td>
+    </tr>
+    <tr>
+      <th>2024-09-01</th>
+      <td>-22.180614</td>
+      <td>-396.307692</td>
+    </tr>
+    <tr>
+      <th>2024-10-01</th>
+      <td>-38.701675</td>
+      <td>-16.213922</td>
+    </tr>
+    <tr>
+      <th>2024-11-01</th>
+      <td>-53.093525</td>
+      <td>71.541787</td>
+    </tr>
+    <tr>
+      <th>2024-12-01</th>
+      <td>-24.251713</td>
+      <td>-94.199197</td>
+    </tr>
+    <tr>
+      <th>2025-01-01</th>
+      <td>7.836615</td>
+      <td>3.101852</td>
+    </tr>
+    <tr>
+      <th>2025-02-01</th>
+      <td>-33.203725</td>
+      <td>19.606465</td>
+    </tr>
+    <tr>
+      <th>2025-03-01</th>
+      <td>16.142163</td>
+      <td>-121.359452</td>
+    </tr>
+    <tr>
+      <th>2025-04-01</th>
+      <td>-73.604061</td>
+      <td>37.082601</td>
+    </tr>
+    <tr>
+      <th>2025-05-01</th>
+      <td>-27.741857</td>
+      <td>424.912281</td>
+    </tr>
+    <tr>
+      <th>2025-06-01</th>
+      <td>7.629863</td>
+      <td>15.333333</td>
+    </tr>
+    <tr>
+      <th>2025-07-01</th>
+      <td>431.683168</td>
+      <td>34.970530</td>
+    </tr>
+    <tr>
+      <th>2025-08-01</th>
+      <td>-39.938527</td>
+      <td>-21.432766</td>
+    </tr>
+    <tr>
+      <th>2025-09-01</th>
+      <td>-18.544220</td>
+      <td>-107.061267</td>
+    </tr>
+    <tr>
+      <th>2025-10-01</th>
+      <td>-105.193929</td>
+      <td>153.292806</td>
+    </tr>
+    <tr>
+      <th>2025-11-01</th>
+      <td>-21.472393</td>
+      <td>74.086518</td>
+    </tr>
+    <tr>
+      <th>2025-12-01</th>
+      <td>16.686503</td>
+      <td>-1069.182390</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 <section id="gdp">
 <h3>GDP年率<a class="headerlink" href="#gdp" title="Link to this heading">#</a></h3>
