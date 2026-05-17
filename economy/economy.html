@@ -399,6 +399,77 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">akshare</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ak</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">dong</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">data</span><span class="o">-</span><span class="n">science</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">pandas</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">56</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._config</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="n">get_option</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="n">set_option</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">52</span>     <span class="n">options</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1"># let init-time option registration happen</span>
+<span class="ne">---&gt; </span><span class="mi">56</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas.core.config_init</span>  <span class="c1"># pyright: ignore[reportUnusedImport] # noqa: F401</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="c1"># dtype</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="n">ArrowDtype</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">119</span>     <span class="n">DataFrame</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.col</span><span class="w"> </span><span class="kn">import</span> <span class="n">col</span>
+
+<span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">dong</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">data</span><span class="o">-</span><span class="n">science</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">pandas</span>\<span class="n">core</span>\<span class="n">config_init</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">31</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas._config.config</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cf</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._config.config</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">is_bool</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">is_callable</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">28</span>     <span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">31</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pandas4Warning</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="c1"># compute</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">use_bottleneck_doc</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="s2"> : bool</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="s2">     Use the bottleneck library to accelerate if it is installed,</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="s2">     the default is True</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="s2">     Valid values: False,True</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="s2"> &quot;&quot;&quot;</span>
+
+<span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">dong</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">data</span><span class="o">-</span><span class="n">science</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">pandas</span>\<span class="n">errors</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">12</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._config.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionError</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._libs.tslibs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">IncompatibleFrequency</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">OutOfBoundsDatetime</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">OutOfBoundsTimedelta</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.util.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidVersion</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">class</span><span class="w"> </span><span class="nc">IntCastingNaNError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+
+<span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">dong</span>\<span class="n">miniconda3</span>\<span class="n">envs</span>\<span class="n">data</span><span class="o">-</span><span class="n">science</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">pandas</span>\<span class="n">_libs</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas._libs.pandas_parser</span>  <span class="c1"># isort: skip # type: ignore[reportUnusedImport]</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas._libs.pandas_datetime</span>  <span class="c1"># noqa: F401 # isort: skip # type: ignore[reportUnusedImport]</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._libs.interval</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interval</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pandas._libs.tslibs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">NaT</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">NaTType</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">26</span>     <span class="n">iNaT</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="p">)</span>
+
+<span class="nn">File pandas/_libs/interval.pyx:1,</span> in <span class="ni">init pandas._libs.interval</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="s1">&#39;Could not get source, probably due dynamically evaluated source code.&#39;</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:645,</span> in <span class="ni">ModuleSpec.parent</span><span class="nt">(self)</span>
+<span class="ne">--&gt; </span><span class="mi">645</span> <span class="s1">&#39;Could not get source, probably due dynamically evaluated source code.&#39;</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 <section id="id2">
 <h2>杠杆率<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>

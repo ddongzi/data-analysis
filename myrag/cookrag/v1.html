@@ -630,7 +630,7 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
     <span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
     <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
         <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
-        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;IVF_FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;IVF_FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型, 稠密向量</span>
         <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;IP&#39;</span><span class="p">,</span>  <span class="c1"># </span>
     <span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
@@ -638,7 +638,7 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
     <span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
     <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
         <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;sparse_vector&#39;</span><span class="p">,</span>
-        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;SPARSE_INVERTED_INDEX&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;SPARSE_INVERTED_INDEX&#39;</span><span class="p">,</span> <span class="c1"># 索引类型。稀疏向量</span>
         <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;IP&#39;</span><span class="p">,</span>  <span class="c1"># 必须显式指定为内积</span>
 
     <span class="p">)</span>

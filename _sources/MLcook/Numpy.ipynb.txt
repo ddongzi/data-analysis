@@ -123,15 +123,31 @@
   },
   {
    "cell_type": "markdown",
+   "id": "60759d11",
+   "metadata": {},
+   "source": [
+    "## 未分类"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "07e125af",
    "metadata": {},
    "source": [
-    "构造上三角"
+    "构造上三角下三角。"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fcceb7d5",
+   "metadata": {},
+   "source": [
+    "np.triu(a, k=0)：返回上三角矩阵，将第 \\(k\\) 条对角线以下的元素置为 0。"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 4,
    "id": "d855de5a",
    "metadata": {},
    "outputs": [
@@ -143,7 +159,7 @@
        "       [ 0.        ,  0.        ,  0.        ]])"
       ]
      },
-     "execution_count": 7,
+     "execution_count": 4,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -153,6 +169,109 @@
     "    np.random.randn(3,3),\n",
     "    k = 1\n",
     ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "6fc6aa30",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[1., 1., 0.],\n",
+       "       [1., 1., 1.],\n",
+       "       [1., 1., 1.]])"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.tril(\n",
+    "    np.ones((3,3)),\n",
+    "    k=1\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "642ff600",
+   "metadata": {},
+   "source": [
+    "单位矩阵，或者偏移的单位矩阵"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "c9a75dd3",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[1., 0., 0.],\n",
+       "       [0., 1., 0.],\n",
+       "       [0., 0., 1.]])"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.eye(3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "6a68a22b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0., 1., 0.],\n",
+       "       [0., 0., 1.],\n",
+       "       [0., 0., 0.]])"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.eye(3, k=1) # 向上偏移1个"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "57cf3a80",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0., 0., 0.],\n",
+       "       [1., 0., 0.],\n",
+       "       [0., 1., 0.]])"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.eye(3, k=-1) # 向下偏移1个"
    ]
   },
   {
@@ -19625,7 +19744,7 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "data-analysis",
+   "display_name": "data-science",
    "language": "python",
    "name": "python3"
   },
@@ -19639,7 +19758,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.15"
+   "version": "3.12.13"
   }
  },
  "nbformat": 4,
