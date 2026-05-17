@@ -1,0 +1,7 @@
+numpy
+pandas
+ipykernel
+scipy
+matplotlib
+seaborn
+akshare
