@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -184,11 +184,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -201,8 +208,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -444,11 +456,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unstructured.partition.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">partition</span>
 
-<span class="n">pdf_path</span> <span class="o">=</span> <span class="s1">&#39;rag.pdf&#39;</span>
+<span class="n">pdf_path</span> <span class="o">=</span> <span class="s1">'rag.pdf'</span>
 
 <span class="n">elements</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span>
     <span class="n">filename</span><span class="o">=</span><span class="n">pdf_path</span><span class="p">,</span>
-    <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span>
+    <span class="n">content_type</span><span class="o">=</span><span class="s1">'application/pdf'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -456,7 +468,7 @@
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
-[nltk_data] Error downloading &#39;punkt_tab&#39; from
+[nltk_data] Error downloading 'punkt_tab' from
 [nltk_data]     &lt;https://raw.githubusercontent.com/nltk/nltk_data/gh-
 [nltk_data]     pages/packages/tokenizers/punkt_tab.zip&gt;:   &lt;urlopen
 [nltk_data]     error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred
@@ -615,7 +627,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/pdf2image/pdf2image.py:581,</span> in <span class="ni">pdfinfo_from_path</span><span class="nt">(pdf_path, userpw, ownerpw, poppler_path, rawdates, timeout, first_page, last_page)</span>
-<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="n">env</span><span class="p">[</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">poppler_path</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="n">env</span><span class="p">[</span><span class="s2">"LD_LIBRARY_PATH"</span><span class="p">]</span> <span class="o">=</span> <span class="n">poppler_path</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"LD_LIBRARY_PATH"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">581</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">583</span> <span class="k">try</span><span class="p">:</span>
 
@@ -639,7 +651,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <span class="ne">-&gt; </span><span class="mi">1955</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1956</span> <span class="k">else</span><span class="p">:</span>
 
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;pdfinfo&#39;
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: 'pdfinfo'
 
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
@@ -647,11 +659,11 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">unstructured.partition.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">partition</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pdf_path</span> <span class="o">=</span> <span class="s1">&#39;rag.pdf&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pdf_path</span> <span class="o">=</span> <span class="s1">'rag.pdf'</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> 
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">filename</span><span class="o">=</span><span class="n">pdf_path</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/pdf&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">content_type</span><span class="o">=</span><span class="s1">'application/pdf'</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">)</span>
 
 <span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/unstructured/partition/auto.py:212,</span> in <span class="ni">partition</span><span class="nt">(filename, file, encoding, content_type, url, headers, ssl_verify, request_timeout, strategy, skip_infer_table_types, ocr_languages, languages, detect_language_per_element, pdf_infer_table_structure, extract_images_in_pdf, extract_image_block_types, extract_image_block_output_dir, extract_image_block_to_payload, data_source_metadata, metadata_filename, hi_res_model_name, model_name, starting_page_number, **kwargs)</span>
@@ -674,7 +686,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">228</span>     <span class="k">return</span> <span class="n">augment_metadata</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span> <span class="k">if</span> <span class="n">file_type</span><span class="o">.</span><span class="n">partitioner_shortname</span> <span class="ow">and</span> <span class="n">file_type</span><span class="o">.</span><span class="n">partitioner_shortname</span> <span class="o">==</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span> <span class="k">if</span> <span class="n">file_type</span><span class="o">.</span><span class="n">partitioner_shortname</span> <span class="ow">and</span> <span class="n">file_type</span><span class="o">.</span><span class="n">partitioner_shortname</span> <span class="o">==</span> <span class="s2">"image"</span><span class="p">:</span>
 
 <span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/unstructured/partition/common/metadata.py:162,</span> in <span class="ni">apply_metadata.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
@@ -688,7 +700,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <span class="g g-Whitespace">    </span><span class="mi">173</span>     <span class="c1"># ------------------------------------------------------------------------------------</span>
 
 <span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/unstructured/chunking/dispatch.py:74,</span> in <span class="ni">add_chunking_strategy.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;The decorated function is replaced with this one.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="w"> </span><span class="sd">"""The decorated function is replaced with this one."""</span>
 <span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="c1"># -- call the partitioning function to get the elements --</span>
 <span class="ne">---&gt; </span><span class="mi">74</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="c1"># -- look for a chunking-strategy argument --</span>
@@ -758,18 +770,18 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <span class="g g-Whitespace">    </span><span class="mi">410</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">411</span>     <span class="n">f_bytes</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="ne">--&gt; </span><span class="mi">412</span>     <span class="n">info</span> <span class="o">=</span> <span class="n">pdf2image</span><span class="o">.</span><span class="n">pdfinfo_from_path</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">userpw</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="n">total_pages</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;Pages&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="n">total_pages</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">"Pages"</span><span class="p">]</span>
 <span class="g g-Whitespace">    </span><span class="mi">415</span> <span class="k">for</span> <span class="n">start_page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_pages</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">):</span>
 
 <span class="nn">File ~/miniconda3/envs/data-analysis/lib/python3.12/site-packages/pdf2image/pdf2image.py:607,</span> in <span class="ni">pdfinfo_from_path</span><span class="nt">(pdf_path, userpw, ownerpw, poppler_path, rawdates, timeout, first_page, last_page)</span>
 <span class="g g-Whitespace">    </span><span class="mi">604</span>     <span class="k">return</span> <span class="n">d</span>
 <span class="g g-Whitespace">    </span><span class="mi">606</span> <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">607</span>     <span class="k">raise</span> <span class="n">PDFInfoNotInstalledError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="s2">&quot;Unable to get page count. Is poppler installed and in PATH?&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="s2">"Unable to get page count. Is poppler installed and in PATH?"</span>
 <span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">611</span>     <span class="k">raise</span> <span class="n">PDFPageCountError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">612</span>         <span class="sa">f</span><span class="s2">&quot;Unable to get page count.</span><span class="se">\n</span><span class="si">{</span><span class="n">err</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span>         <span class="sa">f</span><span class="s2">"Unable to get page count.</span><span class="se">\n</span><span class="si">{</span><span class="n">err</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">,</span><span class="w"> </span><span class="s1">'ignore'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 <span class="g g-Whitespace">    </span><span class="mi">613</span>     <span class="p">)</span>
 
 <span class="ne">PDFInfoNotInstalledError</span>: Unable to get page count. Is poppler installed and in PATH?
@@ -801,8 +813,8 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;解析出 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1"> 个元素&#39;</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;一共 </span><span class="si">{</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1">字符&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'解析出 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1"> 个元素'</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'一共 </span><span class="si">{</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">elements</span><span class="p">)</span><span class="si">}</span><span class="s1">字符'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -817,7 +829,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -852,7 +864,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;蜂医.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">'蜂医.txt'</span><span class="p">)</span>
 <span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -892,10 +904,10 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
-<span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;蜂医.txt&#39;</span><span class="p">)</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">'蜂医.txt'</span><span class="p">)</span>
 <span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
-    <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;，&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
+    <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"。"</span><span class="p">,</span> <span class="s2">"，"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
     <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
     <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
@@ -927,9 +939,9 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span>
-    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-small-zh-v1.5&quot;</span><span class="p">,</span>
-    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;cpu&#39;</span><span class="p">},</span>
-    <span class="n">encode_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;normalize_embeddings&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">"BAAI/bge-small-zh-v1.5"</span><span class="p">,</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">'device'</span><span class="p">:</span> <span class="s1">'cpu'</span><span class="p">},</span>
+    <span class="n">encode_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">'normalize_embeddings'</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -999,7 +1011,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/dong/data-analysis/myrag&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'/home/dong/data-analysis/myrag'
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1021,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModel</span>
 
-<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;BAAI/BGE-VL-base&quot;</span> <span class="c1"># or &quot;BAAI/BGE-VL-large&quot;</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">"BAAI/BGE-VL-base"</span> <span class="c1"># or "BAAI/BGE-VL-large"</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># You must set trust_remote_code=True</span>
 <span class="n">model</span><span class="o">.</span><span class="n">set_processor</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">)</span>
@@ -1020,7 +1032,7 @@ Could not get FontBBox from font descriptor because None cannot be parsed as 4 f
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/dong/miniconda3/envs/data-analysis/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You&#39;ll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CLIPModel(
@@ -1088,14 +1100,14 @@ Using a slow image processor as `use_fast` is unset and a slow processor was sav
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-        <span class="n">images</span> <span class="o">=</span> <span class="s2">&quot;data/cir_query.png&quot;</span><span class="p">,</span> 
-        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Make the background dark, as if the camera has taken the photo at night&quot;</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="s2">"data/cir_query.png"</span><span class="p">,</span> 
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">"Make the background dark, as if the camera has taken the photo at night"</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;query </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'query </span><span class="si">{</span><span class="n">query</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="n">candidates</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-        <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data/cir_candi_1.png&quot;</span><span class="p">,</span> <span class="s2">&quot;data/cir_candi_2.png&quot;</span><span class="p">]</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"data/cir_candi_1.png"</span><span class="p">,</span> <span class="s2">"data/cir_candi_2.png"</span><span class="p">]</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;candidate </span><span class="si">{</span><span class="n">candidates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'candidate </span><span class="si">{</span><span class="n">candidates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">query</span> <span class="o">@</span> <span class="n">candidates</span><span class="o">.</span><span class="n">T</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
@@ -1140,9 +1152,9 @@ tensor([[0.1971, 0.1242]])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;张三是法外狂徒&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;FAISS是一个用于高效相似性搜索和密集向量聚类的库。&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;LangChain是一个用于开发由语言模型驱动的应用程序的框架。&quot;</span>
+    <span class="s2">"张三是法外狂徒"</span><span class="p">,</span>
+    <span class="s2">"FAISS是一个用于高效相似性搜索和密集向量聚类的库。"</span><span class="p">,</span>
+    <span class="s2">"LangChain是一个用于开发由语言模型驱动的应用程序的框架。"</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -1164,7 +1176,7 @@ tensor([[0.1971, 0.1242]])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-small-zh-v1.5&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">"BAAI/bge-small-zh-v1.5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1180,10 +1192,10 @@ tensor([[0.1971, 0.1242]])
 <p>保存</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_faiss_path</span> <span class="o">=</span> <span class="s2">&quot;./faiss_index_store&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_faiss_path</span> <span class="o">=</span> <span class="s2">"./faiss_index_store"</span>
 <span class="n">vectorstore</span><span class="o">.</span><span class="n">save_local</span><span class="p">(</span><span class="n">local_faiss_path</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FAISS index has been saved to </span><span class="si">{</span><span class="n">local_faiss_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FAISS index has been saved to </span><span class="si">{</span><span class="n">local_faiss_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1202,12 +1214,12 @@ tensor([[0.1971, 0.1242]])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;张三是谁&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">"张三是谁"</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">loaded_vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;查询: &#39;</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;相似度最高的文档:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"查询: '</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"相似度最高的文档:"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1215,13 +1227,13 @@ tensor([[0.1971, 0.1242]])
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;张三是谁&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">query</span> <span class="o">=</span> <span class="s2">"张三是谁"</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">results</span> <span class="o">=</span> <span class="n">loaded_vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;查询: &#39;</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;相似度最高的文档:&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"查询: '</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s2">"相似度最高的文档:"</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
 
-<span class="ne">NameError</span>: name &#39;loaded_vectorstore&#39; is not defined
+<span class="ne">NameError</span>: name 'loaded_vectorstore' is not defined
 </pre></div>
 </div>
 </div>
@@ -1265,7 +1277,7 @@ tensor([[0.1971, 0.1242]])
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModel</span>
 
-<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;BAAI/BGE-VL-base&quot;</span> <span class="c1"># or &quot;BAAI/BGE-VL-large&quot;</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">"BAAI/BGE-VL-base"</span> <span class="c1"># or "BAAI/BGE-VL-large"</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># You must set trust_remote_code=True</span>
 <span class="n">model</span><span class="o">.</span><span class="n">set_processor</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">)</span>
@@ -1276,8 +1288,8 @@ tensor([[0.1971, 0.1242]])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;multimodal_demo&#39;</span>
-<span class="n">MILVUS_URI</span> <span class="o">=</span> <span class="s1">&#39;milvus_demo.db&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">'multimodal_demo'</span>
+<span class="n">MILVUS_URI</span> <span class="o">=</span> <span class="s1">'milvus_demo.db'</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">MILVUS_URI</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">has_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">):</span>
     <span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">)</span>
@@ -1294,7 +1306,7 @@ tensor([[0.1971, 0.1242]])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">'data'</span>
 </pre></div>
 </div>
 </div>
@@ -1302,19 +1314,19 @@ tensor([[0.1971, 0.1242]])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
-<span class="n">imgs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;dragon&#39;</span><span class="p">,</span> <span class="s1">&#39;*.png&#39;</span><span class="p">))</span>
+<span class="n">imgs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">'dragon'</span><span class="p">,</span> <span class="s1">'*.png'</span><span class="p">))</span>
 <span class="n">imgs</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/dragon/dragon05.png&#39;,
- &#39;data/dragon/dragon04.png&#39;,
- &#39;data/dragon/dragon06.png&#39;,
- &#39;data/dragon/dragon02.png&#39;,
- &#39;data/dragon/query.png&#39;,
- &#39;data/dragon/dragon03.png&#39;,
- &#39;data/dragon/other01.png&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['data/dragon/dragon05.png',
+ 'data/dragon/dragon04.png',
+ 'data/dragon/dragon06.png',
+ 'data/dragon/dragon02.png',
+ 'data/dragon/query.png',
+ 'data/dragon/dragon03.png',
+ 'data/dragon/other01.png']
 </pre></div>
 </div>
 </div>
@@ -1353,9 +1365,9 @@ tensor([[0.1971, 0.1242]])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
-    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span><span class="p">),</span>
-    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;image_path&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'vector'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span><span class="p">),</span>
+    <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"image_path"</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -1364,7 +1376,7 @@ tensor([[0.1971, 0.1242]])
 <p>我们创建了3个字段，存储每个向量</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;多模态图文检索&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'多模态图文检索'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1376,7 +1388,7 @@ tensor([[0.1971, 0.1242]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;auto_id&#39;: True, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;name&#39;: &#39;id&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.INT64: 5&gt;, &#39;is_primary&#39;: True, &#39;auto_id&#39;: True}, {&#39;name&#39;: &#39;vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 512}}, {&#39;name&#39;: &#39;image_path&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 512}}], &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'auto_id': True, 'description': '多模态图文检索', 'fields': [{'name': 'id', 'description': '', 'type': &lt;DataType.INT64: 5&gt;, 'is_primary': True, 'auto_id': True}, {'name': 'vector', 'description': '', 'type': &lt;DataType.FLOAT_VECTOR: 101&gt;, 'params': {'dim': 512}}, {'name': 'image_path', 'description': '', 'type': &lt;DataType.VARCHAR: 21&gt;, 'params': {'max_length': 512}}], 'enable_dynamic_field': False, 'enable_namespace': False}
 </pre></div>
 </div>
 </div>
@@ -1396,7 +1408,7 @@ tensor([[0.1971, 0.1242]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;collection_name&#39;: &#39;multimodal_demo&#39;, &#39;auto_id&#39;: True, &#39;num_shards&#39;: 0, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;field_id&#39;: 100, &#39;name&#39;: &#39;id&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.INT64: 5&gt;, &#39;params&#39;: {}, &#39;auto_id&#39;: True, &#39;is_primary&#39;: True}, {&#39;field_id&#39;: 101, &#39;name&#39;: &#39;vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 512}}, {&#39;field_id&#39;: 102, &#39;name&#39;: &#39;image_path&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 512}}], &#39;functions&#39;: [], &#39;aliases&#39;: [], &#39;collection_id&#39;: 0, &#39;consistency_level&#39;: 0, &#39;properties&#39;: {}, &#39;num_partitions&#39;: 0, &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'collection_name': 'multimodal_demo', 'auto_id': True, 'num_shards': 0, 'description': '多模态图文检索', 'fields': [{'field_id': 100, 'name': 'id', 'description': '', 'type': &lt;DataType.INT64: 5&gt;, 'params': {}, 'auto_id': True, 'is_primary': True}, {'field_id': 101, 'name': 'vector', 'description': '', 'type': &lt;DataType.FLOAT_VECTOR: 101&gt;, 'params': {'dim': 512}}, {'field_id': 102, 'name': 'image_path', 'description': '', 'type': &lt;DataType.VARCHAR: 21&gt;, 'params': {'max_length': 512}}], 'functions': [], 'aliases': [], 'collection_id': 0, 'consistency_level': 0, 'properties': {}, 'num_partitions': 0, 'enable_dynamic_field': False, 'enable_namespace': False}
 </pre></div>
 </div>
 </div>
@@ -1412,12 +1424,12 @@ tensor([[0.1971, 0.1242]])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_insert</span><span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;生成向量&#39;</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">'生成向量'</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>    
         <span class="n">vector</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># 一维</span>
     <span class="n">data_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-        <span class="s1">&#39;vector&#39;</span><span class="p">:</span> <span class="n">vector</span><span class="p">,</span>
-        <span class="s1">&#39;image_path&#39;</span><span class="p">:</span><span class="n">img_path</span>
+        <span class="s1">'vector'</span><span class="p">:</span> <span class="n">vector</span><span class="p">,</span>
+        <span class="s1">'image_path'</span><span class="p">:</span><span class="n">img_path</span>
     <span class="p">})</span>
 <span class="k">if</span> <span class="n">data_insert</span><span class="p">:</span>
     <span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
@@ -1440,9 +1452,9 @@ tensor([[0.1971, 0.1242]])
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
 <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
-    <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span>
-    <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
-    <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
+    <span class="n">field_name</span><span class="o">=</span><span class="s1">'vector'</span><span class="p">,</span>
+    <span class="n">index_type</span><span class="o">=</span><span class="s1">'FLAT'</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="s2">"COSINE"</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
 <span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
 </pre></div>
@@ -1451,20 +1463,20 @@ tensor([[0.1971, 0.1242]])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">describe_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">describe_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'vector'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;index_type&#39;: &#39;FLAT&#39;,
- &#39;metric_type&#39;: &#39;COSINE&#39;,
- &#39;dim&#39;: &#39;512&#39;,
- &#39;field_name&#39;: &#39;vector&#39;,
- &#39;index_name&#39;: &#39;vector&#39;,
- &#39;total_rows&#39;: 0,
- &#39;indexed_rows&#39;: 0,
- &#39;pending_index_rows&#39;: 0,
- &#39;state&#39;: &#39;Finished&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'index_type': 'FLAT',
+ 'metric_type': 'COSINE',
+ 'dim': '512',
+ 'field_name': 'vector',
+ 'index_name': 'vector',
+ 'total_rows': 0,
+ 'indexed_rows': 0,
+ 'pending_index_rows': 0,
+ 'state': 'Finished'}
 </pre></div>
 </div>
 </div>
@@ -1480,8 +1492,8 @@ tensor([[0.1971, 0.1242]])
 <p>查询</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query_image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;dragon&quot;</span><span class="p">,</span> <span class="s2">&quot;query.png&quot;</span><span class="p">)</span>
-<span class="n">query_text</span> <span class="o">=</span> <span class="s2">&quot;一条龙&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query_image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">"dragon"</span><span class="p">,</span> <span class="s2">"query.png"</span><span class="p">)</span>
+<span class="n">query_text</span> <span class="o">=</span> <span class="s2">"一条龙"</span>
 </pre></div>
 </div>
 </div>
@@ -2026,9 +2038,9 @@ tensor([[0.1971, 0.1242]])
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
     <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">query_vector</span><span class="p">],</span>
-    <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;image_path&#39;</span><span class="p">],</span>
+    <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'image_path'</span><span class="p">],</span>
     <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">search_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ef&quot;</span><span class="p">:</span> <span class="mi">128</span><span class="p">}}</span>
+    <span class="n">search_params</span><span class="o">=</span><span class="p">{</span><span class="s2">"metric_type"</span><span class="p">:</span> <span class="s2">"COSINE"</span><span class="p">,</span> <span class="s2">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"ef"</span><span class="p">:</span> <span class="mi">128</span><span class="p">}}</span>
 
 <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -2042,7 +2054,7 @@ tensor([[0.1971, 0.1242]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 465990001279631376, &#39;distance&#39;: 0.22547799348831177, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon06.png&#39;}}, {&#39;id&#39;: 465990001279631378, &#39;distance&#39;: 0.1865767538547516, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/query.png&#39;}}, {&#39;id&#39;: 465990001279631377, &#39;distance&#39;: 0.1308782398700714, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon02.png&#39;}}, {&#39;id&#39;: 465990001279631379, &#39;distance&#39;: 0.10418923944234848, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon03.png&#39;}}, {&#39;id&#39;: 465990001279631374, &#39;distance&#39;: 0.09635187685489655, &#39;entity&#39;: {&#39;image_path&#39;: &#39;data/dragon/dragon05.png&#39;}}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'id': 465990001279631376, 'distance': 0.22547799348831177, 'entity': {'image_path': 'data/dragon/dragon06.png'}}, {'id': 465990001279631378, 'distance': 0.1865767538547516, 'entity': {'image_path': 'data/dragon/query.png'}}, {'id': 465990001279631377, 'distance': 0.1308782398700714, 'entity': {'image_path': 'data/dragon/dragon02.png'}}, {'id': 465990001279631379, 'distance': 0.10418923944234848, 'entity': {'image_path': 'data/dragon/dragon03.png'}}, {'id': 465990001279631374, 'distance': 0.09635187685489655, 'entity': {'image_path': 'data/dragon/dragon05.png'}}]
 </pre></div>
 </div>
 </div>
@@ -2050,20 +2062,20 @@ tensor([[0.1971, 0.1242]])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retrieved_images</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;检索结果:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"检索结果:"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">search_results</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Top </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: ID=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, 距离=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, 路径=&#39;</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;image_path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-    <span class="n">retrieved_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;image_path&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Top </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: ID=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">, 距离=</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">'distance'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, 路径='</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'image_path'</span><span class="p">]</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+    <span class="n">retrieved_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'image_path'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>检索结果:
-  Top 1: ID=465990001279631376, 距离=0.2255, 路径=&#39;data/dragon/dragon06.png&#39;
-  Top 2: ID=465990001279631378, 距离=0.1866, 路径=&#39;data/dragon/query.png&#39;
-  Top 3: ID=465990001279631377, 距离=0.1309, 路径=&#39;data/dragon/dragon02.png&#39;
-  Top 4: ID=465990001279631379, 距离=0.1042, 路径=&#39;data/dragon/dragon03.png&#39;
-  Top 5: ID=465990001279631374, 距离=0.0964, 路径=&#39;data/dragon/dragon05.png&#39;
+  Top 1: ID=465990001279631376, 距离=0.2255, 路径='data/dragon/dragon06.png'
+  Top 2: ID=465990001279631378, 距离=0.1866, 路径='data/dragon/query.png'
+  Top 3: ID=465990001279631377, 距离=0.1309, 路径='data/dragon/dragon02.png'
+  Top 4: ID=465990001279631379, 距离=0.1042, 路径='data/dragon/dragon03.png'
+  Top 5: ID=465990001279631374, 距离=0.0964, 路径='data/dragon/dragon05.png'
 </pre></div>
 </div>
 </div>
@@ -2098,7 +2110,7 @@ tensor([[0.1971, 0.1242]])
     <span class="p">)</span>
     <span class="n">query_display_area</span><span class="p">[</span><span class="n">img_height</span> <span class="o">*</span> <span class="p">(</span><span class="n">row_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">border_query_img</span><span class="p">,</span> <span class="n">dsize</span><span class="o">=</span> <span class="p">(</span><span class="n">img_width</span><span class="p">,</span> <span class="n">img_height</span><span class="p">))</span>
     <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="n">query_display_area</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;query&#39;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s1">'query'</span><span class="p">,</span>
             <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">panoramic_height</span> <span class="o">-</span> <span class="mi">20</span><span class="p">),</span>
             <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
             <span class="n">fontScale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -2130,7 +2142,7 @@ tensor([[0.1971, 0.1242]])
             <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span>
             <span class="n">thickness</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">query_display_area</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">panoramic_image</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">query_display_area</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">panoramic_image</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">query_display_area</span><span class="p">,</span><span class="n">panoramic_image</span><span class="p">])</span> <span class="c1"># 横向凭借</span>
 </pre></div>
 </div>
@@ -2142,7 +2154,7 @@ tensor([[0.1971, 0.1242]])
     <span class="n">query_image_path</span><span class="o">=</span><span class="n">query_image_path</span><span class="p">,</span>
     <span class="n">retrieved_images</span><span class="o">=</span><span class="n">retrieved_images</span>
 <span class="p">)</span>
-<span class="n">combined_img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;search_results.png&#39;</span><span class="p">)</span>
+<span class="n">combined_img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">'search_results.png'</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">combined_img_path</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2251,7 +2263,7 @@ use_fp16=False # 使用16位精度，加快速度
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">BGEM3EmbeddingFunction</span><span class="p">()</span><span class="o">.</span><span class="n">dim</span>
 
-<span class="ne">NameError</span>: name &#39;BGEM3EmbeddingFunction&#39; is not defined
+<span class="ne">NameError</span>: name 'BGEM3EmbeddingFunction' is not defined
 </pre></div>
 </div>
 </div>
@@ -2259,135 +2271,135 @@ use_fp16=False # 使用16位精度，加快速度
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Knowledge</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 知识库 向量数据库 &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">milvus_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">&#39;milvus_demo.db&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""" 知识库 向量数据库 """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">milvus_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s1">'milvus_demo.db'</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">milvus_uri</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span> <span class="o">=</span> <span class="n">BGEM3EmbeddingFunction</span><span class="p">(</span>    
-            <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;BAAI/bge-m3&#39;</span><span class="p">,</span> <span class="c1"># Specify the model name</span>
-            <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="c1"># Specify the device to use</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="s1">'BAAI/bge-m3'</span><span class="p">,</span> <span class="c1"># Specify the model name</span>
+            <span class="n">device</span><span class="o">=</span><span class="s1">'cpu'</span><span class="p">,</span> <span class="c1"># Specify the device to use</span>
             <span class="n">use_fp16</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s1">&#39;text2sql_demo&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s1">'text2sql_demo'</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setup_collection</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Knowledge OK: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Knowledge OK: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>        
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_setup_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># 初始化集合</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">has_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pk&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'pk'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
                         <span class="n">auto_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
-            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
-            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="c1"># ddl, sql,</span>
-            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> 
-                        <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">])</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'content'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'type'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="c1"># ddl, sql,</span>
+            <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> 
+                        <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">])</span>
         <span class="p">]</span>
-        <span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;多模态图文检索&#39;</span><span class="p">)</span>
+        <span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'多模态图文检索'</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
         <span class="n">index_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
         <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
-            <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
-            <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型</span>
-            <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;COSINE&quot;</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
+            <span class="n">field_name</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span>
+            <span class="n">index_type</span><span class="o">=</span><span class="s1">'FLAT'</span><span class="p">,</span> <span class="c1"># 索引类型</span>
+            <span class="n">metric_type</span><span class="o">=</span><span class="s2">"COSINE"</span><span class="p">,</span> <span class="c1"># 度量比较方式</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 知识库 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 知识库 """</span>
         <span class="c1"># 1. ddl: 表结构定义</span>
         <span class="c1"># 2. 优秀问答，Q-SQL，供参考。</span>
         <span class="c1"># 3. 业务描述数据，理解字段</span>
-        <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-        <span class="n">ddl_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;users_ddl.json&#39;</span><span class="p">)</span>
+        <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'data'</span><span class="p">)</span>
+        <span class="n">ddl_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">'users_ddl.json'</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ddl_path</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ddl_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ddl_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">ddl_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_ddl_data</span><span class="p">(</span><span class="n">ddl_data</span><span class="p">)</span>
                 
         <span class="c1"># 加载Q-&gt;SQL数据</span>
-        <span class="n">qsql_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;users_qsql.json&quot;</span><span class="p">)</span>
+        <span class="n">qsql_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"users_qsql.json"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">qsql_path</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qsql_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qsql_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">qsql_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_qsql_data</span><span class="p">(</span><span class="n">qsql_data</span><span class="p">)</span>
         
         <span class="c1"># 加载描述数据</span>
-        <span class="n">desc_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;users_descriptions.json&quot;</span><span class="p">)</span>
+        <span class="n">desc_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"users_descriptions.json"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">desc_path</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">desc_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">desc_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">desc_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_description_data</span><span class="p">(</span><span class="n">desc_data</span><span class="p">)</span>
         
         <span class="c1"># 加载集合到内存</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;知识已加载到向量数据库&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'知识已加载到向量数据库'</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_ddl_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 格式字符串化 ddl知识 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 格式字符串化 ddl知识 """</span>
         <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;表名：</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;DDL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ddl_statement&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'表名：</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'table_name'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'DDL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'ddl_statement'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'description'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span>
             <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;ddl&#39;</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'ddl'</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_qsql_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加Q-&gt;SQL数据&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""添加Q-&gt;SQL数据"""</span>
         <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
         
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;问题: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;SQL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sql&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"问题: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'question'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"SQL: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'sql'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
             
             <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;qsql&quot;</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"qsql"</span><span class="p">)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
     
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_description_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加描述数据&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""添加描述数据"""</span>
         <span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;表名: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;表描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">columns</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"表名: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'table_name'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"表描述: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'table_description'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'columns'</span><span class="p">,</span> <span class="p">[])</span>
             <span class="k">if</span> <span class="n">columns</span><span class="p">:</span>
-                <span class="n">content</span> <span class="o">+=</span> <span class="s2">&quot;字段信息:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="n">content</span> <span class="o">+=</span> <span class="s2">"字段信息:</span><span class="se">\n</span><span class="s2">"</span>
                 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
-                    <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'description'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'type'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">"</span>
             
             <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"description"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_insert_data</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_insert_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">types</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 插入到知识向量数据库 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 插入到知识向量数据库 """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">contents</span><span class="p">:</span> 
             <span class="k">return</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
         <span class="n">data_to_insert</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
             <span class="n">data_to_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                <span class="s1">&#39;dense_vector&#39;</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
-                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="s1">'content'</span><span class="p">:</span> <span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="s1">'dense_vector'</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="p">})</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
             <span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data_to_insert</span>
         <span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 检索 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 检索 """</span>
         <span class="n">query_embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_encoder</span><span class="p">([</span><span class="n">query</span><span class="p">])</span>
         <span class="n">search_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
             <span class="n">collection_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">,</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">],</span>
-            <span class="n">anns_field</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="c1"># 目标搜索字段</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">],</span>
+            <span class="n">anns_field</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span> <span class="c1"># 目标搜索字段</span>
             <span class="n">limit</span><span class="o">=</span><span class="n">top_k</span><span class="p">,</span>
-            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'content'</span><span class="p">,</span> <span class="s1">'type'</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">search_results</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2401,18 +2413,18 @@ use_fp16=False # 使用16位精度，加快速度
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SQLGenerator</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 自然语言转为sql &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 自然语言转为sql """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
-            <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AIHUBMIX_API_KEY_XIAOMI&#39;</span><span class="p">),</span>
-            <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://aihubmix.com/v1&quot;</span><span class="p">,</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'AIHUBMIX_API_KEY_XIAOMI'</span><span class="p">),</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://aihubmix.com/v1"</span><span class="p">,</span>
         <span class="p">)</span> 
     <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_query</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 生成sql，需要知识库结果 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 生成sql，需要知识库结果 """</span>
         <span class="c1"># 构建知识上下文</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_context</span><span class="p">(</span><span class="n">knowledge_results</span><span class="p">)</span>
         <span class="c1"># 提示：上下文-格式化</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;你是SQL专家。根据下面信息将用户问题转为SQL查询语句。</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""你是SQL专家。根据下面信息将用户问题转为SQL查询语句。</span>
 <span class="s2">数据库信息：</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
 <span class="s2">用户问题：</span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span>
 <span class="s2">要求：</span>
@@ -2420,41 +2432,41 @@ use_fp16=False # 使用16位精度，加快速度
 <span class="s2">2. 确保SQL语法正确</span>
 <span class="s2">3. 使用上下文提供表名和字段名</span>
 <span class="s2">4. 如果需要join，根据表结构合理关联</span>
-<span class="s2">SQL语句：&quot;&quot;&quot;</span>
+<span class="s2">SQL语句："""</span>
         <span class="n">completion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
+            <span class="n">model</span><span class="o">=</span><span class="s1">'xiaomi-mimo-v2-omni-free'</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
             <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">fix_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_sql</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 矫正修复sql &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 矫正修复sql """</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_context</span><span class="p">(</span><span class="n">knowledge_results</span><span class="p">)</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">            请修复以下sql语句错误。</span>
 <span class="s2">            数据库信息：</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
 <span class="s2">            原始sql：</span><span class="si">{</span><span class="n">original_sql</span><span class="si">}</span>
 <span class="s2">            错误信息：</span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span>
 <span class="s2">            请返回修复后的sql语句（只有sql，不要解释）</span>
-<span class="s2">            &quot;&quot;&quot;</span>
+<span class="s2">            """</span>
         <span class="n">completion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
+            <span class="n">model</span><span class="o">=</span><span class="s1">'xiaomi-mimo-v2-omni-free'</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="c1"># 必须是这种格式</span>
             <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_build_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 构建LLM 的上下文信息 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 构建LLM 的上下文信息 """</span>
         <span class="n">ddl_info</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">qsql_examples</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">descriptions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="s1">''</span>
         <span class="k">if</span> <span class="n">ddl_info</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 表结构信息 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">'=== 表结构信息 ===</span><span class="se">\n</span><span class="s1">'</span>
         <span class="k">if</span> <span class="n">descriptions</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 表和字段意义描述 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">'=== 表和字段意义描述 ===</span><span class="se">\n</span><span class="s1">'</span>
         <span class="k">if</span> <span class="n">qsql_examples</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">+=</span> <span class="s1">&#39;=== 查询示例 ===</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="s1">'=== 查询示例 ===</span><span class="se">\n</span><span class="s1">'</span>
         <span class="k">return</span> <span class="n">context</span>
 </pre></div>
 </div>
@@ -2464,8 +2476,8 @@ use_fp16=False # 使用16位精度，加快速度
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Text2SQLAgent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 完整 &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_path</span><span class="o">=</span><span class="s1">&#39;users.db&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">""" 完整 """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_path</span><span class="o">=</span><span class="s1">'users.db'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">knowledge</span> <span class="o">=</span> <span class="n">Knowledge</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span> <span class="o">=</span> <span class="n">SQLGenerator</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">top_k_retrieval</span> <span class="o">=</span> <span class="mi">5</span>
@@ -2474,31 +2486,31 @@ use_fp16=False # 使用16位精度，加快速度
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_question</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 用户接口查询 &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" 用户接口查询 """</span>
         <span class="n">knowledge_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">knowledge</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">user_question</span><span class="p">)</span>
         <span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="n">user_question</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="o">=</span><span class="n">knowledge_results</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;generated sql: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'generated sql: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="n">retry_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="n">retry_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retry_count</span><span class="p">:</span>
             <span class="n">success</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;sql&#39;</span><span class="p">:</span> <span class="n">sql</span><span class="p">,</span> <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s1">'success'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">'sql'</span><span class="p">:</span> <span class="n">sql</span><span class="p">,</span> <span class="s1">'results'</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql_generator</span><span class="o">.</span><span class="n">fix_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">knowledge_results</span><span class="p">)</span>
                 <span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;max retry count.&#39;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'success'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'msg'</span><span class="p">:</span> <span class="s1">'max retry count.'</span><span class="p">}</span>
     
     <span class="k">def</span><span class="w"> </span><span class="nf">_execute_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 执行SQL &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">sql</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;SELECT&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" 执行SQL """</span>
+        <span class="k">if</span> <span class="n">sql</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'SELECT'</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
                 <span class="c1"># 获取列名和结果</span>
                 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-                <span class="k">return</span> <span class="kc">True</span><span class="p">,{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
+                <span class="k">return</span> <span class="kc">True</span><span class="p">,{</span><span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span> <span class="s2">"columns"</span><span class="p">:</span> <span class="n">columns</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span><span class="p">,{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+                <span class="k">return</span> <span class="kc">False</span><span class="p">,{</span><span class="s2">"status"</span><span class="p">:</span> <span class="s2">"error"</span><span class="p">,</span> <span class="s2">"message"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># 对象销毁时自动关闭连接</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -2514,10 +2526,10 @@ use_fp16=False # 使用16位精度，加快速度
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fetching 30 files: 100%|██████████| 30/30 [00:00&lt;00:00, 57169.07it/s]
-You&#39;re using a XLMRobertaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+You're using a XLMRobertaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collection: {&#39;collection_name&#39;: &#39;text2sql_demo&#39;, &#39;auto_id&#39;: True, &#39;num_shards&#39;: 0, &#39;description&#39;: &#39;多模态图文检索&#39;, &#39;fields&#39;: [{&#39;field_id&#39;: 100, &#39;name&#39;: &#39;pk&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 100}, &#39;auto_id&#39;: True, &#39;is_primary&#39;: True}, {&#39;field_id&#39;: 101, &#39;name&#39;: &#39;content&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 1024}}, {&#39;field_id&#39;: 102, &#39;name&#39;: &#39;type&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.VARCHAR: 21&gt;, &#39;params&#39;: {&#39;max_length&#39;: 32}}, {&#39;field_id&#39;: 103, &#39;name&#39;: &#39;dense_vector&#39;, &#39;description&#39;: &#39;&#39;, &#39;type&#39;: &lt;DataType.FLOAT_VECTOR: 101&gt;, &#39;params&#39;: {&#39;dim&#39;: 1024}}], &#39;functions&#39;: [], &#39;aliases&#39;: [], &#39;collection_id&#39;: 0, &#39;consistency_level&#39;: 0, &#39;properties&#39;: {}, &#39;num_partitions&#39;: 0, &#39;enable_dynamic_field&#39;: False, &#39;enable_namespace&#39;: False}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collection: {'collection_name': 'text2sql_demo', 'auto_id': True, 'num_shards': 0, 'description': '多模态图文检索', 'fields': [{'field_id': 100, 'name': 'pk', 'description': '', 'type': &lt;DataType.VARCHAR: 21&gt;, 'params': {'max_length': 100}, 'auto_id': True, 'is_primary': True}, {'field_id': 101, 'name': 'content', 'description': '', 'type': &lt;DataType.VARCHAR: 21&gt;, 'params': {'max_length': 1024}}, {'field_id': 102, 'name': 'type', 'description': '', 'type': &lt;DataType.VARCHAR: 21&gt;, 'params': {'max_length': 32}}, {'field_id': 103, 'name': 'dense_vector', 'description': '', 'type': &lt;DataType.FLOAT_VECTOR: 101&gt;, 'params': {'dim': 1024}}], 'functions': [], 'aliases': [], 'collection_id': 0, 'consistency_level': 0, 'properties': {}, 'num_partitions': 0, 'enable_dynamic_field': False, 'enable_namespace': False}
 知识已加载到向量数据库
 Knowledge OK
 </pre></div>
@@ -2526,63 +2538,63 @@ Knowledge OK
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;按城市统计用户的平均年龄，只展示平均年龄大于 25 岁的城市，并按人数从多到少排序。&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'按城市统计用户的平均年龄，只展示平均年龄大于 25 岁的城市，并按人数从多到少排序。'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: True,
- &#39;sql&#39;: &#39;SELECT city, AVG(age) AS average_age, COUNT(*) AS user_count\nFROM users\nGROUP BY city\nHAVING AVG(age) &gt; 25\nORDER BY user_count DESC;&#39;,
- &#39;results&#39;: {&#39;status&#39;: &#39;success&#39;,
-  &#39;columns&#39;: [&#39;city&#39;, &#39;average_age&#39;, &#39;user_count&#39;],
-  &#39;data&#39;: [(&#39;青岛&#39;, 33.0, 1),
-   (&#39;长沙&#39;, 29.0, 1),
-   (&#39;西安&#39;, 27.0, 1),
-   (&#39;深圳&#39;, 28.0, 1),
-   (&#39;武汉&#39;, 42.0, 1),
-   (&#39;广州&#39;, 35.0, 1),
-   (&#39;南京&#39;, 31.0, 1),
-   (&#39;上海&#39;, 30.0, 1)]}}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'success': True,
+ 'sql': 'SELECT city, AVG(age) AS average_age, COUNT(*) AS user_count\nFROM users\nGROUP BY city\nHAVING AVG(age) &gt; 25\nORDER BY user_count DESC;',
+ 'results': {'status': 'success',
+  'columns': ['city', 'average_age', 'user_count'],
+  'data': [('青岛', 33.0, 1),
+   ('长沙', 29.0, 1),
+   ('西安', 27.0, 1),
+   ('深圳', 28.0, 1),
+   ('武汉', 42.0, 1),
+   ('广州', 35.0, 1),
+   ('南京', 31.0, 1),
+   ('上海', 30.0, 1)]}}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;查询所有用户的姓名和年龄段，如果年龄小于 25 岁显示‘青年’，25 到 35 岁显示‘壮年’，其余显示‘资深’&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'查询所有用户的姓名和年龄段，如果年龄小于 25 岁显示‘青年’，25 到 35 岁显示‘壮年’，其余显示‘资深’'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: True,
- &#39;sql&#39;: &quot;SELECT name, CASE WHEN age &lt; 25 THEN &#39;青年&#39; WHEN age BETWEEN 25 AND 35 THEN &#39;壮年&#39; ELSE &#39;资深&#39; END AS age_group FROM users;&quot;,
- &#39;results&#39;: {&#39;status&#39;: &#39;success&#39;,
-  &#39;columns&#39;: [&#39;name&#39;, &#39;age_group&#39;],
-  &#39;data&#39;: [(&#39;张三&#39;, &#39;壮年&#39;),
-   (&#39;李四&#39;, &#39;壮年&#39;),
-   (&#39;王五&#39;, &#39;青年&#39;),
-   (&#39;赵六&#39;, &#39;壮年&#39;),
-   (&#39;孙七&#39;, &#39;壮年&#39;),
-   (&#39;周八&#39;, &#39;青年&#39;),
-   (&#39;吴九&#39;, &#39;资深&#39;),
-   (&#39;郑十&#39;, &#39;壮年&#39;),
-   (&#39;陈十一&#39;, &#39;壮年&#39;),
-   (&#39;林十二&#39;, &#39;青年&#39;),
-   (&#39;韩十三&#39;, &#39;壮年&#39;),
-   (&#39;候十四&#39;, &#39;青年&#39;),
-   (&#39;蔡十五&#39;, &#39;壮年&#39;)]}}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'success': True,
+ 'sql': "SELECT name, CASE WHEN age &lt; 25 THEN '青年' WHEN age BETWEEN 25 AND 35 THEN '壮年' ELSE '资深' END AS age_group FROM users;",
+ 'results': {'status': 'success',
+  'columns': ['name', 'age_group'],
+  'data': [('张三', '壮年'),
+   ('李四', '壮年'),
+   ('王五', '青年'),
+   ('赵六', '壮年'),
+   ('孙七', '壮年'),
+   ('周八', '青年'),
+   ('吴九', '资深'),
+   ('郑十', '壮年'),
+   ('陈十一', '壮年'),
+   ('林十二', '青年'),
+   ('韩十三', '壮年'),
+   ('候十四', '青年'),
+   ('蔡十五', '壮年')]}}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;帮我统计一下所有订单的总金额。&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'帮我统计一下所有订单的总金额。'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;success&#39;: False, &#39;msg&#39;: &#39;max retry count.&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'success': False, 'msg': 'max retry count.'}
 </pre></div>
 </div>
 </div>
@@ -2628,7 +2640,7 @@ Knowledge OK
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;20c&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'20c'</span>
 </pre></div>
 </div>
 </div>
@@ -2639,19 +2651,19 @@ Knowledge OK
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 工具说明</span>
 <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
-        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;function&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;get_weather&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;获取指定城市的天气&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;location&#39;</span><span class="p">:{</span>
-                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;城市名&#39;</span>
+        <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'function'</span><span class="p">,</span>
+        <span class="s1">'function'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'name'</span><span class="p">:</span><span class="s1">'get_weather'</span><span class="p">,</span>
+            <span class="s1">'description'</span><span class="p">:</span> <span class="s1">'获取指定城市的天气'</span><span class="p">,</span>
+            <span class="s1">'parameters'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'object'</span><span class="p">,</span>
+                <span class="s1">'properties'</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">'location'</span><span class="p">:{</span>
+                        <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+                        <span class="s1">'description'</span><span class="p">:</span> <span class="s1">'城市名'</span>
                     <span class="p">}</span>
                 <span class="p">},</span>
-                <span class="s1">&#39;required&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span>
+                <span class="s1">'required'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'location'</span><span class="p">]</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -2665,8 +2677,8 @@ Knowledge OK
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AIHUBMIX_API_KEY_XIAOMI&#39;</span><span class="p">),</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://aihubmix.com/v1&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'AIHUBMIX_API_KEY_XIAOMI'</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://aihubmix.com/v1"</span><span class="p">,</span>
 <span class="p">)</span> 
 </pre></div>
 </div>
@@ -2674,9 +2686,9 @@ Knowledge OK
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s1">&#39;上海今天天气&#39;</span><span class="p">}]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s1">'上海今天天气'</span><span class="p">}]</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">'xiaomi-mimo-v2-omni-free'</span><span class="p">,</span>
     <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span> <span class="n">tools</span> <span class="c1"># 带上工具说明书</span>
 <span class="p">)</span>
@@ -2707,7 +2719,7 @@ Knowledge OK
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ChatCompletionMessageFunctionToolCall(id=&#39;call_821b4d0ec7214f1cb555b1f2&#39;, function=Function(arguments=&#39;{&quot;location&quot;: &quot;上海&quot;}&#39;, name=&#39;get_weather&#39;), type=&#39;function&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ChatCompletionMessageFunctionToolCall(id='call_821b4d0ec7214f1cb555b1f2', function=Function(arguments='{"location": "上海"}', name='get_weather'), type='function')
 </pre></div>
 </div>
 </div>
@@ -2717,13 +2729,13 @@ Knowledge OK
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">tool_calls</span><span class="p">:</span>
     <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span>
-    <span class="n">weather_info</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="s2">&quot;上海&quot;</span><span class="p">)</span>
+    <span class="n">weather_info</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="s2">"上海"</span><span class="p">)</span>
     <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message1</span><span class="p">)</span>
     <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-        <span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;tool_call_id&#39;</span><span class="p">:</span><span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
-        <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">weather_info</span>
+        <span class="s1">'role'</span><span class="p">:</span><span class="s1">'tool'</span><span class="p">,</span>
+        <span class="s1">'tool_call_id'</span><span class="p">:</span><span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s1">'name'</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+        <span class="s1">'content'</span><span class="p">:</span> <span class="n">weather_info</span>
     <span class="p">})</span>
 </pre></div>
 </div>
@@ -2733,7 +2745,7 @@ Knowledge OK
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_response</span>  <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;xiaomi-mimo-v2-omni-free&#39;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">'xiaomi-mimo-v2-omni-free'</span><span class="p">,</span>
     <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
@@ -2876,8 +2888,8 @@ Knowledge OK
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2911,7 +2923,7 @@ Knowledge OK
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

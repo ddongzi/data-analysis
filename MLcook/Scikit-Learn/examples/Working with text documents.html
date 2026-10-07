@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -381,28 +393,28 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;alt.atheism&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;talk.religion.misc&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;comp.graphics&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;sci.space&quot;</span><span class="p">,</span>
+    <span class="s2">"alt.atheism"</span><span class="p">,</span>
+    <span class="s2">"talk.religion.misc"</span><span class="p">,</span>
+    <span class="s2">"comp.graphics"</span><span class="p">,</span>
+    <span class="s2">"sci.space"</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="c1"># example : docs[&quot;hello&quot;, &quot;world&quot;]</span>
+<span class="c1"># example : docs["hello", "world"]</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">size_mb</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span>
 
 <span class="c1">#</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_dataset</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="p">()):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; load and vectorize the 20 newsgroups dataset. &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" load and vectorize the 20 newsgroups dataset. """</span>
     <span class="n">data_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
-        <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+        <span class="n">subset</span><span class="o">=</span><span class="s2">"train"</span><span class="p">,</span>
         <span class="n">categories</span><span class="o">=</span> <span class="n">categories</span><span class="p">,</span>
         <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
         <span class="n">remove</span><span class="o">=</span><span class="n">remove</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">data_test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
-        <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+        <span class="n">subset</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span>
         <span class="n">categories</span><span class="o">=</span> <span class="n">categories</span><span class="p">,</span>
         <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
@@ -416,7 +428,7 @@
     <span class="c1"># Extracting features from the training data using a sparse vectorizer</span>
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span> <span class="c1"># ❓</span>
-        <span class="n">sublinear_tf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_df</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span>
+        <span class="n">sublinear_tf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_df</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">"english"</span>
     <span class="p">)</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
     <span class="n">duration_train</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span> <span class="c1"># ❓</span>
@@ -434,26 +446,26 @@
         <span class="n">data_test_size_mb</span> <span class="o">=</span> <span class="n">size_mb</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents - &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_train_size_mb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB (training set)&quot;</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents - "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data_train_size_mb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB (training set)"</span>
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents - &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_test_size_mb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB (test set)&quot;</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents - "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data_test_size_mb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB (test set)"</span>
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;vectorize training done in </span><span class="si">{</span><span class="n">duration_train</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;at </span><span class="si">{</span><span class="n">data_train_size_mb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">duration_train</span><span class="w"> </span><span class="si">:</span><span class="s2"> .3f</span><span class="si">}</span><span class="s2">MB/s&quot;</span>
+            <span class="sa">f</span><span class="s2">"vectorize training done in </span><span class="si">{</span><span class="n">duration_train</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s "</span>
+            <span class="sa">f</span><span class="s2">"at </span><span class="si">{</span><span class="n">data_train_size_mb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">duration_train</span><span class="w"> </span><span class="si">:</span><span class="s2"> .3f</span><span class="si">}</span><span class="s2">MB/s"</span>
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;n_samples: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, n_features: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"n_samples: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, n_features: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;vectorize test done in </span><span class="si">{</span><span class="n">duration_test</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;at </span><span class="si">{</span><span class="n">data_test_size_mb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">duration_test</span><span class="w"> </span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">MB/s&quot;</span>
+            <span class="sa">f</span><span class="s2">"vectorize test done in </span><span class="si">{</span><span class="n">duration_test</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s "</span>
+            <span class="sa">f</span><span class="s2">"at </span><span class="si">{</span><span class="n">data_test_size_mb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">duration_test</span><span class="w"> </span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">MB/s"</span>
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;n_samples: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, n_features: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"n_samples: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, n_features: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">target_names</span>
 </pre></div>
@@ -486,7 +498,7 @@ n_samples: 1353, n_features: 7831
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RidgeClassifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
@@ -504,13 +516,13 @@ n_samples: 1353, n_features: 7831
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">target_names</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">target_names</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Confusion matrix for </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="se">\n</span><span class="s2"> on the original documents&quot;</span>
+    <span class="sa">f</span><span class="s2">"Confusion matrix for </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="se">\n</span><span class="s2"> on the original documents"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Confusion matrix for RidgeClassifier\n on the original documents&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Confusion matrix for RidgeClassifier\n on the original documents')
 </pre></div>
 </div>
 <img alt="../../../_images/de805023fca582c000602002b2b913d3827827de811dcc1801f87d8f404f05fd.png" src="../../../_images/de805023fca582c000602002b2b913d3827827de811dcc1801f87d8f404f05fd.png" />
@@ -529,7 +541,7 @@ n_samples: 1353, n_features: 7831
 
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_feature_effects</span><span class="p">():</span>
     <span class="c1"># weight * feature_avg</span>
-    <span class="c1"># This represents the average contribution of each feature to the clssifier&#39;s decision</span>
+    <span class="c1"># This represents the average contribution of each feature to the clssifier's decision</span>
     <span class="n">average_feature_effects</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="c1">#print(X_train.shape,clf.coef_.shape, y_train.shape, average_feature_effects.shape)</span>
 
@@ -566,12 +578,12 @@ n_samples: 1353, n_features: 7831
             <span class="nb">len</span><span class="p">(</span><span class="n">top_indices</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">bar_size</span> <span class="o">+</span> <span class="n">padding</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">bar_size</span>
         <span class="p">]</span>
     <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;average-feature effect value&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;feature name&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;top5 keywords per class: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"average-feature effect value"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"feature name"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"top5 keywords per class: </span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
-<span class="n">plot_feature_effects</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Aeverage-feature effect on the original data&quot;</span><span class="p">)</span>
+<span class="n">plot_feature_effects</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Aeverage-feature effect on the original data"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -585,7 +597,7 @@ n_samples: 1353, n_features: 7831
 4     caltech         image    access             people
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Aeverage-feature effect on the original data&#39;}, xlabel=&#39;average-feature effect value&#39;, ylabel=&#39;feature name&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={'center': 'Aeverage-feature effect on the original data'}, xlabel='average-feature effect value', ylabel='feature name'&gt;
 </pre></div>
 </div>
 <img alt="../../../_images/d545775a71842b4bc48f104eca0eeafe166ca892540532b75008821ed0d1af5d.png" src="../../../_images/d545775a71842b4bc48f104eca0eeafe166ca892540532b75008821ed0d1af5d.png" />
@@ -599,13 +611,13 @@ n_samples: 1353, n_features: 7831
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
-    <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">subset</span><span class="o">=</span><span class="s2">"train"</span><span class="p">,</span>
     <span class="n">categories</span><span class="o">=</span> <span class="n">categories</span><span class="p">,</span>
     <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">data_train</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s1">&#39;caltech&#39;</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span> <span class="c1"># keith@cco.caltech.edu </span>
+    <span class="k">if</span> <span class="s1">'caltech'</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span> <span class="c1"># keith@cco.caltech.edu </span>
         <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
         <span class="k">break</span>
 </pre></div>
@@ -630,14 +642,14 @@ In article &lt;1qlettINN8oi@gap.caltech.edu&gt;, keith@cco.caltech.edu (Keith Al
 |&gt; &gt;would be nothing voluntary about it.
 |&gt; 
 |&gt; See, there you go again, saying that a moral act is only significant
-|&gt; if it is &quot;voluntary.&quot;  Why do you think this?
+|&gt; if it is "voluntary."  Why do you think this?
 
 If you force me to do something, am I morally responsible for it?
 
 |&gt; 
 |&gt; And anyway, humans have the ability to disregard some of their instincts.
 
-Well, make up your mind.    Is it to be &quot;instinctive not to murder&quot;
+Well, make up your mind.    Is it to be "instinctive not to murder"
 or not?
 
 |&gt; 
@@ -645,14 +657,14 @@ or not?
 |&gt; &gt;&gt;beings mimics theirs?
 |&gt; &gt;
 |&gt; &gt;You are starting to get the point.  Mimicry is not necessarily the 
-|&gt; &gt;same as the action being imitated.  A Parrot saying &quot;Pretty Polly&quot; 
-|&gt; &gt;isn&#39;t necessarily commenting on the pulchritude of Polly.
+|&gt; &gt;same as the action being imitated.  A Parrot saying "Pretty Polly" 
+|&gt; &gt;isn't necessarily commenting on the pulchritude of Polly.
 |&gt; 
-|&gt; You are attaching too many things to the term &quot;moral,&quot; I think.
-|&gt; Let&#39;s try this:  is it &quot;good&quot; that animals of the same species
-|&gt; don&#39;t kill each other.  Or, do you think this is right? 
+|&gt; You are attaching too many things to the term "moral," I think.
+|&gt; Let's try this:  is it "good" that animals of the same species
+|&gt; don't kill each other.  Or, do you think this is right? 
 
-It&#39;s not even correct.    Animals of the same species do kill
+It's not even correct.    Animals of the same species do kill
 one another.
 
 |&gt; 
@@ -669,12 +681,12 @@ to exhibit self-awareness.
 |&gt; 
 |&gt; 
 |&gt; &gt;&gt;Animals of the same species could kill each other arbitarily, but 
-|&gt; &gt;&gt;they don&#39;t.
+|&gt; &gt;&gt;they don't.
 |&gt; &gt;
 |&gt; &gt;They do.  I and other posters have given you many examples of exactly
 |&gt; &gt;this, but you seem to have a very short memory.
 |&gt; 
-|&gt; Those weren&#39;t arbitrary killings.  They were slayings related to some 
+|&gt; Those weren't arbitrary killings.  They were slayings related to some 
 |&gt; sort of mating ritual or whatnot.
 
 So what?     Are you trying to say that some killing in animals
@@ -683,31 +695,31 @@ natural morality&gt;
 
 
 |&gt; 
-|&gt; &gt;&gt;Are you trying to say that this isn&#39;t an act of morality because
-|&gt; &gt;&gt;most animals aren&#39;t intelligent enough to think like we do?
+|&gt; &gt;&gt;Are you trying to say that this isn't an act of morality because
+|&gt; &gt;&gt;most animals aren't intelligent enough to think like we do?
 |&gt; &gt;
-|&gt; &gt;I&#39;m saying:
-|&gt; &gt;	&quot;There must be the possibility that the organism - it&#39;s not 
-|&gt; &gt;	just people we are talking about - can consider alternatives.&quot;
+|&gt; &gt;I'm saying:
+|&gt; &gt;	"There must be the possibility that the organism - it's not 
+|&gt; &gt;	just people we are talking about - can consider alternatives."
 |&gt; &gt;
-|&gt; &gt;It&#39;s right there in the posting you are replying to.
+|&gt; &gt;It's right there in the posting you are replying to.
 |&gt; 
-|&gt; Yes it was, but I still don&#39;t understand your distinctions.  What
-|&gt; do you mean by &quot;consider?&quot;  Can a small child be moral?  How about
+|&gt; Yes it was, but I still don't understand your distinctions.  What
+|&gt; do you mean by "consider?"  Can a small child be moral?  How about
 |&gt; a gorilla?  A dolphin?  A platypus?  Where is the line drawn?  Does
 |&gt; the being need to be self aware?
 
 Are you blind?   What do you think that this sentence means?
 
-	&quot;There must be the possibility that the organism - it&#39;s not 
-	just people we are talking about - can consider alternatives.&quot;
+	"There must be the possibility that the organism - it's not 
+	just people we are talking about - can consider alternatives."
 
 What would that imply?
 
 |&gt; 
 |&gt; What *do* you call the mechanism which seems to prevent animals of
-|&gt; the same species from (arbitrarily) killing each other?  Don&#39;t
-|&gt; you find the fact that they don&#39;t at all significant?
+|&gt; the same species from (arbitrarily) killing each other?  Don't
+|&gt; you find the fact that they don't at all significant?
 
 I find the fact that they do to be significant. 
 
@@ -733,8 +745,8 @@ jon.
     <span class="n">y_test</span><span class="p">,</span>
     <span class="n">feature_names</span><span class="p">,</span>
     <span class="n">target_names</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;footers&quot;</span><span class="p">,</span> <span class="s2">&quot;quotes&quot;</span><span class="p">))</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s2">"headers"</span><span class="p">,</span> <span class="s2">"footers"</span><span class="p">,</span> <span class="s2">"quotes"</span><span class="p">))</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
@@ -743,13 +755,13 @@ jon.
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">target_names</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">target_names</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Confusion matrix for </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="se">\n</span><span class="s2"> on filter docuements&quot;</span>
+    <span class="sa">f</span><span class="s2">"Confusion matrix for </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="se">\n</span><span class="s2"> on filter docuements"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Confusion matrix for RidgeClassifier\n on filter docuements&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Confusion matrix for RidgeClassifier\n on filter docuements')
 </pre></div>
 </div>
 <img alt="../../../_images/c56963ce39c10515f843a821c8f082dfd4c82df20e95840784bb040518a117ec.png" src="../../../_images/c56963ce39c10515f843a821c8f082dfd4c82df20e95840784bb040518a117ec.png" />
@@ -757,7 +769,7 @@ jon.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_effects</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Aeverage-feature effect on the filtered data&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_effects</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Aeverage-feature effect on the filtered data"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -771,7 +783,7 @@ jon.
 4        post          does    launch              wrong
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Aeverage-feature effect on the filtered data&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Aeverage-feature effect on the filtered data')
 </pre></div>
 </div>
 <img alt="../../../_images/4395833391792eceba6674a77aab18d0b99b4f7f5bb49c89ee20474198766cc0.png" src="../../../_images/4395833391792eceba6674a77aab18d0b99b4f7f5bb49c89ee20474198766cc0.png" />
@@ -837,8 +849,8 @@ jon.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -872,7 +884,7 @@ jon.
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

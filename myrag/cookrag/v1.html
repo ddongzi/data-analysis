@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -184,11 +184,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -201,8 +208,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -439,7 +451,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
 
 <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;是否支持 CUDA (GPU加速): </span><span class="si">{</span><span class="n">cuda_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"是否支持 CUDA (GPU加速): </span><span class="si">{</span><span class="n">cuda_available</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">load_dotenv</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
@@ -455,7 +467,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;cookrag_ct_v1&#39;</span> <span class="c1"># 新的知识库</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLLECTION_NAME</span> <span class="o">=</span> <span class="s1">'cookrag_ct_v1'</span> <span class="c1"># 新的知识库</span>
 </pre></div>
 </div>
 </div>
@@ -463,7 +475,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">MilvusClient</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;milvus_cookrag.db&#39;</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">MilvusClient</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">'milvus_cookrag.db'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,12 +483,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_context</span><span class="p">(</span><span class="n">knowledges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 知识库返回结果转换位上下文 &quot;&quot;&quot;</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;context get </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">knowledges</span><span class="p">)</span><span class="si">}</span><span class="s1"> articles&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">""" 知识库返回结果转换位上下文 """</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'context get </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">knowledges</span><span class="p">)</span><span class="si">}</span><span class="s1"> articles'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">kd</span> <span class="ow">in</span> <span class="n">knowledges</span><span class="p">:</span>
-        <span class="n">context</span><span class="o">+=</span> <span class="n">kd</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;context- source :</span><span class="si">{</span><span class="n">kd</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">context</span><span class="o">+=</span> <span class="n">kd</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'content'</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'context- source :</span><span class="si">{</span><span class="n">kd</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'source'</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">context</span>
 </pre></div>
 </div>
@@ -488,9 +500,9 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OPENROUTER_API_KEY&#39;</span><span class="p">),</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://openrouter.ai/api/v1&quot;</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;inclusionai/ling-2.6-1t:free&#39;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'OPENROUTER_API_KEY'</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://openrouter.ai/api/v1"</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">'inclusionai/ling-2.6-1t:free'</span><span class="p">,</span>
 <span class="p">)</span> 
 </pre></div>
 </div>
@@ -499,9 +511,9 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># llm = ChatOpenAI(</span>
-<span class="c1">#         api_key=os.getenv(&#39;AIHUBMIX_API_KEY_XIAOMI&#39;),</span>
-<span class="c1">#         base_url=&quot;https://aihubmix.com/v1&quot;,</span>
-<span class="c1">#         model=&#39;xiaomi-mimo-v2-omni-free&#39;</span>
+<span class="c1">#         api_key=os.getenv('AIHUBMIX_API_KEY_XIAOMI'),</span>
+<span class="c1">#         base_url="https://aihubmix.com/v1",</span>
+<span class="c1">#         model='xiaomi-mimo-v2-omni-free'</span>
 <span class="c1">#     ) </span>
 </pre></div>
 </div>
@@ -512,23 +524,23 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">rag</span><span class="p">(</span><span class="n">query</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 用户接口 &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 用户接口 """</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="p">(</span>
         <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-            <span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;你是一个专业的烹饪饮食专家, 严格根据上下文信息回答，如果不知道就说不知道&#39;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;human&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
+            <span class="p">(</span><span class="s1">'system'</span><span class="p">,</span> <span class="s1">'你是一个专业的烹饪饮食专家, 严格根据上下文信息回答，如果不知道就说不知道'</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">'human'</span><span class="p">,</span> <span class="s2">"""</span>
 <span class="s2">            上下文信息：</span><span class="si">{context}</span><span class="s2"> </span>
 <span class="s2">                    </span>
 <span class="s2">            用户输入:</span><span class="si">{query}</span>
-<span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">            """</span><span class="p">)</span>
                 <span class="p">]</span>
     <span class="p">)</span>
     <span class="n">chain</span> <span class="o">=</span> <span class="n">template</span> <span class="o">|</span> <span class="n">llm</span>
     <span class="n">rewrite_queries</span> <span class="o">=</span> <span class="n">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rewrite queries: </span><span class="si">{</span><span class="n">rewrite_queries</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'rewrite queries: </span><span class="si">{</span><span class="n">rewrite_queries</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     <span class="n">knowledges</span> <span class="o">=</span> <span class="n">knowledge_search</span><span class="p">(</span><span class="n">queries</span><span class="o">=</span><span class="n">rewrite_queries</span><span class="p">)</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">build_context</span><span class="p">(</span><span class="n">knowledges</span><span class="o">=</span><span class="n">knowledges</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">&#39;context&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">:</span><span class="n">query</span><span class="p">})</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">'context'</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="s1">'query'</span><span class="p">:</span><span class="n">query</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
 </pre></div>
 </div>
@@ -538,7 +550,7 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">display_md_jupyter</span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; jupyter是纯文本输出，使用IPython交互内置渲染md &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" jupyter是纯文本输出，使用IPython交互内置渲染md """</span>
     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -554,13 +566,13 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">load_documents</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 将每个md文档加载为对应document结构 ，添加id辅助后面关联&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 将每个md文档加载为对应document结构 ，添加id辅助后面关联"""</span>
     <span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">md_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;cooking&#39;</span><span class="p">,</span><span class="s1">&#39;*.md&#39;</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">md_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'data'</span><span class="p">,</span> <span class="s1">'cooking'</span><span class="p">,</span><span class="s1">'*.md'</span><span class="p">)):</span>
         <span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">md_file</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
         <span class="n">documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">documents</span>
 </pre></div>
@@ -573,16 +585,16 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">splitter_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 对一些document分块 &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 对一些document分块 """</span>
     <span class="n">headers_to_split_on</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 1&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 2&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;###&quot;</span><span class="p">,</span> <span class="s2">&quot;Header 3&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"#"</span><span class="p">,</span> <span class="s2">"Header 1"</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"##"</span><span class="p">,</span> <span class="s2">"Header 2"</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"###"</span><span class="p">,</span> <span class="s2">"Header 3"</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="n">markdown_splitter</span> <span class="o">=</span> <span class="n">MarkdownHeaderTextSplitter</span><span class="p">(</span><span class="n">headers_to_split_on</span><span class="p">)</span>
     
     <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
-        <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;，&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
+        <span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"。"</span><span class="p">,</span> <span class="s2">"，"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
         <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
         <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span>
     <span class="p">)</span>
@@ -591,7 +603,7 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
     <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
         <span class="n">sections</span>  <span class="o">=</span> <span class="n">markdown_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">sections</span><span class="p">:</span>
-            <span class="n">section</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+            <span class="n">section</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'parent_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
         <span class="n">all_sections</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sections</span><span class="p">)</span>
 
     <span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">all_sections</span><span class="p">)</span>
@@ -600,11 +612,11 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
     <span class="c1"># 这导致一勺盐不知道是红烧肉还是豆腐</span>
     <span class="c1"># 需要手动为其注入</span>
     <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
-        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="n">h1</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 1&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
-        <span class="n">h2</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 2&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
-        <span class="n">h3</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Header 3&#39;</span><span class="p">,</span> <span class="s1">&#39;无&#39;</span><span class="p">)</span>
-        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;主题: </span><span class="si">{</span><span class="n">h1</span><span class="si">}</span><span class="s2"> &gt; 章节: </span><span class="si">{</span><span class="n">h2</span><span class="si">}</span><span class="s2"> &gt; 细节: </span><span class="si">{</span><span class="n">h3</span><span class="si">}</span><span class="se">\n</span><span class="s2">内容: &quot;</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Header 1'</span><span class="p">,</span> <span class="s1">'无'</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Header 2'</span><span class="p">,</span> <span class="s1">'无'</span><span class="p">)</span>
+        <span class="n">h3</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Header 3'</span><span class="p">,</span> <span class="s1">'无'</span><span class="p">)</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"主题: </span><span class="si">{</span><span class="n">h1</span><span class="si">}</span><span class="s2"> &gt; 章节: </span><span class="si">{</span><span class="n">h2</span><span class="si">}</span><span class="s2"> &gt; 细节: </span><span class="si">{</span><span class="n">h3</span><span class="si">}</span><span class="se">\n</span><span class="s2">内容: "</span>
         <span class="n">chunk</span><span class="o">.</span><span class="n">page_content</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">chunk</span><span class="o">.</span><span class="n">page_content</span> 
     <span class="k">return</span> <span class="n">chunks</span>
 </pre></div>
@@ -619,27 +631,27 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
         <span class="n">client</span><span class="o">.</span><span class="n">drop_collection</span><span class="p">(</span><span class="n">COLLECTION_NAME</span><span class="p">)</span> 
     <span class="c1"># 定义数据库格式</span>
     <span class="n">fileds</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
-        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
-        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">JSON</span><span class="p">),</span>
-        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sparse_vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">SPARSE_FLOAT_VECTOR</span><span class="p">),</span>
-        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">embed_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">]),</span>
+        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span> <span class="n">is_primary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">auto_id</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'content'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">),</span>
+        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'metadata'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">JSON</span><span class="p">),</span>
+        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'sparse_vector'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">SPARSE_FLOAT_VECTOR</span><span class="p">),</span>
+        <span class="n">FieldSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT_VECTOR</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">embed_encoder</span><span class="o">.</span><span class="n">dim</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">]),</span>
     <span class="p">]</span>
-    <span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">fileds</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;cookrag&#39;</span><span class="p">)</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">CollectionSchema</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">fileds</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'cookrag'</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
     <span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
     <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
-        <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
-        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;IVF_FLAT&#39;</span><span class="p">,</span> <span class="c1"># 索引类型, 稠密向量</span>
-        <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;IP&#39;</span><span class="p">,</span>  <span class="c1"># </span>
+        <span class="n">field_name</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span>
+        <span class="n">index_type</span><span class="o">=</span><span class="s1">'IVF_FLAT'</span><span class="p">,</span> <span class="c1"># 索引类型, 稠密向量</span>
+        <span class="n">metric_type</span><span class="o">=</span><span class="s1">'IP'</span><span class="p">,</span>  <span class="c1"># </span>
     <span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
 
     <span class="n">index_params</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">prepare_index_params</span><span class="p">()</span>
     <span class="n">index_params</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span>
-        <span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;sparse_vector&#39;</span><span class="p">,</span>
-        <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;SPARSE_INVERTED_INDEX&#39;</span><span class="p">,</span> <span class="c1"># 索引类型。稀疏向量</span>
-        <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;IP&#39;</span><span class="p">,</span>  <span class="c1"># 必须显式指定为内积</span>
+        <span class="n">field_name</span><span class="o">=</span><span class="s1">'sparse_vector'</span><span class="p">,</span>
+        <span class="n">index_type</span><span class="o">=</span><span class="s1">'SPARSE_INVERTED_INDEX'</span><span class="p">,</span> <span class="c1"># 索引类型。稀疏向量</span>
+        <span class="n">metric_type</span><span class="o">=</span><span class="s1">'IP'</span><span class="p">,</span>  <span class="c1"># 必须显式指定为内积</span>
 
     <span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span> <span class="n">index_params</span><span class="o">=</span><span class="n">index_params</span><span class="p">)</span>
@@ -651,10 +663,10 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">coo_array</span><span class="p">,</span> <span class="n">coo_matrix</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">format_sparse_vector_to_dict</span><span class="p">(</span><span class="n">coo_arr</span><span class="p">:</span> <span class="n">coo_array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="w">    </span><span class="sd">""" </span>
 <span class="sd">    将 coo_array 数组 转换为 Milvus 稀疏向量字段要求的字典格式: </span>
 <span class="sd">    {index: value}</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># 1D coo_array 的坐标在 coords[0] 中</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">coo_arr</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">coo_arr</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
@@ -665,16 +677,16 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insert_collection</span><span class="p">(</span><span class="n">documents</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">])</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 把docuemnts 放到向量数据库 &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 把docuemnts 放到向量数据库 """</span>
     <span class="n">data_to_insert</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="p">([</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">])</span>
         <span class="n">data_to_insert</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
-            <span class="s1">&#39;dense_vector&#39;</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-            <span class="s1">&#39;sparse_vector&#39;</span><span class="p">:</span> <span class="n">format_sparse_vector_to_dict</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;sparse&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
-            <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span>
+            <span class="s1">'metadata'</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+            <span class="s1">'dense_vector'</span><span class="p">:</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">'sparse_vector'</span><span class="p">:</span> <span class="n">format_sparse_vector_to_dict</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="s1">'sparse'</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s1">'content'</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span>
         <span class="p">})</span>
     <span class="n">client</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
         <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
@@ -687,15 +699,15 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_collection</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 构建向量知识库 &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" 构建向量知识库 """</span>
     <span class="n">setup_collection</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;collection 结构已准备好&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'collection 结构已准备好'</span><span class="p">)</span>
     <span class="n">documents</span> <span class="o">=</span> <span class="n">load_documents</span><span class="p">()</span>
     <span class="n">splitted_documents</span> <span class="o">=</span> <span class="n">splitter_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
     <span class="n">insert_collection</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;插入全文文档向量 ok&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'插入全文文档向量 ok'</span><span class="p">)</span>
     <span class="n">insert_collection</span><span class="p">(</span><span class="n">splitted_documents</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;插入文本块ok&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'插入文本块ok'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -711,31 +723,31 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymilvus</span><span class="w"> </span><span class="kn">import</span> <span class="n">RRFRanker</span><span class="p">,</span><span class="n">AnnSearchRequest</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">knowledge_search</span><span class="p">(</span><span class="n">queries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 混合检索 稀疏向量和稠密向量, 多路搜索 &quot;&quot;&quot;</span>
-    <span class="n">hybrid_results</span> <span class="o">=</span> <span class="p">[]</span><span class="c1"># {&#39;id_value&#39;: r}</span>
+<span class="w">    </span><span class="sd">""" 混合检索 稀疏向量和稠密向量, 多路搜索 """</span>
+    <span class="n">hybrid_results</span> <span class="o">=</span> <span class="p">[]</span><span class="c1"># {'id_value': r}</span>
     <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
         <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="p">([</span><span class="n">query</span><span class="p">])</span>
-        <span class="n">dense_vec</span><span class="p">,</span> <span class="n">sparse_vec</span> <span class="o">=</span> <span class="n">query_embeddings</span><span class="p">[</span><span class="s1">&#39;dense&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">format_sparse_vector_to_dict</span><span class="p">(</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">&#39;sparse&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">dense_vec</span><span class="p">,</span> <span class="n">sparse_vec</span> <span class="o">=</span> <span class="n">query_embeddings</span><span class="p">[</span><span class="s1">'dense'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">format_sparse_vector_to_dict</span><span class="p">(</span><span class="n">query_embeddings</span><span class="p">[</span><span class="s1">'sparse'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
         <span class="c1"># RRF</span>
         <span class="n">rerank</span> <span class="o">=</span> <span class="n">RRFRanker</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span> <span class="c1"># 会融合两个结果，得到, k=60表示平滑参数（就是两个结果平衡参数）</span>
         <span class="n">dense_req</span> <span class="o">=</span> <span class="n">AnnSearchRequest</span><span class="p">(</span>
             <span class="p">[</span><span class="n">dense_vec</span><span class="p">],</span>
-            <span class="n">anns_field</span><span class="o">=</span><span class="s1">&#39;dense_vector&#39;</span><span class="p">,</span>
+            <span class="n">anns_field</span><span class="o">=</span><span class="s1">'dense_vector'</span><span class="p">,</span>
             <span class="n">limit</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-            <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;IP&quot;</span><span class="p">}</span>
+            <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">"metric_type"</span><span class="p">:</span> <span class="s2">"IP"</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="n">sparse_req</span> <span class="o">=</span> <span class="n">AnnSearchRequest</span><span class="p">(</span>
             <span class="p">[</span><span class="n">sparse_vec</span><span class="p">],</span>
-            <span class="n">anns_field</span><span class="o">=</span><span class="s1">&#39;sparse_vector&#39;</span><span class="p">,</span>
+            <span class="n">anns_field</span><span class="o">=</span><span class="s1">'sparse_vector'</span><span class="p">,</span>
             <span class="n">limit</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-            <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metric_type&quot;</span><span class="p">:</span> <span class="s2">&quot;IP&quot;</span><span class="p">}</span>
+            <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">"metric_type"</span><span class="p">:</span> <span class="s2">"IP"</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">hybrid_search</span><span class="p">(</span>
             <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
             <span class="n">reqs</span><span class="o">=</span><span class="p">[</span><span class="n">dense_req</span><span class="p">,</span> <span class="n">sparse_req</span><span class="p">],</span>
             <span class="n">ranker</span><span class="o">=</span><span class="n">rerank</span><span class="p">,</span>
             <span class="n">limit</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span>
+            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'content'</span><span class="p">,</span><span class="s1">'metadata'</span><span class="p">]</span>
         <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="n">hybrid_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
@@ -743,12 +755,12 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
     <span class="c1"># 只返回父亲主页文档，否则导致知识重复，浪费上下文。</span>
     <span class="n">need_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">hybrid_results</span><span class="p">:</span>
-        <span class="n">parent_id</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parent_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">parent_id</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'parent_id'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
         <span class="c1"># 如果由parentid 那就是子chunk</span>
         <span class="k">if</span> <span class="n">parent_id</span><span class="p">:</span>
             <span class="n">need_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">parent_id</span><span class="p">)</span>
         <span class="c1"># 如果有id 那就是父亲</span>
-        <span class="nb">id</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">id</span><span class="p">:</span>
             <span class="n">need_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
     <span class="n">final_results</span> <span class="o">=</span> <span class="p">[]</span>
@@ -757,18 +769,18 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
         <span class="c1"># 准确查询</span>
         <span class="n">parent_results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
             <span class="n">collection_name</span><span class="o">=</span><span class="n">COLLECTION_NAME</span><span class="p">,</span>
-            <span class="nb">filter</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;metadata[&#39;id&#39;] in </span><span class="si">{</span><span class="n">pid_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span>
+            <span class="nb">filter</span><span class="o">=</span><span class="sa">f</span><span class="s2">"metadata['id'] in </span><span class="si">{</span><span class="n">pid_list</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">output_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">'content'</span><span class="p">,</span><span class="s1">'metadata'</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="c1"># 可以考虑不要格式化，因为现在都是返回父chunK,</span>
         <span class="n">formatted_parents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parent_results</span><span class="p">:</span>
             <span class="n">formatted_parents</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
-                <span class="s1">&#39;distance&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="c1"># 补齐字段，防止后续代码报错</span>
-                <span class="s1">&#39;entity&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">],</span>
-                    <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span>
+                <span class="s1">'id'</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span>
+                <span class="s1">'distance'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="c1"># 补齐字段，防止后续代码报错</span>
+                <span class="s1">'entity'</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">'content'</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">'content'</span><span class="p">],</span>
+                    <span class="s1">'metadata'</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">})</span>
         <span class="n">final_results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">formatted_parents</span><span class="p">)</span>
@@ -784,12 +796,12 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    很重要！</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">chat_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
-        <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="p">(</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="p">(</span>
+<span class="w">            </span><span class="sd">"""</span>
 <span class="sd">            你是一个烹饪百科专家。请对用户的查询进行重写。</span>
 
 <span class="sd">            原则:</span>
@@ -808,17 +820,17 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 
 <span class="sd">            请重写用户输入：{{User_Query}}</span>
 <span class="sd">            输出的重写查询按照换行分割</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">            """</span>
         <span class="p">)),</span>
-        <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;原始问题：</span><span class="si">{user_query}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">"human"</span><span class="p">,</span> <span class="s2">"原始问题：</span><span class="si">{user_query}</span><span class="s2">"</span><span class="p">)</span>
     <span class="p">])</span>
     
     <span class="c1"># 链式调用</span>
     <span class="n">chain</span> <span class="o">=</span> <span class="n">chat_template</span> <span class="o">|</span> <span class="n">llm</span>
     
-    <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;user_query&quot;</span><span class="p">:</span> <span class="n">user_query</span><span class="p">})</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">"user_query"</span><span class="p">:</span> <span class="n">user_query</span><span class="p">})</span>
     <span class="c1"># 处理结果</span>
-    <span class="n">rewritten_queries</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">q</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+    <span class="n">rewritten_queries</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span> <span class="k">if</span> <span class="n">q</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">rewritten_queries</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -826,35 +838,35 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rewrite_queries</span> <span class="o">=</span> <span class="n">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="s1">&#39;有没有那种适合搭配这种红色酸味蔬菜的白肉类食材？&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rewrite_queries</span> <span class="o">=</span> <span class="n">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="s1">'有没有那种适合搭配这种红色酸味蔬菜的白肉类食材？'</span><span class="p">)</span>
 <span class="n">rewrite_queries</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;西红柿与白肉在烹饪中的火候与调味逻辑&#39;,
- &#39;番茄类食材搭配白肉的场景（宴客、减脂、快手菜）&#39;,
- &#39;红色酸味蔬菜与白肉类组合的家常做法&#39;,
- &#39;番茄白肉食材搭配菜谱&#39;,
- &#39;西红柿配鸡/鸭/猪肉的去腥提鲜技巧&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['西红柿与白肉在烹饪中的火候与调味逻辑',
+ '番茄类食材搭配白肉的场景（宴客、减脂、快手菜）',
+ '红色酸味蔬菜与白肉类组合的家常做法',
+ '番茄白肉食材搭配菜谱',
+ '西红柿配鸡/鸭/猪肉的去腥提鲜技巧']
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rewrite_queries</span> <span class="o">=</span> <span class="n">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="s1">&#39;跟番茄炒蛋用的同一种增味调料的川菜有哪些？&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rewrite_queries</span> <span class="o">=</span> <span class="n">query_rewrite</span><span class="p">(</span><span class="n">user_query</span><span class="o">=</span><span class="s1">'跟番茄炒蛋用的同一种增味调料的川菜有哪些？'</span><span class="p">)</span>
 <span class="n">rewrite_queries</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;川菜里用白糖+酱油/醋提味的热菜与家常小炒&#39;,
- &#39;番茄炒蛋增味调料在川式凉菜、炒菜、烧菜中的迁移应用&#39;,
- &#39;用与番茄炒蛋相同增味调料复刻川式风味：调料组合与菜例&#39;,
- &#39;番茄炒蛋调味逻辑（酸甜提鲜）在川菜里的对应做法（如鱼香、荔枝味型）&#39;,
- &#39;番茄炒蛋常用增味调料（如白糖、酱油/生抽、料酒、香葱等）的川菜应用&#39;,
- &#39;川菜中与番茄炒蛋同类型增味调料（糖、酱油、醋、葱姜蒜）的经典菜品&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['川菜里用白糖+酱油/醋提味的热菜与家常小炒',
+ '番茄炒蛋增味调料在川式凉菜、炒菜、烧菜中的迁移应用',
+ '用与番茄炒蛋相同增味调料复刻川式风味：调料组合与菜例',
+ '番茄炒蛋调味逻辑（酸甜提鲜）在川菜里的对应做法（如鱼香、荔枝味型）',
+ '番茄炒蛋常用增味调料（如白糖、酱油/生抽、料酒、香葱等）的川菜应用',
+ '川菜中与番茄炒蛋同类型增味调料（糖、酱油、醋、葱姜蒜）的经典菜品']
 </pre></div>
 </div>
 </div>
@@ -874,11 +886,11 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: 466035963454291994,
- &#39;distance&#39;: 0.0,
- &#39;entity&#39;: {&#39;content&#39;: &#39;# 红烧鱼头的做法\n\n- **WARNING** 如果没有使用过菜刀剁过肉类食物，那么并不推荐使用该菜单！！！\n- 在操作中，锋利的菜刀可能会划伤手指，请一定要小心。\n\n预估烹饪难度：★★★★\n\n## 必备原料和工具\n\n- 注：如果有可能，尽量另准备一把菜刀，超市或市场上均有廉价且刀片更厚的菜刀，刀片厚度在 5-7mm 为最佳。\n- 大葱、姜、大蒜、香菜、美人椒\n- 油、盐、鸡精、生抽、老抽、陈醋、黑胡椒粉、料酒\n- 八角、干辣椒\n- 鱼头一个\n- 注：市场直接贩卖的鱼头一般分为两种：白鲢、花鲢。前者价格便宜，后者价格略贵，但口感也更佳！\n\n## 计算\n\n注意，这道菜仅有足够 2 人食用的版本。\n\n* 鱼头一个\n* 大葱 200g\n* 姜 80g\n* 蒜瓣 3-4 个\n* 美人椒 1/4 个\n* 香菜 4 棵\n* 八角两个，干辣椒五个\n\n## 操作\n\n### 原材料准备\n\n* 葱、姜、蒜、香菜、美人椒分别清洗干净。\n* 干辣椒与八角稍微冲洗即可。\n* 大葱切两半。后半段大葱（葱白处）切段，每段长度约 4cm。前半段（葱叶处）先切段，再将每段劈为四瓣。\n* 姜切片，每片厚度约 3mm。\n* 大蒜拍碎。\n* 拿出两棵香菜去根，切为 1.5cm 香菜碎。\n* 将美人椒切为厚度为 3mm 的辣椒圈。\n* 干辣椒切四段。\n\n### 腌制鱼头\n\n* 注：下文所述的鱼身是购买鱼头时所附带的鱼肉。\n* 将鱼头去鳞，清洗鱼头处未被清理干净的内脏。\n* 剁去鱼鳍、清理鱼鳃。\n* 将鱼头下巴与鱼身连接的地方剁开，鱼身剁块，鱼头剁成四/六瓣。\n  * 注：鱼的处理很难用文字完全表述，可以搜索鱼头处理相关视频。\n* 将剁好的鱼头进行清洗，最好洗掉鱼块上滞留的血水。\n* 将清洗好的鱼块放入盆中，加入 5g 盐、10g 生抽、10g 料酒。放入葱（前半段切碎的那个）、1/3 姜片。将其拌匀，静置 1-2 小时。\n\n### 最终步骤\n\n* 加入 30ml 油，等待锅热...\n* 油热，将锅关至小火\n  * 如果不明白为何要这样做，请查看[学习炒与煎](../../tips/learn/学习炒与煎.md)中的翻炒辅料。\n* 放入姜片，慢慢翻炒，以姜片中的大部分汁水被炒出，以金黄色为准。\n* 放入葱段，翻炒至葱段略显发白。\n* 放入蒜碎、八角、干辣椒，翻炒 5 秒。\n* 将腌制好的鱼头倒入锅中，翻炒 2-3 分钟。\n* 倒入 500ml 清水，加入 2g 盐、3g 鸡精、5g 生抽、3g 老抽、5g 料酒、2g 黑胡椒粉、3g 陈醋。\n* 将两棵香菜放入锅中，盖上锅盖。\n* 调至大火，将水烧开。\n* 调至中火，慢焖入味。\n* 当汤汁减少一半时，打开锅盖。\n* 调至大火收汁，汤汁剩余 1/3 时，关火盛至小盆中。\n* 注：将锅中的汤汁均匀淋到鱼头上，盛盘时可以将锅中煮的香菜放入小盆底部，这样能让成品菜好看又好吃。\n* 将香菜放至已经盛出的鱼头上，把切好的美人椒圈放在香菜之上。\n* 色香味俱全的红烧鱼头出炉！\n\n## 附加内容\n\n如果您遵循本指南的制作流程而发现有问题或可以改进的流程，请提出 Issue 或 Pull request 。\n&#39;,
-  &#39;metadata&#39;: {&#39;source&#39;: &#39;/home/dong/data-analysis/myrag/cookrag/data/红烧鱼头.md&#39;,
-   &#39;id&#39;: &#39;7f09beb6-11ac-4755-a5be-b4de377d16d9&#39;}}}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'id': 466035963454291994,
+ 'distance': 0.0,
+ 'entity': {'content': '# 红烧鱼头的做法\n\n- **WARNING** 如果没有使用过菜刀剁过肉类食物，那么并不推荐使用该菜单！！！\n- 在操作中，锋利的菜刀可能会划伤手指，请一定要小心。\n\n预估烹饪难度：★★★★\n\n## 必备原料和工具\n\n- 注：如果有可能，尽量另准备一把菜刀，超市或市场上均有廉价且刀片更厚的菜刀，刀片厚度在 5-7mm 为最佳。\n- 大葱、姜、大蒜、香菜、美人椒\n- 油、盐、鸡精、生抽、老抽、陈醋、黑胡椒粉、料酒\n- 八角、干辣椒\n- 鱼头一个\n- 注：市场直接贩卖的鱼头一般分为两种：白鲢、花鲢。前者价格便宜，后者价格略贵，但口感也更佳！\n\n## 计算\n\n注意，这道菜仅有足够 2 人食用的版本。\n\n* 鱼头一个\n* 大葱 200g\n* 姜 80g\n* 蒜瓣 3-4 个\n* 美人椒 1/4 个\n* 香菜 4 棵\n* 八角两个，干辣椒五个\n\n## 操作\n\n### 原材料准备\n\n* 葱、姜、蒜、香菜、美人椒分别清洗干净。\n* 干辣椒与八角稍微冲洗即可。\n* 大葱切两半。后半段大葱（葱白处）切段，每段长度约 4cm。前半段（葱叶处）先切段，再将每段劈为四瓣。\n* 姜切片，每片厚度约 3mm。\n* 大蒜拍碎。\n* 拿出两棵香菜去根，切为 1.5cm 香菜碎。\n* 将美人椒切为厚度为 3mm 的辣椒圈。\n* 干辣椒切四段。\n\n### 腌制鱼头\n\n* 注：下文所述的鱼身是购买鱼头时所附带的鱼肉。\n* 将鱼头去鳞，清洗鱼头处未被清理干净的内脏。\n* 剁去鱼鳍、清理鱼鳃。\n* 将鱼头下巴与鱼身连接的地方剁开，鱼身剁块，鱼头剁成四/六瓣。\n  * 注：鱼的处理很难用文字完全表述，可以搜索鱼头处理相关视频。\n* 将剁好的鱼头进行清洗，最好洗掉鱼块上滞留的血水。\n* 将清洗好的鱼块放入盆中，加入 5g 盐、10g 生抽、10g 料酒。放入葱（前半段切碎的那个）、1/3 姜片。将其拌匀，静置 1-2 小时。\n\n### 最终步骤\n\n* 加入 30ml 油，等待锅热...\n* 油热，将锅关至小火\n  * 如果不明白为何要这样做，请查看[学习炒与煎](../../tips/learn/学习炒与煎.md)中的翻炒辅料。\n* 放入姜片，慢慢翻炒，以姜片中的大部分汁水被炒出，以金黄色为准。\n* 放入葱段，翻炒至葱段略显发白。\n* 放入蒜碎、八角、干辣椒，翻炒 5 秒。\n* 将腌制好的鱼头倒入锅中，翻炒 2-3 分钟。\n* 倒入 500ml 清水，加入 2g 盐、3g 鸡精、5g 生抽、3g 老抽、5g 料酒、2g 黑胡椒粉、3g 陈醋。\n* 将两棵香菜放入锅中，盖上锅盖。\n* 调至大火，将水烧开。\n* 调至中火，慢焖入味。\n* 当汤汁减少一半时，打开锅盖。\n* 调至大火收汁，汤汁剩余 1/3 时，关火盛至小盆中。\n* 注：将锅中的汤汁均匀淋到鱼头上，盛盘时可以将锅中煮的香菜放入小盆底部，这样能让成品菜好看又好吃。\n* 将香菜放至已经盛出的鱼头上，把切好的美人椒圈放在香菜之上。\n* 色香味俱全的红烧鱼头出炉！\n\n## 附加内容\n\n如果您遵循本指南的制作流程而发现有问题或可以改进的流程，请提出 Issue 或 Pull request 。\n',
+  'metadata': {'source': '/home/dong/data-analysis/myrag/cookrag/data/红烧鱼头.md',
+   'id': '7f09beb6-11ac-4755-a5be-b4de377d16d9'}}}
 </pre></div>
 </div>
 </div>
@@ -886,20 +898,20 @@ ChatPromptTemplate 产生携带角色的消息列表，</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sparse_vec_info</span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; from ai. 描述稀疏向量激活了多少关键词 &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""" from ai. 描述稀疏向量激活了多少关键词 """</span>
     <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="p">([</span><span class="n">s</span><span class="p">])</span>
-    <span class="n">sparse_obj</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">&#39;sparse&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;类型: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">sparse_obj</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;非零元素个数: </span><span class="si">{</span><span class="n">sparse_obj</span><span class="o">.</span><span class="n">nnz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 查看有多少个关键词被激活</span>
+    <span class="n">sparse_obj</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="s1">'sparse'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"类型: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">sparse_obj</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"非零元素个数: </span><span class="si">{</span><span class="n">sparse_obj</span><span class="o">.</span><span class="n">nnz</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># 查看有多少个关键词被激活</span>
     <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">embed_encoder</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span>
     <span class="n">coo</span> <span class="o">=</span> <span class="n">sparse_obj</span><span class="o">.</span><span class="n">tocoo</span><span class="p">()</span>
     <span class="n">token_weights</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">coo</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">coo</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;关键词&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;权重&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">25</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'关键词'</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'权重'</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">25</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">token_id</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">token_weights</span><span class="p">:</span>
         <span class="n">token_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">([</span><span class="n">token_id</span><span class="p">])</span> <span class="c1"># 将 ID 转回文字</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">token_text</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">weight</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">token_text</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">weight</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -919,7 +931,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 <h2>测试<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;对比一下南派和徽派红烧肉在甜度控制上的区别。&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'对比一下南派和徽派红烧肉在甜度控制上的区别。'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -931,7 +943,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;我想做红烧肉，但我家只有白砂糖没有冰糖，哪种做法最适合我&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'我想做红烧肉，但我家只有白砂糖没有冰糖，哪种做法最适合我'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -940,7 +952,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 回答是合理的</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;红烧肉怎么上色&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'红烧肉怎么上色'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -949,7 +961,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 回答是合理的。 LLM还矫正了料酒不上色，并没有幻觉</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;如何制作无骨鸡爪&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'如何制作无骨鸡爪'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -957,7 +969,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 <p>😊😊😊对于需要详细制作的。LLM只是让语句变流畅了，没有改变</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;给我推荐最高难度川菜&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'给我推荐最高难度川菜'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -965,7 +977,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 <p>😶😊是合理的，因为本身没有答案，这个只要菜在知识库。由LLM选择</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;番茄有什么营养价值&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'番茄有什么营养价值'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -973,7 +985,7 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 <p>😊😶😊可以看到，LLM理解了上下文，出于prompt，他有着明显的限制</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;鸡爪&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'鸡爪'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -981,16 +993,16 @@ RRF是统计模型，所以不能无限制增大limit,会增大噪声。</p>
 <p>😊</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">&#39;番茄可以做什么菜&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_md_jupyter</span><span class="p">(</span><span class="n">rag</span><span class="p">(</span><span class="s1">'番茄可以做什么菜'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rewrite queries: [&#39;番茄炒虾仁&#39;, &#39;番茄鸡蛋汤&#39;, &#39;番茄炒蛋&#39;, &#39;番茄凉拌黄瓜&#39;, &#39;番茄炖牛腩&#39;, &#39;番茄鱼片汤&#39;, &#39;番茄意面&#39;, &#39;番茄蒸蛋&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rewrite queries: ['番茄炒虾仁', '番茄鸡蛋汤', '番茄炒蛋', '番茄凉拌黄瓜', '番茄炖牛腩', '番茄鱼片汤', '番茄意面', '番茄蒸蛋']
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1777799022.997585    2332 chttp2_transport.cc:1182] unix:/tmp/tmpyhkknj8r_milvus_cookrag.db.sock: Got goaway [11] err=UNAVAILABLE:GOAWAY received; Error code: 11; Debug Text: too_many_pings {created_time:&quot;2026-05-03T17:03:42.99754198+08:00&quot;, http2_error:11, grpc_status:14}
-E0000 00:00:1777799022.997778    2332 chttp2_transport.cc:1210] unix:/tmp/tmpyhkknj8r_milvus_cookrag.db.sock: Received a GOAWAY with error code ENHANCE_YOUR_CALM and debug data equal to &quot;too_many_pings&quot;. Current keepalive time (before throttling): 10000ms
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1777799022.997585    2332 chttp2_transport.cc:1182] unix:/tmp/tmpyhkknj8r_milvus_cookrag.db.sock: Got goaway [11] err=UNAVAILABLE:GOAWAY received; Error code: 11; Debug Text: too_many_pings {created_time:"2026-05-03T17:03:42.99754198+08:00", http2_error:11, grpc_status:14}
+E0000 00:00:1777799022.997778    2332 chttp2_transport.cc:1210] unix:/tmp/tmpyhkknj8r_milvus_cookrag.db.sock: Received a GOAWAY with error code ENHANCE_YOUR_CALM and debug data equal to "too_many_pings". Current keepalive time (before throttling): 10000ms
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>context get 48 articles
@@ -1171,8 +1183,8 @@ context- source :/home/dong/data-analysis/myrag/cookrag/data/蒜香黄油虾.md
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1206,7 +1218,7 @@ context- source :/home/dong/data-analysis/myrag/cookrag/data/蒜香黄油虾.md
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

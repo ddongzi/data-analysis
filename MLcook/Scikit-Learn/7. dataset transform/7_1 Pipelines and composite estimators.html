@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -401,10 +413,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
 
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;my_scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-    <span class="p">(</span><span class="s1">&#39;my_classifier&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+    <span class="p">(</span><span class="s1">'my_scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">'my_classifier'</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
 <span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;my_scaler&#39;</span><span class="p">])</span>   <span class="c1"># 获取</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">'my_scaler'</span><span class="p">])</span>   <span class="c1"># 获取</span>
 </pre></div>
 </div>
 </div>
@@ -424,7 +436,7 @@
     <span class="n">StandardScaler</span><span class="p">(),</span>
     <span class="n">LogisticRegression</span><span class="p">()</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;standardscaler&#39;</span><span class="p">])</span>  <span class="c1"># auto-generated name</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">'standardscaler'</span><span class="p">])</span>  <span class="c1"># auto-generated name</span>
 </pre></div>
 </div>
 </div>
@@ -447,8 +459,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+    <span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -1229,7 +1241,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;x2&#39;, &#39;x3&#39;], dtype=object)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(['x2', 'x3'], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -1464,7 +1476,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
  |      y_hat : ndarray of shape (n_samples,)
  |          Predicted values.
  |  
- |  set_score_request(self: sklearn.compose._target.TransformedTargetRegressor, *, sample_weight: Union[bool, NoneType, str] = &#39;$UNCHANGED$&#39;) -&gt; sklearn.compose._target.TransformedTargetRegressor
+ |  set_score_request(self: sklearn.compose._target.TransformedTargetRegressor, *, sample_weight: Union[bool, NoneType, str] = '$UNCHANGED$') -&gt; sklearn.compose._target.TransformedTargetRegressor
  |      Configure whether metadata should be requested to be passed to the ``score`` method.
  |      
  |      Note that this method is only relevant when this estimator is used as a
@@ -1508,7 +1520,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
  |  ----------------------------------------------------------------------
  |  Data and other attributes defined here:
  |  
- |  __annotations__ = {&#39;_parameter_constraints&#39;: &lt;class &#39;dict&#39;&gt;}
+ |  __annotations__ = {'_parameter_constraints': &lt;class 'dict'&gt;}
  |  
  |  ----------------------------------------------------------------------
  |  Methods inherited from sklearn.base.RegressorMixin:
@@ -1547,7 +1559,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
  |      Notes
  |      -----
  |      The :math:`R^2` score used when calling ``score`` on a regressor uses
- |      ``multioutput=&#39;uniform_average&#39;`` from version 0.23 to keep consistent
+ |      ``multioutput='uniform_average'`` from version 0.23 to keep consistent
  |      with default value of :func:`~sklearn.metrics.r2_score`.
  |      This influences the ``score`` method of all the multioutput
  |      regressors (except for
@@ -1593,7 +1605,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
  |      
  |      The method works on simple estimators as well as on nested objects
  |      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
- |      parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it&#39;s
+ |      parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it's
  |      possible to update each component of a nested object.
  |      
  |      Parameters
@@ -1669,14 +1681,14 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the mixin class should always be on the left of `BaseEstimator` to ensure</span>
 <span class="c1"># the MRO works as expected.</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TemplateTransformer</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An example transformer that returns the element-wise square root.</span>
+<span class="w">    </span><span class="sd">"""An example transformer that returns the element-wise square root.</span>
 
 <span class="sd">    For more information regarding how to build your own transformer, read more</span>
 <span class="sd">    in the :ref:`User Guide &lt;user_guide&gt;`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    demo_param : str, default=&#39;demo&#39;</span>
+<span class="sd">    demo_param : str, default='demo'</span>
 <span class="sd">        A parameter used for demonstation of how to pass and store paramters.</span>
 
 <span class="sd">    Attributes</span>
@@ -1687,20 +1699,20 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
 <span class="sd">    feature_names_in_ : ndarray of shape (`n_features_in_`,)</span>
 <span class="sd">        Names of features seen during :term:`fit`. Defined only when `X`</span>
 <span class="sd">        has feature names that are all strings.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># This is a dictionary allowing to define the type of parameters.</span>
     <span class="c1"># It used to validate parameter within the `_fit_context` decorator.</span>
     <span class="n">_parameter_constraints</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;demo_param&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="s2">"demo_param"</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="p">}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">demo_param</span><span class="o">=</span><span class="s2">&quot;demo&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">demo_param</span><span class="o">=</span><span class="s2">"demo"</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">demo_param</span> <span class="o">=</span> <span class="n">demo_param</span>
 
     <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;A reference implementation of a fitting function for a transformer.</span>
+<span class="w">        </span><span class="sd">"""A reference implementation of a fitting function for a transformer.</span>
 <span class="sd">        一般就是记录训练集信息，比如统计量mean，std</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1715,14 +1727,14 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
 <span class="sd">        -------</span>
 <span class="sd">        self : object</span>
 <span class="sd">            Returns self.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Return the transformer</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;A reference implementation of a transform function.</span>
+<span class="w">        </span><span class="sd">"""A reference implementation of a transform function.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1734,12 +1746,12 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
 <span class="sd">        X_transformed : array, shape (n_samples, n_features)</span>
 <span class="sd">            The array containing the element-wise square roots of the values</span>
 <span class="sd">            in ``X``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># Since this is a stateless transformer, we should not call `check_is_fitted`.</span>
         <span class="c1"># Common test will check for this particularly.</span>
 
         <span class="c1"># Input validation</span>
-        <span class="c1"># We need to set reset=False because we don&#39;t want to overwrite `n_features_in_`</span>
+        <span class="c1"># We need to set reset=False because we don't want to overwrite `n_features_in_`</span>
         <span class="c1"># `feature_names_in_` but only check that the shape is consistent.</span>
         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -1749,7 +1761,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
         <span class="c1"># https://scikit-learn.org/dev/developers/develop.html#estimator-tags</span>
         <span class="c1"># Here, our transformer does not do any operation in `fit` and only validate</span>
         <span class="c1"># the parameters. Thus, it is stateless.</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;stateless&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"stateless"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1822,8 +1834,8 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1857,7 +1869,7 @@ class TransformedTargetRegressor(sklearn.base.RegressorMixin, sklearn.base.BaseE
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

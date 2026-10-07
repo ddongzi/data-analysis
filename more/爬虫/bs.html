@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -389,46 +401,46 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ab_guid&#39;</span><span class="p">:</span> <span class="s1">&#39;7787d41d-10fa-475b-8c64-5884f0b64fd9&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__g&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Hm_lvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;HMACCOUNT&#39;</span><span class="p">:</span> <span class="s1">&#39;B2926F6A1FF51613&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__l&#39;</span><span class="p">:</span> <span class="s1">&#39;l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">web</span><span class="si">%2F</span><span class="s1">geek</span><span class="si">%2F</span><span class="s1">jobs</span><span class="si">%3F</span><span class="s1">city%3D100010000%26query%3D</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%2595%</span><span class="s1">25B0</span><span class="si">%25E</span><span class="s1">6%258D%25AE</span><span class="si">%25E</span><span class="s1">5</span><span class="si">%2588%</span><span class="s1">2586</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%259E</span><span class="s1">%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__zp_stoken__&#39;</span><span class="p">:</span> <span class="s1">&#39;5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ</span><span class="si">%2F</span><span class="s1">Pjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK</span><span class="si">%2F</span><span class="s1">LMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz</span><span class="si">%2F</span><span class="s1">CnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;wt2&#39;</span><span class="p">:</span> <span class="s1">&#39;DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;wbg&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;zp_at&#39;</span><span class="p">:</span> <span class="s1">&#39;7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;bst&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__c&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__a&#39;</span><span class="p">:</span> <span class="s1">&#39;35794977.1745977504..1745977504.7.1.7.7&#39;</span><span class="p">,</span>
+    <span class="s1">'ab_guid'</span><span class="p">:</span> <span class="s1">'7787d41d-10fa-475b-8c64-5884f0b64fd9'</span><span class="p">,</span>
+    <span class="s1">'__g'</span><span class="p">:</span> <span class="s1">'-'</span><span class="p">,</span>
+    <span class="s1">'Hm_lvt_194df3105ad7148dcf2b98a91b5e727a'</span><span class="p">:</span> <span class="s1">'1745977504'</span><span class="p">,</span>
+    <span class="s1">'Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a'</span><span class="p">:</span> <span class="s1">'1745977504'</span><span class="p">,</span>
+    <span class="s1">'HMACCOUNT'</span><span class="p">:</span> <span class="s1">'B2926F6A1FF51613'</span><span class="p">,</span>
+    <span class="s1">'__l'</span><span class="p">:</span> <span class="s1">'l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">web</span><span class="si">%2F</span><span class="s1">geek</span><span class="si">%2F</span><span class="s1">jobs</span><span class="si">%3F</span><span class="s1">city%3D100010000%26query%3D</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%2595%</span><span class="s1">25B0</span><span class="si">%25E</span><span class="s1">6%258D%25AE</span><span class="si">%25E</span><span class="s1">5</span><span class="si">%2588%</span><span class="s1">2586</span><span class="si">%25E</span><span class="s1">6</span><span class="si">%259E</span><span class="s1">%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0'</span><span class="p">,</span>
+    <span class="s1">'__zp_stoken__'</span><span class="p">:</span> <span class="s1">'5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ</span><span class="si">%2F</span><span class="s1">Pjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK</span><span class="si">%2F</span><span class="s1">LMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz</span><span class="si">%2F</span><span class="s1">CnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D'</span><span class="p">,</span>
+    <span class="s1">'wt2'</span><span class="p">:</span> <span class="s1">'DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~'</span><span class="p">,</span>
+    <span class="s1">'wbg'</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">,</span>
+    <span class="s1">'zp_at'</span><span class="p">:</span> <span class="s1">'7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~'</span><span class="p">,</span>
+    <span class="s1">'bst'</span><span class="p">:</span> <span class="s1">'V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~'</span><span class="p">,</span>
+    <span class="s1">'__c'</span><span class="p">:</span> <span class="s1">'1745977504'</span><span class="p">,</span>
+    <span class="s1">'__a'</span><span class="p">:</span> <span class="s1">'35794977.1745977504..1745977504.7.1.7.7'</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json, text/plain, */*&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;accept-language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="s1">&#39;u=1, i&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;referer&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.zhipin.com/web/geek/jobs&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Google Chrome&quot;;v=&quot;135&quot;, &quot;Not-A.Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;135&quot;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua-mobile&#39;</span><span class="p">:</span> <span class="s1">&#39;?0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua-platform&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Windows&quot;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-dest&#39;</span><span class="p">:</span> <span class="s1">&#39;empty&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;cors&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-site&#39;</span><span class="p">:</span> <span class="s1">&#39;same-origin&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;7POhjANg9h7YXynU&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;traceid&#39;</span><span class="p">:</span> <span class="s1">&#39;F-6730a6Snt7Ox4pR8&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;x-requested-with&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;zp_token&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~&#39;</span><span class="p">,</span>
-    <span class="c1"># &#39;cookie&#39;: &#39;ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fweb%2Fgeek%2Fjobs%3Fcity%3D100010000%26query%3D%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; __zp_stoken__=5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ%2FPjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK%2FLMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz%2FCnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; bst=V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~; __c=1745977504; __a=35794977.1745977504..1745977504.7.1.7.7&#39;,</span>
+    <span class="s1">'accept'</span><span class="p">:</span> <span class="s1">'application/json, text/plain, */*'</span><span class="p">,</span>
+    <span class="s1">'accept-language'</span><span class="p">:</span> <span class="s1">'zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6'</span><span class="p">,</span>
+    <span class="s1">'priority'</span><span class="p">:</span> <span class="s1">'u=1, i'</span><span class="p">,</span>
+    <span class="s1">'referer'</span><span class="p">:</span> <span class="s1">'https://www.zhipin.com/web/geek/jobs'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua'</span><span class="p">:</span> <span class="s1">'"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua-mobile'</span><span class="p">:</span> <span class="s1">'?0'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua-platform'</span><span class="p">:</span> <span class="s1">'"Windows"'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-dest'</span><span class="p">:</span> <span class="s1">'empty'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-mode'</span><span class="p">:</span> <span class="s1">'cors'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-site'</span><span class="p">:</span> <span class="s1">'same-origin'</span><span class="p">,</span>
+    <span class="s1">'token'</span><span class="p">:</span> <span class="s1">'7POhjANg9h7YXynU'</span><span class="p">,</span>
+    <span class="s1">'traceid'</span><span class="p">:</span> <span class="s1">'F-6730a6Snt7Ox4pR8'</span><span class="p">,</span>
+    <span class="s1">'user-agent'</span><span class="p">:</span> <span class="s1">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36'</span><span class="p">,</span>
+    <span class="s1">'x-requested-with'</span><span class="p">:</span> <span class="s1">'XMLHttpRequest'</span><span class="p">,</span>
+    <span class="s1">'zp_token'</span><span class="p">:</span> <span class="s1">'V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~'</span><span class="p">,</span>
+    <span class="c1"># 'cookie': 'ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1745977504; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fweb%2Fgeek%2Fjobs%3Fcity%3D100010000%26query%3D%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; __zp_stoken__=5fc2fPz7DkMK%2BwpvCsjUoDwIDCQQzKD4%2BLRAwPyI1PzQ%2FPjs9Sj8%2BMx84L14owrwtVsOPTD8uPz5KPz0xPjswHj9KxL3CvjI8IG0swrIvV8OCAsOrwr5YfhrDkMK%2FLMOywr8uwp3CviwtUsK9PzI2OMOuwrkywrPDqMK8P8K3w67Csj7DijI%2BOD4lPgADBws%2BPklJWAxIVU5WakQOQURFKDgzOTvCjsKXJTgEAAYABQsPDQ8OBwMBDAkLDw0PDgIOCA4PIz%2FCnMK%2Bwp3CisOqccOoxJnCnUPDuFvCr1nCtlnCmkbEiknCpcKYwpZLT8K2wpxNwpnCr8KTUUFtUsKzwqZATX3CpGBYw4rCrU51BmEGwrJhBQRXUAE7GsK7w7fDiQ%3D%3D; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; bst=V2RNomF-H53VxrVtRuyxsRKSi27DrRwSU~|RNomF-H53VxrVtRuyxsRKSi27DrTxS4~; __c=1745977504; __a=35794977.1745977504..1745977504.7.1.7.7',</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="s1">&#39;1745978077350&#39;</span><span class="p">,</span>
+    <span class="s1">'_'</span><span class="p">:</span> <span class="s1">'1745978077350'</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s1">&#39;https://www.zhipin.com/wapi/zpCommon/data/cityGroup.json&#39;</span><span class="p">,</span>
+    <span class="s1">'https://www.zhipin.com/wapi/zpCommon/data/cityGroup.json'</span><span class="p">,</span>
     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
     <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
@@ -440,17 +452,17 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;zpData&#39;</span><span class="p">][</span><span class="s1">&#39;hotCityList&#39;</span><span class="p">]:</span>
-    <span class="n">cities</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;cityCode&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;cityCode&#39;</span><span class="p">],</span> <span class="s1">&#39;code&#39;</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]})</span>
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'zpData'</span><span class="p">][</span><span class="s1">'hotCityList'</span><span class="p">]:</span>
+    <span class="n">cities</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'name'</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="s1">'cityCode'</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">'cityCode'</span><span class="p">],</span> <span class="s1">'code'</span><span class="p">:</span><span class="n">city</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]})</span>
 <span class="n">df_city</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cities</span><span class="p">)</span>
-<span class="n">df_city</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cities.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df_city</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'cities.xlsx'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;cities.xlsx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'cities.xlsx'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -603,16 +615,16 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list返回的信息</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;areaDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;bossCert&#39;</span><span class="p">,</span> <span class="s1">&#39;bossName&#39;</span><span class="p">,</span> <span class="s1">&#39;bossTitle&#39;</span><span class="p">,</span> <span class="s1">&#39;brandIndustry&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brandName&#39;</span><span class="p">,</span> <span class="s1">&#39;brandScaleName&#39;</span><span class="p">,</span> <span class="s1">&#39;brandStageName&#39;</span><span class="p">,</span> <span class="s1">&#39;businessDistrict&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;cityName&#39;</span><span class="p">,</span> <span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;encryptBossId&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;encryptBrandId&#39;</span><span class="p">,</span> <span class="s1">&#39;encryptJobId&#39;</span><span class="p">,</span> <span class="s1">&#39;expectId&#39;</span><span class="p">,</span> <span class="s1">&#39;goldHunter&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;jobDegree&#39;</span><span class="p">,</span> <span class="s1">&#39;jobExperience&#39;</span><span class="p">,</span> <span class="s1">&#39;jobLabels&#39;</span><span class="p">,</span> <span class="s1">&#39;jobName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="s1">&#39;salaryDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="s1">&#39;welfareList&#39;</span>
+    <span class="s1">'areaDistrict'</span><span class="p">,</span> <span class="s1">'bossCert'</span><span class="p">,</span> <span class="s1">'bossName'</span><span class="p">,</span> <span class="s1">'bossTitle'</span><span class="p">,</span> <span class="s1">'brandIndustry'</span><span class="p">,</span>
+    <span class="s1">'brandName'</span><span class="p">,</span> <span class="s1">'brandScaleName'</span><span class="p">,</span> <span class="s1">'brandStageName'</span><span class="p">,</span> <span class="s1">'businessDistrict'</span><span class="p">,</span>
+    <span class="s1">'city'</span><span class="p">,</span> <span class="s1">'cityName'</span><span class="p">,</span> <span class="s1">'contact'</span><span class="p">,</span> <span class="s1">'daysPerWeekDesc'</span><span class="p">,</span> <span class="s1">'encryptBossId'</span><span class="p">,</span>
+    <span class="s1">'encryptBrandId'</span><span class="p">,</span> <span class="s1">'encryptJobId'</span><span class="p">,</span> <span class="s1">'expectId'</span><span class="p">,</span> <span class="s1">'goldHunter'</span><span class="p">,</span>
+    <span class="s1">'jobDegree'</span><span class="p">,</span> <span class="s1">'jobExperience'</span><span class="p">,</span> <span class="s1">'jobLabels'</span><span class="p">,</span> <span class="s1">'jobName'</span><span class="p">,</span>
+    <span class="s1">'securityId'</span><span class="p">,</span> <span class="s1">'salaryDesc'</span><span class="p">,</span> <span class="s1">'skills'</span><span class="p">,</span> <span class="s1">'welfareList'</span>
 <span class="p">]</span>
 
 <span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">df_joblist</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_joblist</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'securityId'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -624,48 +636,48 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;boss_brandName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boss_certificated&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boss_name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boss_title&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_customerBrandName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_customerBrandStageName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_encryptBrandId&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_industry&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_industryName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_introduce&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_labels&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_scale&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_scaleName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_stage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;brand_stageName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_address&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_degreeName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_encryptAddressId&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_encryptId&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_encryptUserId&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_experienceName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_invalidStatus&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_status&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_type&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_latitude&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_longitude&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_location&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_locationName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_position&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_positionName&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_postDescription&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_proxyJob&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_proxyType&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_salaryDesc&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;job_showSkills&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;securityId&#39;</span>
+    <span class="s1">'boss_brandName'</span><span class="p">,</span>
+    <span class="s1">'boss_certificated'</span><span class="p">,</span>
+    <span class="s1">'boss_name'</span><span class="p">,</span>
+    <span class="s1">'boss_title'</span><span class="p">,</span>
+    <span class="s1">'brand_name'</span><span class="p">,</span>
+    <span class="s1">'brand_customerBrandName'</span><span class="p">,</span>
+    <span class="s1">'brand_customerBrandStageName'</span><span class="p">,</span>
+    <span class="s1">'brand_encryptBrandId'</span><span class="p">,</span>
+    <span class="s1">'brand_industry'</span><span class="p">,</span>
+    <span class="s1">'brand_industryName'</span><span class="p">,</span>
+    <span class="s1">'brand_introduce'</span><span class="p">,</span>
+    <span class="s1">'brand_labels'</span><span class="p">,</span>
+    <span class="s1">'brand_scale'</span><span class="p">,</span>
+    <span class="s1">'brand_scaleName'</span><span class="p">,</span>
+    <span class="s1">'brand_stage'</span><span class="p">,</span>
+    <span class="s1">'brand_stageName'</span><span class="p">,</span>
+    <span class="s1">'job_address'</span><span class="p">,</span>
+    <span class="s1">'job_degreeName'</span><span class="p">,</span>
+    <span class="s1">'job_encryptAddressId'</span><span class="p">,</span>
+    <span class="s1">'job_encryptId'</span><span class="p">,</span>
+    <span class="s1">'job_encryptUserId'</span><span class="p">,</span>
+    <span class="s1">'job_experienceName'</span><span class="p">,</span>
+    <span class="s1">'job_invalidStatus'</span><span class="p">,</span>
+    <span class="s1">'job_name'</span><span class="p">,</span>
+    <span class="s1">'job_status'</span><span class="p">,</span>
+    <span class="s1">'job_type'</span><span class="p">,</span>
+    <span class="s1">'job_latitude'</span><span class="p">,</span>
+    <span class="s1">'job_longitude'</span><span class="p">,</span>
+    <span class="s1">'job_location'</span><span class="p">,</span>
+    <span class="s1">'job_locationName'</span><span class="p">,</span>
+    <span class="s1">'job_position'</span><span class="p">,</span>
+    <span class="s1">'job_positionName'</span><span class="p">,</span>
+    <span class="s1">'job_postDescription'</span><span class="p">,</span>
+    <span class="s1">'job_proxyJob'</span><span class="p">,</span>
+    <span class="s1">'job_proxyType'</span><span class="p">,</span>
+    <span class="s1">'job_salaryDesc'</span><span class="p">,</span>
+    <span class="s1">'job_showSkills'</span><span class="p">,</span>
+    <span class="s1">'securityId'</span>
 <span class="p">]</span>
 
 <span class="n">df_jobdetail</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">df_jobdetail</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_jobdetail</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'securityId'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -676,59 +688,59 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ab_guid&#39;</span><span class="p">:</span> <span class="s1">&#39;7787d41d-10fa-475b-8c64-5884f0b64fd9&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;wt2&#39;</span><span class="p">:</span> <span class="s1">&#39;DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;wbg&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;zp_at&#39;</span><span class="p">:</span> <span class="s1">&#39;7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;lastCity&#39;</span><span class="p">:</span> <span class="s1">&#39;101270100&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__g&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Hm_lvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1745977504,1746523892&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;HMACCOUNT&#39;</span><span class="p">:</span> <span class="s1">&#39;B2926F6A1FF51613&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__l&#39;</span><span class="p">:</span> <span class="s1">&#39;l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">chengdu</span><span class="si">%2F%3F</span><span class="s1">seoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523904&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__zp_stoken__&#39;</span><span class="p">:</span> <span class="s1">&#39;7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0</span><span class="si">%2F</span><span class="s1">CssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;bst&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__c&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523892&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;__a&#39;</span><span class="p">:</span> <span class="s1">&#39;35794977.1745977504.1745977504.1746523892.13.2.5.13&#39;</span><span class="p">,</span>
+    <span class="s1">'ab_guid'</span><span class="p">:</span> <span class="s1">'7787d41d-10fa-475b-8c64-5884f0b64fd9'</span><span class="p">,</span>
+    <span class="s1">'wt2'</span><span class="p">:</span> <span class="s1">'DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~'</span><span class="p">,</span>
+    <span class="s1">'wbg'</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">,</span>
+    <span class="s1">'zp_at'</span><span class="p">:</span> <span class="s1">'7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~'</span><span class="p">,</span>
+    <span class="s1">'lastCity'</span><span class="p">:</span> <span class="s1">'101270100'</span><span class="p">,</span>
+    <span class="s1">'__g'</span><span class="p">:</span> <span class="s1">'-'</span><span class="p">,</span>
+    <span class="s1">'Hm_lvt_194df3105ad7148dcf2b98a91b5e727a'</span><span class="p">:</span> <span class="s1">'1745977504,1746523892'</span><span class="p">,</span>
+    <span class="s1">'HMACCOUNT'</span><span class="p">:</span> <span class="s1">'B2926F6A1FF51613'</span><span class="p">,</span>
+    <span class="s1">'__l'</span><span class="p">:</span> <span class="s1">'l=</span><span class="si">%2F</span><span class="s1">www.zhipin.com</span><span class="si">%2F</span><span class="s1">chengdu</span><span class="si">%2F%3F</span><span class="s1">seoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0'</span><span class="p">,</span>
+    <span class="s1">'Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a'</span><span class="p">:</span> <span class="s1">'1746523904'</span><span class="p">,</span>
+    <span class="s1">'__zp_stoken__'</span><span class="p">:</span> <span class="s1">'7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0</span><span class="si">%2F</span><span class="s1">CssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI'</span><span class="p">,</span>
+    <span class="s1">'bst'</span><span class="p">:</span> <span class="s1">'V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~'</span><span class="p">,</span>
+    <span class="s1">'__c'</span><span class="p">:</span> <span class="s1">'1746523892'</span><span class="p">,</span>
+    <span class="s1">'__a'</span><span class="p">:</span> <span class="s1">'35794977.1745977504.1745977504.1746523892.13.2.5.13'</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json, text/plain, */*&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;accept-language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="s1">&#39;u=1, i&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;referer&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.zhipin.com/web/geek/jobs?city=101010100&amp;query=</span><span class="si">%E</span><span class="s1">6</span><span class="si">%95%</span><span class="s1">B0</span><span class="si">%E</span><span class="s1">6%8D%AE</span><span class="si">%E</span><span class="s1">5</span><span class="si">%88%</span><span class="s1">86</span><span class="si">%E</span><span class="s1">6</span><span class="si">%9E%90%</span><span class="s1">E5%B8%88&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Google Chrome&quot;;v=&quot;135&quot;, &quot;Not-A.Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;135&quot;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua-mobile&#39;</span><span class="p">:</span> <span class="s1">&#39;?0&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-ch-ua-platform&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Windows&quot;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-dest&#39;</span><span class="p">:</span> <span class="s1">&#39;empty&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;cors&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sec-fetch-site&#39;</span><span class="p">:</span> <span class="s1">&#39;same-origin&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;7POhjANg9h7YXynU&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;traceid&#39;</span><span class="p">:</span> <span class="s1">&#39;F-f044555ieyRiXm27&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;x-requested-with&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;zp_token&#39;</span><span class="p">:</span> <span class="s1">&#39;V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~&#39;</span><span class="p">,</span>
-    <span class="c1"># &#39;cookie&#39;: &#39;ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; lastCity=101270100; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504,1746523892; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fchengdu%2F%3FseoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1746523904; __zp_stoken__=7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0%2FCssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI; bst=V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~; __c=1746523892; __a=35794977.1745977504.1745977504.1746523892.13.2.5.13&#39;,</span>
+    <span class="s1">'accept'</span><span class="p">:</span> <span class="s1">'application/json, text/plain, */*'</span><span class="p">,</span>
+    <span class="s1">'accept-language'</span><span class="p">:</span> <span class="s1">'zh-CN,zh;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6'</span><span class="p">,</span>
+    <span class="s1">'priority'</span><span class="p">:</span> <span class="s1">'u=1, i'</span><span class="p">,</span>
+    <span class="s1">'referer'</span><span class="p">:</span> <span class="s1">'https://www.zhipin.com/web/geek/jobs?city=101010100&amp;query=</span><span class="si">%E</span><span class="s1">6</span><span class="si">%95%</span><span class="s1">B0</span><span class="si">%E</span><span class="s1">6%8D%AE</span><span class="si">%E</span><span class="s1">5</span><span class="si">%88%</span><span class="s1">86</span><span class="si">%E</span><span class="s1">6</span><span class="si">%9E%90%</span><span class="s1">E5%B8%88'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua'</span><span class="p">:</span> <span class="s1">'"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua-mobile'</span><span class="p">:</span> <span class="s1">'?0'</span><span class="p">,</span>
+    <span class="s1">'sec-ch-ua-platform'</span><span class="p">:</span> <span class="s1">'"Windows"'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-dest'</span><span class="p">:</span> <span class="s1">'empty'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-mode'</span><span class="p">:</span> <span class="s1">'cors'</span><span class="p">,</span>
+    <span class="s1">'sec-fetch-site'</span><span class="p">:</span> <span class="s1">'same-origin'</span><span class="p">,</span>
+    <span class="s1">'token'</span><span class="p">:</span> <span class="s1">'7POhjANg9h7YXynU'</span><span class="p">,</span>
+    <span class="s1">'traceid'</span><span class="p">:</span> <span class="s1">'F-f044555ieyRiXm27'</span><span class="p">,</span>
+    <span class="s1">'user-agent'</span><span class="p">:</span> <span class="s1">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36'</span><span class="p">,</span>
+    <span class="s1">'x-requested-with'</span><span class="p">:</span> <span class="s1">'XMLHttpRequest'</span><span class="p">,</span>
+    <span class="s1">'zp_token'</span><span class="p">:</span> <span class="s1">'V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~'</span><span class="p">,</span>
+    <span class="c1"># 'cookie': 'ab_guid=7787d41d-10fa-475b-8c64-5884f0b64fd9; wt2=DadorIlG3_JEWP9MUxvxVX_wWYaQXjNBCowNg1ZIhC2y4w946BSZV-WQ2ELfx8JNR0smAysQO221s5e-9C2g3Cw~~; wbg=0; zp_at=7V-IOtB8flLdaWan4t0E9A3qGonw2g080z6KroDaAxY~; lastCity=101270100; __g=-; Hm_lvt_194df3105ad7148dcf2b98a91b5e727a=1745977504,1746523892; HMACCOUNT=B2926F6A1FF51613; __l=l=%2Fwww.zhipin.com%2Fchengdu%2F%3FseoRefer%3Dindex&amp;r=&amp;g=&amp;s=3&amp;friend_source=0&amp;s=3&amp;friend_source=0; Hm_lpvt_194df3105ad7148dcf2b98a91b5e727a=1746523904; __zp_stoken__=7ddffTlLDs8OQwq3DkU87KSUeIShXPE1SQDtUTkZYS1hOUkpNVk5SUitMPsSCw4xUxIVGccOhwplPO1JKWE9OUEpLUitSVsWRw4xPU0XEisORWcSAQnjDnCFbHcKDIFnDkx1qw48pw53Dij9Bb8OUUVBUTcSJw4tQw5PDvcOTUcOXw7zDj1nDllBMTVlHTCIkGh1MTFpobB5admlyeGYbYGhpOk1OS0vCnMK4PEwcICElHRoeHyMbJSkoHSUdISAkHBsfHiIaQ0%2FCssOZwqzCisaPesSHxKvCscOXw7vCuMKtacOFYsK2w4fDhcOKw4fChGhmwqPDhcOQX8OWW8OJbcKvwpLCrMKGfcOOw4hzZsKVw5bDjnTDjsOOa8KJwpbCkyEncnZzGk0oc8OI; bst=V2RNomF-H53VxrVtRuyxodKSO07DrexS4~|RNomF-H53VxrVtRuyxodKSO07DrWzCQ~; __c=1746523892; __a=35794977.1745977504.1745977504.1746523892.13.2.5.13',</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;pageSize&#39;</span><span class="p">:</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;101010100&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s1">&#39;数据分析师&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;expectInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;multiSubway&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;multiBusinessDistrict&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;jobType&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;experience&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;degree&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;industry&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;stage&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;scene&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="s1">&#39;1746523931733&#39;</span><span class="p">,</span>
+    <span class="s1">'page'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'pageSize'</span><span class="p">:</span> <span class="s1">'15'</span><span class="p">,</span>
+    <span class="s1">'city'</span><span class="p">:</span> <span class="s1">'101010100'</span><span class="p">,</span>
+    <span class="s1">'query'</span><span class="p">:</span> <span class="s1">'数据分析师'</span><span class="p">,</span>
+    <span class="s1">'expectInfo'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'multiSubway'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'multiBusinessDistrict'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'position'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'jobType'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'salary'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'experience'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'degree'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'industry'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'scale'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'stage'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'scene'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'_'</span><span class="p">:</span> <span class="s1">'1746523931733'</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -737,8 +749,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试：一次</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.zhipin.com/wapi/zpgeek/search/joblist.json&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">'_'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://www.zhipin.com/wapi/zpgeek/search/joblist.json'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -748,32 +760,32 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 解析一行 list返回的消息</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_joblist</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
     <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;areaDistrict&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;areaDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;bossCert&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossCert&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="s1">&#39;bossName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;bossTitle&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bossTitle&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;brandIndustry&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandIndustry&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="s1">&#39;brandName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;brandScaleName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandScaleName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;brandStageName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;brandStageName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;businessDistrict&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;businessDistrict&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="s1">&#39;cityName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cityName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;contact&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-        <span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;daysPerWeekDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;encryptBossId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptBossId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;encryptBrandId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptBrandId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;encryptJobId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encryptJobId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;expectId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;expectId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;goldHunter&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;goldHunter&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="s1">&#39;jobDegree&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobDegree&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;jobExperience&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobExperience&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;jobName&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobName&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;securityId&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;securityId&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;salaryDesc&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;salaryDesc&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;jobLabels&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,[]),</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobLabels&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;skills&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skills&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;welfareList&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;welfareList&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">'areaDistrict'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'areaDistrict'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'bossCert'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'bossCert'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'bossName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'bossName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'bossTitle'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'bossTitle'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'brandIndustry'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'brandIndustry'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'brandName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'brandName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'brandScaleName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'brandScaleName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'brandStageName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'brandStageName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'businessDistrict'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'businessDistrict'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'city'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'city'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'cityName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'cityName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'contact'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'contact'</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="s1">'daysPerWeekDesc'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'daysPerWeekDesc'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'encryptBossId'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'encryptBossId'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'encryptBrandId'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'encryptBrandId'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'encryptJobId'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'encryptJobId'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'expectId'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'expectId'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'goldHunter'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'goldHunter'</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'jobDegree'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobDegree'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'jobExperience'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobExperience'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'jobName'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobName'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'securityId'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'securityId'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'salaryDesc'</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'salaryDesc'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'jobLabels'</span><span class="p">:</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobLabels'</span><span class="p">,[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobLabels'</span><span class="p">,[]),</span><span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobLabels'</span><span class="p">,</span><span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'skills'</span><span class="p">:</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'skills'</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'skills'</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'skills'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'welfareList'</span><span class="p">:</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'welfareList'</span><span class="p">,</span> <span class="p">[]))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'welfareList'</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'welfareList'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">row</span>
 </pre></div>
@@ -788,27 +800,27 @@
     <span class="k">for</span> <span class="n">pagei</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">):</span> <span class="c1"># 页数不固定</span>
         <span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">jobs</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pagei</span><span class="p">)</span>
-        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">'page'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pagei</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">'_'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
         
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.zhipin.com/wapi/zpgeek/search/joblist.json&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-            <span class="n">resultlist</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zpData&#39;</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobList&#39;</span><span class="p">,[])</span>
-            <span class="n">hasmore</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zpData&#39;</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hasMore&#39;</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://www.zhipin.com/wapi/zpgeek/search/joblist.json'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="n">resultlist</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'zpData'</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'jobList'</span><span class="p">,[])</span>
+            <span class="n">hasmore</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'zpData'</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'hasMore'</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">resultlist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resultlist</span><span class="p">:</span>
                     <span class="n">outs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_joblist</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
                     <span class="n">jobs</span><span class="o">+=</span><span class="mi">1</span>
             <span class="k">if</span> <span class="n">hasmore</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> is max page. done! </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> is max page. done! </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
                 <span class="k">break</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> failed. </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s1"> failed. </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
         <span class="n">delay</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># 平均4秒，偏态指数分布</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># 设置上限为10秒</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s2"> done.Get </span><span class="si">{</span><span class="n">jobs</span><span class="si">}</span><span class="s2"> job. Counsume </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"#</span><span class="si">{</span><span class="n">pagei</span><span class="si">}</span><span class="s2"> done.Get </span><span class="si">{</span><span class="n">jobs</span><span class="si">}</span><span class="s2"> job. Counsume </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -816,7 +828,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试一个城市</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;101010100&#39;</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">'city'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'101010100'</span>
 <span class="n">crawel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">joblist</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -825,19 +837,19 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>#1 done.Get 15 job. Counsume 10.50s
 #2 done.Get 15 job. Counsume 9.08s
 #3 done.Get 15 job. Counsume 2.26s
-#4 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;823dca69&#39;, &#39;seed&#39;: &#39;Qt0I/5byzEFz1Ignq67HMhnxEbz1W0Hm00KAO1E6YkM=&#39;, &#39;ts&#39;: 1745986904233}}
+#4 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '823dca69', 'seed': 'Qt0I/5byzEFz1Ignq67HMhnxEbz1W0Hm00KAO1E6YkM=', 'ts': 1745986904233}}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;北京&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'北京'
 </pre></div>
 </div>
 </div>
@@ -848,8 +860,8 @@
 <span class="n">joblist</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cities</span><span class="p">)):</span>
     <span class="n">city</span> <span class="o">=</span> <span class="n">cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;</span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span><span class="si">}</span><span class="s1">&gt;&gt;&#39;</span><span class="p">)</span>
-    <span class="n">params</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;&lt;</span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">city</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span><span class="si">}</span><span class="s1">&gt;&gt;'</span><span class="p">)</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">'city'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">'code'</span><span class="p">])</span>
     <span class="n">crawel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">cookies</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">joblist</span><span class="p">)</span>
     <span class="n">delay</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 平均10秒，偏态指数分布</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>  <span class="c1"># 设置上限为30秒</span>
@@ -860,33 +872,33 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&lt;北京, 101010100&gt;&gt;
 #1 done.Get 15 job. Counsume 1.28s
 #2 done.Get 15 job. Counsume 1.04s
-#3 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRYrUoSjxYlQ2QI9vDzZYkE0=&#39;, &#39;ts&#39;: 1746524740626}}
+#3 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRYrUoSjxYlQ2QI9vDzZYkE0=', 'ts': 1746524740626}}
 &lt;&lt;上海, 101020100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=&#39;, &#39;ts&#39;: 1746524743437}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=', 'ts': 1746524743437}}
 &lt;&lt;广州, 101280100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=&#39;, &#39;ts&#39;: 1746524743768}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRQf7rnSljKLubp3otly19dg=', 'ts': 1746524743768}}
 &lt;&lt;深圳, 101280600&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRd8MkZF0LtjO0f9eDhk2T1s=&#39;, &#39;ts&#39;: 1746524748679}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRd8MkZF0LtjO0f9eDhk2T1s=', 'ts': 1746524748679}}
 &lt;&lt;杭州, 101210100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=&#39;, &#39;ts&#39;: 1746524765548}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=', 'ts': 1746524765548}}
 &lt;&lt;天津, 101030100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=&#39;, &#39;ts&#39;: 1746524765876}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRa4ZqSZlGW1UK8CnNTUeIYs=', 'ts': 1746524765876}}
 &lt;&lt;西安, 101110100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRaAwNajYs7EE5gtkwhFzvOs=&#39;, &#39;ts&#39;: 1746524770497}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRaAwNajYs7EE5gtkwhFzvOs=', 'ts': 1746524770497}}
 &lt;&lt;苏州, 101190400&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRQk0+OiXTYOLHhUjHZvdczg=&#39;, &#39;ts&#39;: 1746524773198}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRQk0+OiXTYOLHhUjHZvdczg=', 'ts': 1746524773198}}
 &lt;&lt;武汉, 101200100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRaA7ZGdFeuWXRdHRzSw4YnM=&#39;, &#39;ts&#39;: 1746524782692}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRaA7ZGdFeuWXRdHRzSw4YnM=', 'ts': 1746524782692}}
 &lt;&lt;厦门, 101230200&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRSMmIbMbhg1h8Ii7hKeqbhw=&#39;, &#39;ts&#39;: 1746524794809}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRSMmIbMbhg1h8Ii7hKeqbhw=', 'ts': 1746524794809}}
 &lt;&lt;长沙, 101250100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=&#39;, &#39;ts&#39;: 1746524804180}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=', 'ts': 1746524804180}}
 &lt;&lt;成都, 101270100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=&#39;, &#39;ts&#39;: 1746524804624}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRZLQyo3+UsY5TRfikxUVprI=', 'ts': 1746524804624}}
 &lt;&lt;郑州, 101180100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRVN28GjZMNTH9qJ6nHSAGgk=&#39;, &#39;ts&#39;: 1746524806500}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRVN28GjZMNTH9qJ6nHSAGgk=', 'ts': 1746524806500}}
 &lt;&lt;重庆, 101040100&gt;&gt;
-#1 is max page. done! {&#39;code&#39;: 37, &#39;message&#39;: &#39;您的访问行为异常.&#39;, &#39;zpData&#39;: {&#39;name&#39;: &#39;08a47a96&#39;, &#39;seed&#39;: &#39;28BEXouNpg4WSri2Cr2lRU1cCNNvq0vgDX7V01GQUvU=&#39;, &#39;ts&#39;: 1746524815992}}
+#1 is max page. done! {'code': 37, 'message': '您的访问行为异常.', 'zpData': {'name': '08a47a96', 'seed': '28BEXouNpg4WSri2Cr2lRU1cCNNvq0vgDX7V01GQUvU=', 'ts': 1746524815992}}
 </pre></div>
 </div>
 </div>
@@ -913,8 +925,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">df_joblist</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;bs_joblist</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.xlsx&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 保留索引列</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y%m</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">df_joblist</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'bs_joblist</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s1">.xlsx'</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 保留索引列</span>
 </pre></div>
 </div>
 </div>
@@ -925,14 +937,14 @@
 <h1>数据分析<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;bs_joblist20250430.xlsx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'bs_joblist20250430.xlsx'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span><span class="p">[</span><span class="s1">&#39;cityName&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_joblist</span><span class="p">[</span><span class="s1">'cityName'</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1009,8 +1021,8 @@ Name: cityName, dtype: object
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1044,7 +1056,7 @@ Name: cityName, dtype: object
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

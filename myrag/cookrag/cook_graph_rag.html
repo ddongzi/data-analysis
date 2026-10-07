@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -184,11 +184,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -201,8 +208,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -452,7 +464,7 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    角色</span>
 <span class="s2">    你是一个非常专业的知识图谱构建助手，擅长从非结构化文本中提取实体和逻辑关系。</span>
 
@@ -461,7 +473,7 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 
 <span class="s2">    自定义 Schema </span>
 <span class="s2">    1. 节点标签 (Labels):</span>
-<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉&quot;的做法&quot;。 </span>
+<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉"的做法"。 </span>
 <span class="s2">    - Ingredient: 食材名字如鸡蛋</span>
 <span class="s2">    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎</span>
 <span class="s2">    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料</span>
@@ -482,35 +494,35 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 
 <span class="s2">    示例输出：</span>
 <span class="s2">    {{</span>
-<span class="s2">    &#39;nodes&#39;:[</span>
+<span class="s2">    'nodes':[</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;label&#39;: &#39;Dish&#39;,</span>
-<span class="s2">            &#39;&#39;name&#39;:&#39;拔丝土豆&#39;,</span>
-<span class="s2">            &quot;properties&quot;:{{</span>
-<span class="s2">                &#39;category&#39;:[&#39;素菜&#39;],</span>
-<span class="s2">                &#39;steps&#39;: &#39;1.土豆切块, 2...&#39;,</span>
-<span class="s2">                &#39;note&#39;: &#39;注意提示、附加内容&#39;,</span>
-<span class="s2">                &#39;content&#39;:&#39;拔丝土豆是一道经典的甜口素菜，通过炸制土豆挂糖浆制成，烹饪难度2星。其核心特征是外脆内软、金黄拉丝，适合作为甜点。&#39;</span>
+<span class="s2">            'label': 'Dish',</span>
+<span class="s2">            ''name':'拔丝土豆',</span>
+<span class="s2">            "properties":{{</span>
+<span class="s2">                'category':['素菜'],</span>
+<span class="s2">                'steps': '1.土豆切块, 2...',</span>
+<span class="s2">                'note': '注意提示、附加内容',</span>
+<span class="s2">                'content':'拔丝土豆是一道经典的甜口素菜，通过炸制土豆挂糖浆制成，烹饪难度2星。其核心特征是外脆内软、金黄拉丝，适合作为甜点。'</span>
 <span class="s2">            }}</span>
 <span class="s2">        }},</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;name&#39;: &#39;土豆&#39;,</span>
-<span class="s2">            &#39;label&#39;: &#39;Ingredient&#39;,</span>
-<span class="s2">            &quot;properties&quot;:{{</span>
-<span class="s2">                &#39;category&#39;:&#39;食材类别（蔬菜/调料/蛋白质/淀粉类/其他)&#39;,</span>
-<span class="s2">                &#39;content&#39;:&#39;节点内容&#39;</span>
+<span class="s2">            'name': '土豆',</span>
+<span class="s2">            'label': 'Ingredient',</span>
+<span class="s2">            "properties":{{</span>
+<span class="s2">                'category':'食材类别（蔬菜/调料/蛋白质/淀粉类/其他)',</span>
+<span class="s2">                'content':'节点内容'</span>
 <span class="s2">            }}</span>
 
 <span class="s2">        }}</span>
 <span class="s2">    ],</span>
-<span class="s2">    &#39;relationships&#39;:[</span>
+<span class="s2">    'relationships':[</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;source_label&#39;:&#39;Dish&#39;</span>
-<span class="s2">            &#39;source_name&#39;:&#39;拔丝土豆&#39;,</span>
-<span class="s2">            &quot;target_name&quot;: &quot;土豆&quot;,</span>
-<span class="s2">            &quot;target_label&quot;: &quot;Ingredient&quot;,</span>
-<span class="s2">            &quot;type&quot;: &quot;HAS_INGREDIENT&quot;,</span>
-<span class="s2">            &quot;properties&quot;: {{ &quot;amount&quot;: &quot;2个&quot; }}</span>
+<span class="s2">            'source_label':'Dish'</span>
+<span class="s2">            'source_name':'拔丝土豆',</span>
+<span class="s2">            "target_name": "土豆",</span>
+<span class="s2">            "target_label": "Ingredient",</span>
+<span class="s2">            "type": "HAS_INGREDIENT",</span>
+<span class="s2">            "properties": {{ "amount": "2个" }}</span>
 <span class="s2">        }}</span>
 <span class="s2">    ]</span>
 
@@ -520,7 +532,7 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 
 <span class="s2">    待处理文本</span>
 <span class="s2">    </span><span class="si">{text}</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
 </pre></div>
 </div>
 </div>
@@ -546,12 +558,12 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    你是ne04j cypher的专家。根据下面信息将用户问题转为cypher语句。</span>
 
 <span class="s2">    neo4j Schema </span>
 <span class="s2">    1. 节点标签 (Labels):</span>
-<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉&quot;的做法&quot;。 </span>
+<span class="s2">    - Dish: 菜名：文档起始标题名字，去掉"的做法"。 </span>
 <span class="s2">    - Ingredient: 食材名字如鸡蛋</span>
 <span class="s2">    - CookingMethod: 烹饪技法包括：炒, 炸, 炖, 蒸, 煮, 拌, 烤, 焖, 炸, 煎</span>
 <span class="s2">    - Category: 菜谱分类包括: 素菜/荤菜/水产/早餐/主食/汤类/甜品/饮料/调料</span>
@@ -566,33 +578,33 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 
 <span class="s2">    示例节点和关系数据：</span>
 <span class="s2">    {{</span>
-<span class="s2">    &#39;nodes&#39;:[</span>
+<span class="s2">    'nodes':[</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;&#39;name&#39;:&#39;拔丝土豆&#39;,</span>
-<span class="s2">            &#39;label&#39;: &#39;Dish&#39;,</span>
-<span class="s2">            &#39;properties&#39;:{{</span>
-<span class="s2">                &#39;path&#39;:&#39;&#39;,</span>
-<span class="s2">                &#39;category&#39;:[&#39;素菜&#39;],</span>
-<span class="s2">                &#39;steps&#39;: &#39;1.土豆切块, 2...&#39;,</span>
-<span class="s2">                &#39;note&#39;: &#39;放一些附加内容或者未注意到的文本内容&#39;</span>
+<span class="s2">            ''name':'拔丝土豆',</span>
+<span class="s2">            'label': 'Dish',</span>
+<span class="s2">            'properties':{{</span>
+<span class="s2">                'path':'',</span>
+<span class="s2">                'category':['素菜'],</span>
+<span class="s2">                'steps': '1.土豆切块, 2...',</span>
+<span class="s2">                'note': '放一些附加内容或者未注意到的文本内容'</span>
 <span class="s2">            }}</span>
 <span class="s2">        }},</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;name&#39;: &#39;土豆&#39;,</span>
-<span class="s2">            &#39;label&#39;: &#39;Ingredient&#39;,</span>
-<span class="s2">            &#39;properties&#39;:{{</span>
-<span class="s2">                &#39;category&#39;:&#39;食材类别（蔬菜/调料/蛋白质/淀粉类/其他)&#39;</span>
+<span class="s2">            'name': '土豆',</span>
+<span class="s2">            'label': 'Ingredient',</span>
+<span class="s2">            'properties':{{</span>
+<span class="s2">                'category':'食材类别（蔬菜/调料/蛋白质/淀粉类/其他)'</span>
 <span class="s2">            }}</span>
 <span class="s2">        }}</span>
 <span class="s2">    ],</span>
-<span class="s2">    &#39;relationships&#39;:[</span>
+<span class="s2">    'relationships':[</span>
 <span class="s2">        {{</span>
-<span class="s2">            &#39;source_label&#39;:&#39;Dish&#39;</span>
-<span class="s2">            &#39;source_name&#39;:&#39;拔丝土豆&#39;,</span>
-<span class="s2">            &quot;target_name&quot;: &quot;土豆&quot;,</span>
-<span class="s2">            &quot;target_label&quot;: &quot;Ingredient&quot;,</span>
-<span class="s2">            &quot;type&quot;: &quot;HAS_INGREDIENT&quot;,</span>
-<span class="s2">            &quot;properties&quot;: {{ &quot;amount&quot;: &quot;2个&quot; }}</span>
+<span class="s2">            'source_label':'Dish'</span>
+<span class="s2">            'source_name':'拔丝土豆',</span>
+<span class="s2">            "target_name": "土豆",</span>
+<span class="s2">            "target_label": "Ingredient",</span>
+<span class="s2">            "type": "HAS_INGREDIENT",</span>
+<span class="s2">            "properties": {{ "amount": "2个" }}</span>
 <span class="s2">        }}</span>
 <span class="s2">    ]</span>
 
@@ -604,12 +616,12 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 <span class="s2">    3. 使用上下文提供标签、关系、属性等</span>
 <span class="s2">    4. RETURN 返回需要进行AS易懂的字段描述</span>
 <span class="s2">    5. 当问题涉及模糊语义（如口感、场景、功效）时，请使用以下语法：</span>
-<span class="s2">        CALL db.index.vector.queryNodes(&#39;dish_vector_index&#39;, 5, $vec) YIELD node AS d</span>
+<span class="s2">        CALL db.index.vector.queryNodes('dish_vector_index', 5, $vec) YIELD node AS d</span>
 <span class="s2">        后续可以继续match和return</span>
 
 <span class="s2">    用户问题</span>
 <span class="s2">    </span><span class="si">{text}</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
 </pre></div>
 </div>
 </div>
@@ -624,8 +636,8 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
 <p>测试 qwen2.5-7b instruct</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_FOLDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">file_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER</span><span class="p">,</span>  <span class="s1">&#39;无骨鸡爪.md&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_FOLDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'data'</span><span class="p">)</span>
+<span class="n">file_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER</span><span class="p">,</span>  <span class="s1">'无骨鸡爪.md'</span><span class="p">))</span>
 <span class="n">load_files</span><span class="p">(</span><span class="n">file_paths</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -710,8 +722,8 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -745,7 +757,7 @@ c:\Users\63517\Documents\data-analysis\myrag\cookrag\data\0Star.md done. ..
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

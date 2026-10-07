@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -289,11 +295,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -306,8 +319,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -394,10 +406,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span> 
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">"talk"</span><span class="p">)</span> 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.dpi'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">"muted"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -405,7 +417,7 @@
 <p><em>proposal</em> 意为申请书，所有id就是科研项目id</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs_from_proposal</span> <span class="o">=</span> <span class="n">Observations</span><span class="o">.</span><span class="n">query_criteria</span><span class="p">(</span><span class="n">proposal_id</span> <span class="o">=</span> <span class="s1">&#39;15366&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs_from_proposal</span> <span class="o">=</span> <span class="n">Observations</span><span class="o">.</span><span class="n">query_criteria</span><span class="p">(</span><span class="n">proposal_id</span> <span class="o">=</span> <span class="s1">'15366'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -440,7 +452,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">products_to_download</span> <span class="o">=</span> <span class="n">Observations</span><span class="o">.</span><span class="n">filter_products</span><span class="p">(</span>
     <span class="n">products_from_proposal</span><span class="p">,</span>
-    <span class="n">productSubGroupDescription</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X1DSUM&#39;</span><span class="p">]</span>
+    <span class="n">productSubGroupDescription</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'X1DSUM'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -480,7 +492,7 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onecell_x1dsum_products</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Local Path&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onecell_x1dsum_products</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Local Path'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -492,9 +504,9 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WindowsPath(&#39;mastDownload/HST/ldm701010/ldm701010_x1dsum.fits&#39;),
- WindowsPath(&#39;mastDownload/HST/ldm701020/ldm701020_x1dsum.fits&#39;),
- WindowsPath(&#39;mastDownload/HST/ldm701030/ldm701030_x1dsum.fits&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WindowsPath('mastDownload/HST/ldm701010/ldm701010_x1dsum.fits'),
+ WindowsPath('mastDownload/HST/ldm701020/ldm701020_x1dsum.fits'),
+ WindowsPath('mastDownload/HST/ldm701030/ldm701030_x1dsum.fits')]
 </pre></div>
 </div>
 </div>
@@ -506,7 +518,7 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\astropy\units\format\generic.py:575: UnitsWarning: &#39;erg /s /cm**2 /angstrom&#39; contains multiple slashes, which is discouraged by the FITS standard
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\astropy\units\format\generic.py:575: UnitsWarning: 'erg /s /cm**2 /angstrom' contains multiple slashes, which is discouraged by the FITS standard
   warnings.warn(
 </pre></div>
 </div>
@@ -546,20 +558,20 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FUVA</span>
-<span class="n">wvln_A</span><span class="p">,</span>  <span class="n">wvln_B</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WAVELENGTH&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">flux_A</span><span class="p">,</span> <span class="n">flux_B</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;FLUX&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FLUX&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">segment_A</span><span class="p">,</span> <span class="n">segment_B</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SEGMENT&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;SEGMENT&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">wvln_A</span><span class="p">,</span>  <span class="n">wvln_B</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'WAVELENGTH'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WAVELENGTH'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">flux_A</span><span class="p">,</span> <span class="n">flux_B</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'FLUX'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'FLUX'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">segment_A</span><span class="p">,</span> <span class="n">segment_B</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'SEGMENT'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'SEGMENT'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvln_A</span><span class="p">,</span> <span class="n">flux_A</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;segment: </span><span class="si">{</span><span class="n">segment_A</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvln_B</span><span class="p">,</span> <span class="n">flux_B</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;segment: </span><span class="si">{</span><span class="n">segment_B</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;HST COS FUV&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelength $\AA$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Flux&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvln_A</span><span class="p">,</span> <span class="n">flux_A</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'segment: </span><span class="si">{</span><span class="n">segment_A</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvln_B</span><span class="p">,</span> <span class="n">flux_B</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'segment: </span><span class="si">{</span><span class="n">segment_B</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'HST COS FUV'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Wavelength $\AA$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Flux'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
@@ -576,30 +588,30 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
 <span class="n">wvln_extent</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 左右各看 5 埃</span>
 
 <span class="c1"># --- 处理数据 A 段 ---</span>
-<span class="n">wvln_A</span><span class="p">,</span> <span class="n">flux_A</span><span class="p">,</span> <span class="n">fluxErr_A</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;WAVELENGTH&quot;</span><span class="p">,</span> <span class="s2">&quot;FLUX&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">wvln_A</span><span class="p">,</span> <span class="n">flux_A</span><span class="p">,</span> <span class="n">fluxErr_A</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"WAVELENGTH"</span><span class="p">,</span> <span class="s2">"FLUX"</span><span class="p">,</span> <span class="s2">"ERROR"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">mask_A</span> <span class="o">=</span> <span class="p">(</span><span class="n">wvln_A</span> <span class="o">&gt;</span> <span class="n">line_center</span> <span class="o">-</span> <span class="n">wvln_extent</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">wvln_A</span> <span class="o">&lt;</span> <span class="n">line_center</span> <span class="o">+</span> <span class="n">wvln_extent</span><span class="p">)</span>
 
 <span class="c1"># --- 处理数据 B 段 ---</span>
-<span class="n">wvln_B</span><span class="p">,</span> <span class="n">flux_B</span><span class="p">,</span> <span class="n">fluxErr_B</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;WAVELENGTH&quot;</span><span class="p">,</span> <span class="s2">&quot;FLUX&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">wvln_B</span><span class="p">,</span> <span class="n">flux_B</span><span class="p">,</span> <span class="n">fluxErr_B</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"WAVELENGTH"</span><span class="p">,</span> <span class="s2">"FLUX"</span><span class="p">,</span> <span class="s2">"ERROR"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">mask_B</span> <span class="o">=</span> <span class="p">(</span><span class="n">wvln_B</span> <span class="o">&gt;</span> <span class="n">line_center</span> <span class="o">-</span> <span class="n">wvln_extent</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">wvln_B</span> <span class="o">&lt;</span> <span class="n">line_center</span> <span class="o">+</span> <span class="n">wvln_extent</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">line_center</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> 
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Line Center (</span><span class="si">{</span><span class="n">line_center</span><span class="si">}</span><span class="s1"> $\AA$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">line_center</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'dotted'</span><span class="p">,</span> 
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Line Center (</span><span class="si">{</span><span class="n">line_center</span><span class="si">}</span><span class="s1"> $\AA$)'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">mask_A</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">wvln_A</span><span class="p">[</span><span class="n">mask_A</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">flux_A</span><span class="p">[</span><span class="n">mask_A</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">fluxErr_A</span><span class="p">[</span><span class="n">mask_A</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;COS FUVA&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s1">'COS FUVA'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'darkorange'</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">mask_B</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">wvln_B</span><span class="p">[</span><span class="n">mask_B</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">flux_B</span><span class="p">[</span><span class="n">mask_B</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">fluxErr_B</span><span class="p">[</span><span class="n">mask_B</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;COS FUVB&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s1">'COS FUVB'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'royalblue'</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># 设置标签和标题</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Wavelength [$\AA$]&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Flux [$erg\ s^{-1}\ cm^{-2}\ \AA^{-1}$]&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Zoom in on Hydrogen Ly-alpha region&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Wavelength [$\AA$]'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Flux [$erg\ s^{-1}\ cm^{-2}\ \AA^{-1}$]'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Zoom in on Hydrogen Ly-alpha region'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -656,8 +668,8 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -691,7 +703,7 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HST/produ
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

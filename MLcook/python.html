@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -403,7 +415,7 @@ print(a, b)</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACME&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'ACME'</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)]</span>
 <span class="n">name</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">date</span> <span class="o">=</span> <span class="n">data</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
 </pre></div>
@@ -420,7 +432,7 @@ print(a, b)</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;help&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="s2">"help"</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -430,14 +442,14 @@ print(a, b)</p>
 <p>x,y = (1,2,3)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;help&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="s2">"help"</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACME&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'ACME'</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -466,8 +478,8 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 用于字符串分割</span>
-<span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false&#39;</span>
-<span class="n">uname</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="n">homedir</span><span class="p">,</span> <span class="n">sh</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">line</span> <span class="o">=</span> <span class="s1">'nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false'</span>
+<span class="n">uname</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">,</span> <span class="n">homedir</span><span class="p">,</span> <span class="n">sh</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uname</span><span class="p">,</span> <span class="n">homedir</span><span class="p">,</span> <span class="n">sh</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -475,7 +487,7 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ACE&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'ACE'</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
 <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">record</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
 </pre></div>
@@ -484,31 +496,31 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Alice"</span>
 <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;My name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> and I am </span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"My name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> and I am </span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years old."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Alice\Documents\new_file.txt&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s2">"C:\Users\Alice\Documents\new_file.txt"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byte_data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;hello&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byte_data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">"hello"</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">byte_data</span><span class="p">)</span>  
-<span class="c1"># 输出: b&#39;hello&#39;</span>
+<span class="c1"># 输出: b'hello'</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">byte_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  
-<span class="c1"># 输出: 104 （&#39;h&#39; 的 ASCII 值）</span>
+<span class="c1"># 输出: 104 （'h' 的 ASCII 值）</span>
 
 <span class="c1"># 转换回普通字符串</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">byte_data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">byte_data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span>  
 <span class="c1"># 输出: hello</span>
 </pre></div>
 </div>
@@ -522,23 +534,23 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="c1"># 浮点最大值</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span><span class="p">)</span> <span class="c1"># 浮点最小值</span>
 <span class="c1"># 特殊值</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>  <span class="c1"># 无穷大</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">))</span> <span class="c1"># 负无穷大</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">))</span>  <span class="c1"># 非数字</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">))</span>  <span class="c1"># 无穷大</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">))</span> <span class="c1"># 负无穷大</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">))</span>  <span class="c1"># 非数字</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"banana"</span><span class="p">,</span> <span class="s2">"apple"</span><span class="p">,</span> <span class="s2">"cherry"</span><span class="p">]</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>  <span class="c1"># 返回排序后的新列表，不修改原列表</span>
 <span class="c1"># lines.sort()  # 原地排序，修改原列表</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorted lines:&quot;</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sorted lines:"</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
 
-<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">]</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'world'</span><span class="p">,</span> <span class="s1">'big'</span><span class="p">]</span>
 <span class="n">words</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>  <span class="c1"># 原地翻转，修改 words 本身</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reversed words:&quot;</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Reversed words:"</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -546,15 +558,15 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">=</span> <span class="p">[]</span>  
-<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">,</span> <span class="s2">&quot;subfolder&quot;</span><span class="p">,</span> <span class="s2">&quot;file.txt&quot;</span><span class="p">]</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"folder"</span><span class="p">,</span> <span class="s2">"subfolder"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">]</span>
 <span class="n">ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>  <span class="c1"># 追加 path 的拷贝，后续修改 path 不影响 ls</span>
-<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;file1.txt&#39;</span>
+<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'file1.txt'</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
 
 <span class="n">ls1</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">,</span> <span class="s2">&quot;subfolder&quot;</span><span class="p">,</span> <span class="s2">&quot;file.txt&quot;</span><span class="p">]</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"folder"</span><span class="p">,</span> <span class="s2">"subfolder"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">]</span>
 <span class="n">ls1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1"># 直接追加 path，后续修改 path 会影响 ls 中的值</span>
-<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;file2.txt&#39;</span>
+<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'file2.txt'</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ls1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -563,9 +575,9 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">,</span> <span class="s2">&quot;subfolder&quot;</span><span class="p">,</span> <span class="s2">&quot;file.txt&quot;</span><span class="p">]</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"folder"</span><span class="p">,</span> <span class="s2">"subfolder"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">]</span>
 <span class="n">lst</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 追加的是拷贝，不影响后续修改。 等同于append(path[:])</span>
-<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;file3.txt&#39;</span>
+<span class="n">path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'file3.txt'</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -587,11 +599,11 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot; hello world. &quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">" hello world. "</span>
 <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1"># 去除字符串首尾的空白字符</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">]</span>
-<span class="n">s</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span>		
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'world'</span><span class="p">]</span>
+<span class="n">s</span><span class="o">=</span><span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'  '</span><span class="p">,</span><span class="s1">' '</span><span class="p">)</span>		
 <span class="n">ls</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>	<span class="c1"># 将字符串分割为单词列表</span>
 </pre></div>
 </div>
@@ -606,7 +618,7 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stack</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span> <span class="c1">#当stack为NOne  </span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;假&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'假'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -615,8 +627,8 @@ print(‘bar’, ‘’.join(args))不确定的元素数量; 过滤</p>
 is判断两个对象的内存地址是否相同, == 判断两个对象的值是否相同</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
-<span class="n">a2</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="s1">'a'</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="s1">'a'</span>
 <span class="n">a1</span> <span class="ow">is</span> <span class="n">a2</span>
 <span class="n">a1</span> <span class="o">==</span> <span class="n">a2</span>
 </pre></div>
@@ -627,17 +639,17 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <p>字典的<em>键必须是不可变</em>的类型。不可以使用列表作为键。字典键的常见类型包括整数、浮点数、字符串、元组等不可变类型。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;three&#39;</span><span class="p">}</span> <span class="c1"># 键为整数</span>
-<span class="n">another_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;apple&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># 键为字符串</span>
-<span class="n">yet_another_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;tuple_key&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="s1">&#39;another_tuple_key&#39;</span><span class="p">}</span> <span class="c1"># 键为元组</span>
-<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span> <span class="s1">&#39;value2&#39;</span><span class="p">}</span> <span class="c1"># 键位元组</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'one'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'two'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">'three'</span><span class="p">}</span> <span class="c1"># 键为整数</span>
+<span class="n">another_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'apple'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'banana'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># 键为字符串</span>
+<span class="n">yet_another_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">'tuple_key'</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="s1">'another_tuple_key'</span><span class="p">}</span> <span class="c1"># 键为元组</span>
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">'John'</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span> <span class="s1">'value1'</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Alice'</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span> <span class="s1">'value2'</span><span class="p">}</span> <span class="c1"># 键位元组</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;apple&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;grape&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'apple'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'banana'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">'grape'</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="c1"># 元组列表</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">my_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># 排序元组列表</span>
@@ -655,7 +667,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span><span class="s1">&#39;Jerry&#39;</span><span class="p">,</span><span class="s1">&#39;Wendy&#39;</span><span class="p">,</span><span class="s1">&#39;Smith&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Bob'</span><span class="p">,</span><span class="s1">'Tom'</span><span class="p">,</span><span class="s1">'alice'</span><span class="p">,</span><span class="s1">'Jerry'</span><span class="p">,</span><span class="s1">'Wendy'</span><span class="p">,</span><span class="s1">'Smith'</span><span class="p">]</span>
 
 <span class="c1"># 列表推导式</span>
 <span class="n">new</span><span class="o">=</span><span class="p">[</span> <span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
@@ -669,7 +681,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <span class="nb">print</span><span class="p">(</span><span class="n">sett</span><span class="p">)</span>
 <span class="c1"># 元组推导式</span>
 <span class="n">tt</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>  <span class="c1"># (&#39;alice&#39;, &#39;bob&#39;, &#39;charlie&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>  <span class="c1"># ('alice', 'bob', 'charlie')</span>
 </pre></div>
 </div>
 </div>
@@ -677,7 +689,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tt</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>  <span class="c1"># (&#39;alice&#39;, &#39;bob&#39;, &#39;charlie&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>  <span class="c1"># ('alice', 'bob', 'charlie')</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
@@ -737,7 +749,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 数据转换</span>
-<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alibba&#39;</span><span class="p">,</span> <span class="s1">&#39;Baudu&#39;</span><span class="p">,</span> <span class="s1">&#39;Conr&#39;</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Alibba'</span><span class="p">,</span> <span class="s1">'Baudu'</span><span class="p">,</span> <span class="s1">'Conr'</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">names</span><span class="p">))</span>
 <span class="n">lens</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">names</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lens</span><span class="p">)</span>
@@ -760,9 +772,9 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <p>字典中遍历时，关键字和对应的值可以使用 items() 方法同时解读出来：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span> <span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">'b'</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span> <span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-<span class="n">knights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gallahad&#39;</span><span class="p">:</span> <span class="s1">&#39;the pure&#39;</span><span class="p">,</span> <span class="s1">&#39;robin&#39;</span><span class="p">:</span> <span class="s1">&#39;the brave&#39;</span><span class="p">}</span>
+<span class="n">knights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'gallahad'</span><span class="p">:</span> <span class="s1">'the pure'</span><span class="p">,</span> <span class="s1">'robin'</span><span class="p">:</span> <span class="s1">'the brave'</span><span class="p">}</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">knights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
@@ -776,7 +788,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;con&#39;</span><span class="p">,</span> <span class="s1">&#39;ele&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'con'</span><span class="p">,</span> <span class="s1">'ele'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 </pre></div>
@@ -793,8 +805,8 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;quest&#39;</span><span class="p">,</span> <span class="s1">&#39;favorite color&#39;</span><span class="p">]</span>
-<span class="n">answers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lancelot&#39;</span><span class="p">,</span> <span class="s1">&#39;the holy grail&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'quest'</span><span class="p">,</span> <span class="s1">'favorite color'</span><span class="p">]</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'lancelot'</span><span class="p">,</span> <span class="s1">'the holy grail'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">questions</span><span class="p">,</span> <span class="n">answers</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
 </pre></div>
@@ -852,7 +864,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
         
         <span class="c1"># 如果缓存中不存在对应键的结果</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_results</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;不在缓存中&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'不在缓存中'</span><span class="p">)</span>
             <span class="c1"># 调用被装饰的函数，并将结果缓存起来</span>
             <span class="n">cached_results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         
@@ -863,7 +875,7 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
     <span class="k">return</span> <span class="n">wrapper</span>
 <span class="nd">@cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating result...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Calculating result..."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 
 <span class="n">result1</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 计算并缓存结果</span>
@@ -886,14 +898,14 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyContext</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;进入上下文&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"进入上下文"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;退出上下文&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"退出上下文"</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">MyContext</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;执行代码块&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"执行代码块"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -904,11 +916,11 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># 触发 ZeroDivisionError</span>
 <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;除数不能为 0&quot;</span><span class="p">)</span>  <span class="c1"># 处理异常</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"除数不能为 0"</span><span class="p">)</span>  <span class="c1"># 处理异常</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;计算成功:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># 只有 try 代码成功执行，才会进入 else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"计算成功:"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># 只有 try 代码成功执行，才会进入 else</span>
 <span class="k">finally</span><span class="p">:</span> <span class="c1"># 资源释放</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;无论是否异常，都会执行&quot;</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"无论是否异常，都会执行"</span><span class="p">)</span>  
 </pre></div>
 </div>
 </div>
@@ -916,9 +928,9 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>  <span class="c1"># ValueError</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">)</span>  <span class="c1"># ValueError</span>
 <span class="k">except</span> <span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;发生错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># 统一处理</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"发生错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># 统一处理</span>
 </pre></div>
 </div>
 </div>
@@ -928,9 +940,9 @@ is判断两个对象的内存地址是否相同, == 判断两个对象的值是�
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s1">&#39;自定义错误&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s1">'自定义错误'</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;捕获异常: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"捕获异常: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -956,7 +968,7 @@ d=5e-3</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># 列出文件</span>
-<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -964,11 +976,11 @@ d=5e-3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;test_dir&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 创建目录, </span>
-<span class="c1">#os.remove(&quot;test.log&quot;)  # 删除文件</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s2">&quot;test_dir&quot;</span><span class="p">)</span>  <span class="c1"># 删除空目录</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"test_dir"</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 创建目录, </span>
+<span class="c1">#os.remove("test.log")  # 删除文件</span>
+<span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s2">"test_dir"</span><span class="p">)</span>  <span class="c1"># 删除空目录</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>  <span class="c1"># 获取当前工作目录</span>
-<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dir&quot;</span><span class="p">,</span> <span class="s2">&quot;file.txt&quot;</span><span class="p">)</span>  <span class="c1"># 拼接路径，跨平台适配</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"dir"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">)</span>  <span class="c1"># 拼接路径，跨平台适配</span>
 </pre></div>
 </div>
 </div>
@@ -976,7 +988,7 @@ d=5e-3</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\dong\Documents\data-analysis\MLcook
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;dir\\file.txt&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'dir\\file.txt'
 </pre></div>
 </div>
 </div>
@@ -988,7 +1000,7 @@ d=5e-3</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;c:\\Users\\dong\\Documents\\data-analysis\\MLcook&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'c:\\Users\\dong\\Documents\\data-analysis\\MLcook'
 </pre></div>
 </div>
 </div>
@@ -997,7 +1009,7 @@ d=5e-3</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 递归遍历</span>
 <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">dirs</span><span class="p">,</span><span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># 当前root有哪些目录，文件</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span> <span class="c1"># 当前root有哪些目录，文件</span>
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
         <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
@@ -1006,16 +1018,16 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">))</span>  <span class="c1"># 获取环境变量</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MY_VAR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>  <span class="c1"># 设置环境变量</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;MY_VAR&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># 删除环境变量</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"PATH"</span><span class="p">))</span>  <span class="c1"># 获取环境变量</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MY_VAR"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"value"</span>  <span class="c1"># 设置环境变量</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"MY_VAR"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># 删除环境变量</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">)</span>  <span class="c1"># 运行 shell 命令（不推荐，安全性低）</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">"ls"</span><span class="p">)</span>  <span class="c1"># 运行 shell 命令（不推荐，安全性低）</span>
 </pre></div>
 </div>
 </div>
@@ -1037,8 +1049,8 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># 标准输出</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Error message</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># 标准错误</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Hello</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># 标准输出</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Error message</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># 标准错误</span>
 </pre></div>
 </div>
 </div>
@@ -1054,16 +1066,16 @@ d=5e-3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d+&quot;</span>
-<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&quot;123abc&quot;</span><span class="p">)</span> <span class="c1"># 从头匹配</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\d+"</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">"123abc"</span><span class="p">)</span> <span class="c1"># 从头匹配</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
 
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello 123, world 456&quot;</span>
-<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 任意开始匹配 一个</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">"Hello 123, world 456"</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d+"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 任意开始匹配 一个</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>  <span class="c1"># 123</span>
 
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The price is 100 dollars and 200 yen.&quot;</span>
-<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 任意开始匹配 多个</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">"The price is 100 dollars and 200 yen."</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d+"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 任意开始匹配 多个</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1071,8 +1083,8 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I have 100 apples. 200 bars.&quot;</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="s2">&quot;many&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 替换匹配（findall)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">"I have 100 apples. 200 bars."</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d+"</span><span class="p">,</span> <span class="s2">"many"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># 替换匹配（findall)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1080,8 +1092,8 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;apple,orange;banana grape&quot;</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[,; ]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>  <span class="c1"># 按逗号、分号和空格分割</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">"apple,orange;banana grape"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[,; ]"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>  <span class="c1"># 按逗号、分号和空格分割</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1125,7 +1137,7 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;cherry&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'banana'</span><span class="p">,</span> <span class="s1">'cherry'</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># 随机选择 2 个元素（可重复）</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 随机选择 2 个不同元素</span>
@@ -1193,9 +1205,9 @@ d=5e-3</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="o">=</span> <span class="mi">2025</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 日期</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1"># 2025-03-06 12:34:56</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S"</span><span class="p">))</span>  <span class="c1"># 2025-03-06 12:34:56</span>
 
-<span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2025-03-06 14:30&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M&quot;</span><span class="p">)</span> <span class="c1"># 日期对象</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">"2025-03-06 14:30"</span><span class="p">,</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M"</span><span class="p">)</span> <span class="c1"># 日期对象</span>
 </pre></div>
 </div>
 </div>
@@ -1226,7 +1238,7 @@ d=5e-3</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1"># 自定义格式化</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S"</span><span class="p">))</span>  <span class="c1"># 自定义格式化</span>
 <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span> <span class="c1"># 正常格式化</span>
 </pre></div>
 </div>
@@ -1238,22 +1250,22 @@ d=5e-3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"New York"</span><span class="p">}</span>
 <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># 转换为 JSON 字符串</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># &#39;{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;New York&quot;}&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># '{"name": "Alice", "age": 25, "city": "New York"}'</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>  <span class="c1"># 生成格式化 JSON， 缩进换行</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>  <span class="c1"># 解析 JSON 字符串 为字典</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>  <span class="c1"># Alice</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"name"</span><span class="p">])</span>  <span class="c1"># Alice</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;New York&quot;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{"name": "Alice", "age": 25, "city": "New York"}
 {
-    &quot;name&quot;: &quot;Alice&quot;,
-    &quot;age&quot;: 25,
-    &quot;city&quot;: &quot;New York&quot;
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
 }
 Alice
 </pre></div>
@@ -1267,7 +1279,7 @@ Alice
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 25, &#39;city&#39;: &#39;New York&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'name': 'Alice', 'age': 25, 'city': 'New York'}
 </pre></div>
 </div>
 </div>
@@ -1301,10 +1313,10 @@ Alice
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">pos_arg</span><span class="p">,</span> <span class="o">*</span><span class="n">v_turple_args</span><span class="p">,</span>  <span class="n">default_arg</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">v_dict_args</span><span class="p">,):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; 参数的三种调用情况：位置参数、关键字参数、使用默认参数</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">pos_arg</span><span class="p">,</span> <span class="o">*</span><span class="n">v_turple_args</span><span class="p">,</span>  <span class="n">default_arg</span> <span class="o">=</span> <span class="s1">'Hello'</span><span class="p">,</span> <span class="o">**</span><span class="n">v_dict_args</span><span class="p">,):</span>
+<span class="w">    </span><span class="sd">""" 参数的三种调用情况：位置参数、关键字参数、使用默认参数</span>
 <span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">pos_arg</span><span class="p">,</span> <span class="n">default_arg</span><span class="p">,</span> <span class="n">v_turple_args</span><span class="p">,</span> <span class="n">v_dict_args</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1312,7 +1324,7 @@ Alice
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;dong&#39;</span><span class="p">},</span><span class="n">default_arg</span><span class="o">=</span> <span class="s1">&#39;go&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'dong'</span><span class="p">},</span><span class="n">default_arg</span><span class="o">=</span> <span class="s1">'go'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1415,7 +1427,7 @@ Alice
 <p>形参标注</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">s</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">s</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'eggs'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1433,7 +1445,7 @@ Alice
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">user</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
-<span class="n">user</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">user</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1498,8 +1510,8 @@ Alice
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;this is just metadata&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"this is just metadata"</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -1517,12 +1529,12 @@ Alice
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
-<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.md&#39;</span><span class="p">)</span>
+<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.md'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SQL.md&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['SQL.md']
 </pre></div>
 </div>
 </div>
@@ -1534,7 +1546,7 @@ Alice
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="c1"># 简单包装 range，也可以使用简写 trange(100)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;正在处理任务&quot;</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"正在处理任务"</span><span class="p">):</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># 模拟耗时操作</span>
 </pre></div>
 </div>
@@ -1549,7 +1561,7 @@ Alice
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/dong/data-analysis/MLcook&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'/home/dong/data-analysis/MLcook'
 </pre></div>
 </div>
 </div>
@@ -1558,7 +1570,7 @@ Alice
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;dog.jpg&#39;</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'dog.jpg'</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span> <span class="c1"># 查看尺寸、格式、颜色模式(RGB)</span>
 </pre></div>
 </div>
@@ -1587,7 +1599,7 @@ Alice
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;dog.jpg&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'dog.jpg'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1732,7 +1744,7 @@ Alice
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="n">resized_img</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;cute dog&#39;</span>
+            <span class="n">text</span><span class="o">=</span><span class="s1">'cute dog'</span>
             <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="c1"># 左下角坐标，x 表示离左边，y表</span>
             <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
             <span class="n">fontScale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1806,7 +1818,7 @@ Alice
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;demo.db&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'demo.db'</span><span class="p">)</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1814,8 +1826,8 @@ Alice
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)&#39;&#39;&#39;</span><span class="p">)</span>
-<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users (name) VALUES (&#39;张三&#39;)&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">'''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)'''</span><span class="p">)</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO users (name) VALUES ('张三')"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1829,13 +1841,13 @@ Alice
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1"># 返回：[(1, &#39;张三&#39;)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM users"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span> <span class="c1"># 返回：[(1, '张三')]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, &#39;张三&#39;)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, '张三')]
 </pre></div>
 </div>
 </div>
@@ -1944,8 +1956,8 @@ Alice
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1979,7 +1991,7 @@ Alice
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

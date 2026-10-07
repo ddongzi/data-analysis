@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -184,11 +184,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -201,8 +208,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -407,16 +419,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fonts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimHei&#39;</span><span class="p">,</span> <span class="s1">&#39;SimSun&#39;</span><span class="p">,</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fonts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft YaHei'</span><span class="p">,</span> <span class="s1">'SimHei'</span><span class="p">,</span> <span class="s1">'SimSun'</span><span class="p">,</span> <span class="s1">'sans-serif'</span><span class="p">]</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span>
-    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> 
-    <span class="n">context</span><span class="o">=</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> 
-    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span> 
+    <span class="n">context</span><span class="o">=</span><span class="s2">"notebook"</span><span class="p">,</span> 
+    <span class="n">palette</span><span class="o">=</span><span class="s2">"muted"</span><span class="p">,</span>
     <span class="n">font</span><span class="o">=</span><span class="n">fonts</span><span class="p">,</span>
     <span class="n">rc</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;axes.unicode_minus&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>   <span class="c1"># 解决负号乱码</span>
-        <span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">2.5</span>         <span class="c1"># 线条加粗，更有质感</span>
+        <span class="s2">"axes.unicode_minus"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>   <span class="c1"># 解决负号乱码</span>
+        <span class="s2">"lines.linewidth"</span><span class="p">:</span> <span class="mf">2.5</span>         <span class="c1"># 线条加粗，更有质感</span>
     <span class="p">}</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -481,7 +493,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;classic&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'classic'</span><span class="p">)</span> 
 <span class="o">%</span><span class="k">matplotlib</span> inline 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -503,7 +515,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 用Matplotlib默认样式画图 </span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">'ABCDEF'</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -523,7 +535,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 同样的代码，seaborn绘图</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">'ABCDEF'</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -539,9 +551,9 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span> <span class="c1"># 生成2000个二维正太分布点</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span> 
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">])</span> 
 
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="s1">&#39;xy&#39;</span><span class="p">:</span>  <span class="c1"># 遍历xy列，  绘制x和y两个方向的hist</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="s1">'xy'</span><span class="p">:</span>  <span class="c1"># 遍历xy列，  绘制x和y两个方向的hist</span>
    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># density=True 直方图面积和1</span>
 </pre></div>
 </div>
@@ -552,7 +564,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="s1">&#39;xy&#39;</span><span class="p">:</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="s1">'xy'</span><span class="p">:</span> 
     <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># KDE平滑图</span>
 </pre></div>
 </div>
@@ -563,8 +575,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 平滑图和直方图</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 平滑图和直方图</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -575,12 +587,12 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p>二维图</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='x', ylabel='y'&gt;
 </pre></div>
 </div>
 <img alt="../_images/94a27ab9ad9a8751c73f5aef06cc8e2071adb56ab36388921889ef820b9a71ed.png" src="../_images/94a27ab9ad9a8751c73f5aef06cc8e2071adb56ab36388921889ef820b9a71ed.png" />
@@ -589,7 +601,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 jointplot 绘制二维数据的关系，  会带有变量的分布</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'kde'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -606,7 +618,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p>对多维数据可视化，常常需要所有两个变量的关系，探索不同维度之间的相关性。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">"iris"</span><span class="p">)</span> 
 <span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -693,7 +705,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">2.5</span><span class="p">);</span> <span class="c1"># 直接一句代码即可</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">'species'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">2.5</span><span class="p">);</span> <span class="c1"># 直接一句代码即可</span>
 </pre></div>
 </div>
 </div>
@@ -706,7 +718,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <h2>3. 分面频次直方图：按类别的直方图。 按类别分布<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'tips'</span><span class="p">)</span> 
 <span class="n">tips</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -796,10 +808,10 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip_pct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">]</span> <span class="c1"># 小费占总账单的百分比。</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span><span class="p">[</span><span class="s1">'tip_pct'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">tips</span><span class="p">[</span><span class="s1">'tip'</span><span class="p">]</span> <span class="o">/</span> <span class="n">tips</span><span class="p">[</span><span class="s1">'total_bill'</span><span class="p">]</span> <span class="c1"># 小费占总账单的百分比。</span>
  
-<span class="n">grid</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">tips</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">margin_titles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 用于根据指定的分类变量来拆分数据，并生成一个 面板（facet） 图。</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">,</span> <span class="s2">&quot;tip_pct&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span> 
+<span class="n">grid</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">tips</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">"sex"</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">margin_titles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 用于根据指定的分类变量来拆分数据，并生成一个 面板（facet） 图。</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">,</span> <span class="s2">"tip_pct"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span> 
 </pre></div>
 </div>
 </div>
@@ -820,9 +832,9 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p><code class="docutils literal notranslate"><span class="pre">catplot</span></code> : categorical</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;ticks&#39;</span><span class="p">):</span> 
-    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span> 
-    <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span> <span class="s2">&quot;Total Bill&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">'ticks'</span><span class="p">):</span> 
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"day"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"total_bill"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"sex"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">"box"</span><span class="p">)</span> 
+    <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s2">"Day"</span><span class="p">,</span> <span class="s2">"Total Bill"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -832,13 +844,13 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'titanic'</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">'class'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'age'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">'sex'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;class&#39;, ylabel=&#39;age&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='class', ylabel='age'&gt;
 </pre></div>
 </div>
 <img alt="../_images/b9f157d8d47dff9ce35940762fc6deba6455d5476949c2b9bb6bfa1a9622cf31.png" src="../_images/b9f157d8d47dff9ce35940762fc6deba6455d5476949c2b9bb6bfa1a9622cf31.png" />
@@ -850,8 +862,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 jointplot 创建 hexbin 图</span>
-<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span> 
-    <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">):</span> 
+    <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"total_bill"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"tip"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'hex'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -861,7 +873,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">);</span> <span class="c1"># 带回归拟合</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"total_bill"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"tip"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'reg'</span><span class="p">);</span> <span class="c1"># 带回归拟合</span>
 </pre></div>
 </div>
 </div>
@@ -874,7 +886,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <h2>6. 条形图: 每个分类统计<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;planets&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'planets'</span><span class="p">)</span> 
 <span class="n">planets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -959,11 +971,11 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 catplot 创建计数图</span>
-<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span> 
-    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">planets</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1">#aspect控制宽度</span>
-                    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">):</span> 
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">planets</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1">#aspect控制宽度</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">)</span>
     <span class="c1"># 设置 x 轴标签的步长</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -974,12 +986,12 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 catplot 创建计数图，根据method字段着色</span>
-<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span> 
-    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">planets</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> 
-                    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">2015</span><span class="p">))</span> <span class="c1"># 指定年份</span>
+<span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">):</span> 
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">planets</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'count'</span><span class="p">,</span> 
+                    <span class="n">hue</span><span class="o">=</span><span class="s1">'method'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">2015</span><span class="p">))</span> <span class="c1"># 指定年份</span>
 
     <span class="c1"># 设置 y 轴标签</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s1">&#39;Number of Planets Discovered&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s1">'Number of Planets Discovered'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1028,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
             <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
             <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
             <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="s2">"coolwarm"</span><span class="p">,</span>
             <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span>
            <span class="p">)</span> <span class="c1"># 正方形，显示数字，不显示colorbar</span>
 </pre></div>
@@ -1043,8 +1055,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># 使用 seaborn 绘制等高线</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Seaborn Contour Plot&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Blues'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Seaborn Contour Plot'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1058,14 +1070,14 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <h2>stripplot 条带/ 分类散点图<a class="headerlink" href="#stripplot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">"tips"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"total_bill"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"day"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1083,16 +1095,16 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 
 <span class="c1"># 示例数据</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+    <span class="s1">'x'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s1">'y'</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="c1"># 画折线图</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">'x'</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">])</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;简单折线图&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X轴&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y轴&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'简单折线图'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'X轴'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Y轴'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1116,13 +1128,13 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geyser</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;geyser&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">geyser</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;waiting&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geyser</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">"geyser"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">geyser</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"waiting"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"duration"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;waiting&#39;, ylabel=&#39;duration&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='waiting', ylabel='duration'&gt;
 </pre></div>
 </div>
 <img alt="../_images/5a35f18b32aa7c135b144cc11c700d5d6dcd14fc030a7dfa991b75205e36eb91.png" src="../_images/5a35f18b32aa7c135b144cc11c700d5d6dcd14fc030a7dfa991b75205e36eb91.png" />
@@ -1131,13 +1143,13 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">geyser</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;waiting&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;kind&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">geyser</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"waiting"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"duration"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;waiting&#39;, ylabel=&#39;duration&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='waiting', ylabel='duration'&gt;
 </pre></div>
 </div>
 <img alt="../_images/f14ae03521d5b5c3c0a450dd5342e277666fb17612335b69dc893998ba22252e.png" src="../_images/f14ae03521d5b5c3c0a450dd5342e277666fb17612335b69dc893998ba22252e.png" />
@@ -1149,7 +1161,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'tips'</span><span class="p">)</span>
 <span class="n">tips</span>
 </pre></div>
 </div>
@@ -1302,14 +1314,14 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;total_bill&#39;</span><span class="p">,</span>
-    <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">'total_bill'</span><span class="p">,</span>
+    <span class="n">hue</span> <span class="o">=</span> <span class="s1">'time'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;total_bill&#39;, ylabel=&#39;Density&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='total_bill', ylabel='Density'&gt;
 </pre></div>
 </div>
 <img alt="../_images/d5cc44d6606353d4febb7e020ffe335029b4c66586f20adfe770f20359989401.png" src="../_images/d5cc44d6606353d4febb7e020ffe335029b4c66586f20adfe770f20359989401.png" />
@@ -1319,15 +1331,15 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;total_bill&#39;</span><span class="p">,</span>
-    <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">'total_bill'</span><span class="p">,</span>
+    <span class="n">hue</span> <span class="o">=</span> <span class="s1">'time'</span><span class="p">,</span>
     <span class="n">common_norm</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;total_bill&#39;, ylabel=&#39;Density&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='total_bill', ylabel='Density'&gt;
 </pre></div>
 </div>
 <img alt="../_images/4506610edbf1468347f63a1cd70125ca4ccd8feb2d1069018fccb58f8e39d88a.png" src="../_images/4506610edbf1468347f63a1cd70125ca4ccd8feb2d1069018fccb58f8e39d88a.png" />
@@ -1339,7 +1351,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p>分类的频率图, 显示误差。 看不到计数</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flights</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flights&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flights</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'flights'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1411,12 +1423,12 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">flights</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;passengers&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">flights</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"passengers"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">"y"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;passengers&#39;, ylabel=&#39;year&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='passengers', ylabel='year'&gt;
 </pre></div>
 </div>
 <img alt="../_images/5f3363bf0f3e79f04d9fb69bae6488afb30c457c263b2bd96aaa8e4fedc1d22e.png" src="../_images/5f3363bf0f3e79f04d9fb69bae6488afb30c457c263b2bd96aaa8e4fedc1d22e.png" />
@@ -1428,7 +1440,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p>将每组数据转为一个点：均值及误差</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'penguins'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1524,12 +1536,12 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"species"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"body_mass_g"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;species&#39;, ylabel=&#39;body_mass_g&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='species', ylabel='body_mass_g'&gt;
 </pre></div>
 </div>
 <img alt="../_images/901446210e9714a1583d00071df72ca7a519daf744c95169fb1aad9b6faa7ebe.png" src="../_images/901446210e9714a1583d00071df72ca7a519daf744c95169fb1aad9b6faa7ebe.png" />
@@ -1537,12 +1549,12 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;island&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"island"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"body_mass_g"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"sex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;island&#39;, ylabel=&#39;body_mass_g&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='island', ylabel='body_mass_g'&gt;
 </pre></div>
 </div>
 <img alt="../_images/c58de36417c94d4360bda2cfe466b50a0bbc598042d884df249bb1fc8f282c19.png" src="../_images/c58de36417c94d4360bda2cfe466b50a0bbc598042d884df249bb1fc8f282c19.png" />
@@ -1553,7 +1565,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <h2>countplot 计数图<a class="headerlink" href="#countplot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;survived&quot;</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"class"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"survived"</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">"percent"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1561,9 +1573,9 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;survived&quot;</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"class"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"survived"</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">"percent"</span><span class="p">)</span>
 
-<span class="ne">NameError</span>: name &#39;sns&#39; is not defined
+<span class="ne">NameError</span>: name 'sns' is not defined
 </pre></div>
 </div>
 </div>
@@ -1577,7 +1589,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'penguins'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1638,8 +1650,8 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_crr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span> <span class="c1"># 获取当前坐标轴</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> 
-                <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> 
+                <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1664,7 +1676,7 @@ https://seaborn.pydata.org/tutorial.html</p></li>
 <p>##　案例：探索马拉松比赛成绩数据</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;marathon-data.csv&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'marathon-data.csv'</span><span class="p">)</span> 
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -1755,10 +1767,10 @@ dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">convert_time</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="c1"># 分割并转换时、分、秒为整数</span>
-    <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">))</span>  
+    <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">))</span>  
     <span class="c1"># 将时分秒转换为timedelta格式</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">h </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">m </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;marathon-data.csv&#39;</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;split&#39;</span><span class="p">:</span><span class="n">convert_time</span><span class="p">,</span> <span class="s1">&#39;final&#39;</span><span class="p">:</span><span class="n">convert_time</span><span class="p">})</span>  <span class="c1"># 导入时，就传入转换函数</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">h </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">m </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'marathon-data.csv'</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">'split'</span><span class="p">:</span><span class="n">convert_time</span><span class="p">,</span> <span class="s1">'final'</span><span class="p">:</span><span class="n">convert_time</span><span class="p">})</span>  <span class="c1"># 导入时，就传入转换函数</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -1846,8 +1858,8 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;split_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1E9</span> 
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;final_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;final&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1E9</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">'split_sec'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'split'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1E9</span> 
+<span class="n">data</span><span class="p">[</span><span class="s1">'final_sec'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'final'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1E9</span> 
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -1931,9 +1943,9 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;split_sec&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;final_sec&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">16000</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">32000</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span> <span class="c1"># 添加一条虚线： </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"split_sec"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"final_sec"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'hex'</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">16000</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">32000</span><span class="p">),</span> <span class="s1">':k'</span><span class="p">)</span> <span class="c1"># 添加一条虚线： </span>
 </pre></div>
 </div>
 </div>
@@ -1945,7 +1957,7 @@ dtype: object
 <p>现在衡量后半程加速的程度，小于0表示时后半程加速选手</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;split_frac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;split_sec&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;final_sec&#39;</span><span class="p">]</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">'split_frac'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">'split_sec'</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">'final_sec'</span><span class="p">]</span> 
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -2035,8 +2047,8 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;split_frac&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'split_frac'</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -2060,8 +2072,8 @@ dtype: object
 <p>那探究这与其他变量是否有相关性</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;split_sec&#39;</span><span class="p">,</span> <span class="s1">&#39;final_sec&#39;</span><span class="p">,</span> <span class="s1">&#39;split_frac&#39;</span><span class="p">],</span> 
-                 <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>  <span class="c1"># pairplot自由版</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'age'</span><span class="p">,</span> <span class="s1">'split_sec'</span><span class="p">,</span> <span class="s1">'final_sec'</span><span class="p">,</span> <span class="s1">'split_frac'</span><span class="p">],</span> 
+                 <span class="n">hue</span><span class="o">=</span><span class="s1">'gender'</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">'RdBu_r'</span><span class="p">)</span>  <span class="c1"># pairplot自由版</span>
 <span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> 
 <span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">();</span>
 </pre></div>
@@ -2075,8 +2087,8 @@ dtype: object
 <p>对比男女选手差异：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split_frac</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;men&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split_frac</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">==</span><span class="s1">&#39;W&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;women&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split_frac</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">==</span><span class="s1">'M'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'men'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split_frac</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">==</span><span class="s1">'W'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'women'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2092,13 +2104,13 @@ dtype: object
 <p>分开来看</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;split_frac&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
-               <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"gender"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"split_frac"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"gender"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
+               <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">"lightblue"</span><span class="p">,</span> <span class="s2">"lightpink"</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;gender&#39;, ylabel=&#39;split_frac&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='gender', ylabel='split_frac'&gt;
 </pre></div>
 </div>
 <img alt="../_images/ac4cf8659e6f2c812be7b5eb4f359cae18ed4883035330807a36ac805be5726f.png" src="../_images/ac4cf8659e6f2c812be7b5eb4f359cae18ed4883035330807a36ac805be5726f.png" />
@@ -2107,7 +2119,7 @@ dtype: object
 <p>通过年龄段再看看</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;age_dec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">age</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">age</span> <span class="o">//</span> <span class="mi">10</span><span class="p">))</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">'age_dec'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">age</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">age</span> <span class="o">//</span> <span class="mi">10</span><span class="p">))</span> 
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -2203,12 +2215,12 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">men</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> 
-<span class="n">women</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">men</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'M'</span><span class="p">)</span> 
+<span class="n">women</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'W'</span><span class="p">)</span> 
 
 <span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> 
-    <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;age_dec&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;split_frac&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="s2">&quot;quartile&quot;</span><span class="p">,</span> 
-                   <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"age_dec"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"split_frac"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"gender"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="s2">"quartile"</span><span class="p">,</span> 
+                   <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">"lightblue"</span><span class="p">,</span> <span class="s2">"lightpink"</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2234,9 +2246,9 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lmplot绘制散点图，并拟合直线。  col表示根据gender划分两个子图，</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;final_sec&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span> <span class="s1">&#39;split_frac&#39;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
-                       <span class="n">markers</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">scatter_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">))</span> 
-<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'final_sec'</span><span class="p">,</span><span class="n">y</span><span class="o">=</span> <span class="s1">'split_frac'</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">'gender'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
+                       <span class="n">markers</span><span class="o">=</span><span class="s2">"."</span><span class="p">,</span> <span class="n">scatter_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'c'</span><span class="p">))</span> 
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -2337,8 +2349,8 @@ dtype: object
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2372,7 +2384,7 @@ dtype: object
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

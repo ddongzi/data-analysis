@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -425,9 +437,9 @@
 
 <span class="n">请查看单元格中的代码</span><span class="err">，</span><span class="n">以确定故障的可能原因</span><span class="err">。</span>
 
-<span class="n">单击</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://aka.ms/vscodeJupyterKernelCrash&#39;</span><span class="o">&gt;</span><span class="n">此处</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="n">了解详细信息</span><span class="err">。</span>
+<span class="n">单击</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">'https://aka.ms/vscodeJupyterKernelCrash'</span><span class="o">&gt;</span><span class="n">此处</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="n">了解详细信息</span><span class="err">。</span>
 
-<span class="n">有关更多详细信息</span><span class="err">，</span><span class="n">请查看</span> <span class="n">Jupyter</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;command:jupyter.viewOutput&#39;</span><span class="o">&gt;</span><span class="n">log</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">。</span>
+<span class="n">有关更多详细信息</span><span class="err">，</span><span class="n">请查看</span> <span class="n">Jupyter</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">'command:jupyter.viewOutput'</span><span class="o">&gt;</span><span class="n">log</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">。</span>
 </pre></div>
 </div>
 </div>
@@ -635,14 +647,14 @@
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_test_maxabs</span> <span class="o">=</span> <span class="n">max_abs_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X_test_maxabs</span>
 
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+<span class="ne">NameError</span>: name 'np' is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">你问得很好</span><span class="err">！`</span><span class="n">QuantileTransformer</span><span class="err">`</span><span class="n">中</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`</span><span class="n">确实会让输出符合正态分布</span><span class="err">，</span><span class="n">而不是所有分位数变换都只是均匀分布</span><span class="err">（</span><span class="n">uniform</span><span class="err">）。</span><span class="n">让我详细解释一下它是怎么做到的</span><span class="err">，</span><span class="n">以及为什么它不是简单地停留在均匀分布</span><span class="err">。</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">你问得很好</span><span class="err">！`</span><span class="n">QuantileTransformer</span><span class="err">`</span><span class="n">中</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'normal'</span><span class="err">`</span><span class="n">确实会让输出符合正态分布</span><span class="err">，</span><span class="n">而不是所有分位数变换都只是均匀分布</span><span class="err">（</span><span class="n">uniform</span><span class="err">）。</span><span class="n">让我详细解释一下它是怎么做到的</span><span class="err">，</span><span class="n">以及为什么它不是简单地停留在均匀分布</span><span class="err">。</span>
 
 <span class="o">---</span>
 
@@ -651,10 +663,10 @@
 <span class="mf">1.</span> <span class="o">**</span><span class="n">映射到均匀分布</span><span class="err">（</span><span class="n">Uniform</span> <span class="n">Distribution</span><span class="err">）</span><span class="o">**</span>  
    <span class="o">-</span> <span class="n">先计算每个数据点的分位数</span><span class="err">（</span><span class="n">排名</span><span class="err">），</span><span class="n">将其映射到0到1之间的均匀分布</span><span class="err">。</span>
    <span class="o">-</span> <span class="n">比如</span><span class="err">，</span><span class="n">数据</span><span class="err">`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`</span><span class="n">会被映射到</span><span class="err">`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`。</span>
-   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="err">`，</span><span class="n">这里就结束了</span><span class="err">，</span><span class="n">结果就是均匀分布</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'uniform'</span><span class="err">`，</span><span class="n">这里就结束了</span><span class="err">，</span><span class="n">结果就是均匀分布</span><span class="err">。</span>
 
 <span class="mf">2.</span> <span class="o">**</span><span class="n">从均匀分布映射到目标分布</span><span class="o">**</span>  
-   <span class="o">-</span> <span class="n">如果指定了</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`，</span><span class="n">会多一步</span><span class="err">：</span><span class="n">将均匀分布的值通过正态分布的反累积分布函数</span><span class="err">（</span><span class="n">Inverse</span> <span class="n">CDF</span><span class="err">，</span><span class="n">也叫分位函数或PPF</span><span class="err">，</span><span class="n">Percent</span> <span class="n">Point</span> <span class="n">Function</span><span class="err">）</span><span class="n">转换为正态分布</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">如果指定了</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'normal'</span><span class="err">`，</span><span class="n">会多一步</span><span class="err">：</span><span class="n">将均匀分布的值通过正态分布的反累积分布函数</span><span class="err">（</span><span class="n">Inverse</span> <span class="n">CDF</span><span class="err">，</span><span class="n">也叫分位函数或PPF</span><span class="err">，</span><span class="n">Percent</span> <span class="n">Point</span> <span class="n">Function</span><span class="err">）</span><span class="n">转换为正态分布</span><span class="err">。</span>
 
 <span class="o">---</span>
 
@@ -697,7 +709,7 @@
 
 <span class="c1">### 为什么不一直是均匀分布？</span>
 <span class="o">-</span> <span class="n">当时</span><span class="err">，</span><span class="n">变换停在第一步</span><span class="err">，</span><span class="n">输出就是均匀分布</span><span class="err">（</span><span class="mi">0</span><span class="n">到1</span><span class="err">）。</span>
-<span class="o">-</span> <span class="n">当</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="err">`</span><span class="n">时</span><span class="err">，</span><span class="n">多加了第二步</span><span class="err">，</span><span class="n">使用正态分布的反CDF</span><span class="err">，</span><span class="n">把均匀分布</span><span class="err">“</span><span class="n">拉伸</span><span class="err">”</span><span class="n">成正态分布的形状</span><span class="err">。</span>
+<span class="o">-</span> <span class="n">当</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'normal'</span><span class="err">`</span><span class="n">时</span><span class="err">，</span><span class="n">多加了第二步</span><span class="err">，</span><span class="n">使用正态分布的反CDF</span><span class="err">，</span><span class="n">把均匀分布</span><span class="err">“</span><span class="n">拉伸</span><span class="err">”</span><span class="n">成正态分布的形状</span><span class="err">。</span>
 <span class="o">-</span> <span class="o">**</span><span class="n">区别</span><span class="o">**</span><span class="err">：</span>
   <span class="o">-</span> <span class="n">均匀分布</span><span class="err">：</span><span class="n">值均匀分布在固定区间</span><span class="err">（</span><span class="mi">0</span><span class="n">到1</span><span class="err">），</span><span class="n">没有</span><span class="err">“</span><span class="n">钟形曲线</span><span class="err">”。</span>
   <span class="o">-</span> <span class="n">正态分布</span><span class="err">：</span><span class="n">值集中在均值附近</span><span class="err">（</span><span class="mi">0</span><span class="err">），</span><span class="n">两端逐渐减少</span><span class="err">，</span><span class="n">形成典型的正态</span><span class="err">“</span><span class="n">钟形</span><span class="err">”。</span>
@@ -707,7 +719,7 @@
 <span class="c1">### 举个例子</span>
 <span class="n">原始数据</span><span class="err">：`</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span><span class="err">`</span>
 <span class="mf">1.</span> <span class="o">**</span><span class="n">均匀分布</span><span class="err">（</span><span class="n">第一步</span><span class="err">）</span><span class="o">**</span><span class="err">：`</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span><span class="err">`</span>  
-   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="err">`，</span><span class="n">结果就是这个</span><span class="err">。</span>
+   <span class="o">-</span> <span class="n">如果</span><span class="err">`</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'uniform'</span><span class="err">`，</span><span class="n">结果就是这个</span><span class="err">。</span>
 <span class="mf">2.</span> <span class="o">**</span><span class="n">正态分布</span><span class="err">（</span><span class="n">第二步</span><span class="err">）</span><span class="o">**</span><span class="err">：</span>  
    <span class="o">-</span> <span class="mf">0.0</span> <span class="err">→</span> <span class="n">约</span><span class="o">-</span><span class="mf">1.28</span><span class="err">（</span><span class="n">正态分布的0</span><span class="o">%</span><span class="k">分位点</span>，用有限值近似）。
    <span class="o">-</span> <span class="mf">0.25</span> <span class="err">→</span> <span class="n">约</span><span class="o">-</span><span class="mf">0.67</span><span class="err">。</span>
@@ -726,14 +738,14 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># uniform分布</span>
-<span class="n">qt_uniform</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+<span class="n">qt_uniform</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'uniform'</span><span class="p">)</span>
 <span class="n">uniform_data</span> <span class="o">=</span> <span class="n">qt_uniform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uniform:&quot;</span><span class="p">,</span> <span class="n">uniform_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Uniform:"</span><span class="p">,</span> <span class="n">uniform_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
 
 <span class="c1"># normal分布</span>
-<span class="n">qt_normal</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="n">qt_normal</span> <span class="o">=</span> <span class="n">QuantileTransformer</span><span class="p">(</span><span class="n">output_distribution</span><span class="o">=</span><span class="s1">'normal'</span><span class="p">)</span>
 <span class="n">normal_data</span> <span class="o">=</span> <span class="n">qt_normal</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normal:&quot;</span><span class="p">,</span> <span class="n">normal_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normal:"</span><span class="p">,</span> <span class="n">normal_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
 <span class="err">```</span>
 
 <span class="o">**</span><span class="n">输出</span><span class="o">**</span><span class="p">:</span>
@@ -971,7 +983,7 @@ normalize each row.!</p>
 <span class="n">X</span> <span class="o">=</span> <span class="p">[[</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
      <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
      <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]]</span>
-<span class="n">X_normalized</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">X_normalized</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">)</span>
 <span class="n">X_normalized</span>
 </pre></div>
 </div>
@@ -1434,8 +1446,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OrdinalEncoder</span><span class="p">()</span>
 <span class="n">X</span><span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;from us&#39;</span><span class="p">,</span><span class="s1">&#39;uses safari&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span><span class="s1">&#39;from eu&#39;</span><span class="p">,</span><span class="s1">&#39;uses chrome&#39;</span><span class="p">]</span>
+    <span class="p">[</span><span class="s1">'male'</span><span class="p">,</span><span class="s1">'from us'</span><span class="p">,</span><span class="s1">'uses safari'</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">'female'</span><span class="p">,</span><span class="s1">'from eu'</span><span class="p">,</span><span class="s1">'uses chrome'</span><span class="p">]</span>
 <span class="p">]</span>
 <span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
@@ -1861,7 +1873,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span><span class="s1">&#39;from us&#39;</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">'female'</span><span class="p">,</span><span class="s1">'from us'</span><span class="p">,</span> <span class="s1">'uses chrome'</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -1873,7 +1885,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'uses chrome'</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -1881,7 +1893,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;uses chrome&#39;</span><span class="p">]])</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'uses chrome'</span><span class="p">]])</span>
 
 <span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\utils\_set_output.py:319,</span> in <span class="ni">_wrap_method_output.&lt;locals&gt;.wrapped</span><span class="nt">(self, X, *args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -1895,27 +1907,27 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="g g-Whitespace">    </span><span class="mi">325</span>         <span class="p">)</span>
 
 <span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\preprocessing\_encoders.py:1597,</span> in <span class="ni">OrdinalEncoder.transform</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1583</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1583</span><span class="w"> </span><span class="sd">"""</span>
 <span class="g g-Whitespace">   </span><span class="mi">1584</span><span class="sd"> Transform X to ordinal codes.</span>
 <span class="g g-Whitespace">   </span><span class="mi">1585</span><span class="sd"> </span>
 <span class="sd">   (...)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1594</span><span class="sd">     Transformed input.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1595</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1596</span> <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;categories_&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1595</span><span class="sd"> """</span>
+<span class="g g-Whitespace">   </span><span class="mi">1596</span> <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"categories_"</span><span class="p">)</span>
 <span class="ne">-&gt; </span><span class="mi">1597</span> <span class="n">X_int</span><span class="p">,</span> <span class="n">X_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1598</span>     <span class="n">X</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1599</span>     <span class="n">handle_unknown</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_unknown</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="n">ensure_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="n">ensure_all_finite</span><span class="o">=</span><span class="s2">"allow-nan"</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="n">ignore_category_indices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_missing_indices</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1602</span> <span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1603</span> <span class="n">X_trans</span> <span class="o">=</span> <span class="n">X_int</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1605</span> <span class="k">for</span> <span class="n">cat_idx</span><span class="p">,</span> <span class="n">missing_idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_missing_indices</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 
 <span class="nn">File d:\miniconda3\Lib\site-packages\sklearn\preprocessing\_encoders.py:218,</span> in <span class="ni">_BaseEncoder._transform</span><span class="nt">(self, X, handle_unknown, ensure_all_finite, warn_on_unknown, ignore_category_indices)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">if</span> <span class="n">handle_unknown</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">if</span> <span class="n">handle_unknown</span> <span class="o">==</span> <span class="s2">"error"</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="s2">&quot;Found unknown categories </span><span class="si">{0}</span><span class="s2"> in column </span><span class="si">{1}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="s2">&quot; during transform&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="s2">"Found unknown categories </span><span class="si">{0}</span><span class="s2"> in column </span><span class="si">{1}</span><span class="s2">"</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="s2">" during transform"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="k">else</span><span class="p">:</span>
@@ -1931,7 +1943,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">encoded_missing_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">'male'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'female'</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="s1">'female'</span><span class="p">]]</span>
 <span class="n">enc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1955,10 +1967,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">preprocessing</span>
 <span class="n">enc</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">OneHotEncoder</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;from US&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;from Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Firefox&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">'male'</span><span class="p">,</span> <span class="s1">'from US'</span><span class="p">,</span> <span class="s1">'uses Safari'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'female'</span><span class="p">,</span> <span class="s1">'from Europe'</span><span class="p">,</span> <span class="s1">'uses Firefox'</span><span class="p">]]</span>
 <span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;from US&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">],</span>
-               <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;from Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;uses Safari&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">'female'</span><span class="p">,</span> <span class="s1">'from US'</span><span class="p">,</span> <span class="s1">'uses Safari'</span><span class="p">],</span>
+               <span class="p">[</span><span class="s1">'male'</span><span class="p">,</span> <span class="s1">'from Europe'</span><span class="p">,</span> <span class="s1">'uses Safari'</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2022,7 +2034,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;1&#39;, &#39;x0&#39;, &#39;x1&#39;, &#39;x0^2&#39;, &#39;x0 x1&#39;, &#39;x1^2&#39;], dtype=object)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(['1', 'x0', 'x1', 'x0^2', 'x0 x1', 'x1^2'], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -2070,9 +2082,9 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;day&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
-    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
-    <span class="s1">&#39;score&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="s1">'day'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2010'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="s1">'age'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="s1">'score'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="p">})</span>
 <span class="n">df</span>
 </pre></div>
@@ -2171,7 +2183,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_transform</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;score_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'score_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'score'</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">df</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">my_transform_feature_names_out</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">input_features</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">input_features</span><span class="p">)</span>
@@ -2194,7 +2206,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;day&#39; &#39;age&#39; &#39;score&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['day' 'age' 'score']
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -2216,7 +2228,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\sklearn\base.py:894,</span> in <span class="ni">TransformerMixin.fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
 <span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">880</span>             <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span>                 <span class="sa">f</span><span class="s2">&quot;This object (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">) has a `transform`&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>                 <span class="sa">f</span><span class="s2">"This object (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">) has a `transform`"</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">889</span>             <span class="ne">UserWarning</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">890</span>         <span class="p">)</span>
@@ -2249,10 +2261,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="g g-Whitespace">    </span><span class="mi">293</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">294</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>         <span class="s2">&quot;The output generated by `func` have different column names &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="s2">&quot;than the ones provided by `get_feature_names_out`. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>         <span class="s2">"The output generated by `func` have different column names "</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="s2">"than the ones provided by `get_feature_names_out`. "</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="s2">&quot;are set to the names provided by `get_feature_names_out`.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="s2">"are set to the names provided by `get_feature_names_out`."</span>
 <span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="p">)</span>
 
 <span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\sklearn\utils\_set_output.py:137,</span> in <span class="ni">PandasAdapter.create_container</span><span class="nt">(self, X_output, X_original, columns, inplace)</span>
@@ -2278,10 +2290,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="nn">File pandas/_libs/properties.pyx:69,</span> in <span class="ni">pandas._libs.properties.AxisProperty.__set__</span><span class="nt">()</span>
 
 <span class="nn">File c:\Users\63517\miniconda3\envs\data-analysis\lib\site-packages\pandas\core\generic.py:817,</span> in <span class="ni">NDFrame._set_axis</span><span class="nt">(self, axis, labels)</span>
-<span class="g g-Whitespace">    </span><span class="mi">812</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span><span class="w"> </span><span class="sd">"""</span>
 <span class="g g-Whitespace">    </span><span class="mi">813</span><span class="sd"> This is called from the cython code when we set the `index` attribute</span>
 <span class="g g-Whitespace">    </span><span class="mi">814</span><span class="sd"> directly, e.g. `series.index = [1, 2, 3]`.</span>
-<span class="g g-Whitespace">    </span><span class="mi">815</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">815</span><span class="sd"> """</span>
 <span class="g g-Whitespace">    </span><span class="mi">816</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">817</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">set_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">818</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clear_item_cache</span><span class="p">()</span>
@@ -2296,8 +2308,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="k">pass</span>
 <span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="k">elif</span> <span class="n">new_len</span> <span class="o">!=</span> <span class="n">old_len</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">98</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="sa">f</span><span class="s2">&quot;Length mismatch: Expected axis has </span><span class="si">{</span><span class="n">old_len</span><span class="si">}</span><span class="s2"> elements, new &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="sa">f</span><span class="s2">&quot;values have </span><span class="si">{</span><span class="n">new_len</span><span class="si">}</span><span class="s2"> elements&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="sa">f</span><span class="s2">"Length mismatch: Expected axis has </span><span class="si">{</span><span class="n">old_len</span><span class="si">}</span><span class="s2"> elements, new "</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="sa">f</span><span class="s2">"values have </span><span class="si">{</span><span class="n">new_len</span><span class="si">}</span><span class="s2"> elements"</span>
 <span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="p">)</span>
 
 <span class="ne">ValueError</span>: Length mismatch: Expected axis has 4 elements, new values have 3 elements
@@ -2312,10 +2324,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;day&#39; &#39;age&#39; &#39;score&#39; &#39;score_log&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['day' 'age' 'score' 'score_log']
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;day&#39;, &#39;age&#39;, &#39;score&#39;, &#39;score_log&#39;], dtype=object)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(['day', 'age', 'score', 'score_log'], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -2393,8 +2405,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2428,7 +2440,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

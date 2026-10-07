@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -182,11 +182,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -199,8 +206,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -373,7 +385,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;http://www.tianqihoubao.com/lishi/chengdu/month/202504.html&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">'http://www.tianqihoubao.com/lishi/chengdu/month/202504.html'</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'gbk'</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -387,17 +399,17 @@ You provided Unicode markup but also provided a value for from_encoding. Your fr
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">,</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温/最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># expand表示结果直接拆成两列</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;天气状况(白天)&#39;</span><span class="p">,</span><span class="s1">&#39;天气状况(夜间)&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;天气状况(白天/夜间)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># expand表示结果直接拆成两列</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'日期'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">'最高气温'</span><span class="p">,</span><span class="s1">'最低气温'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'最高气温/最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># expand表示结果直接拆成两列</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">'天气状况(白天)'</span><span class="p">,</span><span class="s1">'天气状况(夜间)'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'天气状况(白天/夜间)'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># expand表示结果直接拆成两列</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;℃&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;℃&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'℃'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'℃'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -511,12 +523,12 @@ You provided Unicode markup but also provided a value for from_encoding. Your fr
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2025年04月20日&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2025年04月20日'
 </pre></div>
 </div>
 </div>
@@ -528,71 +540,71 @@ You provided Unicode markup but also provided a value for from_encoding. Your fr
 <span class="c1"># 添加最低气温折线</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">],</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers+text&#39;</span><span class="p">,</span> <span class="c1"># 折线图 + 标记点+ 显示文本</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;最低气温&#39;</span><span class="p">,</span>
-    <span class="n">line_shape</span><span class="o">=</span><span class="s1">&#39;spline&#39;</span><span class="p">,</span> <span class="c1"># 平滑曲线</span>
-    <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">],</span>  <span class="c1"># 显示数据点的值</span>
-    <span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;top center&#39;</span><span class="p">,</span>  <span class="c1"># 控制文本显示位置</span>
-    <span class="n">hovertemplate</span><span class="o">=</span><span class="s1">&#39;日期: %</span><span class="si">{x}</span><span class="s1">&lt;br&gt;最低气温: %</span><span class="si">{y}</span><span class="s1">℃&lt;extra&gt;&lt;/extra&gt;&#39;</span><span class="p">,</span>  <span class="c1"># 设置悬停显示的内容</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">],</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers+text'</span><span class="p">,</span> <span class="c1"># 折线图 + 标记点+ 显示文本</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'最低气温'</span><span class="p">,</span>
+    <span class="n">line_shape</span><span class="o">=</span><span class="s1">'spline'</span><span class="p">,</span> <span class="c1"># 平滑曲线</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">],</span>  <span class="c1"># 显示数据点的值</span>
+    <span class="n">textposition</span><span class="o">=</span><span class="s1">'top center'</span><span class="p">,</span>  <span class="c1"># 控制文本显示位置</span>
+    <span class="n">hovertemplate</span><span class="o">=</span><span class="s1">'日期: %</span><span class="si">{x}</span><span class="s1">&lt;br&gt;最低气温: %</span><span class="si">{y}</span><span class="s1">℃&lt;extra&gt;&lt;/extra&gt;'</span><span class="p">,</span>  <span class="c1"># 设置悬停显示的内容</span>
 <span class="p">))</span>
 
 <span class="c1"># 添加最高气温折线</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">],</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers+text&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;最高气温&#39;</span><span class="p">,</span>
-    <span class="n">line_shape</span><span class="o">=</span><span class="s1">&#39;spline&#39;</span><span class="p">,</span>
-    <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">],</span>
-    <span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;top center&#39;</span><span class="p">,</span>
-    <span class="n">hovertemplate</span><span class="o">=</span><span class="s1">&#39;日期: %</span><span class="si">{x}</span><span class="s1">&lt;br&gt;最高气温: %</span><span class="si">{y}</span><span class="s1">℃&lt;extra&gt;&lt;/extra&gt;&#39;</span><span class="p">,</span>  <span class="c1"># 设置悬停显示的内容</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">],</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers+text'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'最高气温'</span><span class="p">,</span>
+    <span class="n">line_shape</span><span class="o">=</span><span class="s1">'spline'</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">],</span>
+    <span class="n">textposition</span><span class="o">=</span><span class="s1">'top center'</span><span class="p">,</span>
+    <span class="n">hovertemplate</span><span class="o">=</span><span class="s1">'日期: %</span><span class="si">{x}</span><span class="s1">&lt;br&gt;最高气温: %</span><span class="si">{y}</span><span class="s1">℃&lt;extra&gt;&lt;/extra&gt;'</span><span class="p">,</span>  <span class="c1"># 设置悬停显示的内容</span>
     
 <span class="p">))</span>
 <span class="c1"># 添加最高气温平均线</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;最高气温平均线&#39;</span><span class="p">,</span>
-    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s1">&#39;dash&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'lines'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'最高气温平均线'</span><span class="p">,</span>
+    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s1">'dash'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 <span class="p">))</span>
 <span class="c1"># 添加最低气温平均线</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;最低气温平均线&#39;</span><span class="p">,</span>
-    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s1">&#39;dash&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'lines'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'最低气温平均线'</span><span class="p">,</span>
+    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s1">'dash'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
 <span class="p">))</span>
 
 <span class="c1"># 标记最值</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最低气温&#39;</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;最高气温&#39;</span><span class="p">])],</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers+text&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;最值&#39;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'最低气温'</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'最高气温'</span><span class="p">])],</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'markers+text'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'最值'</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
 <span class="p">))</span>
 
 <span class="c1"># 设置图标题与坐标轴标签</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;近一个月气温&#39;</span><span class="p">,</span>
-    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;温度&#39;</span><span class="p">,</span>
-    <span class="n">legend_title</span><span class="o">=</span><span class="s1">&#39;气温类型&#39;</span><span class="p">,</span>
-    <span class="n">hovermode</span><span class="o">=</span><span class="s2">&quot;closest&quot;</span><span class="p">,</span>  <span class="c1"># 让鼠标悬停时只显示最接近的点</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'近一个月气温'</span><span class="p">,</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">'日期'</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">'温度'</span><span class="p">,</span>
+    <span class="n">legend_title</span><span class="o">=</span><span class="s1">'气温类型'</span><span class="p">,</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s2">"closest"</span><span class="p">,</span>  <span class="c1"># 让鼠标悬停时只显示最接近的点</span>
     <span class="c1"># 显示悬停时的十字虚线</span>
     <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">showspikes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 显示垂直于 x 轴的指示线</span>
-        <span class="n">spikesnap</span><span class="o">=</span><span class="s2">&quot;cursor&quot;</span><span class="p">,</span>  <span class="c1"># 锚定到光标的位置</span>
-        <span class="n">spikecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>  <span class="c1"># 指示线的颜色</span>
+        <span class="n">spikesnap</span><span class="o">=</span><span class="s2">"cursor"</span><span class="p">,</span>  <span class="c1"># 锚定到光标的位置</span>
+        <span class="n">spikecolor</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span>  <span class="c1"># 指示线的颜色</span>
         <span class="n">spikethickness</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># 指示线的厚度</span>
     <span class="p">),</span>
     <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">showspikes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 显示水平于 y 轴的指示线</span>
-        <span class="n">spikesnap</span><span class="o">=</span><span class="s2">&quot;cursor&quot;</span><span class="p">,</span>  <span class="c1"># 锚定到光标的位置</span>
-        <span class="n">spikecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>  <span class="c1"># 指示线的颜色</span>
+        <span class="n">spikesnap</span><span class="o">=</span><span class="s2">"cursor"</span><span class="p">,</span>  <span class="c1"># 锚定到光标的位置</span>
+        <span class="n">spikecolor</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span>  <span class="c1"># 指示线的颜色</span>
         <span class="n">spikethickness</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># 指示线的厚度</span>
     <span class="p">),</span>
 <span class="p">)</span>
@@ -4563,8 +4575,8 @@ if (outputEl) {{
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -4598,7 +4610,7 @@ if (outputEl) {{
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>

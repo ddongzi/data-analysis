@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=98804892" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -184,11 +184,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -201,8 +208,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -291,11 +297,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,8 +321,7 @@
           
           
           
-          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/ddongzi/data-analysis" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -436,7 +448,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/application_train.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/application_train.csv'</span><span class="p">)</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -444,15 +456,15 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">'number'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
-<span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SK_ID_CURR&#39;</span><span class="p">,</span> <span class="s1">&#39;TARGET&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s1">'TARGET'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'SK_ID_CURR'</span><span class="p">,</span> <span class="s1">'TARGET'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -489,25 +501,25 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;boosting_type&#39;: &#39;gbdt&#39;,
- &#39;class_weight&#39;: None,
- &#39;colsample_bytree&#39;: 1.0,
- &#39;importance_type&#39;: &#39;split&#39;,
- &#39;learning_rate&#39;: 0.1,
- &#39;max_depth&#39;: -1,
- &#39;min_child_samples&#39;: 20,
- &#39;min_child_weight&#39;: 0.001,
- &#39;min_split_gain&#39;: 0.0,
- &#39;n_estimators&#39;: 100,
- &#39;n_jobs&#39;: None,
- &#39;num_leaves&#39;: 31,
- &#39;objective&#39;: None,
- &#39;random_state&#39;: None,
- &#39;reg_alpha&#39;: 0.0,
- &#39;reg_lambda&#39;: 0.0,
- &#39;subsample&#39;: 1.0,
- &#39;subsample_for_bin&#39;: 200000,
- &#39;subsample_freq&#39;: 0}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'boosting_type': 'gbdt',
+ 'class_weight': None,
+ 'colsample_bytree': 1.0,
+ 'importance_type': 'split',
+ 'learning_rate': 0.1,
+ 'max_depth': -1,
+ 'min_child_samples': 20,
+ 'min_child_weight': 0.001,
+ 'min_split_gain': 0.0,
+ 'n_estimators': 100,
+ 'n_jobs': None,
+ 'num_leaves': 31,
+ 'objective': None,
+ 'random_state': None,
+ 'reg_alpha': 0.0,
+ 'reg_lambda': 0.0,
+ 'subsample': 1.0,
+ 'subsample_for_bin': 200000,
+ 'subsample_freq': 0}
 </pre></div>
 </div>
 </div>
@@ -568,7 +580,7 @@ cv(params: Dict[str, Any], train_set: lightgbm.basic.Dataset, num_boost_round: i
                 Is eval result higher better, e.g. AUC is ``is_higher_better``.
     
         To ignore the default metric corresponding to the used objective,
-        set ``metrics`` to the string ``&quot;None&quot;``.
+        set ``metrics`` to the string ``"None"``.
     init_model : str, pathlib.Path, Booster or None, optional (default=None)
         Filename of LightGBM model or Booster instance used for continue training.
     fpreproc : callable or None, optional (default=None)
@@ -611,14 +623,14 @@ cv(params: Dict[str, Any], train_set: lightgbm.basic.Dataset, num_boost_round: i
     eval_results : dict
         History of evaluation results of each metric.
         The dictionary has the following format:
-        {&#39;valid metric1-mean&#39;: [values], &#39;valid metric1-stdv&#39;: [values],
-        &#39;valid metric2-mean&#39;: [values], &#39;valid metric2-stdv&#39;: [values],
+        {'valid metric1-mean': [values], 'valid metric1-stdv': [values],
+        'valid metric2-mean': [values], 'valid metric2-stdv': [values],
         ...}.
         If ``return_cvbooster=True``, also returns trained boosters wrapped in a ``CVBooster`` object via ``cvbooster`` key.
         If ``eval_train_metric=True``, also returns the train metric history.
         In this case, the dictionary has the following format:
-        {&#39;train metric1-mean&#39;: [values], &#39;valid metric1-mean&#39;: [values],
-        &#39;train metric2-mean&#39;: [values], &#39;valid metric2-mean&#39;: [values],
+        {'train metric1-mean': [values], 'valid metric1-mean': [values],
+        'train metric2-mean': [values], 'valid metric2-mean': [values],
         ...}.
 </pre></div>
 </div>
@@ -629,7 +641,7 @@ cv(params: Dict[str, Any], train_set: lightgbm.basic.Dataset, num_boost_round: i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">cv</span><span class="p">(</span>
     <span class="n">default_params</span><span class="p">,</span>
     <span class="n">train_set</span><span class="p">,</span>
-    <span class="n">metrics</span> <span class="o">=</span> <span class="s1">&#39;auc&#39;</span><span class="p">,</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="s1">'auc'</span><span class="p">,</span>
     <span class="n">num_boost_round</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
     <span class="n">nfold</span><span class="o">=</span><span class="n">N_FOLDS</span><span class="p">,</span>
     <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span>
@@ -681,9 +693,9 @@ You can set `force_col_wise=true` to remove the overhead.
 [LightGBM] [Info] Start training from score 0.077125
 [LightGBM] [Info] Start training from score 0.077125
 [LightGBM] [Info] Start training from score 0.077000
-Training until validation scores don&#39;t improve for 200 rounds
+Training until validation scores don't improve for 200 rounds
 Did not meet early stopping. Best iteration is:
-[14]	valid&#39;s auc: 0.706029 + 0.0223023
+[14]	valid's auc: 0.706029 + 0.0223023
 </pre></div>
 </div>
 </div>
@@ -695,7 +707,7 @@ Did not meet early stopping. Best iteration is:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;valid auc-mean&#39;: [0.65323335141481,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'valid auc-mean': [0.65323335141481,
   0.6775583880504371,
   0.6817425581169888,
   0.6873531227080611,
@@ -709,7 +721,7 @@ Did not meet early stopping. Best iteration is:
   0.7013666166946605,
   0.7032957304365313,
   0.7060287134596595],
- &#39;valid auc-stdv&#39;: [0.024272781101888612,
+ 'valid auc-stdv': [0.024272781101888612,
   0.01812150742035603,
   0.024102039428268655,
   0.019996301858114098,
@@ -803,8 +815,8 @@ Did not meet early stopping. Best iteration is:
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -838,7 +850,7 @@ Did not meet early stopping. Best iteration is:
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.19.0.
 </p></div>
       
     </div>
